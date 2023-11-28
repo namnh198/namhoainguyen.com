@@ -159,14 +159,28 @@ export const getPermalink = (type: 'tag' | 'note', slug = '/'): string => {
 
 export const getMetadata = ({
   title,
-  description
+  description,
+  images
 }: {
   title: string
   description?: string
+  images?: any
 }): Metadata => {
   return {
     title: `${title} | Site of Nam`,
-    description: description || me.quote
+    description: description || me.quote,
+    openGraph: {
+      title: title || "Hi! I'm Nam",
+      description: description || me.quote,
+      type: 'website',
+      images: images || [
+        {
+          url: 'https://i.imgur.com/PyXUtfTh.png',
+          width: 1024,
+          height: 581
+        }
+      ]
+    }
   }
 }
 

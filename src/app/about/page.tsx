@@ -3,14 +3,22 @@ import Container from '@/components/Container'
 import Heading from '@/components/Heading/Heading'
 import HeadingAbout from '@/components/Heading/HeadingAbout'
 import { cv } from '@/data/cv'
+import { me } from '@/data/me'
 import { skills } from '@/data/skills'
 import { getMetadata } from '@/lib/utils'
 import CVGroup from './CVGroup'
 import SkillGroup from './SkillGroup'
 
 export const metadata = getMetadata({
-  title: 'About Us',
-  description: 'About Us'
+  title: 'About me',
+  description: me.quote,
+  images: [
+    {
+      url: 'https://i.imgur.com/PyXUtfTh.png',
+      width: 1024,
+      height: 591
+    }
+  ]
 })
 
 export default function AboutPage() {

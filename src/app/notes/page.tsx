@@ -6,13 +6,18 @@ import SliderPost from '@/components/Slider/SliderPost'
 import { getTopics, getTotalPosts, getUnofficalPosts } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
 import type { Tag } from '@notion-x/interface'
-import { Metadata } from 'next'
 import { Suspense } from 'react'
 
 export const revalidate = 20
 
-export const metadata: Metadata = getMetadata({
-  title: 'Notes'
+const title = 'Notes'
+const description =
+  'When I learn something new, I write it down here. It helps me to remember and understand better. I hope you find it useful.'
+
+export const metadata = getMetadata({
+  title,
+  description,
+  images: [`/api/og?title=${encodeURI(title)}&description=${encodeURI(description)}`]
 })
 
 export default async function NotesPage() {
@@ -33,9 +38,8 @@ export default async function NotesPage() {
   })
   return (
     <Suspense fallback={null}>
-      <HeadingNote title="Notes" image={notesImg} total={`${totalPost} Notes`}>
-        When I learn something new, I write it down here. It helps me to remember and understand
-        better. I hope you find it useful.
+      <HeadingNote title={title} image={notesImg} total={`${totalPost} Notes`}>
+        {description}
       </HeadingNote>
       <Container>
         <SliderPost posts={pinnedPosts} />

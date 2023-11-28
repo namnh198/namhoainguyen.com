@@ -3,6 +3,18 @@ import CardTool from '@/components/Card/CardTool'
 import Container from '@/components/Container'
 import HeadingNote from '@/components/Heading/HeadingNote'
 import { getTools } from '@/lib/notes'
+import { getMetadata } from '@/lib/utils'
+
+export const revalidate = 20
+
+const title = 'Tools I use'
+const description = 'Apps, tools, websites I find useful.'
+
+export const metadata = getMetadata({
+  title,
+  description,
+  images: [`/api/og?title=${encodeURI(title)}&description=${encodeURI(description)}`]
+})
 
 export default async function ToolsPage() {
   const tools = await getTools()

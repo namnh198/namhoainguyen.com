@@ -5,13 +5,16 @@ import SkeletonTags from '@/components/Skeleton/SkeletonTags'
 import { getTopics } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
 import type { Tag } from '@notion-x/interface'
-import { Metadata } from 'next'
 import { Suspense } from 'react'
 
 export const revalidate = 20
+const title = 'List of topics'
+const description = 'A list of topics I write about'
 
-export const metadata: Metadata = getMetadata({
-  title: 'List of Topics'
+export const metadata = getMetadata({
+  title,
+  description,
+  images: [`/api/og?title=${encodeURI(title)}&description=${encodeURI(description)}`]
 })
 
 export default async function TagsPage() {

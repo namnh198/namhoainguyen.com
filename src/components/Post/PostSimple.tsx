@@ -1,8 +1,9 @@
 import { getFormattedDate } from '@/lib/utils'
+import BsPinAngle from '@notion-x/icons/BsPinAngle'
+import HiMiniCheckBadge from '@notion-x/icons/HiMiniCheckBadge'
+import IsDocumentText from '@notion-x/icons/IsDocumentText'
 import type { Post } from '@notion-x/interface'
-import { DocumentText, Verify } from 'iconsax-react'
 import Link from 'next/link'
-import { BsPinAngle } from 'react-icons/bs'
 import Badge from '../Badge/Badge'
 
 export default function PostSimple({ post }: { post: Post }) {
@@ -13,10 +14,10 @@ export default function PostSimple({ post }: { post: Post }) {
       className="group flex items-center p-4 hover:bg-neutral-200 dark:hover:bg-neutral-700"
     >
       <div className="relative shrink-0 mr-2.5">
-        {post.pinned ? <BsPinAngle className="w-8 h-8" /> : <DocumentText className="w-8 h-8" />}
+        {post.pinned ? <BsPinAngle className="w-8 h-8" /> : <IsDocumentText className="w-8 h-8" />}
         {post.verified && (
           <span className="bg-white dark:bg-neutral-900 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 p-0.5 rounded-full absolute bottom-[-5px] right-[-5px]">
-            <Verify variant="Bold" size={16} />
+            <HiMiniCheckBadge className="w-4 h-4" />
           </span>
         )}
       </div>

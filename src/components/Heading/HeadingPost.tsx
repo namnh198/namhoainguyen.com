@@ -5,12 +5,13 @@ import { PageIcon } from '@notion-x/components/page-icon'
 import { Text } from '@notion-x/components/text'
 import { useNotionContext } from '@notion-x/hooks/context'
 import { usePostDateStatus } from '@notion-x/hooks/postUpdatedDateStatus'
+import HiMiniCheckBadge from '@notion-x/icons/HiMiniCheckBadge'
+import HiOutlinePencilSquare from '@notion-x/icons/HiOutlinePencilSquare'
 import cn from 'classnames'
 import { get } from 'lodash'
 import dynamic from 'next/dynamic'
 import { ExtendedRecordMap } from 'notion-types'
 import { Suspense } from 'react'
-import { HiMiniCheckBadge, HiOutlinePencilSquare } from 'react-icons/hi2'
 
 import { me } from '@/data/me'
 import { defaultPostTypeOpts } from '@/lib/config'
@@ -168,7 +169,7 @@ export default function HeadingPost(props: PostHeaderProps) {
                         data-title="Verified by me"
                       >
                         <span className="shrink-0 flex items-center justify-center rounded-full bg-neutral-50 transition-colors duration-75 dark:bg-neutral-800 hover:bg-sky-50 dark:hover:bg-sky-100 w-9 h-9">
-                          <HiMiniCheckBadge size={20} />
+                          <HiMiniCheckBadge className="w-5 h-5" />
                         </span>
                       </div>
                     )}
@@ -179,7 +180,7 @@ export default function HeadingPost(props: PostHeaderProps) {
                       data-title={'Edit this note (for me only)'}
                     >
                       <span className="shrink-0 flex items-center justify-center rounded-full bg-neutral-50 transition-colors duration-75 dark:bg-neutral-800 hover:bg-green-50 dark:hover:bg-green-100 w-9 h-9">
-                        <HiOutlinePencilSquare size={18} />
+                        <HiOutlinePencilSquare className="w-4 h-4" />
                       </span>
                     </a>
                   </div>

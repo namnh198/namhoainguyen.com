@@ -1,7 +1,7 @@
+import HiOutlineFire from '@notion-x/icons/HiOutlineFire'
 import type { ImageType } from '@notion-x/interface'
 import cn from 'classnames'
 import Image, { StaticImageData } from 'next/image'
-import { HiOutlineFire } from 'react-icons/hi2'
 import SkeletonLoading from '../Skeleton/SkeletonLoading'
 
 interface Props {

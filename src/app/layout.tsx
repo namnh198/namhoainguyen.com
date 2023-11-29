@@ -29,20 +29,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {process.env.GA_ID && process.env.ENV_MODE === 'prod' && (
-        <>
-          <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_ID}`} />
-          <Script id="google-analytics">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=G-3MB2TKP0VR`} />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-              gtag('config', '${process.env.GA_ID}');
-            `}
-          </Script>
-        </>
-      )}
+          gtag('config', 'G-3MB2TKP0VR');
+        `}
+      </Script>
       <body
         className={`${poppins.className} text-base bg-white text-neutral-900 dark:bg-neutral-900/95 dark:text-neutral-200`}
         suppressHydrationWarning

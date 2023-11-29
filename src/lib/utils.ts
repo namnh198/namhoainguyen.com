@@ -191,7 +191,7 @@ export const mapTag = (tag: NotionTagData | string): Tag => {
       id: slug,
       name: tag,
       slug: slug,
-      permalink: getPermalink('tag', tag)
+      permalink: getPermalink('tag', slug)
     }
   }
   if (!tag?.name) throw new Error('Tag is invalid')

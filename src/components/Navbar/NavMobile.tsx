@@ -2,8 +2,9 @@
 import NavItem from '@/components/Navbar/NavItem'
 import type { NavbarItemProps } from '@/data/navigation'
 import { Dialog, Transition } from '@headlessui/react'
+import HiOutlineBars3 from '@notion-x/icons/HiOutlineBars3'
+import HiOutlineXMark from '@notion-x/icons/HiOutlineXMark'
 import { Fragment, useState } from 'react'
-import { HiOutlineBars3, HiOutlineXMark } from 'react-icons/hi2'
 import NavAvatar from './NavAvatar'
 
 export default function NavMobile({ navbar }: { navbar: NavbarItemProps[] }) {
@@ -23,7 +24,7 @@ export default function NavMobile({ navbar }: { navbar: NavbarItemProps[] }) {
         className="p-2.5 -ml-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none flex items-center justify-center"
       >
         <span className="sr-only">Toggle Menu</span>
-        <HiOutlineBars3 size={24} />
+        <HiOutlineBars3 className="w-6 h-6" />
       </button>
       <Transition appear as={Fragment} show={isShowMenu}>
         <Dialog as="div" className="relative z-50" onClose={handleCloseMenu}>
@@ -59,7 +60,7 @@ export default function NavMobile({ navbar }: { navbar: NavbarItemProps[] }) {
                         onClick={handleCloseMenu}
                         className="w-8 h-8 flex items-center justify-center rounded-full text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none"
                       >
-                        <HiOutlineXMark size={24} />
+                        <HiOutlineXMark className="w-6 h-6" />
                       </button>
                     </div>
                   </div>

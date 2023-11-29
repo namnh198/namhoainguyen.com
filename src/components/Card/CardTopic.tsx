@@ -1,9 +1,9 @@
 import SimpleImage from '@notion-x/components/SimpleImage'
+import AiOutlineLoading3Quarters from '@notion-x/icons/AiOutlineLoading3Quarters'
 import type { Tag } from '@notion-x/interface'
 import cn from 'classnames'
 import Link from 'next/link'
 import { Suspense } from 'react'
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import SkeletonLoading from '../Skeleton/SkeletonLoading'
 
 const ImagePlaceholder = () => {

@@ -3,8 +3,8 @@ import { makeSlugText } from '@notion-x/lib/helpers'
 import { searchNotion } from '@notion-x/lib/notion-api'
 
 const UNOFFICIAL_NOTION_KEYS = {
-  slug: process.env.NEXT_PUBLIC_ID_SLUG as string,
-  published: process.env.NEXT_PUBLIC_ID_PUBLISHED as string,
+  slug: process.env.NEXT_PUBLIC_ID_NOTE_SLUG_KEY as string,
+  published: process.env.NEXT_PUBLIC_ID_NOTE_PUBLISHED_KEY as string,
   title: 'title',
   boldSearchKey: `<${process.env.SEARCH_BOLD_KEY}>`,
   boldSearchKeyClose: `</${process.env.SEARCH_BOLD_KEY}>`
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
 
 /**
  * We convert the format of search results got from /api/search-notion to the format we want
- * Note that: /api/search-notin uses an unofficial notion api, so the format is a little bit different
+ * Note that: /api/search-notion uses an unofficial notion api, so the format is a little bit different
  */
 function parseSearchResults(data: any): SearchResult[] {
   let results = [] as SearchResult[]
@@ -60,7 +60,10 @@ function parseSearchResults(data: any): SearchResult[] {
       const postSlug = _slug || makeSlugText(_title || '')
       const postTitleHighlighted =
         result?.highlight?.title
-          ?.replaceAll(UNOFFICIAL_NOTION_KEYS.boldSearchKey, '<span style="color: #000;">')
+          ?.replaceAll(
+            UNOFFICIAL_NOTION_KEYS.boldSearchKey,
+            '<span style="color: #000; font-weight: 600;">'
+          )
           ?.replaceAll(UNOFFICIAL_NOTION_KEYS.boldSearchKeyClose, '</span>') || postTitle
       const postTextHighlighted =
         result.highlight?.text

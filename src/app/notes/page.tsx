@@ -2,9 +2,10 @@ import notesImg from '@/assets/images/notes.svg'
 import Container from '@/components/Container'
 import HeadingNote from '@/components/Heading/HeadingNote'
 import NoteTopicSection from '@/components/NoteTopicSection'
-import SliderPost from '@/components/Slider/SliderPost'
+import { defaultPostTypeOpts } from '@/lib/config'
 import { getTopics, getTotalPosts, getUnofficalPosts } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
+import PostList from '@notion-x/components/PostList'
 import type { Tag } from '@notion-x/interface'
 import { Suspense } from 'react'
 
@@ -42,7 +43,13 @@ export default async function NotesPage() {
         {description}
       </HeadingNote>
       <Container>
-        <SliderPost posts={pinnedPosts} />
+        <Suspense fallback={null}>
+          <PostList
+            posts={pinnedPosts}
+            postType="simple"
+            postTypeOpts={{ ...defaultPostTypeOpts, showPinned: true }}
+          />
+        </Suspense>
         <div className="flex flex-wrap">
           <div className="order-2 flex-1 relative flex flex-col gap-y-6">
             {pinnedTags.map((tag: Tag) => (

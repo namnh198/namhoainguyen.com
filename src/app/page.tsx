@@ -5,10 +5,11 @@ import TagListItem from '@/components/Card/CardTopic'
 import Container from '@/components/Container'
 import Heading from '@/components/Heading/Heading'
 import HeadingIndex from '@/components/Heading/HeadingIndex'
-import PostSimple from '@/components/Post/PostSimple'
 import { me } from '@/data/me'
+import { defaultPostTypeOpts } from '@/lib/config'
 import { getProjects, getTools, getTopics, getUnofficalPosts } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
+import PostList from '@notion-x/components/PostList'
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 
@@ -42,34 +43,22 @@ export default async function HomePage() {
       <Container className="pb-6">
         <HeadingIndex />
         <div className="relative">
-          <Heading title="Recent updated notes" />
+          <Heading title="Recent updated notes" href="/notes" />
           <div className="flex flex-col gap-y-6">
             <Suspense fallback={null}>
-              <div className="rounded-xl overflow-hidden bg-white dark:bg-neutral-900 shadow-md border border-neutral-200 dark:border-neutral-700">
-                <div className="flow-root">
-                  <div className="flex flex-col divide-y divide-neutral-200 dark:divide-neutral-700">
-                    {pinnedPosts.map(post => (
-                      <PostSimple key={post.id} post={post} />
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <PostList
+                posts={pinnedPosts}
+                postType="simple"
+                postTypeOpts={{ ...defaultPostTypeOpts, showPinned: true }}
+              />
             </Suspense>
             <Suspense fallback={null}>
-              <div className="rounded-xl overflow-hidden bg-white dark:bg-neutral-900 shadow-md border border-neutral-200 dark:border-neutral-700">
-                <div className="flow-root">
-                  <div className="flex flex-col divide-y divide-neutral-200 dark:divide-neutral-700">
-                    {recentPosts.map(post => (
-                      <PostSimple key={post.id} post={post} />
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <PostList posts={recentPosts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
             </Suspense>
           </div>
         </div>
         <div className="relative">
-          <Heading title="Recent tools I used" />
+          <Heading title="Recent tools I used" href="/tools" />
           <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
             <Suspense fallback={null}>
               {tools.tools.slice(0, 6).map(tool => (
@@ -79,7 +68,7 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="relative">
-          <Heading title="Main Topics" />
+          <Heading title="Main Topics" href="/topics" />
           <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
             <Suspense fallback={null}>
               {pinnedTags.map(tag => (
@@ -89,7 +78,7 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="relative">
-          <Heading title="Recent Projects" />
+          <Heading title="Recent Projects" href="/projects" />
           <div className="grid gap-6 grid-cols-1 md:gap-8 sm:grid-cols-2 lg:md:grid-cols-3 xl:grid-cols-4">
             <Suspense fallback={null}>
               {projects.slice(0, 8).map(project => (

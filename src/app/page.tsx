@@ -68,7 +68,7 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="relative">
-          <Heading title="Main Topics" href="/topics" />
+          <Heading title="Main Topics" href="/tags" />
           <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
             <Suspense fallback={null}>
               {pinnedTags.map(tag => (

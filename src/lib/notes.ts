@@ -122,6 +122,23 @@ export const getUnofficalPostBySlug = async (slug: string): Promise<Post | undef
   return allPosts.find(post => post?.slug === slug)
 }
 
+export const getUnofficalPostByTag = async (tag: string) => {
+  const limit = (process.env.NEXT_PUBLIC_ID_NOTE_PER_PAGE || 8) as number
+  return await getUnofficalPosts({
+    filter: {
+      property: process.env.NEXT_PUBLIC_ID_NOTE_TAGS_KEY,
+      filter: {
+        operator: 'enum_contains',
+        value: {
+          type: 'exact',
+          value: tag
+        }
+      }
+    },
+    limit: limit
+  })
+}
+
 export const transformUnofficalPosts = async (
   data: CollectionInstance,
   fulldata = false

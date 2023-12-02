@@ -1,4 +1,4 @@
-import { me } from '@/data/me'
+import me from '@/data/me'
 import type { NotionTagData, Post, Tag } from '@notion-x/interface'
 import {
   QueryDatabaseParameters,

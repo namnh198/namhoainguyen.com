@@ -1,4 +1,4 @@
-import { me } from '@/data/me'
+import me from '@/data/me'
 import TbBrandFacebook from '@notion-x/icons/TbBrandFacebook'
 import TbBrandGithub from '@notion-x/icons/TbBrandGithub'
 import TbBrandGmail from '@notion-x/icons/TbBrandGmail'

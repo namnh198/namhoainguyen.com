@@ -1,5 +1,5 @@
 import homeImg from '@/assets/images/index-home.webp'
-import { me } from '@/data/me'
+import me from '@/data/me'
 import { socials } from '@/data/socials'
 import Image from 'next/image'
 import BadgeSocial from '../Badge/BadgeSocials'

@@ -29,6 +29,6 @@ export type Tool = {
 }
 
 export type ParamsProps = {
-  slug?: string | Array<string>
+  slug?: string | string[]
   page?: string
 }

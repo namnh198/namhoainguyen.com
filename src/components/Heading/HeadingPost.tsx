@@ -13,7 +13,7 @@ import dynamic from 'next/dynamic'
 import { ExtendedRecordMap } from 'notion-types'
 import { Suspense } from 'react'
 
-import { me } from '@/data/me'
+import me from '@/data/me'
 import { defaultPostTypeOpts } from '@/lib/config'
 import SimpleImage from '@notion-x/components/SimpleImage'
 import { ImagePlaceholderPostHeader } from '@notion-x/components/image-placeholders'

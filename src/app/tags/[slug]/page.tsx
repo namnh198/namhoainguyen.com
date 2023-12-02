@@ -31,6 +31,17 @@ export async function generateMetadata({ params }: { params: ParamsProps }): Pro
   })
 }
 
+export async function generateStaticParams() {
+  const tags = await getTopics()
+  const params = tags.reduce<ParamsProps[]>((acc, tag) => {
+    if (!tag.slug) {
+      return acc
+    }
+    return [...acc, { slug: tag.slug }]
+  }, [] as ParamsProps[])
+  return params
+}
+
 export default async function TagDetail({ params }: { params: ParamsProps }) {
   const slug = params?.slug?.[0] as string
   if (!slug) return notFound()
@@ -51,7 +62,7 @@ export default async function TagDetail({ params }: { params: ParamsProps }) {
       >
         {tag.description ? tag.description : `List all notes of topic ${tag.name}`}
       </HeadingNote>
-      <Container>
+      <Container className="py-16 space-y-16">
         <PostList posts={posts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
       </Container>
     </Suspense>

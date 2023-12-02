@@ -5,11 +5,11 @@ import BadgeTech from '@/components/Badge/BadgeTech'
 
 export default function CardProject({ project }: { project: Project }) {
   return (
-    <div className="relative shadow-xl bg-white border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 group hover:shadow-md p-5 rounded-3xl transition-shadow">
+    <div className="relative shadow-md bg-white border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 group transition duration-200 ease-in-out hover:-translate-y-0.5 hover:-translate-x-0.5 p-5 rounded-3xl">
       <a href={project.permalink} className="absolute inset-0"></a>
       <div className="flex flex-col">
         <div className="flex flex-wrap gap-1.5">
-          <Badge label="Project" color="red" />
+          <Badge label={project.type || 'Projects'} color={getColorBadge(project.type)} />
         </div>
 
         <h2 className="block mt-4 dark:text-neutral-300 font-semibold text-base text-neutral-800">
@@ -30,4 +30,15 @@ export default function CardProject({ project }: { project: Project }) {
       </div>
     </div>
   )
+}
+
+const getColorBadge = (type?: string) => {
+  switch (type) {
+    case 'Web Development':
+      return 'yellow'
+    case 'DevOps':
+      return 'blue'
+    default:
+      return 'red'
+  }
 }

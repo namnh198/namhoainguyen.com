@@ -4,6 +4,7 @@ import PostList from '@notion-x/components/PostList'
 import SimpleImage from '@notion-x/components/SimpleImage'
 import type { Tag } from '@notion-x/interface'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 interface Props {
   tag: Tag
@@ -14,10 +15,13 @@ export default async function NoteTopicSection({ tag }: Props) {
   if (posts.length < 1) return null
 
   return (
-    <>
+    <div className="group flex flex-col gap-4">
       <div className="relative text-neutral-900 dark:text-neutral-50">
         <div className="max-w-2xl w-full">
-          <h2 className="font-semibold text-xl sm:text-2xl flex flex-wrap gap-x-3 items-center">
+          <h2
+            id={tag.slug}
+            className="font-semibold text-xl sm:text-2xl flex flex-wrap gap-x-3 items-center"
+          >
             <SimpleImage src={tag.icon} alt={`Image of topic ${tag.name}`} width={28} height={28} />
             <span>
               {tag.name}
@@ -31,7 +35,9 @@ export default async function NoteTopicSection({ tag }: Props) {
           </h2>
         </div>
       </div>
-      <PostList posts={posts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
-    </>
+      <Suspense fallback={null}>
+        <PostList posts={posts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
+      </Suspense>
+    </div>
   )
 }

@@ -15,6 +15,10 @@ export default function Badge({ color, label, href, className }: Props) {
     {
       'text-green-700 bg-green-50 ring-green-600/20': color === 'green',
       'hover:bg-green-600 hover:text-green-100': href && color === 'green',
+      'text-blue-700 bg-blue-50 ring-blue-600/20': color === 'blue',
+      'hover:bg-blue-600 hover:text-blue-100': href && color === 'blue',
+      'text-yellow-700 bg-yellow-50 ring-yellow-600/20': color === 'yellow',
+      'hover:bg-yellow-600 hover:text-yellow-100': href && color === 'yellow',
       'text-red-700 bg-red-50 ring-red-600/20': color === 'red',
       'hover:bg-red-600 hover:text-red-100': href && color === 'red'
     },

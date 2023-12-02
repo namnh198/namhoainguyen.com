@@ -13,6 +13,7 @@ export type ImageType = {
 export type Project = {
   id: string
   title: string
+  type?: string
   permalink?: string
   description?: string
   techs?: string[]

@@ -1,0 +1,41 @@
+import Container from '@/components/Container'
+import SkeletonHeadingNote from '@/components/Skeleton/SkeletonHeadingNote'
+import SkeletonPostList from '@notion-x/components/SkeletonPostList'
+
+export default function Loading() {
+  return (
+    <>
+      <SkeletonHeadingNote />
+      <Container className="py-16 space-y-16">
+        <div className="flex-1 flex flex-col gap-12">
+          <div className="overflow-hidden flex-1">
+            <SkeletonPostList
+              count={4}
+              postType="simple"
+              options={{
+                className: 'flex flex-col divide-y'
+              }}
+            />
+          </div>
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div key={i} className="flex flex-col gap-3">
+              <div className="flex gap-2 items-center animate-pulse">
+                <div className="h-[30px] w-[30px] rounded-full bg-slate-200"></div>
+                <div className="h-[30px] bg-slate-200 w-[250px] rounded-md"></div>
+              </div>
+              <div className="overflow-hidden flex-1">
+                <SkeletonPostList
+                  count={4}
+                  postType="simple"
+                  options={{
+                    className: 'flex flex-col divide-y'
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </>
+  )
+}

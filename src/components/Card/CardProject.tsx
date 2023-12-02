@@ -5,20 +5,16 @@ import BadgeTech from '@/components/Badge/BadgeTech'
 
 export default function CardProject({ project }: { project: Project }) {
   return (
-    <div className="relative shadow-md bg-white border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 group transition duration-200 ease-in-out hover:-translate-y-0.5 hover:-translate-x-0.5 p-5 rounded-3xl">
+    <div className="relative shadow-md bg-white border border-neutral-200   group transition duration-200 ease-in-out hover:-translate-y-0.5 hover:-translate-x-0.5 p-5 rounded-3xl">
       <a href={project.permalink} className="absolute inset-0"></a>
       <div className="flex flex-col">
         <div className="flex flex-wrap gap-1.5">
           <Badge label={project.type || 'Projects'} color={getColorBadge(project.type)} />
         </div>
 
-        <h2 className="block mt-4 dark:text-neutral-300 font-semibold text-base text-neutral-800">
-          {project.title}
-        </h2>
+        <h2 className="block mt-4  font-semibold text-base text-neutral-800">{project.title}</h2>
         {project.description && (
-          <p className="block dark:text-neutral-400 text-neutral-500 text-sm mt-3.5 mb-4">
-            {project.description}
-          </p>
+          <p className="block  text-neutral-500 text-sm mt-3.5 mb-4">{project.description}</p>
         )}
         {project.techs && (
           <div className="relative flex flex-wrap gap-1.5">

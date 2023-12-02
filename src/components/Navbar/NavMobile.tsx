@@ -21,7 +21,7 @@ export default function NavMobile({ navbar }: { navbar: NavbarItemProps[] }) {
       <button
         title="Toggle Menu"
         onClick={handleOpenMenu}
-        className="p-2.5 -ml-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none flex items-center justify-center"
+        className="p-2.5 -ml-2.5 rounded-xl text-slate-700  hover:bg-slate-100  focus:outline-none flex items-center justify-center"
       >
         <span className="sr-only">Toggle Menu</span>
         <HiOutlineBars3 className="w-6 h-6" />
@@ -50,7 +50,7 @@ export default function NavMobile({ navbar }: { navbar: NavbarItemProps[] }) {
           >
             <div className="flex h-screen">
               <div className="w-full max-w-sm overflow-hidden transition-all">
-                <div className="overflow-y-auto w-full h-screen py-2 transition shadow-lg ring-1 dark:ring-neutral-700 bg-white dark:bg-neutral-900 divide-y-2 divide-neutral-100 dark:divide-neutral-800">
+                <div className="overflow-y-auto w-full h-screen py-2 transition shadow-lg ring-1  bg-white  divide-y-2 divide-neutral-100 ">
                   <div className="py-7 px-5">
                     <div className="absolute start-2 top-4">
                       <NavAvatar />
@@ -58,7 +58,7 @@ export default function NavMobile({ navbar }: { navbar: NavbarItemProps[] }) {
                     <div className="absolute end-2 top-4 p-1">
                       <button
                         onClick={handleCloseMenu}
-                        className="w-8 h-8 flex items-center justify-center rounded-full text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none"
+                        className="w-8 h-8 flex items-center justify-center rounded-full text-neutral-700  hover:bg-neutral-100  focus:outline-none"
                       >
                         <HiOutlineXMark className="w-6 h-6" />
                       </button>

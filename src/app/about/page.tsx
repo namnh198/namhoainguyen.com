@@ -31,7 +31,7 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="relative py-16">
-          <div className="absolute z-0 -translate-x-1/2 2xl:max-w-screen-2xl bg-neutral-100 dark:bg-black dark:bg-opacity/20 inset-y-0 left-1/2 w-screen xl:max-w-[1340px] xl:rounded-[40px]">
+          <div className="absolute z-0 -translate-x-1/2 2xl:max-w-screen-2xl bg-neutral-100 inset-y-0 left-1/2 w-screen xl:max-w-[1340px] xl:rounded-[40px]">
             <span className="sr-only hidden">bg</span>
           </div>
           <div className="relative grid gap-8 lg:grid-cols-2">

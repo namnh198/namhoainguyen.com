@@ -39,9 +39,8 @@ export default function NavItem({ nav, isMobile = false, onClick }: Props) {
 
 export const isActiveClass = (isCurrent: boolean) =>
   cn({
-    'text-slate-700 dark:text-neutral-200 bg-slate-200 dark:bg-neutral-700': isCurrent,
-    'text-slate-700 dark:text-neutral-400 hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200':
-      !isCurrent
+    'text-slate-700  bg-slate-200 ': isCurrent,
+    'text-slate-700  hover:text-slate-900 hover:bg-slate-100  ': !isCurrent
   })
 
 export const isMobileClass = (isMobile: boolean) =>

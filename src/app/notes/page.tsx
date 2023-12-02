@@ -8,7 +8,6 @@ import { getTopics, getTotalPosts, getUnofficalPosts } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
 import PostList from '@notion-x/components/PostList'
 import type { Tag } from '@notion-x/interface'
-import { Suspense } from 'react'
 
 export const revalidate = 20
 
@@ -38,33 +37,32 @@ export default async function NotesPage() {
     },
     limit: 8
   })
+
   return (
-    <Suspense fallback={null}>
+    <>
       <HeadingNote title={title} image={notesImg} total={`${totalPost} Notes`}>
         {description}
       </HeadingNote>
       <Container>
         <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-          <Suspense fallback={null}>
-            <div className="order-2 flex-1 relative flex flex-col gap-y-12">
-              <div className="flex flex-col gap-2">
-                <PostList
-                  posts={pinnedPosts}
-                  postType="simple"
-                  postTypeOpts={{ ...defaultPostTypeOpts, showPinned: true }}
-                />
-              </div>
-              {pinnedTags.map((tag: Tag) => (
-                <NoteTopicSection key={tag.slug} tag={tag} showHeader />
-              ))}
+          <div className="order-2 flex-1 relative flex flex-col gap-y-12">
+            <div className="flex flex-col gap-2">
+              <PostList
+                posts={pinnedPosts}
+                postType="simple"
+                postTypeOpts={{ ...defaultPostTypeOpts, showPinned: true }}
+              />
             </div>
-          </Suspense>
+            {pinnedTags.map((tag: Tag) => (
+              <NoteTopicSection key={tag.slug} tag={tag} showHeader />
+            ))}
+          </div>
           <NotesToc
             className={'order-1 md:order-2 md:sticky top-[70px] h-fit md:w-fit w-full'}
             tags={pinnedTags}
           />
         </div>
       </Container>
-    </Suspense>
+    </>
   )
 }

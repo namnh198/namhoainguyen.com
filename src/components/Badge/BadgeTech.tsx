@@ -17,7 +17,7 @@ export default function BadgeTech({
     <Component
       href={tech.url}
       target="_blank"
-      className="flex items-center justify-center dark:hover:bg-neutral-700 bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 p-1.5 rounded-md space-x-1 text-xs"
+      className="flex items-center justify-center  bg-neutral-100   hover:bg-neutral-200 p-1.5 rounded-md space-x-1 text-xs"
     >
       <Image src={tech.icon} alt={tech.name} width={20} height={20} />
       {showTitle && <span className="inline-block ml-2">{tech.name}</span>}

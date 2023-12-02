@@ -1,6 +1,7 @@
 import notesImg from '@/assets/images/notes.svg'
 import Container from '@/components/Container'
 import HeadingNote from '@/components/Heading/HeadingNote'
+import NotesToc from '@/components/NoteToc'
 import NoteTopicSection from '@/components/NoteTopicSection'
 import { defaultPostTypeOpts } from '@/lib/config'
 import { getTopics, getTotalPosts, getUnofficalPosts } from '@/lib/notes'
@@ -43,21 +44,26 @@ export default async function NotesPage() {
         {description}
       </HeadingNote>
       <Container>
-        <Suspense fallback={null}>
-          <PostList
-            posts={pinnedPosts}
-            postType="simple"
-            postTypeOpts={{ ...defaultPostTypeOpts, showPinned: true }}
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+          <Suspense fallback={null}>
+            <div className="order-2 flex-1 relative flex flex-col gap-y-12">
+              <div className="flex flex-col gap-2">
+                <PostList
+                  posts={pinnedPosts}
+                  postType="simple"
+                  postTypeOpts={{ ...defaultPostTypeOpts, showPinned: true }}
+                />
+              </div>
+              {pinnedTags.map((tag: Tag) => (
+                <NoteTopicSection key={tag.slug} tag={tag} showHeader />
+              ))}
+            </div>
+          </Suspense>
+          <NotesToc
+            className={'order-1 md:order-2 md:sticky top-[70px] h-fit md:w-fit w-full'}
+            tags={pinnedTags}
           />
-        </Suspense>
-        <div className="flex flex-wrap">
-          <div className="order-2 flex-1 relative flex flex-col gap-y-6">
-            {pinnedTags.map((tag: Tag) => (
-              <NoteTopicSection key={tag.slug} tag={tag} showHeader />
-            ))}
-          </div>
         </div>
-        <div className="relative space-y-6"></div>
       </Container>
     </Suspense>
   )

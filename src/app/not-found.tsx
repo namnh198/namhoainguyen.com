@@ -1,6 +1,15 @@
 import img404 from '@/assets/images/404.webp'
+import { defaultOpenGraphImage } from '@/lib/config'
+import { getMetadata } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
+
+export const metadata = {
+  title: getMetadata({ title: 'Page not found!' }),
+  openGraph: {
+    images: [defaultOpenGraphImage]
+  }
+}
 
 export default function NotFound() {
   return (

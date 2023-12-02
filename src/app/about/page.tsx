@@ -5,6 +5,7 @@ import HeadingAbout from '@/components/Heading/HeadingAbout'
 import { cv } from '@/data/cv'
 import me from '@/data/me'
 import { skills } from '@/data/skills'
+import { defaultOpenGraphImage } from '@/lib/config'
 import { getMetadata } from '@/lib/utils'
 import CVGroup from './CVGroup'
 import SkillGroup from './SkillGroup'
@@ -12,13 +13,7 @@ import SkillGroup from './SkillGroup'
 export const metadata = getMetadata({
   title: 'About me',
   description: me.quote,
-  images: [
-    {
-      url: 'https://i.imgur.com/PyXUtfTh.png',
-      width: 1024,
-      height: 591
-    }
-  ]
+  images: [defaultOpenGraphImage]
 })
 
 export default function AboutPage() {

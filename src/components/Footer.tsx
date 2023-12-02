@@ -1,4 +1,4 @@
-import { me } from '@/data/me'
+import me from '@/data/me'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 

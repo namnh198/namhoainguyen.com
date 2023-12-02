@@ -9,11 +9,13 @@ export type CVItemType = {
   activity?: string[]
   techs?: string[]
 }
+
 export type CVGroupType = {
   id: string
   name: string
   lists: CVItemType[]
 }
+
 export const cv: CVGroupType[] = [
   {
     id: 'experiences',
@@ -67,3 +69,5 @@ export const cv: CVGroupType[] = [
     lists: []
   }
 ]
+
+export default cv

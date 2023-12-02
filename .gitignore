@@ -9,6 +9,11 @@
 # testing
 /coverage
 
+# seo
+public/sitemap.xml
+public/sitemap-*.xml
+public/robots.txt
+
 # next.js
 /.next/
 /out/

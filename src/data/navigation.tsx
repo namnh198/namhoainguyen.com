@@ -1,10 +1,8 @@
-import { me } from './me'
-
 export type NavbarItemProps = {
   name: string
   permalink: string
   external?: boolean
-  icon?: string
+  icon?: React.ReactNode
 }
 
 export const NAVIGATION: NavbarItemProps[] = [
@@ -34,18 +32,4 @@ export const NAVIGATION: NavbarItemProps[] = [
   }
 ]
 
-export const FOOTER_NAVIGATION: NavbarItemProps[] = [
-  {
-    name: 'Contact',
-    permalink: `mailto:${me.email}`,
-    external: true
-  },
-  {
-    name: 'About',
-    permalink: '/about'
-  },
-  {
-    name: 'Support me',
-    permalink: '/support-me'
-  }
-]
+export default NAVIGATION

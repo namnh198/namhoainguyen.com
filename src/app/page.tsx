@@ -5,8 +5,8 @@ import TagListItem from '@/components/Card/CardTopic'
 import Container from '@/components/Container'
 import Heading from '@/components/Heading/Heading'
 import HeadingIndex from '@/components/Heading/HeadingIndex'
-import { me } from '@/data/me'
-import { defaultPostTypeOpts } from '@/lib/config'
+import me from '@/data/me'
+import { defaultOpenGraphImage, defaultPostTypeOpts } from '@/lib/config'
 import { getProjects, getTools, getTopics, getUnofficalPosts } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
 import PostList from '@notion-x/components/PostList'
@@ -15,7 +15,8 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = getMetadata({
   title: "Hi! I'm Nam",
-  description: me.quote
+  description: me.quote,
+  images: [defaultOpenGraphImage]
 })
 
 export default async function HomePage() {

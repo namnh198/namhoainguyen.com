@@ -21,3 +21,5 @@ export const me = {
   openToWork: false,
   location: 'Ho Chi Minh, Viet Nam'
 }
+
+export default me

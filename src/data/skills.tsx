@@ -61,3 +61,5 @@ export const skills: SkillType[] = [
     ]
   }
 ]
+
+export default skills

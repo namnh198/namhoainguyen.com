@@ -1,5 +1,5 @@
 'use client'
-import { NAVIGATION } from '@/data/navigation'
+import NAVIGATION from '@/data/navigation'
 import NavMenu from './NavMenu'
 import NavMobile from './NavMobile'
 import NavSearch from './NavSearch'

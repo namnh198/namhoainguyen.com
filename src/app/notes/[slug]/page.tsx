@@ -1,4 +1,4 @@
-import { getUnofficalPostBySlug } from '@/lib/notes'
+import { getUnofficalPostBySlug, getUnofficalPosts } from '@/lib/notes'
 import { getPage } from '@/lib/notion'
 import { getMetadata } from '@/lib/utils'
 import { ParamsProps } from '@/types'
@@ -23,6 +23,17 @@ export async function generateMetadata({ params }: { params: ParamsProps }): Pro
   return getMetadata({
     title: post.title
   })
+}
+
+export async function generateStaticParams() {
+  const posts = await getUnofficalPosts()
+  const params = posts.reduce((result, post) => {
+    if (!post.slug) {
+      return result
+    }
+    return [...result, { slug: post.slug }]
+  }, [] as ParamsProps[])
+  return params
 }
 
 export default async function NoteDetail({ params }: { params: ParamsProps }) {

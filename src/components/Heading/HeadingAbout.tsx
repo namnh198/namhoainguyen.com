@@ -1,5 +1,5 @@
 import aboutImg from '@/assets/images/about-hero.webp'
-import { me } from '@/data/me'
+import me from '@/data/me'
 import Image from 'next/image'
 
 export default function HeadingAbout() {

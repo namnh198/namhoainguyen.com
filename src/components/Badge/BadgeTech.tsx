@@ -1,4 +1,4 @@
-import { TechItem, techs } from '@/data/techs'
+import techs, { TechItem } from '@/data/techs'
 import Image from 'next/image'
 import Link from 'next/link'
 

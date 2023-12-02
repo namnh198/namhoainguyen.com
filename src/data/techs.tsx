@@ -202,3 +202,5 @@ export const techs: TechItem[] = [
     url: 'https://git-scm.com/'
   }
 ]
+
+export default techs

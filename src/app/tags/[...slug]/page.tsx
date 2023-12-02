@@ -1,9 +1,10 @@
 import Container from '@/components/Container'
 import HeadingNote from '@/components/Heading/HeadingNote'
-import NoteTopicSection from '@/components/NoteTopicSection'
-import { getTopics, getTotalPosts } from '@/lib/notes'
+import { defaultPostTypeOpts } from '@/lib/config'
+import { getTopics, getTotalPosts, getUnofficalPostByTag } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
 import type { ParamsProps } from '@/types'
+import PostList from '@notion-x/components/PostList'
 import type { Tag } from '@notion-x/interface'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -37,6 +38,8 @@ export default async function TagDetail({ params }: { params: ParamsProps }) {
   const tag = getTag(slug, tags)
   if (!tag) return notFound()
   const totalPost = await getTotalPosts(tag)
+  const posts = await getUnofficalPostByTag(tag.name)
+  if (!posts || posts.length < 1) return null
 
   return (
     <Suspense>
@@ -49,7 +52,7 @@ export default async function TagDetail({ params }: { params: ParamsProps }) {
         {tag.description ? tag.description : `List all notes of topic ${tag.name}`}
       </HeadingNote>
       <Container>
-        <NoteTopicSection key={tag.slug} tag={tag} />
+        <PostList posts={posts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
       </Container>
     </Suspense>
   )

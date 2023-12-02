@@ -31,7 +31,7 @@ export default function HeadingNote({
     <div className="relative pt-8 lg:pt-16">
       <div className="container">
         <div className="bg-indigo-50 dark:bg-neutral-800 absolute top-0 inset-x-0 h-48 w-full"></div>
-        <div className="flex bg-white dark:bg-neutral-900 shadow-xl flex-col border border-neutral-200/70 dark:border-neutral-700 gap-4 lg:p-7 md:flex-row md:gap-6 md:rounded-[2rem] p-5 relative rounded-3xl xl:gap-12">
+        <div className="flex bg-white dark:bg-neutral-900 shadow-md flex-col border border-neutral-200/70 dark:border-neutral-700 gap-4 lg:p-7 md:flex-row md:gap-6 md:rounded-[2rem] p-5 relative rounded-3xl xl:gap-12">
           <div className="shrink-0">
             <div className="relative shrink-0 overflow-hidden dark:ring-0 h-24 lg:h-40 lg:w-40 ring-4 ring-white rounded-3xl sm:h-32 sm:w-32 w-24 wil-avatar z-0">
               {loading ? (

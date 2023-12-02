@@ -1,5 +1,5 @@
 import { defaultPostTypeOpts } from '@/lib/config'
-import { getUnofficalPosts } from '@/lib/notes'
+import { getUnofficalPostByTag } from '@/lib/notes'
 import PostList from '@notion-x/components/PostList'
 import SimpleImage from '@notion-x/components/SimpleImage'
 import type { Tag } from '@notion-x/interface'
@@ -10,21 +10,7 @@ interface Props {
   showHeader?: boolean
 }
 export default async function NoteTopicSection({ tag }: Props) {
-  const limit = (process.env.NEXT_PUBLIC_ID_NOTE_PER_PAGE || 8) as number
-  const posts = await getUnofficalPosts({
-    filter: {
-      property: process.env.NEXT_PUBLIC_ID_NOTE_TAGS_KEY,
-      filter: {
-        operator: 'enum_contains',
-        value: {
-          type: 'exact',
-          value: tag.name
-        }
-      }
-    },
-    limit: limit
-  })
-
+  const posts = await getUnofficalPostByTag(tag.name)
   if (posts.length < 1) return null
 
   return (

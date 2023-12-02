@@ -33,7 +33,6 @@
     "moment": "^2.29.4",
     "next": "14.0.1",
     "next-sitemap": "^4.2.3",
-    "next-themes": "^0.2.1",
     "notion-client": "^6.16.0",
     "notion-types": "^6.16.0",
     "notion-utils": "^6.16.0",

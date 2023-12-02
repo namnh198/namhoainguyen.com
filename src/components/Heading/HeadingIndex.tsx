@@ -8,7 +8,7 @@ export default function HeadingIndex() {
   return (
     <div className="relative flex flex-col-reverse md:flex-row justify-end">
       <div className="md:absolute z-10 md:start-0 md:top-1/2 md:-translate-y-1/2 w-full -mt-8 md:mt-0 px-3 sm:px-6 md:px-0 md:w-3/5 lg:w-2/5">
-        <div className="p-4 sm:p-8 xl:py-14 md:px-10 bg-white/40 dark:bg-neutral-900/40 md:backdrop-blur-lg shadow-lg dark:shadow-2xl rounded-3xl space-y-3 sm:space-y-5">
+        <div className="p-4 sm:p-8 xl:py-14 md:px-10 bg-white/40 /40 md:backdrop-blur-lg shadow-lg  rounded-3xl space-y-3 sm:space-y-5">
           <div>
             <h1 className="text-2xl xl:text-3xl font-semibold">
               Hi! <span className="inline-block animate-wave">👋</span> I&rsquo;m Nam

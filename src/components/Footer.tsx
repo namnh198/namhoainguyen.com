@@ -3,11 +3,11 @@ import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
 const aClass =
-  'text-slate-700 dark:text-neutral-400 hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200 py-2 px-4 flex rounded-xl text-[15px] capitalize whitespace-nowrap'
+  'text-slate-700 hover:text-slate-900 hover:bg-slate-100  py-2 px-4 flex rounded-xl text-[15px] capitalize whitespace-nowrap'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-100 dark:border-neutral-600 py-6 sm:py-10">
+    <footer className="border-t border-gray-100  py-6 sm:py-10">
       <nav className="container flex flex-wrap items-center justify-center sm:justify-between">
         <Link
           href="/"

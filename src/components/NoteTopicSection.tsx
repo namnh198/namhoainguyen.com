@@ -16,7 +16,7 @@ export default async function NoteTopicSection({ tag }: Props) {
 
   return (
     <div className="group flex flex-col gap-4">
-      <div className="relative text-neutral-900 dark:text-neutral-50">
+      <div className="relative text-neutral-900 ">
         <div className="max-w-2xl w-full">
           <h2
             id={tag.slug}
@@ -27,7 +27,7 @@ export default async function NoteTopicSection({ tag }: Props) {
               {tag.name}
               <Link
                 href={tag.permalink}
-                className="text-[80%] ml-2 italic text-slate-600 font-medium hover:text-indigo-700 dark:hover:text-indigo-400"
+                className="text-[80%] ml-2 italic text-slate-600 font-medium hover:text-indigo-700 "
               >
                 ...more
               </Link>

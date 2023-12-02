@@ -69,14 +69,14 @@ export default function HeadingPost(props: PostHeaderProps) {
           />
         </div>
       ) : (
-        <div className="bg-indigo-50 dark:bg-neutral-800 absolute top-0 inset-x-0 h-48 w-full"></div>
+        <div className="bg-indigo-50  absolute top-0 inset-x-0 h-48 w-full"></div>
       )}
 
       <div className={cn('container', { '-mt-10 lg:-mt-16': !!cover, 'pt-8 lg:pt-16': !cover })}>
-        <div className="relative bg-white dark:bg-neutral-900 shadow-2xl px-4 sm:px-5 py-7 lg:p-11 rounded-2xl md:rounded-[40px] flex flex-col md:flex-row gap-8 lg:gap-10 items-center justify-center">
+        <div className="relative bg-white  shadow-2xl px-4 sm:px-5 py-7 lg:p-11 rounded-2xl md:rounded-[40px] flex flex-col md:flex-row gap-8 lg:gap-10 items-center justify-center">
           {icon && (
-            <div className="relative shrink-0 overflow-hidden dark:ring-0 h-24 lg:h-40 lg:w-40 ring-4 ring-white rounded-3xl sm:h-32 sm:w-32 w-24 wil-avatar z-0">
-              <div className="items-center flex justify-center absolute bg-neutral-100 dark:bg-neutral-800 inset-0">
+            <div className="relative shrink-0 overflow-hidden  h-24 lg:h-40 lg:w-40 ring-4 ring-white rounded-3xl sm:h-32 sm:w-32 w-24 wil-avatar z-0">
+              <div className="items-center flex justify-center absolute bg-neutral-100  inset-0">
                 <Suspense fallback={null}>
                   <PageIcon block={block} inline={false} />
                 </Suspense>
@@ -89,14 +89,14 @@ export default function HeadingPost(props: PostHeaderProps) {
               <Text value={title} block={block} />
             </h1>
 
-            <div className="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
+            <div className="w-full border-b border-neutral-200 "></div>
 
             {!props.hideMeta && (
               <div className="flex flex-wrap justify-between sm:items-end gap-5">
                 {/* Author & Date */}
-                <div className="flex items-center flex-wrap text-neutral-700 text-left dark:text-neutral-200 text-base leading-none shrink-0">
+                <div className="flex items-center flex-wrap text-neutral-700 text-left  text-base leading-none shrink-0">
                   <div className="flex items-center space-x-2">
-                    <div className="relative shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 uppercase font-semibold rounded-full shadow-inner h-10 w-10 sm:h-11 sm:w-11 text-xl ring-1 ring-white dark:ring-neutral-900">
+                    <div className="relative shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 uppercase font-semibold rounded-full shadow-inner h-10 w-10 sm:h-11 sm:w-11 text-xl ring-1 ring-white ">
                       <Image
                         src={me.avatar}
                         alt={me.name}
@@ -107,7 +107,7 @@ export default function HeadingPost(props: PostHeaderProps) {
                   <div className="ms-3">
                     <div className="flex items-center font-semibold">{me.name}</div>
                     <div className="text-xs mt-[6px]">
-                      <span className="text-neutral-700 dark:text-neutral-300">
+                      <span className="text-neutral-700 ">
                         <DateComponent dateString={createdDate!} format="MMM DD, YYYY" />
                       </span>
                     </div>
@@ -161,14 +161,14 @@ export default function HeadingPost(props: PostHeaderProps) {
                       </div>
                     )}
                     <div className="px-1">
-                      <div className="border-s border-neutral-200 dark:border-neutral-700 h-5 sm:h-6"></div>
+                      <div className="border-s border-neutral-200  h-5 sm:h-6"></div>
                     </div>
                     {verified && (
                       <div
-                        className="relative tooltip-auto tooltip-right flex items-center text-neutral-600 transition-colors dark:text-neutral-200 hover:text-sky-600 dark:hover:text-sky-500"
+                        className="relative tooltip-auto tooltip-right flex items-center text-neutral-600 transition-colors  hover:text-sky-600 "
                         data-title="Verified by me"
                       >
-                        <span className="shrink-0 flex items-center justify-center rounded-full bg-neutral-50 transition-colors duration-75 dark:bg-neutral-800 hover:bg-sky-50 dark:hover:bg-sky-100 w-9 h-9">
+                        <span className="shrink-0 flex items-center justify-center rounded-full bg-neutral-50 transition-colors duration-75  hover:bg-sky-50  w-9 h-9">
                           <HiMiniCheckBadge className="w-5 h-5" />
                         </span>
                       </div>
@@ -176,10 +176,10 @@ export default function HeadingPost(props: PostHeaderProps) {
                     <a
                       href={`https://www.notion.so/namhoainguyen/${block.id.replace(/-/g, '')}`}
                       target="_blank"
-                      className="relative tooltip-auto tooltip-right flex items-center text-neutral-600 transition-colors dark:text-neutral-200 hover:text-green-600 dark:hover:text-green-500"
+                      className="relative tooltip-auto tooltip-right flex items-center text-neutral-600 transition-colors  hover:text-green-600 "
                       data-title={'Edit this note (for me only)'}
                     >
-                      <span className="shrink-0 flex items-center justify-center rounded-full bg-neutral-50 transition-colors duration-75 dark:bg-neutral-800 hover:bg-green-50 dark:hover:bg-green-100 w-9 h-9">
+                      <span className="shrink-0 flex items-center justify-center rounded-full bg-neutral-50 transition-colors duration-75  hover:bg-green-50  w-9 h-9">
                         <HiOutlinePencilSquare className="w-4 h-4" />
                       </span>
                     </a>
@@ -192,7 +192,7 @@ export default function HeadingPost(props: PostHeaderProps) {
                 <PostHeaderTopics
                   className="justify-center sm:justify-start"
                   tags={tags}
-                  TiTagClass="dark:text-neutral-200"
+                  TiTagClass=""
                   tagClass="text-slate-700 bg-slate-50"
                 />
               </div>

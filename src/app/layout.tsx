@@ -1,11 +1,11 @@
 import '@/assets/styles/styles.scss'
+import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar/Navbar'
 import { me } from '@/data/me'
 import '@notion-x/style/notion-x.scss'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import Script from 'next/script'
-import { Suspense } from 'react'
 import { Providers } from './Providers'
 
 const poppins = Poppins({ weight: ['400', '500', '600', '700'], subsets: ['latin'] })
@@ -44,11 +44,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
       >
         <Providers attribute="class" defaultTheme="light" enableColorScheme={false}>
-          <Suspense fallback={null}>
-            <Navbar />
-          </Suspense>
+          <Navbar />
           {/* <BgGlassmorphism /> */}
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>

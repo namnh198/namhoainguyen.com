@@ -1,5 +1,6 @@
 import tagsImg from '@/assets/images/tags.svg'
 import TagListItem from '@/components/Card/CardTopic'
+import Container from '@/components/Container'
 import HeadingNote from '@/components/Heading/HeadingNote'
 import SkeletonTags from '@/components/Skeleton/SkeletonTags'
 import { getTopics } from '@/lib/notes'
@@ -31,7 +32,7 @@ export default async function TagsPage() {
         </kbd>
         <span>to quickly find a topic you wanna check.</span>
       </HeadingNote>
-      <div className="relative container mt-10">
+      <Container className="py-16 space-y-16">
         {tags.length > 1 ? (
           <div className={tagListContainerClass}>
             {tags.map((tag: Tag) => (
@@ -41,7 +42,7 @@ export default async function TagsPage() {
         ) : (
           <div className="my-4 text-xl font-bold">There is no tag yet!</div>
         )}
-      </div>
+      </Container>
     </Suspense>
   )
 }

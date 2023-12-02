@@ -25,7 +25,7 @@ export default function AboutPage() {
   return (
     <>
       <BgGlassmorphism />
-      <Container className="lg:py-28 lg:space-y-28 py-16 space-y-16">
+      <Container className="py-16 space-y-16">
         <HeadingAbout />
         <div className="relative">
           <Heading title="Languages" />

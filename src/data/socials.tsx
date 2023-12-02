@@ -1,3 +1,4 @@
+import { me } from '@/data/me'
 import TbBrandFacebook from '@notion-x/icons/TbBrandFacebook'
 import TbBrandGithub from '@notion-x/icons/TbBrandGithub'
 import TbBrandGmail from '@notion-x/icons/TbBrandGmail'
@@ -17,7 +18,7 @@ export const socials = [
     title: 'Gmail',
     icon: <TbBrandGmail className="w-5 h-5" />,
     color: 'red',
-    url: 'mailto:namnhn98@gmail.com'
+    url: `mailto:${me.email}`
   },
   {
     id: 'facebook',

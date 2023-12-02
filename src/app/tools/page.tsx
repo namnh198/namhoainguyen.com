@@ -25,7 +25,7 @@ export default async function ToolsPage() {
         I&rsquo;m always on the lookout for new apps and websites that can help me learn and work
         more effectively. Here&rsquo;s a list of tools that I&rsquo;ve found really useful so far.
       </HeadingNote>
-      <Container>
+      <Container className="py-16 space-y-16">
         <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
           {tools.tools.map(tool => (
             <CardTool key={tool.id} tool={tool} />

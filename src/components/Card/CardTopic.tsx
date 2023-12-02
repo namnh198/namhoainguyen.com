@@ -25,7 +25,7 @@ export default function TagListItem({ tag }: { tag: Tag }) {
       href={tag.permalink}
       key={tag.id}
       className={cn([
-        'group relative flex items-center gap-2 p-4 bg-white shadow-xl dark:bg-neutral-900 border border-neutral-200/70 dark:border-neutral-700 rounded-xl transition duration-200 ease-in-out hover:shadow-md',
+        'group relative flex items-center gap-2 p-4 bg-white shadow-md dark:bg-neutral-900 border border-neutral-200/70 dark:border-neutral-700 rounded-xl transition duration-200 ease-in-out hover:-translate-y-0.5',
         [tag.customClass]
       ])}
     >

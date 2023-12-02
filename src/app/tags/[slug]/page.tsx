@@ -43,7 +43,7 @@ export async function generateStaticParams() {
 }
 
 export default async function TagDetail({ params }: { params: ParamsProps }) {
-  const slug = params?.slug?.[0] as string
+  const slug = params?.slug as string
   if (!slug) return notFound()
   const tags = await getTopics()
   const tag = getTag(slug, tags)

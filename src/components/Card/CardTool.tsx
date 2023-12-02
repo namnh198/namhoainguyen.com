@@ -6,11 +6,11 @@ export default function CardTool({ tool }: { tool: Tool }) {
   return (
     <a
       href={tool.url}
-      className="group p-4 dark:bg-neutral-900 shadow-xl border border-neutral-200/70 dark:border-neutral-700 rounded-3xl transition duration-200 ease-in-out hover:shadow-lg"
+      className="group p-4 dark:bg-neutral-900 shadow-md border border-neutral-200/70 dark:border-neutral-700 rounded-3xl transition duration-200 ease-in-out hover:-translate-y-1"
       target="_blank"
     >
       <div className="flex flex-row h-full">
-        <div className="w-[90px] h-full rounded-l-2xl relative overflow-hidden shrink-0 border-[0.5px] border-neutral-200/70 dark:border-neutral-700">
+        <div className="w-[90px] h-full rounded-l-xl relative overflow-hidden shrink-0 border-[0.5px] border-neutral-200/70 dark:border-neutral-700">
           <div className="relative w-full h-full overflow-hidden">
             <div className="items-center flex justify-center absolute bg-neutral-100 dark:bg-neutral-800 inset-0"></div>
             <div className="flex items-center justify-center p-8">

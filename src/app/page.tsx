@@ -44,7 +44,7 @@ export default async function HomePage() {
       <Container className="py-16 space-y-16">
         <HeadingIndex />
         <div className="relative">
-          <Heading title="Recent updated notes" href="/notes" />
+          <Heading title="Recent updated notes" href="/notes" showMore />
           <div className="flex flex-col gap-y-6">
             <Suspense fallback={null}>
               <PostList
@@ -59,7 +59,7 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="relative">
-          <Heading title="Recent tools I used" href="/tools" />
+          <Heading title="Recent tools I used" href="/tools" showMore={tools.tools.length > 6} />
           <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
             <Suspense fallback={null}>
               {tools.tools.slice(0, 6).map(tool => (
@@ -69,7 +69,7 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="relative">
-          <Heading title="Main Topics" href="/tags" />
+          <Heading title="Main Topics" href="/tags" showMore />
           <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
             <Suspense fallback={null}>
               {pinnedTags.map(tag => (
@@ -79,10 +79,10 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="relative">
-          <Heading title="Recent Projects" href="/projects" />
-          <div className="grid gap-6 grid-cols-1 md:gap-8 sm:grid-cols-2 lg:md:grid-cols-3 xl:grid-cols-4">
+          <Heading title="Recent Projects" href="/projects" showMore={projects.length > 6} />
+          <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
             <Suspense fallback={null}>
-              {projects.slice(0, 8).map(project => (
+              {projects.slice(0, 6).map(project => (
                 <CardProject key={project.id} project={project} />
               ))}
             </Suspense>

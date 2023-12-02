@@ -23,7 +23,7 @@ export default async function ProjectsPage() {
         {description}
       </HeadingNote>
       <Container className="py-16 space-y-16">
-        <div className="grid gap-6 grid-cols-1 md:gap-8 sm:grid-cols-2 lg:md:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
           {projects.map(project => (
             <CardProject key={project.id} project={project} />
           ))}

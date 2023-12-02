@@ -288,6 +288,7 @@ const transformProjects = (data: CollectionInstance): Project[] => {
       {
         id: id,
         title: properties?.title?.[0]?.[0] ?? '',
+        type: properties?.[`${process.env.PROJECTS_TYPE_KEY}`]?.[0]?.[0],
         permalink:
           properties?.[`${process.env.PROJECTS_URL_KEY}`]?.[0]?.[0] ??
           properties?.[`${process.env.PROJECTS_SOURCE_KEY}`]?.[0]?.[0],

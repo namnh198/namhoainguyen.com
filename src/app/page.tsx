@@ -40,7 +40,7 @@ export default async function HomePage() {
   return (
     <>
       <BgGlassmorphism />
-      <Container className="pb-6">
+      <Container className="py-16 space-y-16">
         <HeadingIndex />
         <div className="relative">
           <Heading title="Recent updated notes" href="/notes" />

@@ -22,7 +22,7 @@ export default async function ProjectsPage() {
       <HeadingNote title={title} image={projectsImg} total={`${projects.length} Projects`}>
         {description}
       </HeadingNote>
-      <Container>
+      <Container className="py-16 space-y-16">
         <div className="grid gap-6 grid-cols-1 md:gap-8 sm:grid-cols-2 lg:md:grid-cols-3 xl:grid-cols-4">
           {projects.map(project => (
             <CardProject key={project.id} project={project} />

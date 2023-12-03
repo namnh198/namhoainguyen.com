@@ -1,4 +1,5 @@
 // import PostAside from '@/components/PostAside'
+import Comment from '@/components/Comment'
 import HeadingPost from '@/components/Heading/HeadingPost'
 import PostBody from '@notion-x/components/PostBody'
 import PostToc from '@notion-x/components/PostToc'
@@ -40,6 +41,7 @@ export default function SinglePostTemplate(props: SinglePostTemplateProps) {
                 }}
                 useSimpleImage={true}
               />
+              <Comment />
             </article>
           </div>
           <aside className="hidden 2xl:block h-[calc(100vh-130px)] sticky top-[70px] pt-8">

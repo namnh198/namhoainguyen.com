@@ -8,7 +8,6 @@ import PostList from '@notion-x/components/PostList'
 import type { Tag } from '@notion-x/interface'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
 
 export const revalidate = 20
 
@@ -53,7 +52,7 @@ export default async function TagDetail({ params }: { params: ParamsProps }) {
   if (!posts || posts.length < 1) return null
 
   return (
-    <Suspense>
+    <>
       <HeadingNote
         title={`Topic ${tag.name}`}
         image={tag.icon}
@@ -65,7 +64,7 @@ export default async function TagDetail({ params }: { params: ParamsProps }) {
       <Container className="py-16 space-y-16">
         <PostList posts={posts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
       </Container>
-    </Suspense>
+    </>
   )
 }
 

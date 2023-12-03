@@ -4,7 +4,6 @@ import PostList from '@notion-x/components/PostList'
 import SimpleImage from '@notion-x/components/SimpleImage'
 import type { Tag } from '@notion-x/interface'
 import Link from 'next/link'
-import { Suspense } from 'react'
 
 interface Props {
   tag: Tag
@@ -35,9 +34,7 @@ export default async function NoteTopicSection({ tag }: Props) {
           </h2>
         </div>
       </div>
-      <Suspense fallback={null}>
-        <PostList posts={posts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
-      </Suspense>
+      <PostList posts={posts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
     </div>
   )
 }

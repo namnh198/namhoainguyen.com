@@ -10,6 +10,7 @@ import { defaultOpenGraphImage, defaultPostTypeOpts } from '@/lib/config'
 import { getProjects, getTools, getTopics, getUnofficalPosts } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
 import PostList from '@notion-x/components/PostList'
+import SkeletonPostList from '@notion-x/components/SkeletonPostList'
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 
@@ -46,14 +47,34 @@ export default async function HomePage() {
         <div className="relative">
           <Heading title="Recent updated notes" href="/notes" showMore />
           <div className="flex flex-col gap-y-6">
-            <Suspense fallback={null}>
+            <Suspense
+              fallback={
+                <SkeletonPostList
+                  count={4}
+                  postType="simple"
+                  options={{
+                    className: 'flex flex-col divide-y'
+                  }}
+                />
+              }
+            >
               <PostList
                 posts={pinnedPosts}
                 postType="simple"
                 postTypeOpts={{ ...defaultPostTypeOpts, showPinned: true }}
               />
             </Suspense>
-            <Suspense fallback={null}>
+            <Suspense
+              fallback={
+                <SkeletonPostList
+                  count={4}
+                  postType="simple"
+                  options={{
+                    className: 'flex flex-col divide-y'
+                  }}
+                />
+              }
+            >
               <PostList posts={recentPosts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
             </Suspense>
           </div>
@@ -61,31 +82,25 @@ export default async function HomePage() {
         <div className="relative">
           <Heading title="Recent tools I used" href="/tools" showMore={tools.tools.length > 6} />
           <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
-            <Suspense fallback={null}>
-              {tools.tools.slice(0, 6).map(tool => (
-                <CardTool key={tool.id} tool={tool} />
-              ))}
-            </Suspense>
+            {tools.tools.slice(0, 6).map(tool => (
+              <CardTool key={tool.id} tool={tool} />
+            ))}
           </div>
         </div>
         <div className="relative">
           <Heading title="Main Topics" href="/tags" showMore />
           <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
-            <Suspense fallback={null}>
-              {pinnedTags.map(tag => (
-                <TagListItem key={tag.id} tag={tag} />
-              ))}
-            </Suspense>
+            {pinnedTags.map(tag => (
+              <TagListItem key={tag.id} tag={tag} />
+            ))}
           </div>
         </div>
         <div className="relative">
           <Heading title="Recent Projects" href="/projects" showMore={projects.length > 6} />
           <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
-            <Suspense fallback={null}>
-              {projects.slice(0, 6).map(project => (
-                <CardProject key={project.id} project={project} />
-              ))}
-            </Suspense>
+            {projects.slice(0, 6).map(project => (
+              <CardProject key={project.id} project={project} />
+            ))}
           </div>
         </div>
       </Container>

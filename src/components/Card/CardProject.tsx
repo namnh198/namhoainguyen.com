@@ -6,7 +6,12 @@ import BadgeTech from '@/components/Badge/BadgeTech'
 export default function CardProject({ project }: { project: Project }) {
   return (
     <div className="relative shadow-md bg-white border border-neutral-200   group transition duration-200 ease-in-out hover:-translate-y-0.5 hover:-translate-x-0.5 p-5 rounded-3xl">
-      <a href={project.permalink} className="absolute inset-0"></a>
+      <a
+        href={project.permalink}
+        className="absolute inset-0"
+        target="_blank"
+        title={project.title}
+      ></a>
       <div className="flex flex-col">
         <div className="flex flex-wrap gap-1.5">
           <Badge label={project.type || 'Projects'} color={getColorBadge(project.type)} />

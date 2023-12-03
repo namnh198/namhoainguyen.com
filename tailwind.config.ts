@@ -6,6 +6,7 @@ const config: Config = {
     './src/icons/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/assets/styles/**/*.{js,ts,jsx,tsx,mdx}',
     './notion-x/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   darkMode: 'class',

@@ -77,7 +77,13 @@ export default function HeadingPost(props: PostHeaderProps) {
           {icon && (
             <div className="relative shrink-0 overflow-hidden  h-24 lg:h-40 lg:w-40 ring-4 ring-white rounded-3xl sm:h-32 sm:w-32 w-24 wil-avatar z-0">
               <div className="items-center flex justify-center absolute bg-neutral-100  inset-0">
-                <Suspense fallback={null}>
+                <Suspense
+                  fallback={
+                    <div
+                      className={cn('w-[38px] h-[38px] bg-slate-600 rounded-full animate-pulse')}
+                    />
+                  }
+                >
                   <PageIcon block={block} inline={false} />
                 </Suspense>
               </div>

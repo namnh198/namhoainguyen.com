@@ -1,9 +1,10 @@
 import toolsImg from '@/assets/images/tools.svg'
-import CardTool from '@/components/Card/CardTool'
+import CardTool, { SkeletonCardTool } from '@/components/Card/CardTool'
 import Container from '@/components/Container'
 import HeadingNote from '@/components/Heading/HeadingNote'
 import { getTools } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
+import { Suspense } from 'react'
 
 export const revalidate = 20
 
@@ -27,9 +28,11 @@ export default async function ToolsPage() {
       </HeadingNote>
       <Container className="py-16 space-y-16">
         <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {tools.tools.map(tool => (
-            <CardTool key={tool.id} tool={tool} />
-          ))}
+          <Suspense fallback={<SkeletonCardTool />}>
+            {tools.tools.map(tool => (
+              <CardTool key={tool.id} tool={tool} />
+            ))}
+          </Suspense>
         </div>
       </Container>
     </div>

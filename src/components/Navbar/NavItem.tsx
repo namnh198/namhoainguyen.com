@@ -30,7 +30,7 @@ export default function NavItem({ nav, isMobile = false, onClick }: Props) {
   )
   return (
     <li className="menu-item shrink-0" onClick={onClick}>
-      <Link href={permalink} className={menuClasses} title={name} suppressHydrationWarning>
+      <Link href={permalink} className={menuClasses} title={name}>
         {name}
       </Link>
     </li>

@@ -26,13 +26,7 @@ export async function OPTIONS() {
 export async function POST(request: Request) {
   const searchParams = await request.json()
 
-  const results = await searchNotion(
-    searchParams,
-    'https://www.notion.so/api/v3',
-    process.env.NOTION_TOKEN_V2 as string,
-    process.env.NOTION_ACTIVE_USER as string,
-    process.env.NOTION_DB_NOTES as string
-  )
+  const results = await searchNotion(searchParams, process.env.NOTION_DB_NOTES as string)
   const postResults = parseSearchResults(results)
 
   return new Response(JSON.stringify(postResults), {

@@ -1,3 +1,4 @@
+import { tagListContainerClass } from '@/assets/styles/styles'
 import BgGlassmorphism from '@/components/BgGlassmorphism'
 import CardProject from '@/components/Card/CardProject'
 import CardTool from '@/components/Card/CardTool'
@@ -89,7 +90,7 @@ export default async function HomePage() {
         </div>
         <div className="relative">
           <Heading title="Main Topics" href="/tags" showMore />
-          <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
+          <div className={tagListContainerClass}>
             {pinnedTags.map(tag => (
               <TagListItem key={tag.id} tag={tag} />
             ))}

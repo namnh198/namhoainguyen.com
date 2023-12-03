@@ -7,21 +7,6 @@ import {
 import { Metadata } from 'next'
 import { Block } from 'notion-types'
 import slugify from 'slugify'
-const formatter: Intl.DateTimeFormat = new Intl.DateTimeFormat('en', {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
-  timeZone: 'UTC'
-})
-
-export const getFormattedDate = (date: Date | string | undefined): string => {
-  if (!date) {
-    date = new Date()
-  } else if (typeof date === 'string') {
-    date = new Date(date)
-  }
-  return date ? formatter.format(date) : ''
-}
 
 export const makeSlugByText = (text: string): string => {
   if (!text) {

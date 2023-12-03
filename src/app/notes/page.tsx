@@ -43,7 +43,7 @@ export default async function NotesPage() {
       <HeadingNote title={title} image={notesImg} total={`${totalPost} Notes`}>
         {description}
       </HeadingNote>
-      <Container>
+      <Container className="py-16 space-y-16">
         <div className="flex flex-col md:flex-row gap-6 md:gap-8">
           <div className="order-2 flex-1 relative flex flex-col gap-y-12">
             <div className="flex flex-col gap-2">

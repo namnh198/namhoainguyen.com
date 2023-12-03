@@ -1,13 +1,17 @@
 import { defaultPostDate } from '@/lib/config'
 import type { Project, Tool } from '@/types'
-import type { NotionPostData, NotionSorts, NotionTagData } from '@notion-x/interface'
+import type {
+  CollectionInstanceNotion,
+  NotionPostData,
+  NotionSorts,
+  NotionTagData
+} from '@notion-x/interface'
 
 import type { Post, Tag } from '@notion-x/interface'
 import { defaultMapImageUrl } from '@notion-x/lib/map-image-url'
+import { getUnofficialDatabase, queryDatabase } from '@notion-x/lib/notion-api'
 import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import { get } from 'lodash'
-import { CollectionInstance } from 'notion-types'
-import { getUnofficalDB, queryDb } from './notion'
 import {
   getNotionFilter,
   getPermalink,
@@ -40,7 +44,7 @@ export const getPosts = async ({
     const sortToUse = (sorts?.length ? sorts.push(defaultSort) : [defaultSort]) as NotionSorts[]
     const filterToUse: QueryDatabaseParameters['filter'] = getNotionFilter(filter)
 
-    const data = await queryDb({
+    const data = await queryDatabase({
       dbId: process.env.NOTION_DB_NOTES as string,
       filter: filterToUse,
       startCursor,
@@ -70,13 +74,11 @@ export const getTotalPosts = async (tag?: Tag) => {
         }
       : null
     const filterToUse = getUnOfficalNotionFilter(tagFilter)
-    const data = await getUnofficalDB({
+    const data = await getUnofficialDatabase({
       sourceId: process.env.NOTE_SOURCE_ID as string,
       collectionViewId: process.env.NOTE_COLLECTION_VIEW_ID as string,
       filter: filterToUse
     })
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     return data?.result?.reducerResults?.collection_group_results?.blockIds.length ?? 0
   } catch (error) {
     console.error(error)
@@ -103,9 +105,9 @@ export const getUnofficalPosts = async ({
     const sortToUse = (sorts?.length ? sorts.push(defaultSort) : [defaultSort]) as NotionSorts[]
     const filterToUse: any = getUnOfficalNotionFilter(filter)
 
-    const data = await getUnofficalDB({
-      sourceId: process.env.NOTE_SOURCE_ID as string,
-      collectionViewId: process.env.NOTE_COLLECTION_VIEW_ID as string,
+    const data = await getUnofficialDatabase({
+      sourceId: process.env.NOTE_SOURCE_ID,
+      collectionViewId: process.env.NOTE_COLLECTION_VIEW_ID,
       filter: filterToUse,
       limit,
       sorts: sortToUse
@@ -140,16 +142,14 @@ export const getUnofficalPostByTag = async (tag: string) => {
 }
 
 export const transformUnofficalPosts = async (
-  data: CollectionInstance,
+  data: CollectionInstanceNotion,
   fulldata = false
 ): Promise<Post[]> => {
   const block = data?.recordMap?.block
 
   const blockIds: Array<string> = fulldata
     ? Object.keys(block)
-    : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      (data?.result?.reducerResults?.collection_group_results?.blockIds as string[])
+    : (data?.result?.reducerResults?.collection_group_results?.blockIds as string[])
   const posts = blockIds.reduce<Post[]>((result: Post[], id: string) => {
     const post = block[id]
     const properties = post?.value?.properties
@@ -203,7 +203,7 @@ const tranformNotionPost = async ({ data }: { data: NotionPostData[] }): Promise
 
 export const getTopics = async (): Promise<Tag[]> => {
   try {
-    const data = await getUnofficalDB({
+    const data = await getUnofficialDatabase({
       sourceId: process.env.TOPICS_SOURCE_ID,
       collectionViewId: process.env.TOPICS_COLLECTION_VIEW_ID,
       sorts: [
@@ -220,9 +220,7 @@ export const getTopics = async (): Promise<Tag[]> => {
   }
 }
 
-const transformTopics = (data: CollectionInstance) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+const transformTopics = (data: CollectionInstanceNotion) => {
   const blockIds = data?.result?.reducerResults?.collection_group_results?.blockIds as string[]
   const block = data?.recordMap?.block
   const topics = blockIds.reduce<Tag[]>((result, id) => {
@@ -258,7 +256,7 @@ const transformTopics = (data: CollectionInstance) => {
 
 export const getProjects = async (): Promise<Project[]> => {
   try {
-    const data = await getUnofficalDB({
+    const data = await getUnofficialDatabase({
       sourceId: process.env.PROJECTS_SOURCE_ID,
       collectionViewId: process.env.PROJECTS_COLLECTION_VIEW_ID,
       sorts: [
@@ -275,9 +273,7 @@ export const getProjects = async (): Promise<Project[]> => {
   }
 }
 
-const transformProjects = (data: CollectionInstance): Project[] => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+const transformProjects = (data: CollectionInstanceNotion): Project[] => {
   const blockIds = data?.result?.reducerResults?.collection_group_results?.blockIds as string[]
   const block = data?.recordMap?.block
   const projects = blockIds.reduce<Project[]>((result, id) => {
@@ -303,7 +299,7 @@ const transformProjects = (data: CollectionInstance): Project[] => {
 
 export const getTools = async (): Promise<{ tools: Tool[]; tags: string[] }> => {
   try {
-    const data = await getUnofficalDB({
+    const data = await getUnofficialDatabase({
       sourceId: process.env.TOOLS_SOURCE_ID,
       collectionViewId: process.env.TOOLS_COLLECTION_VIEW_ID,
       sorts: [
@@ -323,9 +319,7 @@ export const getTools = async (): Promise<{ tools: Tool[]; tags: string[] }> => 
   }
 }
 
-const transformTools = (data: CollectionInstance): Tool[] => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+const transformTools = (data: CollectionInstanceNotion): Tool[] => {
   const blockIds = data?.result?.reducerResults?.collection_group_results?.blockIds as string[]
   const block = data?.recordMap?.block
   const tools = blockIds.reduce<Tool[]>((result, id) => {
@@ -356,7 +350,7 @@ const transformTools = (data: CollectionInstance): Tool[] => {
   return tools
 }
 
-const getAllToolsTags = (data: CollectionInstance): string[] => {
+const getAllToolsTags = (data: CollectionInstanceNotion): string[] => {
   return (
     data?.recordMap?.collection?.[`${process.env.TOOLS_SOURCE_ID}`]?.value?.schema?.[
       `${process.env.TOOLS_TAG_KEY}`

@@ -1,4 +1,3 @@
-import { tagListContainerClass } from '@/assets/styles/styles'
 import BgGlassmorphism from '@/components/BgGlassmorphism'
 import CardProject from '@/components/Card/CardProject'
 import CardTool from '@/components/Card/CardTool'
@@ -90,9 +89,9 @@ export default async function HomePage() {
         </div>
         <div className="relative">
           <Heading title="Main Topics" href="/tags" showMore />
-          <div className={tagListContainerClass}>
+          <div className="flex flex-wrap gap-4">
             {pinnedTags.map(tag => (
-              <TagListItem key={tag.id} tag={tag} />
+              <TagListItem key={tag.id} tag={tag} className="p-2.5" />
             ))}
           </div>
         </div>

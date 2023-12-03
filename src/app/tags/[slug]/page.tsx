@@ -12,7 +12,7 @@ import { notFound } from 'next/navigation'
 export const revalidate = 20
 
 export async function generateMetadata({ params }: { params: ParamsProps }): Promise<Metadata> {
-  const slug = params?.slug?.[0] as string
+  const slug = params?.slug as string
   const tags = await getTopics()
   const tag = getTag(slug, tags)
   if (!tag) {

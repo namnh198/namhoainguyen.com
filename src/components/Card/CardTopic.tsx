@@ -4,6 +4,7 @@ import type { Tag } from '@notion-x/interface'
 import cn from 'classnames'
 import Link from 'next/link'
 import { Suspense } from 'react'
+import { twMerge } from 'tailwind-merge'
 import SkeletonLoading from '../Skeleton/SkeletonLoading'
 
 const ImagePlaceholder = () => {
@@ -19,23 +20,26 @@ const ImagePlaceholder = () => {
   )
 }
 
-export default function TagListItem({ tag }: { tag: Tag }) {
+export default function TagListItem({ tag, className }: { tag: Tag; className?: string }) {
   return (
     <Link
       href={tag.permalink}
       key={tag.id}
-      className={cn([
-        'group relative flex items-center gap-2 p-4 bg-white shadow-md  border border-neutral-200/70  rounded-xl transition duration-200 ease-in-out hover:-translate-y-0.5',
-        [tag.customClass]
-      ])}
+      className={twMerge(
+        cn([
+          'group relative flex items-center gap-2 p-4 bg-white shadow-md  border border-neutral-200/70  rounded-xl transition duration-200 ease-in-out hover:-translate-y-0.5',
+          [tag.customClass],
+          [className]
+        ])
+      )}
     >
-      <div className="relative shrink-0 w-8 h-8">
+      <div className="relative shrink-0">
         <Suspense fallback={<SkeletonLoading className="absolute inset-0 leading-none" />}>
           <SimpleImage
             src={tag.icon}
             alt={`Image of topic ${tag.name}`}
-            width={32}
-            height={32}
+            width={24}
+            height={24}
             imagePlaceholder={ImagePlaceholder()}
           />
         </Suspense>

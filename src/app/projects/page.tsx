@@ -18,7 +18,7 @@ export const metadata = getMetadata({
 export default async function ProjectsPage() {
   const projects = await getProjects()
   return (
-    <div>
+    <>
       <HeadingNote title={title} image={projectsImg} total={`${projects.length} Projects`}>
         {description}
       </HeadingNote>
@@ -29,6 +29,6 @@ export default async function ProjectsPage() {
           ))}
         </div>
       </Container>
-    </div>
+    </>
   )
 }

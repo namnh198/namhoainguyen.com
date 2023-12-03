@@ -5,7 +5,7 @@ import BadgeTech from '@/components/Badge/BadgeTech'
 
 export default function CardProject({ project }: { project: Project }) {
   return (
-    <div className="relative shadow-md bg-white border border-neutral-200   group transition duration-200 ease-in-out hover:-translate-y-0.5 hover:-translate-x-0.5 p-5 rounded-3xl">
+    <div className="relative shadow-md bg-white border border-neutral-200 group transition duration-200 ease-in-out hover:-translate-y-0.5 hover:-translate-x-0.5 p-5 rounded-3xl">
       <a
         href={project.permalink}
         className="absolute inset-0"
@@ -42,4 +42,12 @@ const getColorBadge = (type?: string) => {
     default:
       return 'red'
   }
+}
+
+export const SkeletonCardProject = ({ className }: { className?: string }) => {
+  return (
+    <div className={className}>
+      <div className="rounded-3xl shadow-md bg-slate-200 animate-pulse h-[200px]"></div>
+    </div>
+  )
 }

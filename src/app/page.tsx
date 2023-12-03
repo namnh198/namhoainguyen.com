@@ -1,6 +1,6 @@
 import BgGlassmorphism from '@/components/BgGlassmorphism'
-import CardProject from '@/components/Card/CardProject'
-import CardTool from '@/components/Card/CardTool'
+import CardProject, { SkeletonCardProject } from '@/components/Card/CardProject'
+import CardTool, { SkeletonCardTool } from '@/components/Card/CardTool'
 import TagListItem from '@/components/Card/CardTopic'
 import Container from '@/components/Container'
 import Heading from '@/components/Heading/Heading'
@@ -82,9 +82,11 @@ export default async function HomePage() {
         <div className="relative">
           <Heading title="Recent tools I used" href="/tools" showMore={tools.tools.length > 6} />
           <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {tools.tools.slice(0, 6).map(tool => (
-              <CardTool key={tool.id} tool={tool} />
-            ))}
+            <Suspense fallback={<SkeletonCardTool />}>
+              {tools.tools.slice(0, 6).map(tool => (
+                <CardTool key={tool.id} tool={tool} />
+              ))}
+            </Suspense>
           </div>
         </div>
         <div className="relative">
@@ -99,7 +101,9 @@ export default async function HomePage() {
           <Heading title="Recent Projects" href="/projects" showMore={projects.length > 6} />
           <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
             {projects.slice(0, 6).map(project => (
-              <CardProject key={project.id} project={project} />
+              <Suspense key={project.id} fallback={<SkeletonCardProject />}>
+                <CardProject key={project.id} project={project} />
+              </Suspense>
             ))}
           </div>
         </div>

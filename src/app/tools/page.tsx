@@ -4,6 +4,7 @@ import Container from '@/components/Container'
 import HeadingNote from '@/components/Heading/HeadingNote'
 import { getTools } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
+import Loading from './loading'
 
 export const revalidate = 20
 
@@ -18,6 +19,8 @@ export const metadata = getMetadata({
 
 export default async function ToolsPage() {
   const tools = await getTools()
+
+  return <Loading />
 
   return (
     <div>

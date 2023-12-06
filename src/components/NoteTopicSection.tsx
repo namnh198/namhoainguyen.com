@@ -14,7 +14,7 @@ export default async function NoteTopicSection({ tag }: Props) {
   if (posts.length < 1) return null
 
   return (
-    <div className="group flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <div className="relative text-neutral-900 ">
         <div className="max-w-2xl w-full">
           <h2

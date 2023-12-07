@@ -3,6 +3,7 @@ import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar/Navbar'
 import me from '@/data/me'
 import '@notion-x/style/notion-x.scss'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import Script from 'next/script'
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   )

@@ -7,7 +7,6 @@ import Link from 'next/link'
 
 interface Props {
   tag: Tag
-  showHeader?: boolean
 }
 export default async function NoteTopicSection({ tag }: Props) {
   const posts = await getUnofficalPostByTag(tag.name)

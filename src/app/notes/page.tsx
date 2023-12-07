@@ -54,7 +54,7 @@ export default async function NotesPage() {
               />
             </div>
             {pinnedTags.map((tag: Tag) => (
-              <NoteTopicSection key={tag.slug} tag={tag} showHeader />
+              <NoteTopicSection key={tag.slug} tag={tag} />
             ))}
           </div>
           <NotesToc

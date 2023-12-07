@@ -353,7 +353,11 @@ const transformTools = (data: CollectionInstanceNotion): Tool[] => {
 const getAllToolsTags = (data: CollectionInstanceNotion): string[] => {
   return (
     data?.recordMap?.collection?.[`${process.env.TOOLS_SOURCE_ID}`]?.value?.schema?.[
-      `${process.env.TOOLS_TAG_KEY}`
-    ]?.options?.map((option: any) => option.value) ?? []
+      `${process.env.TOOLS_TAGS_KEY}`
+    ]?.options?.reduce<string[]>((result: string[], option: any) => {
+      return !option.value || ['free', 'paid'].includes(option.value)
+        ? result
+        : [...result, option.value]
+    }, []) ?? []
   )
 }

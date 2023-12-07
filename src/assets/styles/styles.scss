@@ -20,6 +20,11 @@
     background-clip: text;
     color: transparent;
   }
+
+  .hide-search-cancel::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    display: none;
+  }
 }
 
 .dark {

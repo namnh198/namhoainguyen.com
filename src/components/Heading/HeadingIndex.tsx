@@ -28,6 +28,8 @@ export default function HeadingIndex() {
           <Image
             src={homeImg}
             className="absolute inset-0 object-cover rounded-3xl"
+            width={850}
+            height={450}
             alt="Hi! I'm Nam"
             priority
           />

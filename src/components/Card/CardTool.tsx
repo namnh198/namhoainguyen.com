@@ -32,8 +32,8 @@ export default function CardTool({ tool }: { tool: Tool }) {
                 className={cn({
                   'px-2.5 py-1 rounded-md space-x-1 text-xs': true,
                   'bg-neutral-100 ': !['free', 'paid'].includes(tag),
-                  'font-medium text-red-500 bg-red-100': tag === 'paid',
-                  'font-medium text-teal-500 bg-teal-100': tag === 'free'
+                  'font-medium text-red-900 bg-red-200': tag === 'paid',
+                  'font-medium text-green-900 bg-green-200': tag === 'free'
                 })}
               >
                 {tag}

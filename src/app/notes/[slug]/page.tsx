@@ -4,7 +4,9 @@ import { ParamsProps } from '@/types'
 import { getPage } from '@notion-x/lib/notion-api'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
 import SinglePostTemplate from './SinglePostTemplate'
+import Loading from './loading'
 
 export async function generateMetadata({ params }: { params: ParamsProps }): Promise<Metadata> {
   const slug = params.slug as string
@@ -43,7 +45,11 @@ export default async function NoteDetail({ params }: { params: ParamsProps }) {
     const post = await getUnofficalPostBySlug(slug)
     if (!post) return notFound()
     const recordMap = await getPage(post.id)
-    return <SinglePostTemplate recordMap={recordMap} post={post} />
+    return (
+      <Suspense fallback={<Loading />}>
+        <SinglePostTemplate recordMap={recordMap} post={post} />
+      </Suspense>
+    )
   } catch (error) {
     console.error(error)
     notFound()

@@ -8,8 +8,8 @@ export default function Loading() {
       <SkeletonHeadingNote />
       <Container className="py-16 space-y-16">
         <div className={tagListContainerClass}>
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="h-12 w-full animate-pulse rounded-xl bg-neutral-100 " />
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className="h-12 w-full animate-pulse rounded-xl bg-slate-200 " />
           ))}
         </div>
       </Container>

@@ -1,4 +1,5 @@
 import { CVGroupType } from '@/data/cv'
+import Image from 'next/image'
 
 export default function CVGroup({ cv }: { cv: CVGroupType }) {
   return (
@@ -11,15 +12,22 @@ export default function CVGroup({ cv }: { cv: CVGroupType }) {
             className="flex flex-col sm:flex-row items-center p-4 xl:p-5 gap-y-4 sm:gap-y-0"
           >
             <div className="flex flex-col items-center pe-4 space-y-3 w-full sm:w-1/4">
+              {item.logo && (
+                <div className="h-auto w-20 p-1">
+                  <Image src={item.logo} alt={item.company} width={80} height={80} />
+                </div>
+              )}
               <div className="text-center">
-                <a
-                  href={item.url}
-                  target="_blank"
-                  className="hover:text-indigo-800 font-medium line-clamp-1 sm:text-lg text-lg"
-                >
-                  {item.company}
-                </a>
-                <span className="text-xs text-neutral-500">{item.date}</span>
+                <h4 className="relative font-semibold text-md">
+                  {item.url ? (
+                    <a href={item.url} target="_blank" className="hover:text-indigo-800">
+                      {item.company}
+                    </a>
+                  ) : (
+                    <span>{item.company}</span>
+                  )}
+                </h4>
+                <span className="mt-1 text-xs text-neutral-500">{item.date}</span>
               </div>
             </div>
             <div className="w-full sm:w-3/4 text-center sm:text-left">

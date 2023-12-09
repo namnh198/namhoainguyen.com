@@ -19,6 +19,11 @@ export default function Footer() {
         </Link>
         <ul className="flex flex-wrap items-center gap-2 sm:gap-x-4 sm:justify-end">
           <li>
+            <Link href="/support-me" className={aClass}>
+              Support Me
+            </Link>
+          </li>
+          <li>
             <a href={`mailto:${me.email}`} className={aClass}>
               Contact
             </a>

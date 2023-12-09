@@ -1,6 +1,6 @@
 'use client'
 
-import { useHeadsObserver } from '@notion-x/hooks/headObserver'
+import { useHeadsObserver } from '@notion-x/hooks/hook'
 import { Tag } from '@notion-x/interface'
 import cn from 'classnames'
 import Link from 'next/link'

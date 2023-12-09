@@ -4,7 +4,7 @@ import PostHeaderTopics from '@notion-x/components/PostHeaderTopics'
 import { PageIcon } from '@notion-x/components/page-icon'
 import { Text } from '@notion-x/components/text'
 import { useNotionContext } from '@notion-x/hooks/context'
-import { usePostDateStatus } from '@notion-x/hooks/postUpdatedDateStatus'
+import { usePostDateStatus } from '@notion-x/hooks/hook'
 import HiMiniCheckBadge from '@notion-x/icons/HiMiniCheckBadge'
 import HiOutlinePencilSquare from '@notion-x/icons/HiOutlinePencilSquare'
 import cn from 'classnames'
@@ -15,6 +15,7 @@ import { Suspense } from 'react'
 
 import me from '@/data/me'
 import { defaultPostTypeOpts } from '@/lib/config'
+import { getPostProperties } from '@/lib/utils'
 import SimpleImage from '@notion-x/components/SimpleImage'
 import { ImagePlaceholderPostHeader } from '@notion-x/components/image-placeholders'
 import { Post } from '@notion-x/interface'
@@ -30,8 +31,9 @@ export const gapHeaderItems = 'mb-3'
 
 type PostHeaderProps = {
   recordMap: ExtendedRecordMap
-  post: Post
+  post?: Post
   hideMeta?: boolean
+  hideTags?: boolean
 }
 
 export const containerHeaderClass = 'max-w-full bg-slate-50 drop-shadow-sm py-4'
@@ -50,7 +52,7 @@ export default function HeadingPost(props: PostHeaderProps) {
     draft,
     cover,
     verified
-  } = props.post
+  } = props.post || getPostProperties(block)
   const status = usePostDateStatus(
     createdDate!,
     modifiedDate!,
@@ -94,8 +96,7 @@ export default function HeadingPost(props: PostHeaderProps) {
             <h1 className="inline-flex items-center text-center md:text-left text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold">
               <Text value={title} block={block} />
             </h1>
-
-            <div className="w-full border-b border-neutral-200 "></div>
+            {!props.hideMeta && <div className="w-full border-b border-neutral-200 "></div>}
 
             {!props.hideMeta && (
               <div className="flex flex-wrap justify-between sm:items-end gap-5">
@@ -193,6 +194,7 @@ export default function HeadingPost(props: PostHeaderProps) {
                 </div>
               </div>
             )}
+
             {tags && !!tags.length && (
               <div className="flex flex-wrap items-center">
                 <PostHeaderTopics

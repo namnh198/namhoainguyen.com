@@ -58,7 +58,7 @@ export default async function NotesPage() {
             ))}
           </div>
           <NotesToc
-            className={'order-1 md:order-2 md:sticky top-[70px] h-fit md:w-fit w-full'}
+            className="order-1 md:order-2 md:sticky top-[70px] h-fit md:w-fit w-full"
             tags={pinnedTags}
           />
         </div>

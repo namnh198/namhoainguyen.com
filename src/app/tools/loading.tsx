@@ -1,6 +1,6 @@
 import { SkeletonCardTool } from '@/components/Card/CardTool'
 import Container from '@/components/Container'
-import SkeletonHeadingNote from '@/components/skeleton/SkeletonHeadingNote'
+import SkeletonHeadingNote from '@/components/Skeleton/SkeletonHeadingNote'
 
 export default function Loading() {
   return (

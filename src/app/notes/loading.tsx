@@ -1,5 +1,5 @@
 import Container from '@/components/Container'
-import SkeletonHeadingNote from '@/components/skeleton/SkeletonHeadingNote'
+import SkeletonHeadingNote from '@/components/Skeleton/SkeletonHeadingNote'
 import SkeletonPostList from '@notion-x/components/SkeletonPostList'
 
 export default function Loading() {

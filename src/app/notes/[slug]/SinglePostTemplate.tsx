@@ -8,12 +8,9 @@ import { Post } from '@notion-x/interface'
 import { ExtendedRecordMap, PageBlock } from 'notion-types'
 import { getPageTableOfContents } from 'notion-utils'
 
-// import Comments from '../components/Comments'
-// import Footer from '../components/Footer'
-
 type SinglePostTemplateProps = {
   recordMap: ExtendedRecordMap
-  post: Post
+  post?: Post
   blockOptionsContext?: BlockOptionsContextType
   hideMeta?: boolean
 }
@@ -25,7 +22,7 @@ export default function SinglePostTemplate(props: SinglePostTemplateProps) {
   return (
     <>
       <div className="animate-fadeIn">
-        <HeadingPost recordMap={props.recordMap} post={props.post} hideMeta={props.hideMeta} />
+        <HeadingPost recordMap={props.recordMap} hideMeta={props.hideMeta} />
         <div className="container flex flex-col my-10 lg:flex-row">
           <div className="flex-1">
             <article className="max-w-4xl 2xl:pr-4 mx-auto overflow-x-hidden">

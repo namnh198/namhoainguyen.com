@@ -1,3 +1,9 @@
+import forixLogoImg from '@/assets/images/cv/forix.svg'
+import miraiSoftLogoImg from '@/assets/images/cv/mirai.webp'
+import opentechizLogoImg from '@/assets/images/cv/opentechiz.webp'
+import ptitLogoImg from '@/assets/images/cv/ptit.png'
+import selfLearningLogoImg from '@/assets/images/cv/self-learning.webp'
+
 export type CVItemType = {
   id: string
   company: string
@@ -23,6 +29,8 @@ export const cv: CVGroupType[] = [
     lists: [
       {
         id: 'forix',
+        url: 'https://forixcommerce.com/',
+        logo: forixLogoImg,
         company: 'Forix Inc',
         job: 'Magento Developer',
         date: 'May 2023 - Present',
@@ -33,6 +41,7 @@ export const cv: CVGroupType[] = [
       },
       {
         id: 'freelancer',
+        logo: selfLearningLogoImg,
         company: 'Freelancer',
         job: 'Magento Developer',
         date: 'May 2022 - Present',
@@ -43,6 +52,8 @@ export const cv: CVGroupType[] = [
       },
       {
         id: 'opentechiz',
+        url: 'https://www.opentechiz.com/',
+        logo: opentechizLogoImg,
         company: 'Opentechiz',
         job: 'Magento Developer',
         date: 'Oct 2020 - Apr 2023',
@@ -53,6 +64,8 @@ export const cv: CVGroupType[] = [
       },
       {
         id: 'mirai-software',
+        logo: miraiSoftLogoImg,
+        url: 'https://miraisoft.com.vn/',
         company: 'Mirai Software',
         job: 'Software Engineer',
         date: 'Aug 2020 - Sep 2020',
@@ -66,7 +79,40 @@ export const cv: CVGroupType[] = [
   {
     id: 'educations',
     name: 'Educations',
-    lists: []
+    lists: [
+      {
+        id: 'devops',
+        logo: selfLearningLogoImg,
+        company: 'Self-Learning',
+        job: 'DevOps',
+        date: 'Oct 2022 - Present',
+        activity: [
+          "I've been learning myself DevOps (AWS, Google Cloud, Azure) using online courses (Coursera, Udemy) and real projects."
+        ]
+      },
+      {
+        id: 'web-development',
+        logo: selfLearningLogoImg,
+        company: 'Self-Learning',
+        job: 'Web Development',
+        date: 'Jan 2020 - Present',
+        activity: [
+          "I've been learning myself Web Development by making applications, websites and real projects."
+        ]
+      },
+      {
+        id: 'ptit',
+        logo: ptitLogoImg,
+        url: 'https://portal.ptit.edu.vn/',
+        company: 'PTIT',
+        job: 'Bachelor Degree',
+        date: 'Sep 2016 - Feb 2021',
+        activity: [
+          "Bachelor's Degree in Electrical and Computer Engineering",
+          'I studied a lot in networking and electrical engineering.'
+        ]
+      }
+    ]
   }
 ]
 

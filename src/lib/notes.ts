@@ -119,6 +119,25 @@ export const getUnofficalPosts = async ({
   }
 }
 
+export const getUnofficalPinnedPost = async (
+  value: boolean = true,
+  limit: number | null = null
+) => {
+  return await getUnofficalPosts({
+    filter: {
+      property: process.env.NEXT_PUBLIC_ID_NOTE_PINNED_KEY,
+      filter: {
+        operator: 'checkbox_is',
+        value: {
+          type: 'exact',
+          value: value
+        }
+      }
+    },
+    limit: limit ? limit : ((process.env.NEXT_PUBLIC_ID_NOTE_PER_PAGE || 8) as number)
+  })
+}
+
 export const getUnofficalPostBySlug = async (slug: string): Promise<Post | undefined> => {
   const allPosts = await getUnofficalPosts()
   return allPosts.find(post => post?.slug === slug)

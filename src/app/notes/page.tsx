@@ -4,7 +4,7 @@ import HeadingNote from '@/components/Heading/HeadingNote'
 import NotesToc from '@/components/NoteToc'
 import NoteTopicSection from '@/components/NoteTopicSection'
 import { defaultPostTypeOpts } from '@/lib/config'
-import { getTopics, getTotalPosts, getUnofficalPosts } from '@/lib/notes'
+import { getTopics, getTotalPosts, getUnofficalPinnedPost } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
 import PostList from '@notion-x/components/PostList'
 import type { Tag } from '@notion-x/interface'
@@ -24,19 +24,7 @@ export const metadata = getMetadata({
 export default async function NotesPage() {
   const totalPost = await getTotalPosts()
   const pinnedTags = (await getTopics()).filter(tag => tag.pinned)
-  const pinnedPosts = await getUnofficalPosts({
-    filter: {
-      property: process.env.NEXT_PUBLIC_ID_NOTE_PINNED_KEY,
-      filter: {
-        operator: 'checkbox_is',
-        value: {
-          type: 'exact',
-          value: true
-        }
-      }
-    },
-    limit: 8
-  })
+  const pinnedPosts = await getUnofficalPinnedPost()
 
   return (
     <>

@@ -96,7 +96,7 @@ export const getPostProperties = (post: Block): Post => {
     properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_CREATED_DATE}`]?.[0]?.[1]?.[0]?.[1]
       ?.start_date ?? new Date(post?.created_time).toISOString()
   const updatedDate =
-    properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_FINAL_MODIFIED_KEY}`]?.[0]?.[1]?.[0]?.[1]
+    properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_MODIFIED_DATE_KEY}`]?.[0]?.[1]?.[0]?.[1]
       ?.start_date ?? new Date(post?.last_edited_time).toISOString()
   const published =
     properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_PUBLISHED_KEY}`]?.[0]?.[0] === 'Yes'

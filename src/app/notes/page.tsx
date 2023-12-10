@@ -1,6 +1,7 @@
 import notesImg from '@/assets/images/notes.svg'
 import Container from '@/components/Container'
 import HeadingNote from '@/components/Heading/HeadingNote'
+import HeadingNoteTopic from '@/components/Heading/HeadingNoteTopic'
 import NotesToc from '@/components/NoteToc'
 import NoteTopicSection from '@/components/NoteTopicSection'
 import { defaultPostTypeOpts } from '@/lib/config'
@@ -25,6 +26,7 @@ export default async function NotesPage() {
   const totalPost = await getTotalPosts()
   const pinnedTags = (await getTopics()).filter(tag => tag.pinned)
   const pinnedPosts = await getUnofficalPinnedPost()
+  const recentPosts = await getUnofficalPinnedPost(false)
 
   return (
     <>
@@ -40,6 +42,10 @@ export default async function NotesPage() {
                 postType="simple"
                 postTypeOpts={{ ...defaultPostTypeOpts, showPinned: true }}
               />
+            </div>
+            <div className="flex flex-col gap-4">
+              <HeadingNoteTopic name="Recently updated notes" slug="recently-updated-notes" />
+              <PostList posts={recentPosts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
             </div>
             {pinnedTags.map((tag: Tag) => (
               <NoteTopicSection key={tag.slug} tag={tag} />

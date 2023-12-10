@@ -1,9 +1,8 @@
 import { defaultPostTypeOpts } from '@/lib/config'
 import { getUnofficalPostByTag } from '@/lib/notes'
 import PostList from '@notion-x/components/PostList'
-import SimpleImage from '@notion-x/components/SimpleImage'
 import type { Tag } from '@notion-x/interface'
-import Link from 'next/link'
+import HeadingNoteTopic from './Heading/HeadingNoteTopic'
 
 interface Props {
   tag: Tag
@@ -14,25 +13,7 @@ export default async function NoteTopicSection({ tag }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="relative flex gap-3 text-neutral-900">
-        <div>
-          <SimpleImage src={tag.icon} alt={`Image of topic ${tag.name}`} width={28} height={28} />
-        </div>
-        <h2
-          id={tag.slug}
-          className="font-semibold text-xl sm:text-2xl flex flex-wrap gap-x-3 items-center scroll-mt-[70px]"
-        >
-          <span>
-            {tag.name}
-            <Link
-              href={tag.permalink}
-              className="text-[80%] ml-2 italic text-slate-600 font-medium hover:text-indigo-700 "
-            >
-              ...more
-            </Link>
-          </span>
-        </h2>
-      </div>
+      <HeadingNoteTopic {...tag} />
       <PostList posts={posts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
     </div>
   )

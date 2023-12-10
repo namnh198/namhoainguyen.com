@@ -12,7 +12,6 @@ type NotesTocProps = {
 
 export default function NotesToc({ tags, className }: NotesTocProps) {
   const { activeId } = useHeadsObserver(['h2'])
-
   return (
     <div className={className}>
       <div
@@ -27,6 +26,17 @@ export default function NotesToc({ tags, className }: NotesTocProps) {
             'text-[0.9rem]'
           )}
         >
+          <a
+            className={cn('hover:m2it-link flex gap-2 items-center group', {
+              'text-slate-600': activeId !== 'recently-updated-notes',
+              'text-slate-900 font-semibold hover:font-semibold':
+                activeId === 'recently-updated-notes'
+            })}
+            key="recently-updated-notes"
+            href="#recently-updated-notes"
+          >
+            <div>Recently updated notes</div>
+          </a>
           {tags.map((tag: Tag) => (
             <a
               className={cn('hover:notion-link flex gap-2 items-center group', {

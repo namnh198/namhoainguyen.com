@@ -7,7 +7,7 @@ import Heading from '@/components/Heading/Heading'
 import HeadingIndex from '@/components/Heading/HeadingIndex'
 import me from '@/data/me'
 import { defaultOpenGraphImage, defaultPostTypeOpts } from '@/lib/config'
-import { getProjects, getTools, getTopics, getUnofficalPosts } from '@/lib/notes'
+import { getProjects, getTools, getTopics, getUnofficalPinnedPost } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
 import PostList from '@notion-x/components/PostList'
 import SkeletonPostList from '@notion-x/components/SkeletonPostList'
@@ -21,20 +21,8 @@ export const metadata: Metadata = getMetadata({
 })
 
 export default async function HomePage() {
-  const pinnedPosts = await getUnofficalPosts({
-    filter: {
-      property: process.env.NEXT_PUBLIC_ID_NOTE_PINNED_KEY,
-      filter: {
-        operator: 'checkbox_is',
-        value: {
-          type: 'exact',
-          value: true
-        }
-      }
-    },
-    limit: 4
-  })
-  const recentPosts = await getUnofficalPosts({ limit: 4 })
+  const pinnedPosts = await getUnofficalPinnedPost(true, 4)
+  const recentPosts = await getUnofficalPinnedPost(false, 4)
   const pinnedTags = (await getTopics()).filter(tag => tag.pinned)
   const projects = await getProjects()
   const tools = await getTools()

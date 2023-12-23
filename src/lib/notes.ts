@@ -99,7 +99,7 @@ export const getUnofficalPosts = async ({
 } = {}): Promise<Post[]> => {
   try {
     const defaultSort = {
-      property: process.env.NEXT_PUBLIC_ID_NOTE_FINAL_MODIFIED_KEY,
+      property: process.env.NEXT_PUBLIC_ID_NOTE_LAST_EDITED_TIME,
       direction: 'descending'
     } as NotionSorts
     const sortToUse = (sorts?.length ? sorts.push(defaultSort) : [defaultSort]) as NotionSorts[]

@@ -29,13 +29,12 @@ export async function generateMetadata({ params }: { params: ParamsProps }): Pro
 
 export async function generateStaticParams() {
   const posts = await getUnofficalPosts()
-  const params = posts.reduce((result, post) => {
+  return posts.reduce((result, post) => {
     if (!post.slug) {
       return result
     }
     return [...result, { slug: post.slug }]
   }, [] as ParamsProps[])
-  return params
 }
 
 export default async function NoteDetail({ params }: { params: ParamsProps }) {

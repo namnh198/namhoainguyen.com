@@ -1,4 +1,4 @@
-import cn from 'classnames'
+import { cn } from '@notion-x/lib/utils'
 
 export const headingNoteWrapper = cn(
   'flex flex-col gap-4 lg:p-7 md:flex-row md:gap-6 p-5 relative xl:gap-12',

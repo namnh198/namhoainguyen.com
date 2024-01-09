@@ -1,4 +1,4 @@
-import cn from 'classnames'
+import { cn } from '@notion-x/lib/utils'
 import { twMerge } from 'tailwind-merge'
 export default function SkeletonLoading({ className }: { className?: string }) {
   return (

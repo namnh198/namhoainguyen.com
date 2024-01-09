@@ -1,4 +1,4 @@
-import cn from 'classnames'
+import { cn } from '@notion-x/lib/utils'
 
 interface Props {
   title: string

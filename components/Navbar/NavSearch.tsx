@@ -1,7 +1,7 @@
 'use client'
 import SearchModal from '@notion-x/components/SearchModal'
 import IsSearchNormal1 from '@notion-x/icons/IsSearchNormal1'
-import cn from 'classnames'
+import { cn } from '@notion-x/lib/utils'
 import { useEffect, useState } from 'react'
 
 export default function NavSearch() {

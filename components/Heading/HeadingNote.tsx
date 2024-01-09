@@ -1,7 +1,7 @@
 import { headingNoteImg, headingNoteWrapper } from '@/lib/styles'
 import HiOutlineFire from '@notion-x/icons/HiOutlineFire'
 import type { ImageType } from '@notion-x/interface'
-import cn from 'classnames'
+import { cn } from '@notion-x/lib/utils'
 import Image, { StaticImageData } from 'next/image'
 
 interface Props {

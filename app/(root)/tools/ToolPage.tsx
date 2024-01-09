@@ -1,10 +1,10 @@
 'use client'
 
-import cn from 'classnames'
+import { cn } from '@notion-x/lib/utils'
 import Fuse from 'fuse.js'
 
+import { Tool } from '@/app/types'
 import CardTool from '@/components/Card/CardTool'
-import { Tool } from '@/types'
 import FiSearch from '@notion-x/icons/FiSearch'
 import IoCloseCircle from '@notion-x/icons/IoCloseCircle'
 import { useRouter, useSearchParams } from 'next/navigation'

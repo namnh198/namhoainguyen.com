@@ -2,7 +2,7 @@
 
 import { useHeadsObserver } from '@notion-x/hooks/hook'
 import { Tag } from '@notion-x/interface'
-import cn from 'classnames'
+import { cn } from '@notion-x/lib/utils'
 import Link from 'next/link'
 
 type NotesTocProps = {

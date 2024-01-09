@@ -1,7 +1,7 @@
 import SimpleImage from '@notion-x/components/SimpleImage'
 import AiOutlineLoading3Quarters from '@notion-x/icons/AiOutlineLoading3Quarters'
 import type { Tag } from '@notion-x/interface'
-import cn from 'classnames'
+import { cn } from '@notion-x/lib/utils'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 

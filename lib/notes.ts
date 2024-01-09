@@ -1,5 +1,5 @@
+import type { Project, Tool } from '@/app/types'
 import { defaultPostDate } from '@/lib/config'
-import type { Project, Tool } from '@/types'
 import type {
   CollectionInstanceNotion,
   NotionPostData,

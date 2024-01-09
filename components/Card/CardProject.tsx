@@ -1,4 +1,4 @@
-import { Project } from '@/types'
+import { Project } from '@/app/types'
 
 import Badge from '@/components/Badge/Badge'
 import BadgeTech from '@/components/Badge/BadgeTech'

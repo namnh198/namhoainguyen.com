@@ -1,5 +1,5 @@
-import { Tool } from '@/types'
-import cn from 'classnames'
+import { Tool } from '@/app/types'
+import { cn } from '@notion-x/lib/utils'
 import Image from 'next/image'
 
 export default function CardTool({ tool }: { tool: Tool }) {

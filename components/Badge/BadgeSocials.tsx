@@ -1,5 +1,5 @@
 import { SocialBadge } from '@/data/socials'
-import cn from 'classnames'
+import { cn } from '@notion-x/lib/utils'
 
 export default function BadgeSocial({
   social,

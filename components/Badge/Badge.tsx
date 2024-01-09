@@ -1,4 +1,4 @@
-import cn from 'classnames'
+import { cn } from '@notion-x/lib/utils'
 import Link from 'next/link'
 
 interface Props {

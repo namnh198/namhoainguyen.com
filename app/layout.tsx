@@ -31,23 +31,28 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-3MB2TKP0VR`}
-      />
-      <Script
-        id="google-analytics"
-        strategy="lazyOnload"
-        dangerouslySetInnerHTML={{
-          __html: `
+      {process.env.ENV_MODE === 'prod' && (
+        <>
+          <Script
+            strategy="lazyOnload"
+            src={`https://www.googletagmanager.com/gtag/js?id=G-3MB2TKP0VR`}
+          />
+          <Script
+            id="google-analytics"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'G-3MB2TKP0VR');
         `
-        }}
-      />
+            }}
+          />
+        </>
+      )}
+
       <body
         className={`${poppins.className} text-base bg-white text-neutral-900`}
         suppressHydrationWarning

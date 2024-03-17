@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { ThemeProvider } from 'next-themes'
 import { Poppins } from 'next/font/google'
 import Script from 'next/script'
 
@@ -8,6 +9,7 @@ import '@notion-x/style/notion-x.scss'
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar/Navbar'
 import me from '@/data/me'
+import { cn } from '@notion-x/lib/utils'
 
 const poppins = Poppins({ weight: ['400', '500', '600', '700'], subsets: ['latin'] })
 
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       {process.env.ENV_MODE === 'prod' && (
         <>
           <Script
@@ -53,12 +55,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       )}
 
       <body
-        className={`${poppins.className} text-base bg-white text-neutral-900`}
+        className={cn(
+          poppins.className,
+          'text-base bg-white text-neutral-900',
+          'dark:bg-[#1d2333] dark:text-neutral-100'
+        )}
         suppressHydrationWarning
       >
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider attribute="class">
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )

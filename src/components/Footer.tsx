@@ -1,13 +1,14 @@
 import me from '@/data/me'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
+import ThemeSwitcher from './ThemeSwitcher'
 
 const aClass =
-  'text-slate-700 hover:text-slate-900 hover:bg-slate-100  py-2 px-4 flex rounded-xl text-[15px] capitalize whitespace-nowrap'
+  'text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-neutral-700 dark:hover:text-slate-200 py-2 px-4 flex rounded-xl text-[15px] capitalize whitespace-nowrap'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-100  py-6 sm:py-10">
+    <footer className="border-t border-neutral-200/70 dark:border-slate-600 py-6 sm:py-10">
       <nav className="container flex flex-wrap items-center justify-center sm:justify-between">
         <Link
           href="/"
@@ -32,6 +33,9 @@ export default function Footer() {
             <Link href="/about" className={aClass}>
               About
             </Link>
+          </li>
+          <li>
+            <ThemeSwitcher />
           </li>
         </ul>
       </nav>

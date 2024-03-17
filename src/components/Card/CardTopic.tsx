@@ -25,7 +25,7 @@ export default function TagListItem({ tag, className }: { tag: Tag; className?: 
       key={tag.id}
       className={twMerge(
         cn([
-          'group relative flex items-center gap-2 p-4 bg-white shadow-md border border-neutral-200/70 rounded-xl transition duration-200 ease-in-out hover:-translate-y-0.5',
+          'group relative flex items-center gap-2 p-4 bg-white dark:bg-neutral-900 shadow-md dark:shadow-lg border border-neutral-200/70 dark:border-slate-600  rounded-xl transition duration-200 ease-in-out hover:-translate-y-0.5',
           [tag.customClass],
           {
             'tooltip-auto': tag.description
@@ -44,7 +44,10 @@ export default function TagListItem({ tag, className }: { tag: Tag; className?: 
           imagePlaceholder={ImagePlaceholder()}
         />
       </div>
-      <h2 className="group-hover:text-indigo-800 text-base font-normal" title={tag.name}>
+      <h2
+        className="group-hover:text-indigo-800 dark:group-hover:text-indigo-300 text-base font-normal"
+        title={tag.name}
+      >
         {tag.name}
       </h2>
     </Link>

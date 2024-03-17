@@ -28,15 +28,16 @@ export default function HeadingNote({
   }
   return (
     <div className="relative pt-8 lg:pt-16">
-      <div className="bg-indigo-50  absolute top-0 inset-x-0 h-48 w-full"></div>
+      <div className="bg-indigo-50 dark:bg-neutral-800 absolute top-0 inset-x-0 h-48 w-full"></div>
       <div className="container">
         <div className={headingNoteWrapper}>
           <div className="shrink-0">
             <div className={headingNoteImg}>
               <div
-                className={cn('items-center flex justify-center absolute bg-neutral-100  inset-0', [
-                  imageClass
-                ])}
+                className={cn(
+                  'items-center flex justify-center absolute bg-neutral-100 dark:bg-neutral-800 inset-0',
+                  [imageClass]
+                )}
               >
                 <Image
                   className={cn('object-cover', { 'lg:h-24 h-12 lg:w-24 w-12': !imageFluid })}
@@ -53,14 +54,16 @@ export default function HeadingNote({
                 <span className="line-clamp-1">{title}</span>
               </h1>
               {total && (
-                <div className="flex items-center text-sm font-medium space-x-2 text-neutral-500 ">
+                <div className="flex items-center text-sm font-medium space-x-2 text-neutral-500 dark:text-neutral-400">
                   <div className="h-8 w-8 transition-colors duration-75 shrink-0 flex items-center justify-center rounded-full text-rose-600 bg-rose-50 ">
                     <HiOutlineFire className="w-5 h-5" />
                   </div>
-                  <div className=" text-neutral-700">{total}</div>
+                  <div className=" text-neutral-700 dark:text-neutral-300">{total}</div>
                 </div>
               )}
-              <div className="block text-sm sm:text-base text-neutral-500 ">{children}</div>
+              <div className="block text-sm sm:text-base text-neutral-500 dark:text-neutral-400">
+                {children}
+              </div>
             </div>
           </div>
         </div>

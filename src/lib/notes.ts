@@ -304,9 +304,7 @@ const transformProjects = (data: CollectionInstanceNotion): Project[] => {
         id: id,
         title: properties?.title?.[0]?.[0] ?? '',
         type: properties?.[`${process.env.PROJECTS_TYPE_KEY}`]?.[0]?.[0],
-        permalink:
-          properties?.[`${process.env.PROJECTS_URL_KEY}`]?.[0]?.[0] ??
-          properties?.[`${process.env.PROJECTS_SOURCE_KEY}`]?.[0]?.[0],
+        permalink: properties?.[`${process.env.PROJECTS_SOURCE_KEY}`]?.[0]?.[0],
         description: properties?.[`${process.env.PROJECTS_DESC_KEY}`]?.[0]?.[0],
         techs: properties?.[`${process.env.PROJECTS_TECHS_KEY}`]?.[0]?.[0]?.split(',')
       }
@@ -361,7 +359,7 @@ const transformTools = (data: CollectionInstanceNotion): Tool[] => {
         url: properties?.[`${process.env.TOOLS_URL_KEY}`]?.[0]?.[0],
         description: properties?.[`${process.env.TOOLS_DESC_KEY}`]?.[0]?.[0],
         tags,
-        isFree: tags?.includes('free')
+        isFree: properties?.[`${process.env.TOOLS_FREE_KEY}`]?.[0]?.[0] === 'No'
       }
     ]
   }, [])

@@ -33,7 +33,13 @@ export default function NavSearch() {
           <span className="absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500 ">
             <IsSearchNormal1 className="w-5 h-5" />
           </span>
-          <span className="flex items-center leading-none border rounded-xl text-sm font-normal h-10 pl-10 pr-3 py-2 w-full bg-white border-neutral-200/70  group-hover:border-slate-300 hover:ring hover:ring-indigo-200/50 ">
+          <span
+            className={cn(
+              'flex items-center leading-none border rounded-xl text-sm font-normal h-10 pl-10 pr-3 py-2 w-full',
+              'bg-white border-neutral-200/70 group-hover:border-slate-300 hover:ring hover:ring-indigo-200/50',
+              'dark:bg-transparent dark:border-slate-700 dark:group-hover:border-slate-400 dark:hover:ring-indigo-500/30'
+            )}
+          >
             Search&nbsp;
             <span className="hidden sm:inline-block">
               for notes...&nbsp;

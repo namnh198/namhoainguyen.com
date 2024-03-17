@@ -73,7 +73,7 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
             <Suspense fallback={<SkeletonCardTool />}>
               {tools.tools.slice(0, 6).map(tool => (
-                <CardTool key={tool.id} tool={tool} />
+                <CardTool key={tool.id} tool={tool} compactMode />
               ))}
             </Suspense>
           </div>

@@ -15,11 +15,11 @@ export default function NotesToc({ tags, className }: NotesTocProps) {
   return (
     <div className={className}>
       <div
-        className={cn(
-          'p-4 flex flex-col divide-y thi-box-code md:bg-transparent md:border-none md:shadow-none'
-        )}
+        className={cn('p-4 flex flex-col divide-y md:bg-transparent md:border-none md:shadow-none')}
       >
-        <div className="pb-2 font-heading font-semibold text-slate-800">Notes by topics</div>
+        <div className="pb-2 font-heading font-semibold text-neutral-900 dark:text-neutral-100">
+          Notes by topics
+        </div>
         <div
           className={cn(
             'grid grid-cols-2 gap-1 md:grid-cols-1 pt-3 overflow-auto notion-scrollbar notion-scrollbar-small',
@@ -28,8 +28,8 @@ export default function NotesToc({ tags, className }: NotesTocProps) {
         >
           <a
             className={cn('hover:m2it-link flex gap-2 items-center group', {
-              'text-slate-600': activeId !== 'recently-updated-notes',
-              'text-slate-900 font-semibold hover:font-semibold':
+              'text-slate-600 dark:text-slate-400': activeId !== 'recently-updated-notes',
+              'text-slate-900 dark:text-neutral-200 font-semibold hover:font-semibold':
                 activeId === 'recently-updated-notes'
             })}
             key="recently-updated-notes"
@@ -40,8 +40,9 @@ export default function NotesToc({ tags, className }: NotesTocProps) {
           {tags.map((tag: Tag) => (
             <a
               className={cn('hover:notion-link flex gap-2 items-center group', {
-                'text-slate-600': activeId !== tag.slug,
-                'text-slate-900 font-semibold hover:font-semibold': activeId === tag.slug
+                'text-slate-600 dark:text-slate-400': activeId !== tag.slug,
+                'text-slate-900 dark:text-neutral-200 font-semibold hover:font-semibold':
+                  activeId === tag.slug
               })}
               key={tag.slug}
               href={`#${tag.slug}`}
@@ -49,7 +50,10 @@ export default function NotesToc({ tags, className }: NotesTocProps) {
               <div>{tag.name}</div>
             </a>
           ))}
-          <Link className="italic text-[0.9rem] pt-2 text-slate-700 hover:m2it-link" href="/tags/">
+          <Link
+            className="italic text-[0.9rem] pt-2 text-slate-900 dark:text-slate-400 hover:m2it-link"
+            href="/tags/"
+          >
             👉 See all topics...
           </Link>
         </div>

@@ -10,7 +10,7 @@ type HeadingNoteTopicProps = {
 
 export default function HeadingNoteTopic(props: HeadingNoteTopicProps) {
   return (
-    <div className="relative flex gap-3 text-neutral-900">
+    <div className="relative flex gap-3 text-neutral-900 dark:text-neutral-100">
       {props.icon && (
         <div>
           <SimpleImage
@@ -30,7 +30,7 @@ export default function HeadingNoteTopic(props: HeadingNoteTopicProps) {
           {props.permalink && (
             <Link
               href={props.permalink}
-              className="text-[80%] ml-2 italic text-slate-600 font-medium hover:text-indigo-700 "
+              className="text-[80%] ml-2 italic text-slate-600 dark:text-slate-400 font-medium hover:text-indigo-700 dark:hover:text-indigo-400"
             >
               ...more
             </Link>

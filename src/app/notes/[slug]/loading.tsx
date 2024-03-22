@@ -7,7 +7,7 @@ export default function Loading() {
   return (
     <>
       <div className="relative pt-8 lg:pt-16">
-        <div className="bg-indigo-50 absolute top-0 inset-x-0 h-48 w-full"></div>
+        <div className="bg-indigo-50 dark:bg-neutral-800 absolute top-0 inset-x-0 h-48 w-full"></div>
         <div className="container">
           <div className={headingNoteWrapper}>
             <div className="shrink-0">
@@ -28,10 +28,12 @@ export default function Loading() {
       {/* Content */}
       <Container className="py-16 space-y-16 h-[400px]">
         <div className="mx-auto container pb-8 pt-4">
-          <div className="w-100 mt-4 mb-2 h-5 rounded-2xl bg-slate-200"></div>
-          <div className="w-100 mb-2 h-5 rounded-2xl bg-slate-200"></div>
-          <div className="w-100 mb-2 h-5 rounded-2xl bg-slate-200"></div>
-          <div className="mb-1 h-5 w-1/2 rounded-2xl bg-slate-200"></div>
+          <div className="w-100 mt-4 mb-2 h-9 rounded-xl bg-slate-200 dark:bg-neutral-700"></div>
+          <div className="w-100 mb-2 h-9 rounded-xl bg-slate-200 dark:bg-neutral-700"></div>
+          <div className="w-100 mb-2 h-9 rounded-xl bg-slate-200 dark:bg-neutral-700"></div>
+          <div className="w-100 mb-2 h-9 rounded-xl bg-slate-200 dark:bg-neutral-700"></div>
+          <div className="w-100 mb-2 h-9 rounded-xl bg-slate-200 dark:bg-neutral-700"></div>
+          <div className="mb-1 w-2/3 h-9 rounded-xl bg-slate-200 dark:bg-neutral-700"></div>
         </div>
       </Container>
     </>

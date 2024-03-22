@@ -68,13 +68,13 @@ export default function ToolPage({ tools, tags }: { tools: Tool[]; tags: string[
 
   return (
     <div className="flex flex-col gap-6 md:gap-8">
-      <div className="flex items-center gap-3 p-3 bg-white border border-neutral-200/70 rounded-xl">
-        <div className="grid place-items-center text-slate-500">
+      <div className="flex items-center gap-3 p-3 bg-white dark:bg-neutral-700 border border-neutral-200 dark:border-slate-600 rounded-xl">
+        <div className="grid place-items-center text-slate-500 dark:text-slate-400">
           <FiSearch className="text-2xl" />
         </div>
         <input
           ref={inputRef}
-          className="peer hide-search-cancel h-full w-full text-ellipsis bg-transparent pr-2 outline-none"
+          className="peer hide-search-cancel h-full w-full text-ellipsis bg-transparent pr-2 outline-none placeholder:text-slate-500 dark:placeholder:text-slate-400"
           id="search"
           type="search"
           placeholder={'Search tools...'}
@@ -97,11 +97,11 @@ export default function ToolPage({ tools, tags }: { tools: Tool[]; tags: string[
               title={`Tag: ${tag}`}
               onClick={() => toggleTypeToShow(tag)}
               className={cn(
-                'whitespace-nowrap border px-2 text-base rounded-md',
+                'whitespace-nowrap p-0.5 border border-neutral-200 dark:border-slate-600 px-2 text-base rounded-md',
                 'transition duration-200 ease-in-out',
                 {
-                  'bg-white': !tagsToShow.includes(tag),
-                  'bg-sky-600 text-white': tagsToShow.includes(tag)
+                  'bg-white dark:bg-neutral-700': !tagsToShow.includes(tag),
+                  'bg-sky-500 !border-sky-700 text-white': tagsToShow.includes(tag)
                 }
               )}
             >

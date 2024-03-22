@@ -4,6 +4,7 @@ import { getTools } from '@/lib/notes'
 import { getMetadata } from '@/lib/utils'
 import toolsImg from '@/public/images/tools.svg'
 import ToolPage from './ToolPage'
+import Loading from './loading'
 
 export const revalidate = 20
 
@@ -21,6 +22,7 @@ export default async function ToolsPage() {
 
   return (
     <div>
+      <Loading />
       <HeadingNote title="Tools" image={toolsImg} total={`${tools.length} Tools`}>
         I&rsquo;m always on the lookout for new apps and websites that can help me learn and work
         more effectively. Here&rsquo;s a list of tools that I&rsquo;ve found really useful so far.

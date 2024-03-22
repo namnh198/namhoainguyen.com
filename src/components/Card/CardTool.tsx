@@ -78,26 +78,26 @@ export default function CardTool({
 }
 
 export const SkeletonCardTool = () => (
-  <div className="group p-4 shadow-md border border-neutral-200/70 rounded-3xl">
+  <div className="group p-4 shadow-md border border-neutral-200 dark:border-slate-600 rounded-3xl">
     <div className="flex flex-row h-full">
-      <div className="w-[90px] min-h-[180px] h-full rounded-l-xl relative overflow-hidden shrink-0 border-[0.5px] border-neutral-200/70 ">
+      <div className="w-[90px] min-h-[180px] h-full rounded-l-xl relative overflow-hidden shrink-0 border-[0.5px] border-neutral-200 dark:border-slate-600">
         <div className="relative w-full h-full overflow-hidden">
-          <div className="items-center flex justify-center absolute bg-neutral-100 inset-0" />
+          <div className="items-center flex justify-center absolute bg-neutral-100 dark:bg-neutral-800 inset-0" />
           <div className="flex items-center justify-center p-8">
-            <div className="w-[60px] h-[60px] bg-slate-200 rounded-md absolute inset-0 m-auto animate-pulse"></div>
+            <div className="w-[60px] h-[60px] bg-slate-200 dark:bg-neutral-700 rounded-md absolute inset-0 m-auto animate-pulse"></div>
           </div>
         </div>
       </div>
       <div className="flex-1 py-4 px-3.5 flex flex-col space-y-3 animate-pulse">
         <div className="flex flex-wrap gap-1.5">
           <div className="flex flex-wrap gap-1.5">
-            <div className="w-8 h-6 bg-slate-200 rounded-md"></div>
-            <div className="w-8 h-6 bg-slate-200 rounded-md"></div>
+            <div className="w-8 h-6 bg-slate-200 dark:bg-neutral-700 rounded-md"></div>
+            <div className="w-8 h-6 bg-slate-200 dark:bg-neutral-700 rounded-md"></div>
           </div>
         </div>
         <div className={cn('text-[0.83rem] text-slate-700 break-words overflow')}>
-          <div className="w-full h-6 bg-slate-100 rounded-md"></div>
-          <div className="w-4/5 h-4 bg-slate-100 rounded-md mt-1"></div>
+          <div className="w-full h-6 bg-slate-200 dark:bg-neutral-700 rounded-md"></div>
+          <div className="w-4/5 h-4 bg-slate-200 dark:bg-neutral-700 rounded-md mt-1"></div>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import SkeletonLoading from './SkeletonLoading'
 export default function SkeletonHeadingNote() {
   return (
     <div className="relative pt-8 lg:pt-16">
-      <div className="bg-indigo-50 absolute top-0 inset-x-0 h-48 w-full"></div>
+      <div className="bg-indigo-50 dark:bg-neutral-800 absolute top-0 inset-x-0 h-48 w-full"></div>
       <div className="container">
         <div className={headingNoteWrapper}>
           <div className="shrink-0">

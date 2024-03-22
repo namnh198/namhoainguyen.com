@@ -51,7 +51,7 @@ const getColorBadge = (type?: string) => {
 export const SkeletonCardProject = ({ className }: { className?: string }) => {
   return (
     <div className={className}>
-      <div className="rounded-3xl shadow-md bg-slate-200 animate-pulse h-[200px]"></div>
+      <div className="rounded-3xl shadow-md bg-slate-200 dark:bg-neutral-700 animate-pulse h-[200px]"></div>
     </div>
   )
 }

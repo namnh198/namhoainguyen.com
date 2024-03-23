@@ -359,7 +359,9 @@ const transformTools = (data: CollectionInstanceNotion): Tool[] => {
         url: properties?.[`${process.env.TOOLS_URL_KEY}`]?.[0]?.[0],
         description: properties?.[`${process.env.TOOLS_DESC_KEY}`]?.[0]?.[0],
         tags,
-        isFree: properties?.[`${process.env.TOOLS_FREE_KEY}`]?.[0]?.[0] === 'No'
+        isFree:
+          !properties?.[`${process.env.TOOLS_FREE_KEY}`]?.[0]?.[0] ||
+          properties?.[`${process.env.TOOLS_FREE_KEY}`]?.[0]?.[0] === 'No'
       }
     ]
   }, [])

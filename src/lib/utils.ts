@@ -1,8 +1,13 @@
-import me from '@/data/me'
-import type { NotionTagData, Post, Tag } from '@notion-x/interface'
 import { Metadata } from 'next'
 import { Block } from 'notion-types'
 import slugify from 'slugify'
+import { clsx, type ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
+import me from '@/data/me'
+import type { NotionTagData, Post, Tag } from '@notion-x/interface'
+
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs))
 
 export const makeSlugByText = (text: string): string => {
   if (!text) {

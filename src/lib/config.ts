@@ -1,6 +1,40 @@
 import hashtagImg from '@/public/images/hashtag.svg'
 import { StaticImageData } from 'next/image'
 import { PreviewImage } from 'notion-types'
+import { NavbarItemProps } from '@/types/app'
+
+export const navItems: NavbarItemProps[] = [
+  {
+    name: 'Home',
+    url: '/',
+    freq: 'weekly'
+  },
+  {
+    name: 'About',
+    url: '/about',
+    freq: 'monthly'
+  },
+  {
+    name: 'Notes',
+    url: '/notes',
+    freq: 'daily'
+  },
+  {
+    name: 'Topics',
+    url: '/tags',
+    freq: 'weekly'
+  },
+  {
+    name: 'Projects',
+    url: '/projects',
+    freq: 'monthly'
+  },
+  {
+    name: 'Tools',
+    url: '/tools',
+    freq: 'monthly'
+  }
+]
 
 export const titleTemplate = '%title% | Site Of Nam'
 
@@ -31,5 +65,5 @@ export const defaultPostTypeOpts = {
   newLabel: 'new',
   updatedLabel: 'updated',
   humanizeDate: true,
-  maxDaysWinthin: 7
+  maxDaysWithin: 7
 }

@@ -1,6 +1,6 @@
 import Container from '@/components/Container'
 import HeadingNote from '@/components/Heading/HeadingNote'
-import { getTools } from '@/lib/notes'
+import { getTools } from '@/lib/notion'
 import { getMetadata } from '@/lib/utils'
 import toolsImg from '@/public/images/tools.svg'
 import ToolPage from './ToolPage'
@@ -21,11 +21,11 @@ export default async function ToolsPage() {
 
   return (
     <div>
-      <HeadingNote title="Tools" image={toolsImg} total={`${tools.length} Tools`}>
-        I&rsquo;m always on the lookout for new apps and websites that can help me learn and work
-        more effectively. Here&rsquo;s a list of tools that I&rsquo;ve found really useful so far.
+      <HeadingNote title='Tools' image={toolsImg} total={`${tools.length} Tools`}>
+        I&rsquo;m always on the lookout for new apps and websites that can help me learn and work more effectively.
+        Here&rsquo;s a list of tools that I&rsquo;ve found really useful so far.
       </HeadingNote>
-      <Container className="py-16 space-y-16">
+      <Container className='py-16 space-y-16'>
         <ToolPage tools={tools} tags={tags} />
       </Container>
     </div>

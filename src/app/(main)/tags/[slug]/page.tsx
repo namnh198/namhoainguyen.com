@@ -2,7 +2,7 @@ import type { ParamsProps } from '@/app/types'
 import Container from '@/components/Container'
 import HeadingNote from '@/components/Heading/HeadingNote'
 import { defaultPostTypeOpts } from '@/lib/config'
-import { getTopics, getTotalPosts, getUnofficalPostByTag } from '@/lib/notes'
+import { getTopics, getTotalPosts, getUnofficalPostByTag } from '@/lib/notion'
 import { getMetadata } from '@/lib/utils'
 import PostList from '@notion-x/components/PostList'
 import type { Tag } from '@notion-x/interface'
@@ -61,13 +61,13 @@ export default async function TagDetail({ params }: { params: ParamsProps }) {
       >
         {tag.description ? tag.description : `List all notes of topic ${tag.name}`}
       </HeadingNote>
-      <Container className="py-16 space-y-16">
-        <PostList posts={posts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
+      <Container className='py-16 space-y-16'>
+        <PostList posts={posts} postType='simple' postTypeOpts={defaultPostTypeOpts} />
       </Container>
     </>
   )
 }
 
 const getTag = (slug: string, tags: Tag[]) => {
-  return tags.find(tag => tag.slug === slug || tag.slug === slug.replace(/%26/g, '&'))
+  return tags.find((tag) => tag.slug === slug || tag.slug === slug.replace(/%26/g, '&'))
 }

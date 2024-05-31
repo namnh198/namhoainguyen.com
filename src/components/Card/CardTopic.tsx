@@ -13,7 +13,7 @@ const ImagePlaceholder = () => {
         'flex flex-col h-[30px] w-[30px] rounded-full'
       )}
     >
-      <AiOutlineLoading3Quarters className="text-[30px] text-white animate-spin" />
+      <AiOutlineLoading3Quarters className='text-[30px] text-white animate-spin' />
     </div>
   )
 }
@@ -28,14 +28,14 @@ export default function TagListItem({ tag, className }: { tag: Tag; className?: 
           'group relative flex items-center gap-2 p-4 bg-white dark:bg-neutral-900 shadow-md dark:shadow-lg border border-neutral-200/70 dark:border-slate-600  rounded-xl transition duration-200 ease-in-out hover:-translate-y-0.5',
           [tag.customClass],
           {
-            'tooltip-auto': tag.description
+            tooltip: tag.description
           },
           [className]
         ])
       )}
-      data-title={tag.description}
+      data-tooltip={tag.description}
     >
-      <div className="relative shrink-0">
+      <div className='relative shrink-0'>
         <SimpleImage
           src={tag.icon}
           alt={`Image of topic ${tag.name}`}
@@ -45,7 +45,7 @@ export default function TagListItem({ tag, className }: { tag: Tag; className?: 
         />
       </div>
       <h2
-        className="group-hover:text-indigo-800 dark:group-hover:text-indigo-300 text-base font-normal"
+        className='group-hover:text-indigo-800 dark:group-hover:text-indigo-300 text-base font-normal'
         title={tag.name}
       >
         {tag.name}

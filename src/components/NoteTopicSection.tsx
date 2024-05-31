@@ -1,5 +1,5 @@
 import { defaultPostTypeOpts } from '@/lib/config'
-import { getUnofficalPostByTag } from '@/lib/notes'
+import { getUnofficalPostByTag } from '@/lib/notion'
 import PostList from '@notion-x/components/PostList'
 import type { Tag } from '@notion-x/interface'
 import HeadingNoteTopic from './Heading/HeadingNoteTopic'
@@ -12,9 +12,9 @@ export default async function NoteTopicSection({ tag }: Props) {
   if (posts.length < 1) return null
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className='flex flex-col gap-4'>
       <HeadingNoteTopic {...tag} />
-      <PostList posts={posts} postType="simple" postTypeOpts={defaultPostTypeOpts} />
+      <PostList posts={posts} postType='simple' postTypeOpts={defaultPostTypeOpts} />
     </div>
   )
 }

@@ -180,13 +180,7 @@ export const getProjects = async (): Promise<Project[]> => {
   try {
     const data = await getUnofficialDatabase({
       sourceId: process.env.PROJECTS_SOURCE_ID,
-      collectionViewId: process.env.PROJECTS_COLLECTION_VIEW_ID,
-      sorts: [
-        {
-          property: process.env.PROJECTS_CREATED_AT_KEY as string,
-          direction: 'descending'
-        }
-      ]
+      collectionViewId: process.env.PROJECTS_COLLECTION_VIEW_ID
     })
     return transformProjects(data)
   } catch (error) {
@@ -221,13 +215,7 @@ export const getTools = async (): Promise<{ tools: Tool[]; tags: string[] }> => 
   try {
     const data = await getUnofficialDatabase({
       sourceId: process.env.TOOLS_SOURCE_ID,
-      collectionViewId: process.env.TOOLS_COLLECTION_VIEW_ID,
-      sorts: [
-        {
-          property: 'title',
-          direction: 'descending'
-        }
-      ]
+      collectionViewId: process.env.TOOLS_COLLECTION_VIEW_ID
     })
     return {
       tools: transformTools(data),

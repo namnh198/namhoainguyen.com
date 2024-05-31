@@ -4,7 +4,7 @@ import IsSearchNormal1 from '@notion-x/icons/IsSearchNormal1'
 import { cn } from '@notion-x/lib/utils'
 import { useEffect, useState } from 'react'
 
-export default function NavSearch() {
+export default function Search() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   // eslint-disable-next-line
   const [searchKeyText, setSearchKeyText] = useState('Ctrl + K')
@@ -28,10 +28,10 @@ export default function NavSearch() {
   }, [])
   return (
     <>
-      <div className="flex items-center justify-end">
-        <div className="sm:max-w-xs cursor-pointer relative" onClick={() => setIsSearchOpen(true)}>
-          <span className="absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500 ">
-            <IsSearchNormal1 className="w-5 h-5" />
+      <div className='flex items-center justify-end'>
+        <div className='sm:max-w-xs cursor-pointer relative' onClick={() => setIsSearchOpen(true)}>
+          <span className='absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500 '>
+            <IsSearchNormal1 className='w-5 h-5' />
           </span>
           <span
             className={cn(
@@ -41,7 +41,7 @@ export default function NavSearch() {
             )}
           >
             Search&nbsp;
-            <span className="hidden sm:inline-block">
+            <span className='hidden sm:inline-block'>
               for notes...&nbsp;
               <kbd
                 className={cn([
@@ -56,11 +56,11 @@ export default function NavSearch() {
         </div>
       </div>
       <SearchModal
-        url="/api/search-notion"
-        slugPrefix="notes"
+        url='/api/search-notion'
+        slugPrefix='notes'
         isOpen={isSearchOpen}
         closeModal={() => setIsSearchOpen(false)}
-        placeholder="Search for notes..."
+        placeholder='Search for notes...'
       />
     </>
   )

@@ -10,7 +10,11 @@ const nextConfig = {
     lodash: {
       transform: 'lodash/{{member}}',
       preventFullImport: true
-    }
+    },
+    'react-icons/?(((\\w*)?/?)*)': {
+      transform: 'react-icons/{{ matches.[1] }}/{{ member }}',
+      skipDefaultConversion: true,
+    },
   },
   headers: async () => {
     const headers = []
@@ -45,4 +49,4 @@ const nextConfig = {
   }
 }
 
-module.exports = nextConfig
+export default nextConfig;

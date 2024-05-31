@@ -1,5 +1,5 @@
 import { ParamsProps } from '@/app/types'
-import { getUnofficalPostBySlug, getUnofficalPosts } from '@/lib/notes'
+import { getUnofficalPostBySlug, getUnofficalPosts } from '@/lib/notion'
 import { getMetadata } from '@/lib/utils'
 import { getPage } from '@notion-x/lib/notion-api'
 import { Metadata } from 'next'

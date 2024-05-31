@@ -53,40 +53,32 @@ export default function HeadingPost(props: PostHeaderProps) {
     cover,
     verified
   } = props.post || getPostProperties(block)
-  const status = usePostDateStatus(
-    createdDate!,
-    modifiedDate!,
-    get(defaultPostTypeOpts, 'maxDaysWinthin', 7)
-  )
+  const status = usePostDateStatus(createdDate!, modifiedDate!, get(defaultPostTypeOpts, 'maxDaysWinthin', 7))
 
   return (
-    <div className="w-full">
+    <div className='w-full'>
       {cover ? (
-        <div className="relative w-full h-40 md:h-60 2xl:h-72">
+        <div className='relative w-full h-40 md:h-60 2xl:h-72'>
           <SimpleImage
             src={mapImageUrl(cover as any, block)}
             alt={getTextContent(title)}
-            className="object-cover w-full h-full"
+            className='object-cover w-full h-full'
             imagePlaceholder={ImagePlaceholderPostHeader()}
           />
         </div>
       ) : (
-        <div className="relative w-full h-40">
-          <div className="bg-indigo-50 dark:bg-neutral-800 h-full w-full"></div>
+        <div className='relative w-full h-40'>
+          <div className='bg-indigo-50 dark:bg-neutral-800 h-full w-full'></div>
         </div>
       )}
 
-      <div className="container -mt-10 lg:-mt-16">
-        <div className="relative bg-white dark:bg-neutral-900 shadow-2xl px-4 sm:px-5 py-7 lg:p-11 rounded-2xl md:rounded-[40px] flex flex-col md:flex-row gap-8 lg:gap-10 items-center justify-center">
+      <div className='container -mt-10 lg:-mt-16'>
+        <div className='relative bg-white dark:bg-neutral-900 shadow-2xl px-4 sm:px-5 py-7 lg:p-11 rounded-2xl md:rounded-[40px] flex flex-col md:flex-row gap-8 lg:gap-10 items-center justify-center'>
           {icon && (
-            <div className="relative shrink-0 overflow-hidden h-24 lg:h-40 lg:w-40 ring-4 ring-white dark:ring-slate-600 rounded-3xl sm:h-32 sm:w-32 w-24 wil-avatar z-0">
-              <div className="items-center flex justify-center absolute bg-neutral-100 dark:bg-neutral-800 inset-0">
+            <div className='relative shrink-0 overflow-hidden h-24 lg:h-40 lg:w-40 ring-4 ring-white dark:ring-slate-600 rounded-3xl sm:h-32 sm:w-32 w-24 wil-avatar z-0'>
+              <div className='items-center flex justify-center absolute bg-neutral-100 dark:bg-neutral-800 inset-0'>
                 <Suspense
-                  fallback={
-                    <div
-                      className={cn('w-[38px] h-[38px] bg-slate-600 rounded-full animate-pulse')}
-                    />
-                  }
+                  fallback={<div className={cn('w-[38px] h-[38px] bg-slate-600 rounded-full animate-pulse')} />}
                 >
                   <PageIcon block={block} inline={false} />
                 </Suspense>
@@ -94,32 +86,26 @@ export default function HeadingPost(props: PostHeaderProps) {
             </div>
           )}
 
-          <div className="flex-1 space-y-4 lg:space-y-5">
-            <h1 className="inline-flex items-center text-center md:text-left text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold">
+          <div className='flex-1 space-y-4 lg:space-y-5'>
+            <h1 className='inline-flex items-center text-center md:text-left text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold'>
               <Text value={title} block={block} />
             </h1>
-            {!props.hideMeta && (
-              <div className="w-full border-b border-neutral-200/70 dark:border-slate-600"></div>
-            )}
+            {!props.hideMeta && <div className='w-full border-b border-neutral-200/70 dark:border-slate-600'></div>}
 
             {!props.hideMeta && (
-              <div className="flex flex-wrap justify-between sm:items-end gap-5">
+              <div className='flex flex-wrap justify-between sm:items-end gap-5'>
                 {/* Author & Date */}
-                <div className="flex items-center flex-wrap text-neutral-700 dark:text-neutral-300 text-left  text-base leading-none shrink-0">
-                  <div className="flex items-center space-x-2">
-                    <div className="relative shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 dark:text-neutral-800 uppercase font-semibold rounded-full shadow-inner h-10 w-10 sm:h-11 sm:w-11 text-xl ring-1 ring-white ">
-                      <Image
-                        src={me.avatar}
-                        alt={me.name}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
+                <div className='flex items-center flex-wrap text-neutral-700 dark:text-neutral-300 text-left  text-base leading-none shrink-0'>
+                  <div className='flex items-center space-x-2'>
+                    <div className='relative shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 dark:text-neutral-800 uppercase font-semibold rounded-full shadow-inner h-10 w-10 sm:h-11 sm:w-11 text-xl ring-1 ring-white '>
+                      <Image src={me.avatar} alt={me.name} className='absolute inset-0 w-full h-full object-cover' />
                     </div>
                   </div>
-                  <div className="ms-3">
-                    <div className="flex items-center font-semibold">{me.name}</div>
-                    <div className="text-xs mt-[6px]">
-                      <span className="text-neutral-700 dark:text-neutral-300">
-                        <DateComponent dateString={createdDate!} format="MMM DD, YYYY" />
+                  <div className='ms-3'>
+                    <div className='flex items-center font-semibold'>{me.name}</div>
+                    <div className='text-xs mt-[6px]'>
+                      <span className='text-neutral-700 dark:text-neutral-300'>
+                        <DateComponent dateString={createdDate!} format='MMM DD, YYYY' />
                       </span>
                     </div>
                   </div>
@@ -127,7 +113,7 @@ export default function HeadingPost(props: PostHeaderProps) {
 
                 {/* Meta */}
                 <div>
-                  <div className="hidden sm:flex flex-row space-x-2 sm:space-x-2.5 items-center">
+                  <div className='hidden sm:flex flex-row space-x-2 sm:space-x-2.5 items-center'>
                     {draft && (
                       <div
                         className={cn(
@@ -139,22 +125,19 @@ export default function HeadingPost(props: PostHeaderProps) {
                       </div>
                     )}
                     {status !== 'normal' && (
-                      <div className="flex items-center gap-3 flex-wrap justify-center md:justify-start">
+                      <div className='flex items-center gap-3 flex-wrap justify-center md:justify-start'>
                         {['updated', 'updatedWithin'].includes(status) && (
                           <div
-                            className={cn(
-                              'px-3 py-1 text-xs items-start rounded-md whitespace-nowrap font-medium',
-                              {
-                                'text-slate-700 bg-slate-100': status === 'updated',
-                                'text-green-900 bg-green-200': status === 'updatedWithin'
-                              }
-                            )}
+                            className={cn('px-3 py-1 text-xs items-start rounded-md whitespace-nowrap font-medium', {
+                              'text-slate-700 bg-slate-100': status === 'updated',
+                              'text-green-900 bg-green-200': status === 'updatedWithin'
+                            })}
                           >
                             <DateComponent
-                              dateLabel="updated"
+                              dateLabel='updated'
                               humanize={true}
                               dateString={modifiedDate!}
-                              format="MMM DD, YYYY"
+                              format='MMM DD, YYYY'
                             />
                           </div>
                         )}
@@ -171,27 +154,27 @@ export default function HeadingPost(props: PostHeaderProps) {
                         )}
                       </div>
                     )}
-                    <div className="px-1">
-                      <div className="border-s note-border-primary h-5 sm:h-6"></div>
+                    <div className='px-1'>
+                      <div className='border-s border border-neutral-200/70 dark:border-slate-600 h-5 sm:h-6'></div>
                     </div>
                     {verified && (
                       <div
-                        className="relative tooltip-auto tooltip-right flex items-center text-neutral-600 dark:text-neutral-200 transition-colors hover:text-sky-600 dark:hover:text-sky-600"
-                        data-title="Verified by me"
+                        className='relative tooltip-auto tooltip-right flex items-center text-neutral-600 dark:text-neutral-200 transition-colors hover:text-sky-600 dark:hover:text-sky-600'
+                        data-title='Verified by me'
                       >
-                        <span className="shrink-0 flex items-center justify-center rounded-full bg-neutral-50 dark:bg-neutral-700 transition-colors duration-75 hover:bg-sky-50 dark:hover:bg-sky-50  w-9 h-9">
-                          <HiMiniCheckBadge className="w-5 h-5" />
+                        <span className='shrink-0 flex items-center justify-center rounded-full bg-neutral-50 dark:bg-neutral-700 transition-colors duration-75 hover:bg-sky-50 dark:hover:bg-sky-50  w-9 h-9'>
+                          <HiMiniCheckBadge className='w-5 h-5' />
                         </span>
                       </div>
                     )}
                     <a
                       href={`https://www.notion.so/namhoainguyen/${block.id.replace(/-/g, '')}`}
-                      target="_blank"
-                      className="relative tooltip-auto tooltip-right flex items-center text-neutral-600 dark:text-neutral-200 transition-colors hover:text-green-600 dark:hover:text-green-600"
+                      target='_blank'
+                      className='relative tooltip-auto tooltip-right flex items-center text-neutral-600 dark:text-neutral-200 transition-colors hover:text-green-600 dark:hover:text-green-600'
                       data-title={'Edit this note (for me only)'}
                     >
-                      <span className="shrink-0 flex items-center justify-center rounded-full bg-neutral-50 dark:bg-neutral-700 transition-colors duration-75  hover:bg-green-50 dark:hover:bg-green-50  w-9 h-9">
-                        <HiOutlinePencilSquare className="w-4 h-4" />
+                      <span className='shrink-0 flex items-center justify-center rounded-full bg-neutral-50 dark:bg-neutral-700 transition-colors duration-75  hover:bg-green-50 dark:hover:bg-green-50  w-9 h-9'>
+                        <HiOutlinePencilSquare className='w-4 h-4' />
                       </span>
                     </a>
                   </div>
@@ -200,12 +183,12 @@ export default function HeadingPost(props: PostHeaderProps) {
             )}
 
             {tags && !!tags.length && (
-              <div className="flex flex-wrap items-center">
+              <div className='flex flex-wrap items-center'>
                 <PostHeaderTopics
-                  className="justify-center sm:justify-start"
+                  className='justify-center sm:justify-start'
                   tags={tags}
-                  TiTagClass=""
-                  tagClass="text-slate-700 bg-slate-50"
+                  TiTagClass=''
+                  tagClass='text-slate-700 bg-slate-50'
                 />
               </div>
             )}

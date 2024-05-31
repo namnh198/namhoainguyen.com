@@ -1,4 +1,4 @@
-import SinglePostTemplate from '@/app/notes/[slug]/SinglePostTemplate'
+import SinglePostTemplate from '@/app/(main)/notes/[slug]/SinglePostTemplate'
 import { defaultOpenGraphImage } from '@/lib/config'
 import { getMetadata } from '@/lib/utils'
 import { getPage } from '@notion-x/lib/notion-api'

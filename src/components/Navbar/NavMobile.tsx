@@ -24,7 +24,7 @@ export default function NavMobile({ navbar }: { navbar: NavbarItemProps[] }) {
         className="p-2.5 -ml-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none flex items-center justify-center"
       >
         <span className="sr-only">Toggle Menu</span>
-        <HiOutlineBars3 className="w-6 h-6" />
+        <HiOutlineBars3 className="size-6" />
       </button>
       <Transition appear as={Fragment} show={isShowMenu}>
         <Dialog as="div" className="relative z-50" onClose={handleCloseMenu}>

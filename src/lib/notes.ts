@@ -1,68 +1,16 @@
 import type { Project, Tool } from '@/app/types'
-import { defaultPostDate } from '@/lib/config'
-import type {
-  CollectionInstanceNotion,
-  NotionPostData,
-  NotionSorts,
-  NotionTagData
-} from '@notion-x/interface'
+import type { CollectionInstanceNotion, NotionPostData, NotionSorts, NotionTagData } from '@notion-x/interface'
 
 import type { Post, Tag } from '@notion-x/interface'
 import { defaultMapImageUrl } from '@notion-x/lib/map-image-url'
-import { getUnofficialDatabase, queryDatabase } from '@notion-x/lib/notion-api'
-import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
-import { get } from 'lodash'
-import {
-  getNotionFilter,
-  getPermalink,
-  getPostProperties,
-  getRichText,
-  getUnOfficalNotionFilter,
-  makeSlugByText,
-  mapTag
-} from './utils'
-
-export const getPosts = async ({
-  filter,
-  startCursor,
-  pageSize,
-  sorts
-}: {
-  filter?: QueryDatabaseParameters['filter']
-  startCursor?: string
-  pageSize?: number
-  sorts?: NotionSorts[]
-} = {}): Promise<Post[]> => {
-  if (!process.env.NOTION_DB_NOTES) {
-    throw new Error('NOTION_DB_POSTS is not defined')
-  }
-  try {
-    const defaultSort = {
-      property: 'finalModified',
-      direction: 'descending'
-    } as NotionSorts
-    const sortToUse = (sorts?.length ? sorts.push(defaultSort) : [defaultSort]) as NotionSorts[]
-    const filterToUse: QueryDatabaseParameters['filter'] = getNotionFilter(filter)
-
-    const data = await queryDatabase({
-      dbId: process.env.NOTION_DB_NOTES as string,
-      filter: filterToUse,
-      startCursor,
-      pageSize,
-      sorts: sortToUse
-    })
-
-    return await tranformNotionPost({ data: data?.results as any[] })
-  } catch (error) {
-    console.error(`Error in getPosts(): ${error}`)
-    return []
-  }
-}
+import { getUnofficialDatabase } from '@notion-x/lib/notion-api'
+import { getPermalink, getPostProperties, getUnOfficalNotionFilter, makeSlugByText } from './utils'
 
 export const getTotalPosts = async (tag?: Tag) => {
   try {
-    const tagFilter = tag
-      ? {
+    const tagFilter = !tag
+      ? null
+      : {
           property: process.env.NEXT_PUBLIC_ID_NOTE_TAGS_KEY,
           filter: {
             operator: 'enum_contains',
@@ -72,7 +20,6 @@ export const getTotalPosts = async (tag?: Tag) => {
             }
           }
         }
-      : null
     const filterToUse = getUnOfficalNotionFilter(tagFilter)
     const data = await getUnofficialDatabase({
       sourceId: process.env.NOTE_SOURCE_ID as string,
@@ -119,10 +66,7 @@ export const getUnofficalPosts = async ({
   }
 }
 
-export const getUnofficalPinnedPost = async (
-  value: boolean = true,
-  limit: number | null = null
-) => {
+export const getUnofficalPinnedPost = async (value: boolean = true, limit: number | null = null) => {
   return await getUnofficalPosts({
     filter: {
       property: process.env.NEXT_PUBLIC_ID_NOTE_PINNED_KEY,
@@ -140,7 +84,7 @@ export const getUnofficalPinnedPost = async (
 
 export const getUnofficalPostBySlug = async (slug: string): Promise<Post | undefined> => {
   const allPosts = await getUnofficalPosts()
-  return allPosts.find(post => post?.slug === slug)
+  return allPosts.find((post) => post?.slug === slug)
 }
 
 export const getUnofficalPostByTag = async (tag: string) => {
@@ -160,10 +104,7 @@ export const getUnofficalPostByTag = async (tag: string) => {
   })
 }
 
-export const transformUnofficalPosts = async (
-  data: CollectionInstanceNotion,
-  fulldata = false
-): Promise<Post[]> => {
+export const transformUnofficalPosts = async (data: CollectionInstanceNotion, fulldata = false): Promise<Post[]> => {
   const block = data?.recordMap?.block
 
   const blockIds: Array<string> = fulldata
@@ -180,44 +121,6 @@ export const transformUnofficalPosts = async (
   }, [])
 
   return posts
-}
-
-const tranformNotionPost = async ({ data }: { data: NotionPostData[] }): Promise<Post[]> => {
-  if (!data?.length) return []
-
-  return Promise.all(
-    data?.map(async (post: NotionPostData) => {
-      const title = getRichText(get(post, 'properties.Name.title') as any) || 'Untitled'
-      const updatedDate = new Date(
-        get(
-          post,
-          'properties.finalModified.formula.date.start',
-          get(post, 'last_edited_time', defaultPostDate)
-        )
-      ).toISOString()
-      const createdDate = new Date(
-        get(post, 'properties.createdDate.date.start', get(post, 'created_time', defaultPostDate))
-      ).toISOString()
-      const tags =
-        post.properties?.tags?.multi_select?.map((tag: NotionTagData) => mapTag(tag)) || []
-      const slug = get(post, 'properties.slug.rich_text[0].plain_text', '') || makeSlugByText(title)
-      const draft = get(post, 'properties.draft.checkbox') || false
-      const verified = get(post, 'properties.verified.checkbox') || false
-      const pinned = get(post, 'properties.pinned.checkbox') || false
-      return {
-        id: get(post, 'id'),
-        title,
-        slug,
-        permalink: getPermalink('note', slug),
-        tags,
-        draft,
-        verified,
-        pinned,
-        updatedDate,
-        createdDate
-      }
-    })
-  )
 }
 
 export const getTopics = async (): Promise<Tag[]> => {
@@ -346,9 +249,7 @@ const transformTools = (data: CollectionInstanceNotion): Tool[] => {
     if (!icon) {
       return result
     }
-    const tags = properties?.[`${process.env.TOOLS_TAGS_KEY}`]?.[0]?.[0]?.split(',') as
-      | string[]
-      | undefined
+    const tags = properties?.[`${process.env.TOOLS_TAGS_KEY}`]?.[0]?.[0]?.split(',') as string[] | undefined
 
     return [
       ...result,
@@ -374,9 +275,7 @@ const getAllToolsTags = (data: CollectionInstanceNotion): string[] => {
     data?.recordMap?.collection?.[`${process.env.TOOLS_SOURCE_ID}`]?.value?.schema?.[
       `${process.env.TOOLS_TAGS_KEY}`
     ]?.options?.reduce<string[]>((result: string[], option: any) => {
-      return !option.value || ['free', 'paid'].includes(option.value)
-        ? result
-        : [...result, option.value]
+      return !option.value || ['free', 'paid'].includes(option.value) ? result : [...result, option.value]
     }, []) ?? []
   )
 }

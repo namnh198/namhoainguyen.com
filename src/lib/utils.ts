@@ -1,9 +1,5 @@
 import me from '@/data/me'
 import type { NotionTagData, Post, Tag } from '@notion-x/interface'
-import {
-  QueryDatabaseParameters,
-  RichTextItemResponse
-} from '@notionhq/client/build/src/api-endpoints'
 import { Metadata } from 'next'
 import { Block } from 'notion-types'
 import slugify from 'slugify'
@@ -13,42 +9,6 @@ export const makeSlugByText = (text: string): string => {
     return ''
   }
   return slugify(text, { lower: true, locale: 'vi', remove: /[:?&".,/\\]/g })
-}
-
-export const getNotionFilter = (filter: any): QueryDatabaseParameters['filter'] => {
-  const defaultFilter = [
-    {
-      property: 'page',
-      checkbox: {
-        equals: false
-      }
-    }
-  ]
-
-  if (process.env.ENV_MODE === 'prod') {
-    defaultFilter.push({
-      property: 'published',
-      checkbox: {
-        equals: true
-      }
-    })
-  }
-
-  if (!filter) {
-    return { and: defaultFilter }
-  }
-
-  if (!filter?.and) {
-    return {
-      and: [...defaultFilter, filter]
-    }
-  }
-
-  if (filter?.and) {
-    return {
-      and: [...defaultFilter, ...filter.and]
-    }
-  }
 }
 
 export const getUnOfficalNotionFilter = (filter?: any): any => {
@@ -93,19 +53,17 @@ export const getPostProperties = (post: Block): Post => {
   const slug = properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_SLUG_KEY}`]?.[0]?.[0]
   const permalink = getPermalink('note', slug)
   const createdDate =
-    properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_CREATED_DATE}`]?.[0]?.[1]?.[0]?.[1]
-      ?.start_date ?? new Date(post?.created_time).toISOString()
+    properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_CREATED_DATE}`]?.[0]?.[1]?.[0]?.[1]?.start_date ??
+    new Date(post?.created_time).toISOString()
   const updatedDate =
-    properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_MODIFIED_DATE_KEY}`]?.[0]?.[1]?.[0]?.[1]
-      ?.start_date ?? new Date(post?.last_edited_time).toISOString()
-  const published =
-    properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_PUBLISHED_KEY}`]?.[0]?.[0] === 'Yes'
+    properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_MODIFIED_DATE_KEY}`]?.[0]?.[1]?.[0]?.[1]?.start_date ??
+    new Date(post?.last_edited_time).toISOString()
+  const published = properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_PUBLISHED_KEY}`]?.[0]?.[0] === 'Yes'
   const page = properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_PAGE_KEY}`]?.[0]?.[0] === 'Yes'
   const draft = properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_DRAFT_KEY}`]?.[0]?.[0] === 'Yes'
   const icon = post.format?.page_icon
   const cover = post.format?.page_cover
-  const verified =
-    properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_VERIFIED_KEY}`]?.[0]?.[0] === 'Yes'
+  const verified = properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_VERIFIED_KEY}`]?.[0]?.[0] === 'Yes'
   const pinned = properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_PINNED_KEY}`]?.[0]?.[0] === 'Yes'
   const rawTags = properties?.[`${process.env.NEXT_PUBLIC_ID_NOTE_TAGS_KEY}`]?.[0]?.[0]
   const tags = rawTags ? rawTags.split(',').map(mapTag) : []
@@ -126,10 +84,6 @@ export const getPostProperties = (post: Block): Post => {
     verified,
     pinned
   }
-}
-
-export const getRichText = (richTextArr?: RichTextItemResponse[]): string => {
-  return !richTextArr?.length ? '' : richTextArr.map(richText => richText.plain_text).join('')
 }
 
 export const getPermalink = (type: 'tag' | 'note', slug = '/'): string => {

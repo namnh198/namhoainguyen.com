@@ -60,7 +60,7 @@ const PostSimple = ({ post }: { post: Post }) => {
         <div className='gap-2 hidden md:flex items-center'>
           {['updated', 'updatedWithin'].includes(status) && post.updatedDate && (
             <Button size='sm'>
-              <DateComponent dateString={post.updatedDate} dateLabel='updated' />
+              <DateComponent humanize dateString={post.updatedDate} dateLabel='updated' />
             </Button>
           )}
           {status === 'new' && (
@@ -68,7 +68,14 @@ const PostSimple = ({ post }: { post: Post }) => {
               new
             </Button>
           )}
-          {post.createdDate && <DateComponent dateString={post.createdDate} dateLabel='created' />}
+          {post.createdDate && (
+            <DateComponent
+              className='text-xs text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-200"'
+              dateString={post.createdDate}
+              humanize
+              dateLabel='created'
+            />
+          )}
         </div>
       )}
     </Link>

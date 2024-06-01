@@ -1,6 +1,6 @@
 // import PostAside from '@/components/PostAside'
-import Comment from '@/components/Comment'
-import HeadingPost from '@/components/Heading/HeadingPost'
+import Comment from '@/components/comment'
+import { PostHeading } from '@/components/post-heading'
 import PostBody from '@notion-x/components/PostBody'
 import PostToc from '@notion-x/components/PostToc'
 import { BlockOptionsContextType } from '@notion-x/hooks/context'
@@ -21,11 +21,11 @@ export default function SinglePostTemplate(props: SinglePostTemplateProps) {
   const tocs = getPageTableOfContents(block as PageBlock, props.recordMap)
   return (
     <>
-      <div className="animate-fadeIn">
-        <HeadingPost recordMap={props.recordMap} hideMeta={props.hideMeta} />
-        <div className="container flex flex-col my-10 lg:flex-row">
-          <div className="flex-1">
-            <article className="max-w-4xl 2xl:pr-4 mx-auto overflow-x-hidden">
+      <div className='animate-fadeIn'>
+        <PostHeading block={block} post={props.post} hideMeta={props.hideMeta} />
+        <div className='container flex flex-col my-10 lg:flex-row'>
+          <div className='flex-1'>
+            <article className='max-w-4xl 2xl:pr-4 mx-auto overflow-x-hidden'>
               <PostBody
                 recordMap={props.recordMap}
                 blockOptions={{
@@ -41,13 +41,8 @@ export default function SinglePostTemplate(props: SinglePostTemplateProps) {
               <Comment />
             </article>
           </div>
-          <aside className="hidden 2xl:block h-[calc(100vh-130px)] sticky top-[70px] pt-8">
-            <PostToc
-              recordMap={props.recordMap}
-              tocs={tocs}
-              labelTocTitle="In this note"
-              showContent={true}
-            />
+          <aside className='hidden 2xl:block h-[calc(100vh-130px)] sticky top-[70px] pt-8'>
+            <PostToc recordMap={props.recordMap} tocs={tocs} labelTocTitle='In this note' showContent={true} />
           </aside>
         </div>
       </div>

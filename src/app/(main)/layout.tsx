@@ -6,7 +6,7 @@ import Script from 'next/script'
 import '@/app/global.scss'
 import '@notion-x/style/notion-x.scss'
 
-import Footer from '@/components/Footer'
+import Footer from '@/components/footer'
 import Navbar from '@/components/nav/nav'
 import me from '@/data/me'
 import { cn } from '@notion-x/lib/utils'

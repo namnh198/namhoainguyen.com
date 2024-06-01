@@ -1,3 +1,4 @@
+import { StaticImageData } from 'next/image'
 import eleventyImg from '@/public/images/techs/11ty.svg'
 import astroImg from '@/public/images/techs/astro.svg'
 import bashImg from '@/public/images/techs/bash.svg'
@@ -28,9 +29,7 @@ import vscodeImg from '@/public/images/techs/vscode.svg'
 // import vueImg from '@/public/images/techs/vue.svg'
 import wordpressImg from '@/public/images/techs/wordpress.svg'
 
-import { StaticImageData } from 'next/image'
-
-export type TechItem = {
+export type TechItemType = {
   id: string
   name: string
   icon: StaticImageData
@@ -38,7 +37,7 @@ export type TechItem = {
   imgClass?: string
 }
 
-export const techs: TechItem[] = [
+export const techs: TechItemType[] = [
   {
     id: '11ty',
     name: '11ty',
@@ -124,12 +123,6 @@ export const techs: TechItem[] = [
     url: 'https://knockoutjs.com/'
   },
   {
-    id: 'less',
-    name: 'Less',
-    icon: lessImg,
-    url: 'https://lesscss.org/'
-  },
-  {
     id: 'linux',
     name: 'Linux',
     icon: linuxImg,
@@ -202,5 +195,3 @@ export const techs: TechItem[] = [
     url: 'https://git-scm.com/'
   }
 ]
-
-export default techs

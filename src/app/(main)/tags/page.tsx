@@ -1,13 +1,12 @@
-import TagListItem from '@/components/Card/CardTopic'
-import Container from '@/components/Container'
-import HeadingNote from '@/components/Heading/HeadingNote'
+import { PostListHeading } from '@/components/post-heading'
 import { getTopics } from '@/lib/notion'
-import { tagListContainerClass } from '@/lib/styles'
-import { getMetadata } from '@/lib/utils'
-import tagsImg from '@/public/images/tags.svg'
-import type { Tag } from '@notion-x/interface'
+import { cn, getMetadata } from '@/lib/utils'
+import tagImg from '@/public/images/tags.svg'
+import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
-export const revalidate = 20
+export const revalidate = 100
+
 const title = 'List of topics'
 const description = 'A list of topics I write about'
 
@@ -22,25 +21,41 @@ export default async function TagsPage() {
 
   return (
     <>
-      <HeadingNote title='Topics' total={`${tags.length} Topics`} image={tagsImg}>
-        <span>A list of topics I write about. You can use</span>
-        <kbd className='border font-semibold rounded mx-1 text-kb p-0.5 whitespace-nowrap bg-white border-gray-400 text-gray-900'>
-          <span className='text-base'>⌘</span> F
-        </kbd>
-        <span>to quickly find a topic you wanna check.</span>
-      </HeadingNote>
+      <PostListHeading title='Topics' total={`${tags.length} Topics`} image={tagImg} description={description} />
 
-      <Container className='py-16 space-y-16'>
+      <div className='container py-16 space-y-16'>
         {tags.length > 1 ? (
-          <div className={tagListContainerClass}>
-            {tags.map((tag: Tag) => (
-              <TagListItem key={tag.id} tag={tag} />
+          <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8'>
+            {tags.map((tag) => (
+              <Button
+                key={tag.id}
+                href={tag.permalink}
+                variant='secondary'
+                size='xl'
+                className={cn('justify-start shadow-md hover:-translate-y-0.5', [tag.className])}
+              >
+                {tag.icon && (
+                  <div className='relative shrik-0'>
+                    <Image src={tag.icon} alt={`Image of Topic ${tag.name}`} width={30} height={30} />
+                  </div>
+                )}
+
+                <h2
+                  className={cn('text-base font-normal group-hover:text-indigo-300', {
+                    tooltip: tag.description
+                  })}
+                  title={tag.name}
+                  data-tooltip={tag.description}
+                >
+                  {tag.name}
+                </h2>
+              </Button>
             ))}
           </div>
         ) : (
-          <div className='my-4 text-xl font-bold'>There is no tag yet!</div>
+          <div className='my-4 text-xl font-bold'>There is no tags yet!</div>
         )}
-      </Container>
+      </div>
     </>
   )
 }

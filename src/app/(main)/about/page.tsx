@@ -1,46 +1,42 @@
-import BgGlassmorphism from '@/components/BgGlassmorphism'
-import Container from '@/components/Container'
-import Heading from '@/components/Heading/Heading'
-import HeadingAbout from '@/components/Heading/HeadingAbout'
-import { cv } from '@/data/cv'
-import me from '@/data/me'
-import { skills } from '@/data/skills'
-import { defaultOpenGraphImage } from '@/lib/config'
+import Image from 'next/image'
+import aboutImg from '@/public/images/about-hero.webp'
+import { ABOUT } from '@/data/about'
+import BG from '@/components/ui/bg'
+import CV from './cv'
+import Skills from './skills'
+import { Heading } from '@/components/ui/heading'
 import { getMetadata } from '@/lib/utils'
-import CVGroup from './CVGroup'
-import SkillGroup from './SkillGroup'
 
 export const metadata = getMetadata({
-  title: 'About me',
-  description: me.quote,
-  images: [defaultOpenGraphImage]
+  title: ABOUT.title,
+  description: ABOUT.description
 })
 
 export default function AboutPage() {
   return (
     <>
-      <BgGlassmorphism />
-      <Container className="py-16 space-y-16">
-        <HeadingAbout />
-        <div className="relative">
-          <Heading title="Languages" />
-          <div className="grid gap-6 grid-cols-1 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {skills.map(skill => (
-              <SkillGroup key={skill.name} skill={skill} />
-            ))}
+      <BG grassMorphism />
+      <div className='relative container py-16 space-y-16'>
+        <div className='flex flex-col items-center lg:flex-row lg:space-x-10 lg:space-y-0 lg:text-left relative rtl:space-x-reverse space-y-14 text-center'>
+          <div className='w-screen lg:space-y-7 max-w-full space-y-5 xl:max-w-xl'>
+            <h2 className='font-semibold text-neutral-900 dark:text-neutral-100 !leading-tight  md:text-4xl text-3xl xl:text-5xl'>
+              <span className='inline-block animate-wave'>👋</span> {ABOUT.title}.
+            </h2>
+            <p className='block  text-base text-neutral-6000 xl:text-lg'>{ABOUT.description}</p>
+          </div>
+          <div className='grow'>
+            <Image src={aboutImg} alt='About Us Image' priority />
           </div>
         </div>
-        <div className="relative py-16">
-          <div className="absolute z-0 -translate-x-1/2 2xl:max-w-screen-2xl bg-neutral-100 dark:bg-black dark:opacity-10 inset-y-0 left-1/2 w-screen xl:max-w-[1340px] xl:rounded-3xl">
-            <span className="sr-only hidden">bg</span>
-          </div>
-          <div className="relative grid gap-8 lg:grid-cols-2">
-            {cv.map(group => (
-              <CVGroup key={group.id} cv={group} />
-            ))}
-          </div>
+        <div className='relative'>
+          <Heading size='lg' className='mb-10 md:md-12' title='Languages' />
+          <Skills skills={ABOUT.skills} />
         </div>
-      </Container>
+        <div className='relative py-16'>
+          <BG />
+          <CV cv={ABOUT.cv} />
+        </div>
+      </div>
     </>
   )
 }

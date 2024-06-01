@@ -61,6 +61,8 @@ export const defaultTagImage: StaticImageData = {
 
 export const defaultPostDate = new Date().toISOString().split('T')[0]
 
+export const defaultMaxDayWithThin = 7
+
 export const defaultPostTypeOpts = {
   newLabel: 'new',
   updatedLabel: 'updated',

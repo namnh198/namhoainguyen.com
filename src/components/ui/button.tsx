@@ -9,14 +9,17 @@ const buttonVariants = cva(
     variants: {
       variant: {
         transparent: 'bg-transparent text-inherit',
-        default: 'text-slate-800 bg-slate-200 dark:text-slate-200 dark:bg-slate-700',
-        secondary: 'bg-white border border-neutral-200 dark:border-slate-800',
+        default: 'text-slate-800 bg-slate-200',
+        secondary: 'bg-white border border-neutral-200',
         pink: 'bg-pink-200 hover:bg-pink-300/90 text-pink-900',
         red: 'bg-red-200 hover:bg-red-300/90 text-red-900',
         teal: 'bg-teal-200 hover:bg-teal-300/90 text-teal-900',
         sky: 'bg-sky-200 hover:bg-sky-300/90 text-sky-900',
         blue: 'bg-blue-200 hover:bg-blue-300/90 text-blue-900',
-        yellow: 'bg-amber-200 hover:bg-amber-300/90 text-amber-900'
+        yellow: 'bg-amber-200 hover:bg-amber-300/90 text-amber-900',
+        'outline-yellow': 'ring-1 ring-inset text-yellow-700 bg-yellow-50 ring-yellow-600/20',
+        'outline-blue': 'ring-1 ring-inset text-blue-700 bg-blue-50 ring-blue-600/20',
+        'outline-red': 'ring-1 ring-inset text-red-700 bg-red-50 ring-red-600/20'
       },
       size: {
         default: 'p-1.5 space-x-1 rounded-md text-sm',

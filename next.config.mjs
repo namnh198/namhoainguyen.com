@@ -3,7 +3,6 @@ const nextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
   experimental: {
-    scrollRestoration: true,
     esmExternals: true
   },
   modularizeImports: {
@@ -32,6 +31,7 @@ const nextConfig = {
     return headers
   },
   images: {
+    dangerouslyAllowSVG: false, 
     remotePatterns: [
       {
         protocol: 'https',

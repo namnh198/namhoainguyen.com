@@ -2,7 +2,7 @@ import { BaseContentBlock, Block, PreviewImage } from 'notion-types'
 import { getTextContent } from 'notion-utils'
 import * as React from 'react'
 
-import { useNotionContext } from '../../../src/components/notion/context'
+import { useNotionContext } from '@/components/notion/context'
 import { SimpleImageProps } from './SimpleImage'
 import { LazyImage } from './lazy-image'
 
@@ -31,14 +31,7 @@ export const Asset: React.FC<{
   customPreviewImage?: PreviewImage
   useSimpleImage?: boolean
   simpleImageProps?: SimpleImageProps
-}> = ({
-  block,
-  zoomable = true,
-  children,
-  customPreviewImage,
-  useSimpleImage,
-  simpleImageProps
-}) => {
+}> = ({ block, zoomable = true, children, customPreviewImage, useSimpleImage, simpleImageProps }) => {
   const { recordMap, mapImageUrl, components } = useNotionContext()
 
   if (!block || !supportedAssetTypes.includes(block.type)) {
@@ -59,14 +52,8 @@ export const Asset: React.FC<{
   // console.log('asset', block)
 
   if (block.format) {
-    const {
-      block_aspect_ratio,
-      block_height,
-      block_width,
-      block_full_width,
-      block_page_width,
-      block_preserve_scale
-    } = block.format
+    const { block_aspect_ratio, block_height, block_width, block_full_width, block_page_width, block_preserve_scale } =
+      block.format
 
     if (block_full_width || block_page_width) {
       if (block_full_width) {
@@ -201,16 +188,7 @@ export const Asset: React.FC<{
     ) {
       style.paddingBottom = undefined
 
-      content = (
-        <video
-          playsInline
-          controls
-          preload="metadata"
-          style={assetStyle}
-          src={source}
-          title={block.type}
-        />
-      )
+      content = <video playsInline controls preload='metadata' style={assetStyle} src={source} title={block.type} />
     } else {
       let src = block.format?.display_source || source
 
@@ -225,15 +203,15 @@ export const Asset: React.FC<{
           content = (
             <iframe
               style={assetStyle}
-              className="notion-asset-object-fit"
+              className='notion-asset-object-fit'
               src={src}
-              title="GitHub Gist"
-              frameBorder="0"
+              title='GitHub Gist'
+              frameBorder='0'
               // TODO: is this sandbox necessary?
               // sandbox='allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin'
               // this is important for perf but react's TS definitions don't seem to like it
-              loading="lazy"
-              scrolling="auto"
+              loading='lazy'
+              scrolling='auto'
             />
           )
         } else {
@@ -241,17 +219,17 @@ export const Asset: React.FC<{
 
           content = (
             <iframe
-              className="notion-asset-object-fit"
+              className='notion-asset-object-fit'
               style={assetStyle}
               src={src}
               title={`iframe ${block.type}`}
-              frameBorder="0"
+              frameBorder='0'
               // TODO: is this sandbox necessary?
               // sandbox='allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin'
               allowFullScreen
               // this is important for perf but react's TS definitions don't seem to like it
-              loading="lazy"
-              scrolling="auto"
+              loading='lazy'
+              scrolling='auto'
             />
           )
         }
@@ -283,7 +261,7 @@ export const Asset: React.FC<{
 
   return (
     <>
-      <div style={style} className="notion-scrollbar">
+      <div style={style} className='notion-scrollbar'>
         {content}
         {block.type === 'image' && children}
       </div>

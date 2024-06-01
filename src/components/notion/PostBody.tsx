@@ -6,8 +6,8 @@ import Link from 'next/link'
 import { ExtendedRecordMap, PreviewImage } from 'notion-types'
 import * as React from 'react'
 
-import { BlockOptionsContextType } from '../../../src/components/notion/context'
-import { NotionRenderer } from '../../../src/components/notion/renderer'
+import { BlockOptionsContextType } from '@/components/notion/context'
+import { NotionRenderer } from '@/components/notion/renderer'
 import { SimpleImageProps } from './SimpleImage'
 
 type PostBodyProps = {

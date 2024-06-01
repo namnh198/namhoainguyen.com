@@ -1,7 +1,7 @@
 import SinglePostTemplate from '@/app/(main)/notes/[slug]/SinglePostTemplate'
 import { defaultOpenGraphImage } from '@/lib/config'
 import { getMetadata } from '@/lib/utils'
-import { getPage } from '@notion-x/lib/notion-api'
+import { getPage } from '@/lib/notion-api'
 import { Suspense } from 'react'
 import Loading from './loading'
 

@@ -58,7 +58,7 @@ export default async function NotesPage() {
   )
 }
 
-export const NotesSection = async ({ tag, showHeader = true }: { tag: Tag; showHeader?: boolean }) => {
+const NotesSection = async ({ tag, showHeader = true }: { tag: Tag; showHeader?: boolean }) => {
   if (!tag.posts || tag.posts.length === 0) {
     tag.posts = await getUnofficalPostByTag(tag.name)
   }

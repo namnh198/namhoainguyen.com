@@ -1,7 +1,7 @@
 import { Block as BlockType, SyncPointerBlock as SyncPointerBlockType } from 'notion-types'
 import * as React from 'react'
 
-import { NotionBlockRenderer } from '../../../src/components/notion/renderer'
+import { NotionBlockRenderer } from '@/components/notion/renderer'
 
 export const SyncPointerBlock: React.FC<{
   blockObj: BlockType
@@ -22,7 +22,5 @@ export const SyncPointerBlock: React.FC<{
     return null
   }
 
-  return (
-    <NotionBlockRenderer key={referencePointerId} level={levelObj} blockId={referencePointerId} />
-  )
+  return <NotionBlockRenderer key={referencePointerId} level={levelObj} blockId={referencePointerId} />
 }

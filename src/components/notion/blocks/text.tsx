@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 import { cn } from '@/lib/utils'
 
-import { AnnotationIgnoreField, TextIgnoreField } from '../../interface'
+import { AnnotationIgnoreField, TextIgnoreField } from '@/types/interface'
 import { generateTextAnnotationClasses } from '@/lib/helpers'
 
 type TextProps = {

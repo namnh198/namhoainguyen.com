@@ -6,7 +6,7 @@ import {
 import dynamic from 'next/dynamic'
 import React from 'react'
 
-import { TextIgnoreField } from '../../interface'
+import { TextIgnoreField } from '@/types/interface'
 import BlockText from './text'
 
 const DynamicInlineEquation = dynamic(() => import('./inline-equation'))
@@ -21,9 +21,7 @@ export default function BlockRichText(props: BlockRichTextProps) {
   switch (props.richText.type) {
     case 'text':
     case 'mention':
-      return (
-        <BlockText richText={props.richText as TextRichTextItemResponse} ignore={props.ignore} />
-      )
+      return <BlockText richText={props.richText as TextRichTextItemResponse} ignore={props.ignore} />
     case 'equation':
       return (
         <DynamicInlineEquation

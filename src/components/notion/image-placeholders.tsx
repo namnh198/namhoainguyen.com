@@ -1,5 +1,5 @@
 import React from 'react'
-import { cn } from '../lib/utils'
+import { cn } from '@/lib/utils'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 export function ImagePlaceholderPostHeader() {
@@ -10,7 +10,7 @@ export function ImagePlaceholderPostHeader() {
         'flex flex-col'
       )}
     >
-      <AiOutlineLoading3Quarters className="text-[60px] text-white animate-spin" />
+      <AiOutlineLoading3Quarters className='text-[60px] text-white animate-spin' />
     </div>
   )
 }

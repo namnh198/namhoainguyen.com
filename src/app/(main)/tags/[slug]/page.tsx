@@ -1,15 +1,14 @@
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import type { ParamsProps } from '@/app/types'
-import Container from '@/components/Container'
-import HeadingNote from '@/components/Heading/HeadingNote'
+import { PostListHeading } from '@/components/post-heading'
 import { defaultPostTypeOpts } from '@/lib/config'
 import { getTopics, getTotalPosts, getUnofficalPostByTag } from '@/lib/notion'
 import { getMetadata } from '@/lib/utils'
 import PostList from '@notion-x/components/PostList'
 import type { Tag } from '@notion-x/interface'
-import { Metadata } from 'next'
-import { notFound } from 'next/navigation'
 
-export const revalidate = 20
+export const revalidate = 100
 
 export async function generateMetadata({ params }: { params: ParamsProps }): Promise<Metadata> {
   const slug = params?.slug as string
@@ -21,7 +20,7 @@ export async function generateMetadata({ params }: { params: ParamsProps }): Pro
     })
   }
   const title = `Topic "${tag?.name}"`
-  const description = tag.description ? tag.description : `List all notes of topic ${tag.name}`
+  const description = getTagDescription(tag)
 
   return getMetadata({
     title,
@@ -53,21 +52,23 @@ export default async function TagDetail({ params }: { params: ParamsProps }) {
 
   return (
     <>
-      <HeadingNote
+      <PostListHeading
         title={`Topic ${tag.name}`}
-        image={tag.icon}
         total={`${totalPost} Notes`}
-        imageClass={tag.customClass}
-      >
-        {tag.description ? tag.description : `List all notes of topic ${tag.name}`}
-      </HeadingNote>
-      <Container className='py-16 space-y-16'>
+        image={tag.icon}
+        description={getTagDescription(tag)}
+      />
+      <div className='container py-16 space-y-16'>
         <PostList posts={posts} postType='simple' postTypeOpts={defaultPostTypeOpts} />
-      </Container>
+      </div>
     </>
   )
 }
 
 const getTag = (slug: string, tags: Tag[]) => {
   return tags.find((tag) => tag.slug === slug || tag.slug === slug.replace(/%26/g, '&'))
+}
+
+const getTagDescription = (tag: Tag) => {
+  return tag.description ? tag.description : `List all notes of topic ${tag.name}`
 }

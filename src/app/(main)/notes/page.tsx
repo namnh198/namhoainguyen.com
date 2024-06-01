@@ -8,7 +8,7 @@ import PostList from '@/components/post-list'
 import { Heading } from '@/components/ui/heading'
 import { PostListHeading } from '@/components/post-heading'
 
-export const revalidate = 20
+export const revalidate = 100
 
 const title = 'Notes'
 const description =

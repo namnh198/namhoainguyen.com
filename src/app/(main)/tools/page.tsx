@@ -4,7 +4,7 @@ import { getMetadata } from '@/lib/utils'
 import ToolPage from './ToolPage'
 import { PostListHeading } from '@/components/post-heading'
 
-export const revalidate = 20
+export const revalidate = 100
 
 const title = 'Tools I use'
 const description = 'Apps, tools, websites I find useful.'

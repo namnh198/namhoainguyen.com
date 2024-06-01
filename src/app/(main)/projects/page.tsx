@@ -7,6 +7,8 @@ import { getMetadata } from '@/lib/utils'
 const title = 'Projects'
 const description = 'I love building things. Practicing is the best way to learn. Here are some of my projects.'
 
+export const revalidate = 100
+
 export const metadata = getMetadata({
   title,
   description,

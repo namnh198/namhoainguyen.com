@@ -6,6 +6,8 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import SinglePostTemplate from './SinglePostTemplate'
 
+export const revalidate = 100
+
 export async function generateMetadata({ params }: { params: ParamsProps }): Promise<Metadata> {
   const slug = params.slug as string
   const untitled = 'Unknown note'

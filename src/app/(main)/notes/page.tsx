@@ -1,15 +1,12 @@
 import { concat } from 'lodash'
-import HeadingNote from '@/components/Heading/HeadingNote'
-import HeadingNoteTopic from '@/components/Heading/HeadingNoteTopic'
+import notesImg from '@/public/images/notes.svg'
 import Toc from './toc'
-import NoteTopicSection from '@/components/NoteTopicSection'
-import { defaultPostTypeOpts } from '@/lib/config'
 import { getTopics, getTotalPosts, getUnofficalPinnedPost, getUnofficalPostByTag } from '@/lib/notion'
 import { getMetadata } from '@/lib/utils'
-import notesImg from '@/public/images/notes.svg'
 import type { Tag } from '@notion-x/interface'
 import PostList from '@/components/post-list'
 import { Heading } from '@/components/ui/heading'
+import { PostListHeading } from '@/components/post-heading'
 
 export const revalidate = 20
 
@@ -46,9 +43,7 @@ export default async function NotesPage() {
 
   return (
     <>
-      <HeadingNote title={title} image={notesImg} total={`${totalPost} Notes`}>
-        {description}
-      </HeadingNote>
+      <PostListHeading title='Notes' total={`${totalPost} Notes`} image={notesImg} description={description} />
       <div className='container py-16 space-y-16'>
         <div className='flex flex-col md:flex-row gap-6 md:gap-8'>
           <div className='order-2 flex-1 relative flex flex-col gap-y-12 scroll-mt-[80px]'>

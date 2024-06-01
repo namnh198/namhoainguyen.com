@@ -1,16 +1,16 @@
 'use client'
 
-import type { Post } from '@notion-x/interface'
-import { usePostDateStatus } from '@notion-x/hooks/hook'
+import type { Post } from '@/types/interface'
+import { usePostDateStatus } from '@/lib/hook'
 import { cn } from '@/lib/utils'
 
-import { CgFileDocument } from 'react-icons/cg'
+import IsDocumentText from '@/components/icons/IsDocumentText'
 import { HiMiniCheckBadge } from 'react-icons/hi2'
 import { AiFillPushpin } from 'react-icons/ai'
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
-import DateComponent from '@notion-x/components/DateComponent'
+import DateComponent from '@/components/ui/DateComponent'
 import { defaultMaxDayWithThin } from '@/lib/config'
 
 export default function PostList({ posts }: { posts: Post[] }) {
@@ -39,7 +39,7 @@ const PostSimple = ({ post }: { post: Post }) => {
         className={cn('mr-2.5 p-0', { tooltip: post.verified })}
         data-tooltip={post.verified && 'Verified by me.'}
       >
-        {post.pinned ? <AiFillPushpin className='size-6' /> : <CgFileDocument className='size-5' />}
+        {post.pinned ? <AiFillPushpin className='size-6' /> : <IsDocumentText className='size-6' />}
         {post.verified && (
           <span className='bg-transparent absolute bottom-[-5px] right-[-5px]'>
             <HiMiniCheckBadge className='text-sm text-gray-400 dark:text-gray-300' />

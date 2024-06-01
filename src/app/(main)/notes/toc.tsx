@@ -1,8 +1,8 @@
 'use client'
 
-import { useHeadsObserver } from '@notion-x/hooks/hook'
-import { Tag } from '@notion-x/interface'
-import { cn } from '@notion-x/lib/utils'
+import { useHeadsObserver } from '@/lib/hook'
+import { Tag } from '@/types/interface'
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
 
 export default function NoteToc({ tags, className }: { tags: Tag[]; className?: string }) {

@@ -1,9 +1,8 @@
 import type { Project, Tool } from '@/app/types'
-import type { CollectionInstanceNotion, NotionPostData, NotionSorts, NotionTagData } from '@notion-x/interface'
+import type { CollectionInstanceNotion, NotionPostData, NotionSorts, NotionTagData, Post, Tag } from '@/types/interface'
 
-import type { Post, Tag } from '@notion-x/interface'
-import { defaultMapImageUrl } from '@notion-x/lib/map-image-url'
-import { getUnofficialDatabase } from '@notion-x/lib/notion-api'
+import { defaultMapImageUrl } from '@/lib/helpers'
+import { getUnofficialDatabase } from './notion-api'
 import { getPermalink, getPostProperties, getUnOfficalNotionFilter, makeSlugByText } from './utils'
 
 export const getTotalPosts = async (tag?: Tag) => {

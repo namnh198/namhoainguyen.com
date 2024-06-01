@@ -1,6 +1,6 @@
-import { SearchResult } from '@notion-x/interface'
-import { makeSlugText } from '@notion-x/lib/helpers'
-import { searchNotion } from '@notion-x/lib/notion-api'
+import { SearchResult } from '@/types/interface'
+import { makeSlugText } from '@/lib/helpers'
+import { searchNotion } from '@/lib/notion-api'
 
 const UNOFFICIAL_NOTION_KEYS = {
   slug: process.env.NEXT_PUBLIC_ID_NOTE_SLUG_KEY as string,
@@ -54,17 +54,11 @@ function parseSearchResults(data: any): SearchResult[] {
       const postSlug = _slug || makeSlugText(_title || '')
       const postTitleHighlighted =
         result?.highlight?.title
-          ?.replaceAll(
-            UNOFFICIAL_NOTION_KEYS.boldSearchKey,
-            '<span style="color: #000; font-weight: 600;">'
-          )
+          ?.replaceAll(UNOFFICIAL_NOTION_KEYS.boldSearchKey, '<span style="color: #000; font-weight: 600;">')
           ?.replaceAll(UNOFFICIAL_NOTION_KEYS.boldSearchKeyClose, '</span>') || postTitle
       const postTextHighlighted =
         result.highlight?.text
-          ?.replaceAll(
-            UNOFFICIAL_NOTION_KEYS.boldSearchKey,
-            '<span style="color: #000; font-weight: 600;">'
-          )
+          ?.replaceAll(UNOFFICIAL_NOTION_KEYS.boldSearchKey, '<span style="color: #000; font-weight: 600;">')
           ?.replaceAll(UNOFFICIAL_NOTION_KEYS.boldSearchKeyClose, '</span>') || null
 
       if (process.env.ENV_MODE === 'prod' && !isPostPublished) continue

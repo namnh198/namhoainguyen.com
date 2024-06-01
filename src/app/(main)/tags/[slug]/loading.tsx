@@ -1,5 +1,5 @@
 import SkeletonHeadingNote from '@/components/Skeleton/SkeletonHeadingNote'
-import SkeletonPostList from '@notion-x/components/SkeletonPostList'
+import SkeletonPostList from '@/components/notion/SkeletonPostList'
 
 export default function Loading() {
   return (
@@ -10,7 +10,6 @@ export default function Loading() {
           <div className='overflow-hidden flex-1'>
             <SkeletonPostList
               count={4}
-              postType='simple'
               options={{
                 className: 'flex flex-col divide-y'
               }}

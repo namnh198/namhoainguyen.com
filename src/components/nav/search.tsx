@@ -1,7 +1,7 @@
 'use client'
-import SearchModal from '@notion-x/components/SearchModal'
-import IsSearchNormal1 from '@notion-x/icons/IsSearchNormal1'
-import { cn } from '@notion-x/lib/utils'
+import SearchModal from '@/components/search-modal'
+import IsSearchNormal1 from '@/components/icons/IsSearchNormal1'
+import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 
 export default function Search() {

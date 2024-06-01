@@ -5,8 +5,8 @@ import { PostListHeading } from '@/components/post-heading'
 import { defaultPostTypeOpts } from '@/lib/config'
 import { getTopics, getTotalPosts, getUnofficalPostByTag } from '@/lib/notion'
 import { getMetadata } from '@/lib/utils'
-import PostList from '@notion-x/components/PostList'
-import type { Tag } from '@notion-x/interface'
+import type { Tag } from '@/types/interface'
+import PostList from '@/components/post-list'
 
 export const revalidate = 100
 
@@ -59,7 +59,7 @@ export default async function TagDetail({ params }: { params: ParamsProps }) {
         description={getTagDescription(tag)}
       />
       <div className='container py-16 space-y-16'>
-        <PostList posts={posts} postType='simple' postTypeOpts={defaultPostTypeOpts} />
+        <PostList posts={posts} />
       </div>
     </>
   )

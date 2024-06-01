@@ -1,9 +1,7 @@
 'use client'
 
-import HiComputerDesktop from '@notion-x/icons/HiComputerDesktop'
-import HiMoon from '@notion-x/icons/HiMoon'
-import HiSun from '@notion-x/icons/HiSun'
-import { cn } from '@notion-x/lib/utils'
+import { HiOutlineComputerDesktop, HiOutlineMoon, HiOutlineSun } from 'react-icons/hi2'
+import { cn } from '@/lib/utils'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
@@ -23,24 +21,15 @@ export default function ThemeSwitcher() {
   }
 
   return (
-    <div className="hidden sm:flex gap-x-0.5 border border-neutral-200/70 dark:border-slate-600 rounded-full p-1">
-      <button
-        className={getButtonClass('light', activeTheme)}
-        onClick={() => themeSwitchHandler('light')}
-      >
-        <HiSun className="w-4 h-4" />
+    <div className='hidden sm:flex gap-x-0.5 border border-neutral-200/70 dark:border-slate-600 rounded-full p-1'>
+      <button className={getButtonClass('light', activeTheme)} onClick={() => themeSwitchHandler('light')}>
+        <HiOutlineSun className='w-4 h-4' />
       </button>
-      <button
-        className={getButtonClass('system', activeTheme)}
-        onClick={() => themeSwitchHandler('system')}
-      >
-        <HiComputerDesktop className="w-4 h-4" />
+      <button className={getButtonClass('system', activeTheme)} onClick={() => themeSwitchHandler('system')}>
+        <HiOutlineComputerDesktop className='w-4 h-4' />
       </button>
-      <button
-        className={getButtonClass('dark', activeTheme)}
-        onClick={() => themeSwitchHandler('dark')}
-      >
-        <HiMoon className="w-4 h-4" />
+      <button className={getButtonClass('dark', activeTheme)} onClick={() => themeSwitchHandler('dark')}>
+        <HiOutlineMoon className='w-4 h-4' />
       </button>
     </div>
   )

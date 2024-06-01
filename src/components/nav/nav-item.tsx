@@ -1,7 +1,7 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
-import { cn } from '@notion-x/lib/utils'
+import { cn } from '@/lib/utils'
 import { NavbarItemProps } from '@/types/app'
 
 interface NavItemProps {

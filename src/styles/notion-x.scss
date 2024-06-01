@@ -1,0 +1,118 @@
+@tailwind base;
+
+@layer base {
+  .notion-prose {
+    @apply prose max-w-none leading-normal;
+    @apply prose-h1:text-[1.55rem];
+    @apply prose-h2:text-[1.45rem];
+    @apply prose-h3:text-[1.35rem];
+    @apply prose-strong:notion-strong;
+    @apply prose-img:notion-img;
+    @apply prose-blockquote:notion-blockquote;
+    @apply prose-td:notion-td;
+    @apply prose-figure:my-4;
+  }
+
+  .notion-prose-invert {
+    @apply prose-invert;
+    @apply prose-headings:text-neutral-100;
+  }
+
+  .notion-strong {
+    @apply font-semibold text-inherit;
+  }
+
+  .notion-blockquote {
+    @apply my-4 border border-y-0 border-l-4 border-r-0 border-slate-500 py-3 font-normal not-italic;
+  }
+
+  .notion-img {
+    @apply my-0 rounded-xl;
+  }
+
+  .notion-td {
+    @apply px-[5px] py-2.5;
+  }
+
+  .notion-box-shadow {
+    box-shadow:
+      8px 14px 38px #272c310f,
+      1px 3px 8px #272c3108;
+  }
+}
+
+code {
+  .linenumber {
+    font-size: 0.7rem;
+  }
+}
+
+.table_block_column_header {
+  tr:first-child {
+    @apply bg-gray-100 font-semibold dark:bg-gray-700;
+  }
+}
+
+.table_block_row_header {
+  tr {
+    td:first-child {
+      @apply bg-gray-100 font-semibold dark:bg-gray-700;
+    }
+  }
+}
+
+.notion-blue_background {
+  @apply bg-blue-500 text-neutral-800;
+}
+
+.notion-yellow_background {
+  @apply bg-amber-500 text-neutral-800;
+}
+
+.notion-purple_background {
+  @apply bg-purple-500 text-neutral-800;
+}
+
+.notion-teal_background {
+  @apply bg-teal-500 text-neutral-800;
+}
+
+.notion-pink_background {
+  @apply bg-pink-500 text-neutral-800;
+}
+
+.notion-red_background {
+  @apply bg-red-500 text-neutral-800;
+}
+
+.notion-blue {
+  @apply text-blue-600;
+}
+
+.notion-yellow {
+  @apply text-amber-600;
+}
+
+.notion-purple {
+  @apply text-purple-600;
+}
+
+.notion-teal {
+  @apply text-teal-600;
+}
+
+.notion-pink {
+  @apply text-pink-600;
+}
+
+.notion-red {
+  @apply text-red-600;
+}
+
+.notion-page-icon-hero {
+  @apply flex h-12 w-12 shrink-0 select-none items-center justify-center text-5xl leading-none lg:h-24 lg:w-24 lg:text-8xl;
+
+  img {
+    @apply rounded-lg;
+  }
+}

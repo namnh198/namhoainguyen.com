@@ -1,7 +1,7 @@
 import { ParamsProps } from '@/app/types'
 import { getUnofficalPostBySlug, getUnofficalPosts } from '@/lib/notion'
 import { getMetadata } from '@/lib/utils'
-import { getPage } from '@notion-x/lib/notion-api'
+import { getPage } from '@/lib/notion-api'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import SinglePostTemplate from './SinglePostTemplate'

@@ -27,7 +27,7 @@ export default async function HomePage() {
   const tools = await getTools()
 
   return (
-    <main>
+    <>
       <BG grassMorphism />
       <div className='container py-16 space-y-16'>
         {/* Heading */}
@@ -128,6 +128,6 @@ export default async function HomePage() {
           </div>
         </div>
       </div>
-    </main>
+    </>
   )
 }

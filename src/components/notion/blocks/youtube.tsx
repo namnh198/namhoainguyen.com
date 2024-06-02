@@ -1,4 +1,4 @@
-import React from 'react'
+import { cn } from '@/lib/utils'
 
 type BlockYoutubeEmbedProps = {
   id: string
@@ -8,17 +8,18 @@ type BlockYoutubeEmbedProps = {
   className?: string
 }
 
-export default function YoutubeEmbed(props: BlockYoutubeEmbedProps) {
+export default function YoutubeEmbed({ width, className, height, id, title }: BlockYoutubeEmbedProps) {
   return (
-    <div className={props.className}>
+    <div className={className}>
       <iframe
-        width={props.width || 853}
-        height={props.height || 480}
-        src={`https://www.youtube.com/embed/${props.id}`}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        width={width || 853}
+        height={height || 480}
+        src={`https://www.youtube.com/embed/${id}`}
+        rel='nofollow'
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
         allowFullScreen
-        title={props.title || 'A video from YouTube'}
-        className="border-0"
+        title={title || 'A video from YouTube'}
+        className={cn('border-0 rounded-xl', { 'w-full': !width })}
       />
     </div>
   )

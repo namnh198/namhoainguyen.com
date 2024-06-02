@@ -6,8 +6,7 @@ import { useEffect, useState } from 'react'
 
 export default function Search() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
-  // eslint-disable-next-line
-  const [searchKeyText, setSearchKeyText] = useState('Ctrl + K')
+  const [_, setSearchKeyText] = useState('Ctrl + K')
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -17,9 +16,7 @@ export default function Search() {
       }
     }
     window.addEventListener('keydown', handleKeyDown)
-
-    const platform = navigator?.platform?.toLowerCase() || ''
-    setSearchKeyText(platform.includes('mac') ? '⌘ K' : 'Ctrl K')
+    setSearchKeyText(navigator?.platform.toLowerCase().includes('mac') ? '⌘ K' : 'Ctrl K')
 
     // Remove event listener when the component unmounts
     return () => {

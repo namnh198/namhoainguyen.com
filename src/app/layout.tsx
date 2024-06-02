@@ -1,4 +1,5 @@
 import { Poppins } from 'next/font/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const poppins = Poppins({ weight: ['400', '500', '600', '700'], subsets: ['latin'] })
 
@@ -13,6 +14,7 @@ export default function RootLayout({
         className={`${poppins.className} text-base bg-white dark:bg-[#1d2333] text-neutral-900 dark:text-neutral-100`}
       >
         {children}
+        {process.env.ENV_MODE === 'prod' && <GoogleAnalytics gaId='G-3MB2TKP0VR' />}
       </body>
     </html>
   )

@@ -1,9 +1,9 @@
-import { Project } from '@/app/types'
+import { Project as ProjectProps } from '@/app/types'
 
-import { Button } from '../ui/button'
-import Tech from '@/components/tech'
+import { Button } from './ui/button'
+import Tech from './tech'
 
-export default function CardProject({ project }: { project: Project }) {
+export default function Project({ project }: { project: ProjectProps }) {
   return (
     <div className='relative shadow-md bg-white dark:bg-neutral-900 border border-neutral-200/70 dark:border-slate-600 group transition duration-200 ease-in-out hover:-translate-y-0.5 hover:-translate-x-0.5 p-5 rounded-3xl'>
       <a href={project.permalink} className='absolute inset-0' target='_blank' title={project.title}></a>

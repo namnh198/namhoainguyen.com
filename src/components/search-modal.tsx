@@ -10,11 +10,9 @@ import { cn } from '@/lib/utils'
 
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { BsArrowReturnLeft } from 'react-icons/bs'
-import { FiSearch } from 'react-icons/fi'
 import { IoBookOutline, IoCloseCircle, IoDocumentTextOutline } from 'react-icons/io5'
 import { SearchResult } from '../types/interface'
-import { HiOutlineMagnifyingGlass } from 'react-icons/hi2'
-import IsSearchNormal1 from './icons/IsSearchNormal1'
+import { SearchNormal1 } from 'iconsax-react'
 
 type SearchModalProps = {
   url: string // Cannot use process.env because it will be undefined in the client side
@@ -156,9 +154,7 @@ export default function SearchModal(props: SearchModalProps) {
                 {/* Search bar */}
                 <div className={cn('flex items-center gap-3 p-4')}>
                   <div className={cn('grid place-items-center text-slate-500')}>
-                    {(data || error || get(data, '[0].isFake')) && !isLoading && (
-                      <IsSearchNormal1 className='text-2xl' />
-                    )}
+                    {(data || error || get(data, '[0].isFake')) && !isLoading && <SearchNormal1 className='text-2xl' />}
                     {isLoading && (
                       <div className='animate-spin'>
                         <AiOutlineLoading3Quarters className='text-2xl' />

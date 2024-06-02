@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 import Fuse from 'fuse.js'
 
 import { Tool } from '@/app/types'
-import CardTool from '@/components/Card/CardTool'
+import CardTool from '@/components/CardTool'
 import { FiSearch } from 'react-icons/fi'
 import { IoCloseCircle } from 'react-icons/io5'
 import { useRouter, useSearchParams } from 'next/navigation'

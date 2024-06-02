@@ -1,5 +1,5 @@
 import SkeletonHeadingNote from '@/components/Skeleton/SkeletonHeadingNote'
-import SkeletonPostList from '@/components/notion/SkeletonPostList'
+import SkeletonPostList from '@/components/Skeleton/SkeletonPostList'
 
 export default function Loading() {
   return (

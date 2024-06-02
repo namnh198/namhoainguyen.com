@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import homeImg from '@/public/images/index-home.webp'
 import BG from '@/components/ui/bg'
-import CardProject from '@/components/Card/CardProject'
-import CardTool from '@/components/Card/CardTool'
+import Project from '@/components/project'
+import Tool from '@/components/tool'
 import { Heading } from '@/components/ui/heading'
 import me from '@/data/me'
 import { defaultOpenGraphImage, defaultPostTypeOpts } from '@/lib/config'
@@ -85,7 +85,7 @@ export default async function HomePage() {
           <Heading title='Recent tools I used' url='/tools' size='lg' />
           <div className='grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3'>
             {tools.tools.slice(0, 6).map((tool) => (
-              <CardTool key={tool.id} tool={tool} compactMode />
+              <Tool key={tool.id} tool={tool} compactMode />
             ))}
           </div>
         </div>
@@ -123,7 +123,7 @@ export default async function HomePage() {
           <Heading title='Recent Projects' url='/projects' size='lg' />
           <div className='grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3'>
             {projects.slice(0, 6).map((project) => (
-              <CardProject key={project.id} project={project} />
+              <Project key={project.id} project={project} />
             ))}
           </div>
         </div>

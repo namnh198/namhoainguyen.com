@@ -1,6 +1,6 @@
 'use client'
 import SearchModal from '@/components/search-modal'
-import IsSearchNormal1 from '@/components/icons/IsSearchNormal1'
+import { SearchNormal } from 'iconsax-react'
 import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 
@@ -28,7 +28,7 @@ export default function Search() {
       <div className='flex items-center justify-end'>
         <div className='sm:max-w-xs cursor-pointer relative' onClick={() => setIsSearchOpen(true)}>
           <span className='absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500 '>
-            <IsSearchNormal1 className='w-5 h-5' />
+            <SearchNormal className='size-5' />
           </span>
           <span
             className={cn(

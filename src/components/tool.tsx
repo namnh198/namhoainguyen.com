@@ -1,8 +1,8 @@
-import { Tool } from '@/app/types'
+import { Tool as ToolProps } from '@/app/types'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 
-export default function CardTool({ tool, compactMode = false }: { tool: Tool; compactMode?: boolean }) {
+export default function Tool({ tool, compactMode = false }: { tool: ToolProps; compactMode?: boolean }) {
   return (
     <a
       href={tool.url}

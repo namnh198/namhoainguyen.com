@@ -4,7 +4,7 @@ import type { Post } from '@/types/interface'
 import { usePostDateStatus } from '@/lib/hook'
 import { cn } from '@/lib/utils'
 
-import IsDocumentText from '@/components/icons/IsDocumentText'
+import { DocumentText } from 'iconsax-react'
 import { HiMiniCheckBadge } from 'react-icons/hi2'
 import { AiFillPushpin } from 'react-icons/ai'
 import Link from 'next/link'
@@ -39,7 +39,7 @@ const PostSimple = ({ post }: { post: Post }) => {
         className={cn('mr-2.5 p-0', { tooltip: post.verified })}
         data-tooltip={post.verified && 'Verified by me.'}
       >
-        {post.pinned ? <AiFillPushpin className='size-6' /> : <IsDocumentText className='size-6' />}
+        {post.pinned ? <AiFillPushpin className='size-6' /> : <DocumentText className='size-6' />}
         {post.verified && (
           <span className='bg-transparent absolute bottom-[-5px] right-[-5px]'>
             <HiMiniCheckBadge className='text-sm text-gray-400 dark:text-gray-300' />

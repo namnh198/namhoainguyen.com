@@ -1,5 +1,5 @@
 import projectsImg from '@/public/images/projects.svg'
-import CardProject from '@/components/Card/CardProject'
+import Project from '@/components/project'
 import { PostListHeading } from '@/components/post-heading'
 import { getProjects } from '@/lib/notion'
 import { getMetadata } from '@/lib/utils'
@@ -28,7 +28,7 @@ export default async function ProjectsPage() {
       <div className='container py-16 space-y-16'>
         <div className='grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-3'>
           {projects.map((project) => (
-            <CardProject key={project.id} project={project} />
+            <Project key={project.id} project={project} />
           ))}
         </div>
       </div>

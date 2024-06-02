@@ -1,4 +1,4 @@
-import SkeletonLoading from '@/components/Skeleton/SkeletonLoading'
+import SkeletonLoading from '@/components/skeleton/SkeletonLoading'
 
 import { headingNoteImg, headingNoteWrapper } from '@/lib/styles'
 

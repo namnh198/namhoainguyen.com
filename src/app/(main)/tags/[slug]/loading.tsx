@@ -1,5 +1,5 @@
-import SkeletonHeadingNote from '@/components/Skeleton/SkeletonHeadingNote'
-import SkeletonPostList from '@/components/Skeleton/SkeletonPostList'
+import SkeletonHeadingNote from '@/components/skeleton/SkeletonHeadingNote'
+import SkeletonPostList from '@/components/skeleton/SkeletonPostList'
 
 export default function Loading() {
   return (

@@ -1,4 +1,4 @@
-import SkeletonHeadingNote from '@/components/Skeleton/SkeletonHeadingNote'
+import SkeletonHeadingNote from '@/components/skeleton/SkeletonHeadingNote'
 import { tagListContainerClass } from '@/lib/styles'
 
 export default function Loading() {

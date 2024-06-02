@@ -1,4 +1,4 @@
-import { SkeletonCardProject } from '@/components/Card/CardProject'
+import { SkeletonCardProject } from '@/components/project'
 import SkeletonHeadingNote from '@/components/skeleton/SkeletonHeadingNote'
 
 export default function Loading() {

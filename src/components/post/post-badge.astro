@@ -1,0 +1,23 @@
+---
+import type { Post } from '@/types';
+import Badge from '../ui/badge.astro';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+---
+
+<span class="flex items-center whitespace-nowrap space-x-2">
+  {post.verified && <Badge variant="blue">verified</Badge>}
+  {post.draft && <Badge variant="peach">draft</Badge>}
+  {post.isNew && <Badge variant="red">new</Badge>}
+  {
+    post.isUpdated && (
+      <Badge variant="teal" className="hidden sm:inline-block">
+        {post.updateLabel}
+      </Badge>
+    )
+  }
+</span>

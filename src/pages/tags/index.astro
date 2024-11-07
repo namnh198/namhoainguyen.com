@@ -1,0 +1,38 @@
+---
+import { getTags } from '@/lib/note';
+import HeroCover from '@/components/ui/hero-cover.astro';
+import Tag from '@/components/ui/tag.astro';
+import Layout from '@/layouts/Layout.astro';
+import { getMetaData } from '../../lib/utils';
+
+const tags = await getTags();
+const metadata = getMetaData({
+  title: 'Tags',
+  description: 'A list of topics I write about'
+});
+---
+
+<Layout metadata={metadata}>
+  <main>
+    {
+      !tags || !tags.length ? null : (
+        <>
+          <HeroCover title="List all tags" subtitle={`${tags.length} tag(s) published.`}>
+            <h2 class="text-lg md:text-xl leading-8 font-medium">
+              A list of topics I write about. You can use
+              <kbd class="px-1.5 py-1 mx-1 inline-flex text-sm leading-none font-mono shadow-lg shadow-text/10 whitespace-nowrap font-semibold bg-crust text-text border border-surface0 rounded-md">
+                ⌘ F
+              </kbd>
+              to quickly find a topic you wanna check.
+            </h2>
+          </HeroCover>
+          <section class="container my-20 flex flex-wrap justify-center items-center gap-4">
+            {tags.map(tag => (
+              <Tag tag={tag} size="large" />
+            ))}
+          </section>
+        </>
+      )
+    }
+  </main>
+</Layout>

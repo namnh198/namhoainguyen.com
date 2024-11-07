@@ -1,0 +1,45 @@
+---
+import type { Tag } from '@/types';
+import { getPosts, getTags, recentTag } from '@/lib/note';
+import Layout from '@/layouts/Layout.astro';
+import HeroCover from '@/components/ui/hero-cover.astro';
+import PostNav from '@/components/post/post-nav.tsx';
+import PostList from '@/components/post/post-list.astro';
+import { getMetaData } from '../../lib/utils';
+
+const posts = await getPosts();
+const pinnedTags = (await getTags()).filter(tag => tag?.pinned).sort((a, b) => a.name.localeCompare(b.name));
+const metadata = getMetaData({
+  title: 'Notes',
+  description:
+    'When I learn something new, I write it down here. It helps me to remember and understand better. I hope you find it useful.'
+});
+---
+
+<Layout metadata={metadata}>
+  <main>
+    {
+      !posts || !posts.length ? null : (
+        <>
+          <HeroCover title="My taking notes" subtitle={`${posts.length} notes published.`}>
+            <h2 class="text-lg md:text-xl leading-7 font-medium">
+              When I learn something new, I write it down here. It helps me to remember and understand better. I hope
+              you find it useful.
+            </h2>
+          </HeroCover>
+
+          <section class="my-20 flex mx-6 xl:mx-auto max-w-7xl rounded-xl border border-surface0">
+            <PostNav recentTag={recentTag} pinnedTags={pinnedTags} client:only="react" />
+            <div class="flex-1 rounded-xl xs:rounded-tr-xl xs:rounded-br-xl bg-base" data-toc>
+              <PostList posts={posts} tag={recentTag} showHeader />
+              {pinnedTags.map(tag => {
+                const postByTag = posts.filter(post => post?.tags?.some((postTag: Tag) => postTag.slug === tag.slug));
+                return <PostList posts={postByTag} tag={tag} showAll={postByTag.length <= 8} showHeader />;
+              })}
+            </div>
+          </section>
+        </>
+      )
+    }
+  </main>
+</Layout>

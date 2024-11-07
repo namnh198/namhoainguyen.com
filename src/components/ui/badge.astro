@@ -1,0 +1,34 @@
+---
+import type { Colors } from '@/types';
+interface Props {
+  variant: Colors;
+  className?: string;
+}
+
+const { variant, className } = Astro.props;
+---
+
+<span
+  class:list={[
+    'inline-block py-0.5 px-2 rounded-[.25rem] text-sm leading-4 font-semibold',
+    {
+      'bg-rosewater text-background': variant === 'rosewater',
+      'bg-flamingo text-background': variant === 'flamingo',
+      'bg-pink text-background': variant === 'pink',
+      'bg-mauve text-background': variant === 'mauve',
+      'bg-red text-background': variant === 'red',
+      'bg-maroon text-background': variant === 'maroon',
+      'bg-peach text-background': variant === 'peach',
+      'bg-yellow text-background': variant === 'yellow',
+      'bg-green text-background': variant === 'green',
+      'bg-teal text-background': variant === 'teal',
+      'bg-sky text-background': variant === 'sky',
+      'bg-lavender text-background': variant === 'lavender',
+      'bg-sapphire text-background': variant === 'sapphire',
+      'bg-blue text-background': variant === 'blue'
+    },
+    [className]
+  ]}
+>
+  <span><slot /></span>
+</span>

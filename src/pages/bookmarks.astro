@@ -1,0 +1,26 @@
+---
+import HeroCover from '@/components/ui/hero-cover.astro';
+import Layout from '@/layouts/Layout.astro';
+import { BOOKMARKS } from '@/lib/bookmarks';
+import Bookmark from '../components/ui/bookmark.astro';
+import { getMetaData } from '../lib/utils';
+const metadata = getMetaData({
+  title: 'Bookmarks'
+});
+---
+
+<Layout metadata={metadata}>
+  <main>
+    <HeroCover title="Bookmarks" subtitle={`${BOOKMARKS.length} bookmark(s) that I usually use.`}>
+      <h2 class="text-lg md:text-xl leading-8 font-medium">
+        I’m always on the lookout for new apps and websites that can help me learn and work more effectively. Here’s a
+        list of tools that I’ve found really useful so far.
+      </h2>
+    </HeroCover>
+    <section class="max-w-screen-lg mx-auto my-20">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 sm:gap-x-4">
+        {BOOKMARKS.map(bookmark => <Bookmark bookmark={bookmark} />)}
+      </div>
+    </section>
+  </main>
+</Layout>

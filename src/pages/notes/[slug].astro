@@ -1,0 +1,56 @@
+---
+import '@/styles/notes.css';
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { getPosts } from '@/lib/note';
+import Layout from '@/layouts/Layout.astro';
+import PostHeader from '@/components/post/post-header.astro';
+import PostToc from '@/components/post/post-toc.tsx';
+import { getMetaData } from '../../lib/utils';
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts();
+
+  return posts.flatMap(post => ({
+    params: {
+      slug: post.slug
+    },
+    props: { post }
+  }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const metadata = getMetaData({
+  title: post.title,
+  description: post.excerpt
+});
+---
+
+<Layout metadata={metadata}>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+    crossorigin="anonymous"
+    slot="head"
+  />
+  <main>
+    <PostHeader post={post} />
+    <article class="notes-body prose mx-auto max-w-screen-lg px-4 py-10 prose-headings:scroll-mt-20">
+      <post.Content />
+    </article>
+    <PostToc tocs={post.headings} client:only="react" />
+
+    <script>
+      import mermaid from 'mermaid';
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'default',
+        themeVariables: {
+          lineColor: 'rgb(var(--ctp-text))'
+        },
+        securityLevel: 'loose'
+      });
+    </script>
+  </main></Layout
+>

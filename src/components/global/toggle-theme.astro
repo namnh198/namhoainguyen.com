@@ -1,0 +1,56 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<button
+  class="relative inline-flex items-center justify-center whitespace-nowrap overflow-hidden size-5 mr-4"
+  data-toggle-theme
+  aria-label="Toggle Theme"
+>
+  <Icon name="lucide:sun" size={20} data-mode="dark" />
+  <Icon name="lucide:moon" size={20} data-mode="light" />
+</button>
+
+<script is:inline>
+  const themes = {
+    light: 'latte',
+    dark: 'dark'
+  };
+
+  const button = document.querySelector('[data-toggle-theme]');
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  button &&
+    button.addEventListener('click', () => {
+      function changeGiscusTheme(theme) {
+        const giscusTheme = `https://giscus.catppuccin.com/themes/${themes[theme]}.css`;
+
+        function sendMessage(message) {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+          setConfig: {
+            theme: giscusTheme
+          }
+        });
+      }
+
+      let theme = localStorage.getItem('theme') ?? 'system';
+      if (theme === 'system') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      theme = theme === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', theme);
+      if (theme === 'dark') {
+        document.documentElement.classList.remove('latte');
+        document.documentElement.classList.add('mocha');
+      } else {
+        document.documentElement.classList.remove('mocha');
+        document.documentElement.classList.add('latte');
+      }
+      changeGiscusTheme(theme);
+    });
+</script>

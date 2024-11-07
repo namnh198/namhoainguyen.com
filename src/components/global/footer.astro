@@ -1,0 +1,35 @@
+---
+import { FOOTER } from '@/lib/constants';
+import { Icon } from 'astro-icon/components';
+import Logo from './logo.astro';
+---
+
+<footer class='bg-mantle py-12 px-6'>
+  <div class='container flex justify-between flex-wrap'>
+    <div class='mb-8 w-full flex items-center lg:w-auto lg:mb-0'>
+      <Logo copyRight />
+    </div>
+    {
+      FOOTER.map(({ title, menu }) => (
+        <div class='mb-8 mr-8 md:mb-0 md:mr-16 last:mr-0'>
+          <h3 class='mb-4 font-bold text-lg'>{title}</h3>
+          <ul class='list-none'>
+            {menu.map(({ title, href, external, icon, iconColor }) => (
+              <li class='leading-6'>
+                <a
+                  href={href}
+                  target={external ? '_blank' : '_self'}
+                  rel={external ? 'noopener noreferrer' : ''}
+                  class='flex items-center pb-1.5 hover:underline hover:decoration-wavy'
+                >
+                  {icon && <Icon name={icon} class:list={['size-5 mr-2', [`text-${iconColor}`]]} />}
+                  {title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</footer>

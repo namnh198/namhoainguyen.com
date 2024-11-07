@@ -1,0 +1,65 @@
+---
+import { AstroSeo, type AstroSeoProps } from '@astrolib/seo';
+import Navbar from '@/components/global/navbar.astro';
+import Footer from '@/components/global/footer.astro';
+import '@/styles/tailwind.css';
+
+interface Props {
+  metadata: AstroSeoProps;
+}
+
+const { metadata } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="latte scroll-smooth break-words [word-break:break-word]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <AstroSeo {...metadata} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      function changeTheme(theme) {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        if (theme === 'dark') {
+          document.documentElement.classList.remove('latte');
+          document.documentElement.classList.add('mocha');
+        } else {
+          document.documentElement.classList.remove('mocha');
+          document.documentElement.classList.add('latte');
+        }
+      }
+
+      let theme = localStorage.getItem('theme') ?? 'system';
+      if (theme === 'system') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      changeTheme(theme);
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.querySelector('[data-toggle-theme]');
+        btn &&
+          btn.addEventListener('click', () => {
+            theme = theme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', theme);
+            changeTheme(theme);
+          });
+      });
+    </script>
+    <slot name="head" />
+  </head>
+  <body class="bg-base text-text">
+    <Navbar />
+    <slot />
+    <Footer />
+  </body>
+</html>

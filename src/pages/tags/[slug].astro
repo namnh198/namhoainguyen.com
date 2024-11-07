@@ -1,0 +1,46 @@
+---
+import HeroCover from '@/components/ui/hero-cover.astro';
+import Layout from '@/layouts/Layout.astro';
+import PostList from '@/components/post/post-list.astro';
+import { getPosts, getTags } from '@/lib/note';
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { recentTag } from '../../lib/note';
+import { getMetaData } from '../../lib/utils';
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+export const getStaticPaths = (async () => {
+  const tags = await getTags();
+  const allPosts = await getPosts();
+
+  return tags.flatMap(tag => {
+    const posts = allPosts.filter(post => post?.tags?.some(postTag => postTag.slug === tag.slug));
+    return {
+      params: {
+        slug: tag.slug
+      },
+      props: {
+        tag,
+        posts
+      }
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { tag, posts } = Astro.props;
+const metadata = getMetaData({
+  title: `Tag ${tag.name}`,
+  description: `List all post of tag ${tag.name}`
+});
+---
+
+<Layout metadata={metadata}>
+  <main>
+    <HeroCover title={`Tag ${tag.name}`} subtitle={`${posts.length} note(s) published.`} />
+    <section class="max-w-screen-xl xl:mx-auto my-20">
+      <div class="mx-4 lg:mx-6 rounded-xl border border-surface0">
+        <PostList posts={posts} tag={recentTag} className="lg:!pl-20" />
+      </div>
+    </section>
+  </main>
+</Layout>

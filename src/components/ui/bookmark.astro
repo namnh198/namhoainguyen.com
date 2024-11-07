@@ -1,0 +1,68 @@
+---
+import type { Bookmark } from '@/types';
+import { randomColor } from '@/lib/utils';
+import Badge from './badge.astro';
+
+interface Props {
+  bookmark: Bookmark;
+}
+const { bookmark } = Astro.props;
+const color = bookmark.color || randomColor();
+---
+
+<a
+  href={bookmark.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="bg-mantle shadow-xl min-h-32 flex flex-col justify-center items-center p-4 rounded-xl transition will-change-transform duration-300 relative overflow-hidden group gap-2 hover:-translate-y-1"
+>
+  <span class="font-medium leading-[1.35] text-[0.95rem] group-hover:text-mauve">
+    {bookmark.name}
+  </span>
+  <span class="gap-2 items-center">
+    <Badge variant={color}>
+      <span>{bookmark.type}</span>
+    </Badge>
+  </span>
+  <span class="absolute -bottom-0.5 w-full">
+    <svg
+      class="relative w-full h-[5vh] -mb-2 min-h-[60px] max-h-[150px]"
+      preserveAspectRatio="none"
+      shape-rendering="auto"
+      viewBox="0 24 150 28"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs>
+        <path d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" id="gentle-wave"></path>
+      </defs>
+      <g class="parallax">
+        <use
+          fill=`rgba(var(--ctp-${color}), 0.1)`
+          x="48"
+          xlink:href="#gentle-wave"
+          y="0"
+          class="animation-wave"
+          style="animation-delay: -2s; animation-duration: 10s"></use>
+        <use
+          fill=`rgba(var(--ctp-${color}), 0.05)`
+          x="48"
+          xlink:href="#gentle-wave"
+          y="3"
+          style="animation-delay: -5s; animation-duration: 10s"></use>
+        <use
+          fill=`rgba(var(--ctp-${color}), 0.01)`
+          x="48"
+          xlink:href="#gentle-wave"
+          y="5"
+          style="animation-delay: -7s; animation-duration: 10s"></use>
+        <use
+          fill=`rgba(var(--ctp-${color}), 0.005)`
+          x="48"
+          xlink:href="#gentle-wave"
+          y="7"
+          style="animation-delay: -1s; animation-duration: 10s"></use>
+      </g>
+    </svg>
+  </span>
+</a>

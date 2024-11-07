@@ -1,0 +1,33 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getMetaData } from '../lib/utils';
+const metadata = getMetaData({
+  title: 'Page Not Found'
+});
+---
+
+<Layout metadata={metadata}>
+  <main>
+    <section>
+      <div class="flex flex-col items-center justify-center px-4 py-10 min-h-svh space-y-4">
+        <div class="text-red block">
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M30.9914 4.84009C39.9162 10.359 42.6773 22.068 37.1584 30.9929C31.6395 39.9177 19.9305 42.6788 11.0056 37.1599C2.08073 31.641 -0.680328 19.932 4.83859 11.0071C6.40643 8.47169 8.47382 6.43373 10.835 4.94172M21.0735 2L21.0735 15.5M21.0735 23L21.0735 24"
+              stroke="currentColor"
+              stroke-width="4"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <h1 class="text-red font-bold text-6xl">Error</h1>
+        <p class="text-2xl">Page not found</p>
+        <div class="text-8xl font-extrabold">
+          <span class="text-red">4</span>
+          <span class="text-text">0</span>
+          <span class="text-red">4</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

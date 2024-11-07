@@ -1,0 +1,45 @@
+---
+import { NAVIGATION } from '@/lib/constants';
+import { trimSlash } from '@/lib/utils';
+import Logo from './logo.astro';
+import NavMenu from './nav-menu.astro';
+import NavMobile from './nav-mobile.tsx';
+import ToggleTheme from './toggle-theme.astro';
+import Search from './search.tsx';
+
+const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
+const matchRoute = currentPath.match(/(\/+[^/\s]+\/)(.*)/);
+const currentRoute = matchRoute ? `/${trimSlash(matchRoute[1])}` : currentPath;
+---
+
+<header class="sticky bg-mantle top-0 left-0 z-40">
+  <div class="flex justify-between h-16 px-4 lg:px-6">
+    <NavMobile navItems={NAVIGATION} activeMenu={currentRoute} client:only="react" />
+    <nav class="flex">
+      <Logo />
+      <NavMenu navItems={NAVIGATION} activeMenu={currentRoute} />
+    </nav>
+    <div class="flex items-center">
+      <ToggleTheme />
+      <Search client:load />
+    </div>
+  </div>
+  <div class="absolute bg-surface0 h-0.5 w-full bottom-0"></div>
+  <div class="absolute bg-mauve h-0.5 w-full bottom-0 -translate-x-full" id="reading-progress"></div>
+</header>
+
+<script is:inline>
+  const readingProgress = document.getElementById('reading-progress');
+
+  const updateScrollCompletion = () => {
+    const currentProgress = window.scrollY;
+    const scrollHeight = document.body.scrollHeight - window.innerHeight;
+
+    if (scrollHeight && readingProgress instanceof HTMLElement) {
+      const progress = Number((currentProgress / scrollHeight).toFixed(2)) * 100;
+      readingProgress.style.transform = `translateX(${progress - 100}%)`;
+    }
+  };
+
+  window.addEventListener('scroll', updateScrollCompletion);
+</script>

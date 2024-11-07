@@ -1,0 +1,68 @@
+---
+import type { Post, Tag } from '@/types';
+import { Icon } from 'astro-icon/components';
+import PostBadge from './post-badge.astro';
+
+interface Props {
+  posts: Post[];
+  tag: Tag;
+  showAll?: boolean;
+  showHeader?: boolean;
+  className?: string;
+}
+
+const { posts, tag, showAll, showHeader, className } = Astro.props;
+
+const postByTag = showAll ? posts : posts.slice(0, 8);
+---
+
+<section
+  class:list={[
+    'relative py-5 px-4 sm:py-9 sm:px-5 md:py-10 md:px-6 xl:p-20 xl:pl-[calc(25%-5rem)] border-b border-surface0 last:border-none scroll-mt-16',
+    [className]
+  ]}
+  id={tag.slug}
+  data-toc-item={tag.slug}
+>
+  {
+    showHeader && (
+      <header class="mb-8">
+        <h3 class="text-[28px] md:text-[36px] lg:text-[40px] xl:text-[48px] font-bold mb-4">{tag.name}</h3>
+        <div class="flex items-center">
+          <Icon name="lucide:notebook-text" size={20} class="mr-4" />
+          <div class="text-[1rem] md:text-lg font-medium">
+            {posts.length} Notes
+            {!showAll && tag.slug !== 'recent' && (
+              <>
+                <span class="mx-2 text-sm">👉</span>
+                <a href={`/tags/${tag.slug}`} class="hover:text-mauve">
+                  View all
+                </a>
+              </>
+            )}
+          </div>
+        </div>
+      </header>
+    )
+  }
+  <article class="table font-medium w-full counter-list">
+    <slot />
+    {
+      postByTag.map(post => (
+        <a href={`/notes/${post.slug}`} class="table-row group bg-dotted">
+          <span
+            class:list={[
+              'table-cell whitespace-nowrap align-middle w-[1%] pr-4 counter before:font-semibold',
+              [`text-${tag.color}`]
+            ]}
+          />
+          <span class="flex items-center justify-between align-middle">
+            <span class="py-3.5 pr-2.5 group-hover:underline group-hover:decoration-wavy">{post.title}</span>
+            <PostBadge post={post} />
+          </span>
+          <span class="table-cell whitespace-nowrap align-middle w-[1%] pl-4">{post.readingTime || 0} min</span>
+        </a>
+      ))
+    }
+  </article>
+</section>

@@ -1,8 +1,5 @@
-export const prerender = true;
-
 // @ts-check
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel/serverless';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
@@ -16,9 +13,8 @@ import remarkObsidian from './src/remark-plugins/remark-obsidian.mjs';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'hybrid',
-  adapter: vercel(),
-
+  output: 'static',
+  site: 'https://www.namhoainguyen.com',
   compressHTML: true,
   prefetch: true,
 

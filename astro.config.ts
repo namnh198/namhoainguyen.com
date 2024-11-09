@@ -1,5 +1,4 @@
 // @ts-check
-import type { AstroIntegration } from 'astro';
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
@@ -13,33 +12,13 @@ import expressiveCode from 'astro-expressive-code';
 import remarkCustomFrontmatter from './src/remark-plugins/remark-frontendmatter.mjs';
 import remarkObsidian from './src/remark-plugins/remark-obsidian.mjs';
 
-const hasExternalScripts = true;
-const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
-  hasExternalScripts ? (Array.isArray(items) ? items.map(item => item()) : [items()]) : [];
+import compress from 'astro-compress';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
   site: 'https://www.namhoainguyen.com',
-  compressHTML: true,
   prefetch: true,
-
-  build: {
-    inlineStylesheets: 'never'
-  },
-
-  vite: {
-    resolve: {
-      preserveSymlinks: true
-    },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: 'modern-compiler' // or "modern"
-        }
-      }
-    }
-  },
 
   integrations: [
     tailwind({
@@ -49,7 +28,17 @@ export default defineConfig({
     partytown({
       config: { forward: ['dataLayer.push'] }
     }),
-
+    compress({
+      HTML: {
+        'html-minifier-terser': {
+          removeAttributeQuotes: false
+        }
+      },
+      CSS: true,
+      JavaScript: true,
+      SVG: false,
+      Logger: true
+    }),
     icon(),
     expressiveCode({
       themes: ['catppuccin-mocha', 'catppuccin-latte'],
@@ -71,5 +60,11 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkCustomFrontmatter, remarkObsidian, remarkMath, remarkCallout],
     rehypePlugins: [rehypeKatex]
+  },
+
+  vite: {
+    resolve: {
+      preserveSymlinks: true
+    }
   }
 });

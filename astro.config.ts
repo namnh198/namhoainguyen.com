@@ -1,8 +1,10 @@
 // @ts-check
+import type { AstroIntegration } from 'astro';
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
+import partytown from '@astrojs/partytown';
 import remarkCallout from '@r4ai/remark-callout';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -10,6 +12,10 @@ import expressiveCode from 'astro-expressive-code';
 
 import remarkCustomFrontmatter from './src/remark-plugins/remark-frontendmatter.mjs';
 import remarkObsidian from './src/remark-plugins/remark-obsidian.mjs';
+
+const hasExternalScripts = true;
+const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
+  hasExternalScripts ? (Array.isArray(items) ? items.map(item => item()) : [items()]) : [];
 
 // https://astro.build/config
 export default defineConfig({
@@ -40,6 +46,10 @@ export default defineConfig({
       applyBaseStyles: false
     }),
     react(),
+    partytown({
+      config: { forward: ['dataLayer.push'] }
+    }),
+
     icon(),
     expressiveCode({
       themes: ['catppuccin-mocha', 'catppuccin-latte'],

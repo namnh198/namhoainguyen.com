@@ -43,7 +43,7 @@ export const getMetaData = ({
     openGraph: {
       images: [
         {
-          url: image || '',
+          url: image || '/assets/namnh-cover.jpg',
           alt: title,
           width: 1280
         }

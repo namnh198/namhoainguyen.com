@@ -39,7 +39,7 @@ const metadata = getMetaData({
     <HeroCover title={`Tag ${tag.name}`} subtitle={`${posts.length} note(s) published.`} />
     <section class="max-w-screen-xl xl:mx-auto my-20">
       <div class="mx-4 lg:mx-6 rounded-xl border border-surface0">
-        <PostList posts={posts} tag={recentTag} className="lg:!pl-20" />
+        <PostList posts={posts} tag={recentTag} className="lg:!pl-20" showAll />
       </div>
     </section>
   </main>

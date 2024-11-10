@@ -15,6 +15,7 @@ export default function NavMobile({ navItems, activeMenu }: { navItems: NavMenuP
         className={clsx('relative group block lg:hidden w-10 mr-4', {
           'is-active': isShowMenu
         })}
+        aria-label="Toggle Menu"
         onClick={toggleMenu}
       >
         <span className="absolute top-[calc(50%-1px)] left-[calc(50%-12px)] w-6 h-0.5 bg-text animation-bar1-reverse group-[.is-active]:animation-bar-1"></span>

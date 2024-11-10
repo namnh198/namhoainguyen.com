@@ -14,8 +14,6 @@ import remarkObsidian from './src/remark-plugins/remark-obsidian.mjs';
 
 import compress from 'astro-compress';
 
-import critters from 'astro-critters';
-
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
@@ -56,9 +54,6 @@ export default defineConfig({
         },
         borderRadius: '.5em'
       }
-    }),
-    critters({
-      Logger: true
     })
   ],
 

@@ -160,6 +160,11 @@
 details[data-callout] {
   height: min-content;
 }
+
+details[data-callout] > summary[data-callout-title]::-webkit-details-marker {
+  display: none;
+}
+
 details[data-callout] > summary[data-callout-title] {
   cursor: pointer;
 }

@@ -27,12 +27,16 @@ export default function PostToc({ tocs, isHiddenToc }: { tocs?: MarkdownHeading[
 
   useEffect(() => {
     const handleToggleMoveToTop = () => {
+      if (isShowToc) {
+        setIsShowMoveToTop(false);
+        return;
+      }
       const top = document.documentElement.scrollTop;
       setIsShowMoveToTop(top > 300);
     };
     window.addEventListener('scroll', handleToggleMoveToTop);
     return () => window.removeEventListener('scroll', handleToggleMoveToTop);
-  }, []);
+  }, [isShowToc]);
 
   return (
     <div className="fixed right-2.5 bottom-0 w-[90vw] max-w-[500px] z-10">

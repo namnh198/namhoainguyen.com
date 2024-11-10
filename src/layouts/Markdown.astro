@@ -1,0 +1,40 @@
+---
+import '@/styles/notes.css';
+import type { MarkdownHeading } from 'astro';
+import Layout from './Layout.astro';
+import { getMetaData } from '../lib/utils';
+import PostToc from '../components/post/post-toc.tsx';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    excerpt?: string;
+  };
+  headings: MarkdownHeading[];
+  getHeadings: () => void;
+}
+
+const { frontmatter, headings } = Astro.props;
+
+const metadata = getMetaData({
+  title: frontmatter.title,
+  description: frontmatter?.excerpt
+});
+---
+
+<Layout metadata={metadata}>
+  <main>
+    <section class="relative py-20 m-6 rounded-2xl bg-gradient-to-r from-mauve/15 to-mauve/5">
+      <div class="lg:max-w-4xl mx-auto text-center space-y-6">
+        <h1 class="font-bold">
+          <div class="text-4xl md:text-5xl mb-3">{frontmatter.title}</div>
+          {frontmatter.excerpt && <div class="text-xl md:text-2xl text-mauve mb-6">{frontmatter?.excerpt}</div>}
+        </h1>
+      </div>
+    </section>
+    <article class="notes-body prose mx-auto max-w-screen-lg px-4 py-10 prose-headings:scroll-mt-20">
+      <slot />
+    </article>
+    <PostToc tocs={headings} client:only="react" />
+  </main>
+</Layout>

@@ -8,6 +8,7 @@ import remarkCallout from '@r4ai/remark-callout';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import expressiveCode from 'astro-expressive-code';
+import rehypeExternalLinks from 'rehype-external-links';
 
 import remarkCustomFrontmatter from './src/remark-plugins/remark-frontendmatter.mjs';
 import remarkObsidian from './src/remark-plugins/remark-obsidian.mjs';
@@ -59,7 +60,7 @@ export default defineConfig({
 
   markdown: {
     remarkPlugins: [remarkCustomFrontmatter, remarkObsidian, remarkMath, remarkCallout],
-    rehypePlugins: [rehypeKatex]
+    rehypePlugins: [rehypeKatex, [rehypeExternalLinks, { target: '_blank' }]]
   },
 
   vite: {

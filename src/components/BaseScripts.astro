@@ -1,0 +1,60 @@
+---
+
+---
+
+<script is:inline>
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      document.documentElement.classList.remove('latte');
+      document.documentElement.classList.add('mocha');
+    } else {
+      document.documentElement.classList.remove('mocha');
+      document.documentElement.classList.add('latte');
+    }
+  }
+
+  function initTheme() {
+    let theme = localStorage.getItem('theme') ?? 'system';
+    if (theme === 'system') {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    applyTheme(theme);
+  }
+  initTheme();
+
+  function onLoad() {
+    const btn = document.querySelector('[data-toggle-theme]');
+    btn &&
+      btn.addEventListener('click', () => {
+        let theme = localStorage.getItem('theme');
+        if (theme === 'system') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        theme = theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', theme);
+        applyTheme(theme);
+      });
+
+    const readingProgress = document.getElementById('reading-progress');
+
+    const updateScrollCompletion = () => {
+      const currentProgress = window.scrollY;
+      const scrollHeight = document.body.scrollHeight - window.innerHeight;
+
+      if (scrollHeight && readingProgress instanceof HTMLElement) {
+        const progress = Number((currentProgress / scrollHeight).toFixed(2)) * 100;
+        readingProgress.style.transform = `translateX(${progress - 100}%)`;
+      }
+    };
+
+    window.addEventListener('scroll', updateScrollCompletion);
+  }
+
+  window.onload = onLoad;
+
+  document.addEventListener('astro:after-swap', function () {
+    initTheme();
+    onLoad();
+  });
+</script>

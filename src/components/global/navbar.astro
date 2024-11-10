@@ -27,19 +27,3 @@ const currentRoute = matchRoute ? `/${trimSlash(matchRoute[1])}` : currentPath;
   <div class="absolute bg-surface0 h-0.5 w-full bottom-0"></div>
   <div class="absolute bg-mauve h-0.5 w-full bottom-0 -translate-x-full" id="reading-progress"></div>
 </header>
-
-<script is:inline>
-  const readingProgress = document.getElementById('reading-progress');
-
-  const updateScrollCompletion = () => {
-    const currentProgress = window.scrollY;
-    const scrollHeight = document.body.scrollHeight - window.innerHeight;
-
-    if (scrollHeight && readingProgress instanceof HTMLElement) {
-      const progress = Number((currentProgress / scrollHeight).toFixed(2)) * 100;
-      readingProgress.style.transform = `translateX(${progress - 100}%)`;
-    }
-  };
-
-  window.addEventListener('scroll', updateScrollCompletion);
-</script>

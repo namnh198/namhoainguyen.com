@@ -5,6 +5,7 @@ import Footer from '@/components/global/footer.astro';
 import '@/styles/tailwind.css';
 import { GoogleAnalytics } from '@astrolib/analytics';
 import { ViewTransitions } from 'astro:transitions';
+import BaseScripts from '../components/BaseScripts.astro';
 
 interface Props {
   metadata: AstroSeoProps;
@@ -28,36 +29,8 @@ const { metadata } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
     />
+    <BaseScripts />
     {import.meta.env.NODE_ENV === 'production' && <GoogleAnalytics id="G-3MB2TKP0VR" partytown={true} />}
-    <script is:inline>
-      function changeTheme(theme) {
-        theme = theme === 'dark' ? 'light' : 'dark';
-        if (theme === 'dark') {
-          document.documentElement.classList.remove('latte');
-          document.documentElement.classList.add('mocha');
-        } else {
-          document.documentElement.classList.remove('mocha');
-          document.documentElement.classList.add('latte');
-        }
-      }
-
-      let theme = localStorage.getItem('theme') ?? 'system';
-      if (theme === 'system') {
-        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      }
-
-      changeTheme(theme);
-
-      document.addEventListener('DOMContentLoaded', () => {
-        const btn = document.querySelector('[data-toggle-theme]');
-        btn &&
-          btn.addEventListener('click', () => {
-            theme = theme === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('theme', theme);
-            changeTheme(theme);
-          });
-      });
-    </script>
     <slot name="head" />
     <ViewTransitions fallback="swap" />
   </head>

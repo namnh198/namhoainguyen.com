@@ -23,7 +23,8 @@ export default defineConfig({
 
   integrations: [
     tailwind({
-      applyBaseStyles: false
+      applyBaseStyles: false,
+      nesting: true
     }),
     react(),
     partytown({

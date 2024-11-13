@@ -36,21 +36,35 @@ const metadata = getMetaData({
   />
   <main>
     <PostHeader post={post} />
-    <article class="notes-body prose mx-auto max-w-screen-lg px-4 py-10 prose-headings:scroll-mt-20">
+    <article class="notes-body prose mx-auto !max-w-screen-lg px-4 py-10 prose-headings:scroll-mt-20">
       <post.Content />
     </article>
     <PostToc tocs={post.headings} client:only="react" />
 
     <script>
+      import mediumZoom from 'medium-zoom';
       import mermaid from 'mermaid';
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: 'default',
-        themeVariables: {
-          lineColor: 'rgb(var(--ctp-text))'
-        },
-        securityLevel: 'loose'
+
+      function onPageLoad() {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'default',
+          themeVariables: {
+            lineColor: 'rgb(var(--ctp-text))'
+          },
+          securityLevel: 'loose'
+        });
+
+        mermaid.contentLoaded();
+        mediumZoom(document.querySelectorAll('.notes-body img'), {
+          margin: 25,
+          background: 'rgba(var(--ctp-base), 1)'
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        onPageLoad();
       });
     </script>
-  </main></Layout
->
+  </main>
+</Layout>

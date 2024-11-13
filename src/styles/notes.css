@@ -1,5 +1,10 @@
 @tailwind components;
 
+.medium-zoom-overlay,
+.medium-zoom-image--opened {
+  z-index: 999;
+}
+
 @layer components {
   [data-callout] {
     & {

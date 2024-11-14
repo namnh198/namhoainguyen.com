@@ -28,7 +28,9 @@ export default defineConfig({
     }),
     react(),
     partytown({
-      config: { forward: ['dataLayer.push'] }
+      config: {
+        forward: ['dataLayer.push']
+      }
     }),
     compress({
       HTML: {

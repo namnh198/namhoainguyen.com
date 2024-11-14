@@ -25,15 +25,21 @@ const metadata = getMetaData({
   title: post.title,
   description: post.excerpt
 });
+
+const attrs = { type: 'text/partytown' };
 ---
 
 <Layout metadata={metadata}>
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin slot="head" />
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js"
     crossorigin="anonymous"
-    slot="head"
-  />
+    referrerpolicy="no-referrer"
+    slot="head"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
   <main>
     <PostHeader post={post} />
     <article class="notes-body prose mx-auto !max-w-screen-lg px-4 py-10 prose-headings:scroll-mt-20">
@@ -41,29 +47,21 @@ const metadata = getMetaData({
     </article>
     <PostToc tocs={post.headings} client:only="react" />
 
-    <script>
-      import mediumZoom from 'medium-zoom';
-      import mermaid from 'mermaid';
+    <script is:inline data-astro-rerun>
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'default',
+        themeVariables: {
+          lineColor: 'rgb(var(--ctp-text))'
+        },
+        securityLevel: 'loose'
+      });
 
-      function onPageLoad() {
-        mermaid.initialize({
-          startOnLoad: true,
-          theme: 'default',
-          themeVariables: {
-            lineColor: 'rgb(var(--ctp-text))'
-          },
-          securityLevel: 'loose'
-        });
+      mermaid.contentLoaded();
 
-        mermaid.contentLoaded();
-        mediumZoom(document.querySelectorAll('.notes-body img'), {
-          margin: 25,
-          background: 'rgba(var(--ctp-base), 1)'
-        });
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        onPageLoad();
+      mediumZoom(document.querySelectorAll('.notes-body img'), {
+        margin: 25,
+        background: 'rgb(var(--ctp-base))'
       });
     </script>
   </main>

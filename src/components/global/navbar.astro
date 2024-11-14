@@ -1,10 +1,10 @@
 ---
 import { NAVIGATION } from '@/lib/constants';
 import { trimSlash } from '@/lib/utils';
+import { Icon } from 'astro-icon/components';
 import Logo from './logo.astro';
 import NavMenu from './nav-menu.astro';
 import NavMobile from './nav-mobile.tsx';
-import ToggleTheme from './toggle-theme.astro';
 import Search from './search.tsx';
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
@@ -20,7 +20,14 @@ const currentRoute = matchRoute ? `/${trimSlash(matchRoute[1])}` : currentPath;
       <NavMenu navItems={NAVIGATION} activeMenu={currentRoute} />
     </nav>
     <div class="flex items-center">
-      <ToggleTheme />
+      <button
+        class="relative inline-flex items-center justify-center whitespace-nowrap overflow-hidden size-5 mr-4"
+        data-toggle-theme
+        aria-label="Toggle Theme"
+      >
+        <Icon name="lucide:sun" size={20} data-mode="dark" />
+        <Icon name="lucide:moon" size={20} data-mode="light" />
+      </button>
       <Search client:load />
     </div>
   </div>

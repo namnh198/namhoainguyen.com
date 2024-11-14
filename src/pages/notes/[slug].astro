@@ -44,6 +44,7 @@ const attrs = { type: 'text/partytown' };
     <PostHeader post={post} />
     <article class="notes-body prose mx-auto !max-w-screen-lg px-4 py-10 prose-headings:scroll-mt-20">
       <post.Content />
+      <div id="giscus-comment"></div>
     </article>
     <PostToc tocs={post.headings} client:only="react" />
 

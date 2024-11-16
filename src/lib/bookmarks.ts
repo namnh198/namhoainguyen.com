@@ -43,14 +43,14 @@ export const BOOKMARKS: Bookmark[] = [
     list: [
       {
         name: 'Figma',
-        url: '',
+        url: 'https://figma.com/',
         image: 'https://res.cloudinary.com/doo2twtbu/image/upload/f_auto,q_auto/v1/nhn.com-tools/figma_tkaf61',
         excerpt: 'UI/Ux Design',
         pinned: true
       },
       {
         name: 'Capcut',
-        url: '',
+        url: 'https://www.capcut.com/',
         image: 'https://res.cloudinary.com/doo2twtbu/image/upload/f_auto,q_auto/v1/nhn.com-tools/capcut_arbjzw',
         excerpt: 'UI/Ux Design'
       }
@@ -81,7 +81,7 @@ export const BOOKMARKS: Bookmark[] = [
       },
       {
         name: 'VSCode',
-        url: '',
+        url: 'https://code.visualstudio.com/',
         image: 'https://res.cloudinary.com/doo2twtbu/image/upload/f_auto,q_auto/v1/nhn.com-tools/vscode_nydric',
         excerpt: 'My Frontend IDE for developing.',
         pinned: true

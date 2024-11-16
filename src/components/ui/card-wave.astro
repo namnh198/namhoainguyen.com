@@ -1,27 +1,32 @@
 ---
-import type { Bookmark } from '@/types';
+import type { Colors } from '@/types';
 import { randomColor } from '@/lib/utils';
 import Badge from './badge.astro';
 
 interface Props {
-  bookmark: Bookmark;
+  option: {
+    name: string;
+    type: string;
+    url: string;
+    color?: Colors;
+  };
 }
-const { bookmark } = Astro.props;
-const color = bookmark.color || randomColor();
+const { option } = Astro.props;
+const color = option.color || randomColor();
 ---
 
 <a
-  href={bookmark.url}
+  href={option.url}
   target="_blank"
   rel="noopener noreferrer"
   class="bg-mantle shadow-xl min-h-32 flex flex-col justify-center items-center p-4 rounded-xl transition will-change-transform duration-300 relative overflow-hidden group gap-2 hover:-translate-y-1"
 >
   <span class="font-medium leading-[1.35] text-[0.95rem] group-hover:text-mauve">
-    {bookmark.name}
+    {option.name}
   </span>
   <span class="gap-2 items-center">
     <Badge variant={color}>
-      <span>{bookmark.type}</span>
+      <span>{option.type}</span>
     </Badge>
   </span>
   <span class="absolute -bottom-0.5 w-full">

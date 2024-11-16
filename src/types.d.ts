@@ -86,13 +86,15 @@ export interface Tag {
 }
 
 export interface Bookmark {
-  name: string;
-  type: 'app' | 'web';
-  url: string;
-  tag?: string[];
-  excerpt?: string;
-  isPaid?: boolean;
-  color?: Colors;
+  title: string;
+  list: Array<{
+    name: string;
+    url: string;
+    image?: string;
+    excerpt?: string;
+    invertDark?: boolean;
+    pinned?: boolean;
+  }>;
 }
 
 export type Toc = {

@@ -5,11 +5,19 @@ import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import PostList from '@/components/post/post-list.astro';
 import { BOOKMARKS } from '../lib/bookmarks';
-import Bookmark from '../components/ui/bookmark.astro';
 import { getMetaData } from '../lib/utils';
 
 const posts = await getPosts();
-const bookmarks = BOOKMARKS.sort((a, b) => a.name.localeCompare(b.name)).slice(0, 10);
+const bookmarks = BOOKMARKS.reduce((result, item) => {
+  const pinned = item.list.filter(b => b.pinned);
+  if (pinned.length) {
+    return [...result, ...pinned];
+  }
+
+  return result;
+}, []);
+
+console.log(bookmarks);
 const metadata = getMetaData({
   title: "Hi! I'm Nam"
 });
@@ -287,10 +295,33 @@ const metadata = getMetaData({
       </div>
 
       <section class="max-w-screen-xl my-5 lg:my-8 mx-auto px-4 lg:px-6">
-        <div
-          class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-8 sm:gap-x-4"
-        >
-          {bookmarks.map(bookmark => <Bookmark bookmark={bookmark} />)}
+        <div class="bg-mantle grid gap-x-2 p-2 sm:grid-cols-2 rounded-xl border border-surface0">
+          {
+            bookmarks.map(item => (
+              <a
+                href={item.url}
+                target="_blank"
+                class="flex flex-row items-center p-4 gap-4 transition-colors duration-300 hover:bg-surface0 rounded-lg"
+              >
+                {item.image && (
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={30}
+                    height={30}
+                    loading="eager"
+                    class:list={['rounded-md h-auto z-20', { 'dark:invert': item.invertDark }]}
+                  />
+                )}
+                <div class="flex flex-col gap-1">
+                  <div class="font-normal">
+                    <span class="font-medium text-[0.95rem]">{item.name}</span>
+                  </div>
+                  <div class="text-slate-500 text-[0.9rem]">{item.excerpt}</div>
+                </div>
+              </a>
+            ))
+          }
         </div>
       </section>
     </section>

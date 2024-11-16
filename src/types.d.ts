@@ -97,6 +97,13 @@ export interface Bookmark {
   }>;
 }
 
+type Project = {
+  name: string;
+  url: string;
+  type: string;
+  color: string;
+};
+
 export type Toc = {
   depth: number;
   slug: string;

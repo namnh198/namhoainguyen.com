@@ -1,3 +1,4 @@
+import { type EmblaCarouselType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useState, useEffect, useCallback } from 'react';
 import clsx from 'clsx';
@@ -18,7 +19,7 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
     emblaApi.scrollNext();
   }, [emblaApi]);
 
-  const onSelect = useCallback(emblaApi => {
+  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
     setPrevBtnDisabled(!emblaApi.canScrollPrev());
     setNextBtnDisabled(!emblaApi.canScrollNext());
   }, []);

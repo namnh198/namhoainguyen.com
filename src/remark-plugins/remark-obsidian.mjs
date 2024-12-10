@@ -20,7 +20,7 @@ export default function remarkObsidian() {
         let matches;
         if (childNode.type === 'text' && childNode.value.match(EMBED_LINK_REGEX)) {
           const url = childNode.value.replace(EMBED_LINK_REGEX, (_, link) => {
-            return `../00-Attachments/${link}`;
+            return `./_private/images/${link}`;
           });
           childNode = {
             type: 'image',
@@ -30,8 +30,25 @@ export default function remarkObsidian() {
             position: childNode.position
           };
         } else if (childNode.type === 'text' && childNode.value.match(BACK_LINK_REGEX)) {
-          childNode.value = childNode.value.replace(BACK_LINK_REGEX, (_, link) => {
+          childNode.value = childNode.value.replace(BACK_LINK_REGEX, (bracketLink, link, heading, text) => {
             const href = getSlugify(link, markdownFolder);
+
+            if (node.children.some(({ value, type }) => value === bracketLink && type === 'inlineCode')) {
+              return bracketLink;
+            }
+
+            if (heading && text) {
+              return `<a href="${href}#${slugify(heading, { lower: true })}" title="${text}">${text}</a>`;
+            }
+
+            if (heading) {
+              return `<a href="${href}#${slugify(heading, { lower: true })}" title="${link}">${link}</a>`;
+            }
+
+            if (text) {
+              return `<a href="${href}" title="${text}">${text}</a>`;
+            }
+
             return `<a href="${href}" title="${link}">${link}</a>`;
           });
 

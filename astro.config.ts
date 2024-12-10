@@ -69,6 +69,9 @@ export default defineConfig({
   vite: {
     resolve: {
       preserveSymlinks: true
+    },
+    ssr: {
+      noExternal: ['@docsearch/react']
     }
   }
 });

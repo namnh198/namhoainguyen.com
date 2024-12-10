@@ -12,25 +12,30 @@ const matchRoute = currentPath.match(/(\/+[^/\s]+\/)(.*)/);
 const currentRoute = matchRoute ? `/${trimSlash(matchRoute[1])}` : currentPath;
 ---
 
-<header class="sticky bg-mantle top-0 left-0 z-40">
-  <div class="flex justify-between h-16 px-4 lg:px-6">
-    <NavMobile navItems={NAVIGATION} activeMenu={currentRoute} client:only="react" />
-    <nav class="flex">
+<header class='sticky bg-mantle top-0 left-0 z-40'>
+  <div class='flex justify-between h-16 px-4 lg:px-6'>
+    <NavMobile navItems={NAVIGATION} activeMenu={currentRoute} client:only='react' />
+    <nav class='flex'>
       <Logo />
       <NavMenu navItems={NAVIGATION} activeMenu={currentRoute} />
     </nav>
-    <div class="flex items-center">
+    <div class='flex items-center'>
       <button
-        class="relative inline-flex items-center justify-center whitespace-nowrap overflow-hidden size-5 mr-4"
+        class='relative inline-flex items-center justify-center whitespace-nowrap overflow-hidden size-5 mr-4'
         data-toggle-theme
-        aria-label="Toggle Theme"
+        aria-label='Toggle Theme'
       >
-        <Icon name="lucide:sun" size={20} data-mode="dark" />
-        <Icon name="lucide:moon" size={20} data-mode="light" />
+        <Icon name='lucide:sun' size={20} data-mode='dark' />
+        <Icon name='lucide:moon' size={20} data-mode='light' />
       </button>
-      <Search client:load />
+      <Search
+        appId={import.meta.env.DOCSEARCH_APP_ID}
+        apiKey={import.meta.env.DOCSEARCH_API_KEY}
+        indexName={import.meta.env.DOCSEARCH_INDEX_NAME}
+        client:load
+      />
     </div>
   </div>
-  <div class="absolute bg-surface0 h-0.5 w-full bottom-0"></div>
-  <div class="absolute bg-mauve h-0.5 w-full bottom-0 -translate-x-full" id="reading-progress"></div>
+  <div class='absolute bg-surface0 h-0.5 w-full bottom-0'></div>
+  <div class='absolute bg-mauve h-0.5 w-full bottom-0 -translate-x-full' id='reading-progress'></div>
 </header>

@@ -38,7 +38,7 @@ export const getMetaData = ({
 }): AstroSeoProps => {
   return {
     title: title || "Hi! I'm Nam",
-    titleTemplate: '%s | Site of Nam',
+    titleTemplate: '%s',
     description: description,
     openGraph: {
       images: [

@@ -88,7 +88,7 @@ const CarouselItem = ({ name, url, type, color }: Project) => (
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    className="shrink-0 w-[19rem] bg-mantle border border-surface0 min-h-32 flex flex-col justify-center items-center p-4 rounded-xl relative overflow-hidden group gap-2"
+    className="shrink-0 w-64 bg-mantle border border-surface0 min-h-32 flex flex-col justify-center items-center p-4 rounded-xl relative overflow-hidden group gap-2"
   >
     <span className="font-medium leading-[1.35] text-[0.95rem] group-hover:text-mauve transition-colors">{name}</span>
     <span className="gap-2 items-center">

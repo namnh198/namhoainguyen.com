@@ -10,7 +10,7 @@ import { getMetaData } from '../../lib/utils';
 const posts = await getPosts();
 const pinnedTags = (await getTags()).filter(tag => tag?.pinned).sort((a, b) => a.name.localeCompare(b.name));
 const metadata = getMetaData({
-  title: 'Notes',
+  title: 'My taking notes',
   description:
     'When I learn something new, I write it down here. It helps me to remember and understand better. I hope you find it useful.'
 });

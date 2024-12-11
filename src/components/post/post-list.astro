@@ -45,22 +45,21 @@ const postByTag = showAll ? posts : posts.slice(0, 8);
       </header>
     )
   }
-  <article class="table font-medium w-full counter-list">
+  <article class="flex flex-col font-medium w-full counter-list">
     <slot />
     {
       postByTag.map(post => (
-        <a href={`/notes/${post.slug}`} class="table-row group bg-dotted">
-          <span
-            class:list={[
-              'table-cell whitespace-nowrap align-middle w-[1%] pr-4 counter before:font-semibold',
-              [`text-${tag.color}`]
-            ]}
-          />
-          <span class="flex items-center justify-between align-middle">
+        <a href={`/notes/${post.slug}`} class="group flex items-center pr-2.5 py-3.5 bg-dotted">
+          <span class:list={['shrink-0 size-6 mr-2 counter before:font-semibold', [`text-${tag.color}`]]} />
+          <span class="flex-1">
             <span class="py-3.5 pr-2.5 group-hover:underline group-hover:decoration-wavy">{post.title}</span>
-            <PostBadge post={post} />
           </span>
-          <span class="table-cell whitespace-nowrap align-middle w-[1%] pl-4">{post.readingTime || 0} min</span>
+          <span class="hidden md:flex md:gap-2 md:items-center">
+            <PostBadge post={post} />
+            <span class="text-sm opacity-70 transition-opacity group-hover:opacity-100">
+              {post.readingTime || 0} min
+            </span>
+          </span>
         </a>
       ))
     }

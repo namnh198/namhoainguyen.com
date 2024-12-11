@@ -32,6 +32,15 @@
   .bg-neon-gradient {
     background: rgb(var(--ctp-mauve)) linear-gradient(260deg, #8750f7 0%, rgb(var(--ctp-text)) 100%);
   }
+
+  .bg-wave-top {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgNzAgNTAwIDYwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgc3R5bGU9InN0cm9rZTogbm9uZTsgZmlsbDogI2VmZjFmNSIgLz48cGF0aCBkPSJNMCwxMDAgQzE1MCwyMDAgMzUwLDAgNTAwLDEwMCBMNTAwLDAwIEwwLDAgWiIgc3R5bGU9InN0cm9rZTogbm9uZTsgZmlsbDogI2U2ZTllZiI+PC9wYXRoPjwvc3ZnPg==);
+  }
+
+  .mocha .bg-wave-top {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgNzAgNTAwIDYwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgc3R5bGU9InN0cm9rZTogbm9uZTsgZmlsbDogIzFlMWUyZSIgLz48cGF0aCBkPSJNMCwxMDAgQzE1MCwyMDAgMzUwLDAgNTAwLDEwMCBMNTAwLDAwIEwwLDAgWiIgc3R5bGU9InN0cm9rZTogbm9uZTsgZmlsbDogIzE4MTgyNSI+PC9wYXRoPjwvc3ZnPg==);
+  }
+
   .counter-list {
     counter-reset: counterNumber;
   }

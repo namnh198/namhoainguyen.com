@@ -81,7 +81,7 @@ export interface Tag {
   color?: string;
   pinned?: boolean | null;
   icon?: string;
-  image?: string;
+  excerpt?: string;
   posts?: Post[];
 }
 

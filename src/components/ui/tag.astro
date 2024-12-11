@@ -1,6 +1,7 @@
 ---
-import type { Tag } from '../../types';
+import type { Tag } from '@/types';
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 
 interface Props {
   tag: Tag;
@@ -14,14 +15,19 @@ const { tag, size, className } = Astro.props;
 <a
   href={`/tags/${tag.slug}`}
   class:list={[
-    'inline-flex justify-center items-center bg-mantle transition-transform duration-300 will-change-transform border border-surface0 shadow-lg',
+    'group inline-flex items-center bg-base transition-transform duration-300 will-change-transform border border-surface0 md:shadow-lg md:dark:shadow-text/5 whitespace-nowrap hover:-translate-y-1 justify-start',
     {
-      'py-4 px-5 text-lg leading-none whitespace-nowrap rounded-xl hover:-translate-y-1': size === 'large',
+      'py-4 px-5 rounded-xl hover:-translate-y-1': size === 'large',
       'py-1 px-2 rounded-md text-sm hover:-translate-y-0.5': size === 'small'
     },
     [className]
   ]}
 >
-  {size === 'large' && <Icon name="lucide:hash" size={18} class="mr-1" />}
-  <span class={`text-${tag.color}`}>{tag.name}</span>
+  {size === 'large' && !tag.icon && <Icon name="lucide:hash" size={18} class="mr-1" />}
+  {
+    size === 'large' && tag.icon && (
+      <Image src={tag.icon} alt="" width={32} height={32} class="object-cover size-8 mr-2" />
+    )
+  }
+  <span class="group-hover:text-mauve">{tag.name}</span>
 </a>

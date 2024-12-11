@@ -3,11 +3,11 @@ import { getTags } from '@/lib/note';
 import HeroCover from '@/components/ui/hero-cover.astro';
 import Tag from '@/components/ui/tag.astro';
 import Layout from '@/layouts/Layout.astro';
-import { getMetaData } from '../../lib/utils';
+import { getMetaData } from '@/lib/utils';
 
 const tags = await getTags();
 const metadata = getMetaData({
-  title: 'Tags',
+  title: 'List all tags',
   description: 'A list of topics I write about'
 });
 ---
@@ -26,10 +26,12 @@ const metadata = getMetaData({
               to quickly find a topic you wanna check.
             </h2>
           </HeroCover>
-          <section class="container my-20 flex flex-wrap justify-center items-center gap-4">
-            {tags.map(tag => (
-              <Tag tag={tag} size="large" />
-            ))}
+          <section class="max-w-screen-lg px-4 mx-auto my-20 flex flex-wrap justify-center items-center gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 w-full">
+              {tags.map(tag => (
+                <Tag tag={tag} size="large" />
+              ))}
+            </div>
           </section>
         </>
       )

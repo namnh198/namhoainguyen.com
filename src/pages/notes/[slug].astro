@@ -37,30 +37,49 @@ const metadata = getMetaData({
     <PostToc tocs={post.headings} client:only="react" />
 
     <script is:inline data-astro-rerun>
-      const mediumScript = document.createElement('script');
-      mediumScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js';
-      mediumScript.onload = () => {
-        mediumZoom(document.querySelectorAll('.notes-body img'), {
-          margin: 25,
-          background: 'rgb(var(--ctp-base))'
-        });
-      };
-      document.head.appendChild(mediumScript);
-      const mermaidScript = document.createElement('script');
-      mermaidScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js';
-      mermaidScript.onload = () => {
-        mermaid.initialize({
-          startOnLoad: true,
-          theme: 'default',
-          themeVariables: {
-            lineColor: 'rgb(var(--ctp-text))'
-          },
-          securityLevel: 'loose'
-        });
+      function onLoadMedium() {
+        if (typeof mediumZoom !== 'undefined') {
+          mediumZoom(document.querySelectorAll('.notes-body img'), {
+            margin: 25,
+            background: 'rgb(var(--ctp-base))'
+          });
+        }
+      }
 
-        mermaid.contentLoaded();
-      };
-      document.head.appendChild(mermaidScript);
+      function onLoadMermaid() {
+        if (typeof mediumZoom !== 'undefined') {
+          mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+              lineColor: 'rgb(var(--ctp-text))'
+            },
+            securityLevel: 'loose'
+          });
+
+          mermaid.contentLoaded();
+        }
+      }
+
+      if (document.querySelector('.notes-body .mermaid')) {
+        onLoadMermaid();
+      }
+
+      if (document.querySelector('.notes-body img')) {
+        onLoadMedium();
+      }
+
+      if (!window.load_script) {
+        window.load_script = true;
+        const mediumScript = document.createElement('script');
+        mediumScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js';
+        mediumScript.onload = onLoadMedium;
+        const mermaidScript = document.createElement('script');
+        mermaidScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js';
+        mermaidScript.onload = onLoadMermaid;
+        document.head.appendChild(mediumScript);
+        document.head.appendChild(mermaidScript);
+      }
     </script>
   </main>
 </Layout>

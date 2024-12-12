@@ -5,6 +5,10 @@
   z-index: 999;
 }
 
+.katex-html {
+  display: none;
+}
+
 @layer components {
   [data-callout] {
     & {

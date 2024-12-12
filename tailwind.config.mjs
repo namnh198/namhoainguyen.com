@@ -49,8 +49,8 @@ export default {
             '--tw-prose-code': theme(`colors.text.DEFAULT`),
             '--tw-prose-pre-code': theme(`colors.text.DEFAULT`),
             '--tw-prose-pre-bg': theme(`colors.base.DEFAULT`),
-            '--tw-prose-th-borders': theme(`colors.text.DEFAULT`),
-            '--tw-prose-td-borders': theme(`colors.text.DEFAULT`)
+            '--tw-prose-th-borders': theme(`colors.surface0.DEFAULT`),
+            '--tw-prose-td-borders': theme(`colors.surface0.DEFAULT`)
           }
         }
       })

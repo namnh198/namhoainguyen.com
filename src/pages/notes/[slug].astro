@@ -5,7 +5,7 @@ import { getPosts } from '@/lib/note';
 import Layout from '@/layouts/Layout.astro';
 import PostHeader from '@/components/post/post-header.astro';
 import PostToc from '@/components/post/post-toc.tsx';
-import { getMetaData } from '../../lib/utils';
+import { getMetaData } from '@/lib/utils';
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
@@ -28,18 +28,6 @@ const metadata = getMetaData({
 ---
 
 <Layout metadata={metadata}>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin slot="head" />
-  <script
-    is:inline
-    src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js"
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-    slot="head"></script>
-  <script
-    is:inline
-    src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js"
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"></script>
   <main>
     <PostHeader post={post} />
     <article class="notes-body prose mx-auto !max-w-screen-lg px-4 py-10 prose-headings:scroll-mt-20">
@@ -49,21 +37,30 @@ const metadata = getMetaData({
     <PostToc tocs={post.headings} client:only="react" />
 
     <script is:inline data-astro-rerun>
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: 'default',
-        themeVariables: {
-          lineColor: 'rgb(var(--ctp-text))'
-        },
-        securityLevel: 'loose'
-      });
+      const mediumScript = document.createElement('script');
+      mediumScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js';
+      mediumScript.onload = () => {
+        mediumZoom(document.querySelectorAll('.notes-body img'), {
+          margin: 25,
+          background: 'rgb(var(--ctp-base))'
+        });
+      };
+      document.head.appendChild(mediumScript);
+      const mermaidScript = document.createElement('script');
+      mermaidScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js';
+      mermaidScript.onload = () => {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'default',
+          themeVariables: {
+            lineColor: 'rgb(var(--ctp-text))'
+          },
+          securityLevel: 'loose'
+        });
 
-      mermaid.contentLoaded();
-
-      mediumZoom(document.querySelectorAll('.notes-body img'), {
-        margin: 25,
-        background: 'rgb(var(--ctp-base))'
-      });
+        mermaid.contentLoaded();
+      };
+      document.head.appendChild(mermaidScript);
     </script>
   </main>
 </Layout>

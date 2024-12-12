@@ -1,4 +1,4 @@
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection, render } from 'astro:content';
 import type { Post, Tag } from '@/types';
 import { cleanSlug, getLastSegment, randomColor } from './utils';
 import { tags } from './tags';
@@ -50,11 +50,20 @@ export const getTags = async () => {
 };
 
 const normalizedPost = async (post: CollectionEntry<'notes'>): Promise<Post> => {
-  const { id, slug: rawSlug, data } = post;
-  const { title, published, tags: rawTags = [], createDate: rawCreateDate = new Date(), updateDate: rawUpdateDate, verified, draft, hideToc } = data;
+  const { id, data } = post;
+  const {
+    title,
+    published,
+    tags: rawTags = [],
+    createDate: rawCreateDate = new Date(),
+    updateDate: rawUpdateDate,
+    verified,
+    draft,
+    hideToc
+  } = data;
 
-  const slug = getLastSegment(rawSlug);
-  const { Content, headings, remarkPluginFrontmatter } = await post.render();
+  const slug = getLastSegment(id);
+  const { Content, headings, remarkPluginFrontmatter } = await render(post);
   const tags = rawTags.map(normalizedTag);
   const createDate = new Date(rawCreateDate);
   const updateDate = new Date(rawUpdateDate || createDate);

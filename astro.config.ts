@@ -9,6 +9,7 @@ import { remarkCallout } from '@r4ai/remark-callout';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import expressiveCode from 'astro-expressive-code';
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 import rehypeExternalLinks from 'rehype-external-links';
 import compress from 'astro-compress';
 import remarkCustomFrontmatter from './src/remark-plugins/remark-frontendmatter.mjs';
@@ -61,7 +62,9 @@ export default defineConfig({
           terminalBackground: 'rgb(var(--ctp-mantle))'
         },
         borderRadius: '.5em'
-      }
+      },
+      textMarkers: true,
+      plugins: [pluginLineNumbers()]
     })
   ],
 

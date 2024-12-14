@@ -8,7 +8,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "lint": "eslint .",
-    "astro": "astro"
+    "astro": "astro",
+    "vercel-install": "./deploy.sh && npm install --ignore-script --production=false"
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.4.0",

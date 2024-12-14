@@ -15,10 +15,10 @@
       @apply min-h-min border border-blue/60 bg-blue/10 rounded-lg py-3 pl-3 pr-6 mb-6;
     }
     & [data-callout-title] {
-      @apply flex p-0 gap-2 items-start leading-tight text-inherit text-blue font-semibold select-none;
+      @apply flex p-0 items-start leading-tight text-inherit text-blue font-semibold select-none;
 
       &:before {
-        @apply content-[""] bg-current size-5 shrink-0;
+        @apply content-[""] bg-current size-5 shrink-0 mr-2;
         mask-repeat: no-repeat;
         mask-size: cover;
         mask-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTE3IDNhMi44NSAyLjgzIDAgMSAxIDQgNEw3LjUgMjAuNUwyIDIybDEuNS01LjVabS0yIDJsNCA0Ii8+PC9zdmc+);
@@ -237,20 +237,20 @@
       }
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    .markdown-heading {
       @apply relative;
 
-      &:hover a {
+      &:hover > a {
         @apply opacity-100;
       }
 
-      a {
-        @apply opacity-0 transition-opacity absolute size-6 -left-8 top-[2px];
+      > a {
+        @apply hidden lg:flex items-center justify-center absolute size-5 -left-5 pr-2 top-1/2 -translate-y-1/2 transition-opacity opacity-0;
         .icon-link {
           mask-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpbmsiPjxwYXRoIGQ9Ik0xMCAxM2E1IDUgMCAwIDAgNy41NC41NGwzLTNhNSA1IDAgMCAwLTcuMDctNy4wN2wtMS43MiAxLjcxIi8+PHBhdGggZD0iTTE0IDExYTUgNSAwIDAgMC03LjU0LS41NGwtMyAzYTUgNSAwIDAgMCA3LjA3IDcuMDdsMS43MS0xLjcxIi8+PC9zdmc+);
           mask-repeat: no-repeat;
           mask-size: cover;
-          @apply inline-block bg-text size-5 rotate-45;
+          @apply inline-block bg-text size-5 shrink-0;
         }
       }
     }

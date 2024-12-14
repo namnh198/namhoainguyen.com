@@ -16,6 +16,7 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import remarkCustomFrontmatter from './src/remark-plugins/remark-frontendmatter.mjs';
 import remarkObsidian from './src/remark-plugins/remark-obsidian.mjs';
+import { h } from 'hastscript';
 
 const hasExternalScripts = false;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
@@ -75,7 +76,20 @@ export default defineConfig({
 
   markdown: {
     remarkPlugins: [remarkCustomFrontmatter, remarkObsidian, remarkMath, remarkCallout],
-    rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeKatex, [rehypeExternalLinks, { target: '_blank' }]]
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'before',
+          group(node) {
+            return h('.markdown-heading .heading-' + node.tagName.charAt(1) + '-group');
+          }
+        }
+      ],
+      rehypeKatex,
+      [rehypeExternalLinks, { target: '_blank' }]
+    ]
   },
 
   vite: {

@@ -12,6 +12,8 @@ import expressiveCode from 'astro-expressive-code';
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 import rehypeExternalLinks from 'rehype-external-links';
 import compress from 'astro-compress';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import remarkCustomFrontmatter from './src/remark-plugins/remark-frontendmatter.mjs';
 import remarkObsidian from './src/remark-plugins/remark-obsidian.mjs';
 
@@ -64,13 +66,16 @@ export default defineConfig({
         borderRadius: '.5em'
       },
       textMarkers: true,
+      defaultProps: {
+        showLineNumbers: false
+      },
       plugins: [pluginLineNumbers()]
     })
   ],
 
   markdown: {
     remarkPlugins: [remarkCustomFrontmatter, remarkObsidian, remarkMath, remarkCallout],
-    rehypePlugins: [rehypeKatex, [rehypeExternalLinks, { target: '_blank' }]]
+    rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeKatex, [rehypeExternalLinks, { target: '_blank' }]]
   },
 
   vite: {

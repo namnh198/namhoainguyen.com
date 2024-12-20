@@ -18,6 +18,8 @@ import remarkCustomFrontmatter from './src/remark-plugins/remark-frontendmatter.
 import remarkObsidian from './src/remark-plugins/remark-obsidian.mjs';
 import { h } from 'hastscript';
 
+import alpinejs from '@astrojs/alpinejs';
+
 const hasExternalScripts = false;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
   hasExternalScripts ? (Array.isArray(items) ? items.map(item => item()) : [items()]) : [];
@@ -71,7 +73,8 @@ export default defineConfig({
         showLineNumbers: false
       },
       plugins: [pluginLineNumbers()]
-    })
+    }),
+    alpinejs({ entrypoint: '/src/entrypoint/alpine' })
   ],
 
   markdown: {
@@ -82,7 +85,7 @@ export default defineConfig({
         rehypeAutolinkHeadings,
         {
           behavior: 'before',
-          group(node) {
+          group(node: Element) {
             return h('.markdown-heading .heading-' + node.tagName.charAt(1) + '-group');
           }
         }

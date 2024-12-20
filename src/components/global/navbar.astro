@@ -1,41 +1,160 @@
 ---
 import { NAVIGATION } from '@/lib/constants';
-import { trimSlash } from '@/lib/utils';
 import { Icon } from 'astro-icon/components';
 import Logo from './logo.astro';
-import NavMenu from './nav-menu.astro';
-import NavMobile from './nav-mobile.tsx';
-import Search from './search.tsx';
-
-const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
-const matchRoute = currentPath.match(/(\/+[^/\s]+\/)(.*)/);
-const currentRoute = matchRoute ? `/${trimSlash(matchRoute[1])}` : currentPath;
 ---
 
 <header class='sticky bg-mantle top-0 left-0 z-40'>
   <div class='flex justify-between h-16 px-4 lg:px-6'>
-    <NavMobile navItems={NAVIGATION} activeMenu={currentRoute} client:only='react' />
-    <nav class='flex'>
+    <button
+      x-data='astro'
+      @click='$store.toggleMenu.toggle()'
+      aria-label='Toggle Menu'
+      :class="{'relative group block lg:hidden w-10 mr-4': true, 'is-active': $store.toggleMenu.isShowMenu }"
+    >
+      <span
+        class='absolute top-[calc(50%-1px)] left-[calc(50%-12px)] w-6 h-0.5 bg-text animation-bar1-reverse group-[.is-active]:animation-bar-1'
+      ></span>
+      <span
+        class='absolute top-[calc(50%-1px)] left-[calc(50%-12px)] w-6 h-0.5 bg-text animation-bar2-reverse group-[.is-active]:animation-bar-2'
+      ></span>
+      <span
+        class='absolute top-[calc(50%-1px)] left-[calc(50%-12px)] w-6 h-0.5 bg-text animation-bar3-reverse group-[.is-active]:animation-bar-3'
+      ></span>
+    </button>
+    <nav class='flex' x-data='astro'>
       <Logo />
-      <NavMenu navItems={NAVIGATION} activeMenu={currentRoute} />
+      <div class='hidden lg:flex'>
+        <template x-for='navItem in $store.toggleMenu.navItems' :key='navItem.href'>
+          <a
+            :href='navItem.href'
+            :target="navItem.external ? '_blank' : '_self'"
+            :rel="navItem.external ? 'noopener noreferrer' : ''"
+            class='relative group flex items-center transition-fade duration-300 ease-in-out px-5'
+            :class="{ 'is-active': navItem.href === $store.toggleMenu.getActiveMenu() }"
+          >
+            <span
+              class='absolute bg-mauve group-[.is-active]:top-0 group-[.is-active]:left-0 group-[.is-active]:h-1 group-[.is-active]:w-full'
+            ></span>
+            <span
+              class='absolute size-full opacity-0 group-[.is-active]:opacity-100 from-mauve/15 to-mauve/5 scale-x-0 top-0 left-0 bg-gradient-to-b group-[.is-active]:scale-x-100'
+            ></span>
+            <span
+              class='font-medium transition-opacity duration-300 opacity-50 group-[.is-active]:opacity-100 group-hover:opacity-100 group-hover:underline tracking-wide'
+              x-text='navItem.title'></span>
+          </a>
+        </template>
+      </div>
     </nav>
-    <div class='flex items-center'>
+    <div class='flex items-center' x-data='theme'>
       <button
+        @click='toggle()'
         class='relative inline-flex items-center justify-center whitespace-nowrap overflow-hidden size-5 mr-4'
-        data-toggle-theme
         aria-label='Toggle Theme'
       >
         <Icon name='lucide:sun' size={20} data-mode='dark' />
         <Icon name='lucide:moon' size={20} data-mode='light' />
       </button>
-      <Search
+      <div id='docsearch'></div>
+      <!-- <Search
         appId={import.meta.env.DOCSEARCH_APP_ID}
         apiKey={import.meta.env.DOCSEARCH_API_KEY}
         indexName={import.meta.env.DOCSEARCH_INDEX_NAME}
         client:load
-      />
+      /> -->
     </div>
   </div>
   <div class='absolute bg-surface0 h-0.5 w-full bottom-0'></div>
   <div class='absolute bg-mauve h-0.5 w-full bottom-0 -translate-x-full' id='reading-progress'></div>
 </header>
+
+<div x-data='astro'>
+  <div
+    class='fixed z-30 bg-gradient-to-b from-mantle to-mantle/80 top-16 left-0 w-screen h-screen overflow-y-auto'
+    x-show='$store.toggleMenu.isShowMenu'
+    x-transition:enter='transition-transform ease-out duration-200'
+    x-transition:enter-start='-translate-y-full'
+    x-transition:enter-end='translate-y-0'
+    x-transition:leave='transition-transform ease-in duration-200'
+    x-transition:leave-start='translate-y-0'
+    x-transition:leave-end='-translate-y-full'
+  >
+    <template x-for='navItem in $store.toggleMenu.navItems' :key='navItem.href'>
+      <a
+        :href='navItem.href'
+        :target="navItem.external ? '_blank' : '_self'"
+        :rel="navItem.external ? 'noopener noreferrer' : ''"
+        class='relative group block py-5 text-2xl leading-5 text-center whitespace-nowrap transition-fade duration-300 ease-in-out'
+        :class="{ 'is-active': navItem.href === $store.toggleMenu.getActiveMenu() }"
+      >
+        <span
+          class='absolute bg-mauve group-[.is-active]:top-0 group-[.is-active]:left-0 group-[.is-active]:w-1 group-[.is-active]:h-full'
+        ></span>
+        <span
+          class='absolute size-full opacity-0 group-[.is-active]:opacity-100 from-mauve/15 to-mauve/5 scale-y-0 top-0 left-0 bg-gradient-to-r group-[.is-active]:scale-y-100'
+        ></span>
+        <span
+          class='font-bold tracking-[0.04em] transition-opacity duration-300 opacity-50 group-[.is-active]:opacity-100 group-hover:opacity-100 group-hover:underline'
+          x-text='navItem.title'></span>
+      </a>
+    </template>
+  </div>
+</div>
+
+<script is:inline define:vars={{ navItems: NAVIGATION }}>
+  document.addEventListener('alpine:init', () => {
+    Alpine.store('toggleMenu', {
+      isShowMenu: false,
+      navItems: navItems,
+      getActiveMenu() {
+        const url = new URL(window.location.href).pathname;
+        const matchRoute = url.match(/(\/+[^/\s]+\/)(.*)/);
+        return matchRoute ? `/${matchRoute[1].replace(/^\/+|\/+$/g, '')}` : url;
+      },
+      hide() {
+        this.isShowMenu = false;
+      },
+      toggle() {
+        this.isShowMenu = !this.isShowMenu;
+        document.body.classList.toggle('overflow-hidden', this.isShowMenu);
+      }
+    });
+
+    Alpine.data('theme', () => ({
+      theme: 'light',
+      init() {
+        this.theme = localStorage.getItem('theme') ?? 'system';
+        if (this.theme === 'system') {
+          this.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        applyTheme(this.theme);
+      },
+      toggle() {
+        this.theme = this.theme === 'light' ? 'dark' : 'light';
+        applyTheme(this.theme);
+        localStorage.setItem('theme', this.theme);
+        this.changeGiscusTheme();
+      },
+      changeGiscusTheme() {
+        const giscusTheme = `https://giscus.catppuccin.com/themes/${this.theme === 'dark' ? 'mocha' : 'latte'}.css`;
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+
+        iframe.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: giscusTheme
+              }
+            }
+          },
+          'https://giscus.app'
+        );
+      }
+    }));
+  });
+
+  document.addEventListener('astro:after-swap', () => {
+    Alpine.store('toggleMenu').hide();
+  });
+</script>

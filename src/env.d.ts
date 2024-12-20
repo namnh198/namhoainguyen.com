@@ -20,3 +20,7 @@ declare module 'virtual:notes' {
     | 'sapphire'
     | 'blue';
 }
+
+interface Window {
+  Alpine: import('alpinejs').Alpine;
+}

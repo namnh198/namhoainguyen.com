@@ -1,0 +1,129 @@
+---
+import { PROJECTS } from '@/lib/projects';
+import { Icon } from 'astro-icon/components';
+---
+
+<link rel='stylesheet' href='https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css' />
+<script is:raw src='https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js'></script>
+<div
+  x-data='{swiper: null}'
+  x-init='swiper = new Swiper($refs.container, {
+      loop: true,
+      slidesPerView: 1,
+      centeredSlides: true,
+      spaceBetween: 20,
+      breakpoints: {
+        992: {
+          slidesPerView: 4.5,
+        },
+      },
+    })'
+  class='relative mt-4 flex flex-row'
+>
+  <div class='absolute inset-y-0 left-0 z-10 flex items-center'>
+    <button
+      @click='swiper.slidePrev()'
+      class='absolute bg-mantle disabled:bg-base hover:bg-crust top-1/2 -translate-y-1/2 -left-4 z-10 size-10 inline-flex items-center justify-center shadow-lg rounded-full border border-surface0 text-text focus:outline-none'
+    >
+      <Icon name='lucide:chevron-left' size={24} />
+    </button>
+  </div>
+
+  <div class='swiper-container' x-ref='container'>
+    <div class='swiper-wrapper'>
+      <!-- Slides -->
+      {
+        PROJECTS.map(({ name, url, type, color }) => (
+          <a
+            href={url}
+            target='_blank'
+            rel='noopener noreferrer'
+            class='swiper-slide shrink-0 max-w-64 bg-mantle border border-surface0 min-h-32 flex flex-col justify-center items-center p-4 rounded-xl relative overflow-hidden group gap-2'
+          >
+            <span class='font-medium leading-[1.35] text-[0.95rem] group-hover:text-mauve transition-colors'>
+              {name}
+            </span>
+            <span class='gap-2 items-center'>
+              <span
+                class:list={[
+                  'inline-block py-0.5 px-2 rounded-[.25rem] text-sm leading-4 font-semibold',
+                  {
+                    'bg-rosewater text-background': color === 'rosewater',
+                    'bg-flamingo text-background': color === 'flamingo',
+                    'bg-pink text-background': color === 'pink',
+                    'bg-mauve text-background': color === 'mauve',
+                    'bg-red text-background': color === 'red',
+                    'bg-maroon text-background': color === 'maroon',
+                    'bg-peach text-background': color === 'peach',
+                    'bg-yellow text-background': color === 'yellow',
+                    'bg-green text-background': color === 'green',
+                    'bg-teal text-background': color === 'teal',
+                    'bg-sky text-background': color === 'sky',
+                    'bg-lavender text-background': color === 'lavender',
+                    'bg-sapphire text-background': color === 'sapphire',
+                    'bg-blue text-background': color === 'blue'
+                  }
+                ]}
+              >
+                {type}
+              </span>
+            </span>
+            <span class='absolute -bottom-0.5 w-full'>
+              <svg
+                class='relative w-full h-[5vh] -mb-2 min-h-[60px] max-h-[150px]'
+                preserveAspectRatio='none'
+                shape-rendering='auto'
+                viewBox='0 24 150 28'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <defs>
+                  <path d='M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z' id='gentle-wave' />
+                </defs>
+                <g class='parallax'>
+                  <use
+                    fill={`rgba(var(--ctp-${color}), 0.1)`}
+                    x='48'
+                    xlink:href='#gentle-wave'
+                    y='0'
+                    class='animation-wave'
+                    style={{ animationDelay: '2s', animationDuration: '10s' }}
+                  />
+                  <use
+                    fill={`rgba(var(--ctp-${color}), 0.05)`}
+                    x='48'
+                    xlink:href='#gentle-wave'
+                    y='3'
+                    style={{ animationDelay: '-5s', animationDuration: '10s' }}
+                  />
+                  <use
+                    fill={`rgba(var(--ctp-${color}), 0.01)`}
+                    x='48'
+                    xlink:href='#gentle-wave'
+                    y='5'
+                    style={{ animationDelay: '7s', animationDuration: '10s' }}
+                  />
+                  <use
+                    fill={`rgba(var(--ctp-${color}), 0.005)`}
+                    x='48'
+                    xlink:href='#gentle-wave'
+                    y='7'
+                    style={{ animationDelay: '1s', animationDuration: '10s' }}
+                  />
+                </g>
+              </svg>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class='absolute inset-y-0 right-0 z-10 flex items-center'>
+    <button
+      @click='swiper.slideNext()'
+      class='absolute bg-mantle disabled:bg-base hover:bg-crust top-1/2 -translate-y-1/2 -right-4 z-10 size-10 inline-flex items-center justify-center shadow-lg rounded-full border border-surface0 text-text focus:outline-none'
+    >
+      <Icon name='lucide:chevron-right' size={24} />
+    </button>
+  </div>
+</div>

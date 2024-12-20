@@ -15,29 +15,48 @@ const { metadata } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="latte scroll-smooth break-words [word-break:break-word]">
+<html lang='en' class='latte scroll-smooth break-words [word-break:break-word]'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+    <meta charset='UTF-8' />
+    <meta name='description' content='Astro description' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
     <AstroSeo {...metadata} />
-    <link rel="preconnect" href={`https://${import.meta.env.DOCSEARCH_APP_ID}-dsn.algolia.net`} crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel='preconnect' href={`https://${import.meta.env.DOCSEARCH_APP_ID}-dsn.algolia.net`} crossorigin />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-      rel="stylesheet"
+      href='https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap'
+      rel='stylesheet'
     />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@docsearch/css@3' />
     <BasicScripts />
-    {import.meta.env.NODE_ENV === 'production' && <GoogleAnalytics id="G-3MB2TKP0VR" partytown={true} />}
-    <slot name="head" />
-    <ClientRouter fallback="swap" />
+    {import.meta.env.NODE_ENV === 'production' && <GoogleAnalytics id='G-3MB2TKP0VR' partytown={true} />}
+    <slot name='head' />
+    <ClientRouter fallback='swap' />
   </head>
-  <body class="bg-base text-text">
+  <body class='bg-base text-text'>
     <Navbar />
     <slot />
     <Footer />
+    <script is:raw src='https://cdn.jsdelivr.net/npm/@docsearch/js@3'></script>
+    <script
+      is:inline
+      define:vars={{
+        appId: import.meta.env.DOCSEARCH_APP_ID,
+        apiKey: import.meta.env.DOCSEARCH_API_KEY,
+        indexName: import.meta.env.DOCSEARCH_INDEX_NAME
+      }}
+    >
+      if (document.querySelector('#docsearch')) {
+        docsearch({
+          container: '#docsearch',
+          appId: appId,
+          apiKey: apiKey,
+          indexName: indexName
+        });
+      }
+    </script>
   </body>
 </html>

@@ -40,7 +40,7 @@ const { metadata } = Astro.props;
     <Navbar />
     <slot />
     <Footer />
-    <script is:raw src='https://cdn.jsdelivr.net/npm/@docsearch/js@3'></script>
+    <script is:inline src='https://cdn.jsdelivr.net/npm/@docsearch/js@3'></script>
     <script
       is:inline
       define:vars={{
@@ -48,6 +48,7 @@ const { metadata } = Astro.props;
         apiKey: import.meta.env.DOCSEARCH_API_KEY,
         indexName: import.meta.env.DOCSEARCH_INDEX_NAME
       }}
+      data-astro-rerun
     >
       if (document.querySelector('#docsearch')) {
         docsearch({
@@ -57,6 +58,15 @@ const { metadata } = Astro.props;
           indexName: indexName
         });
       }
+
+      document.addEventListener('astro:after-preparation', () => {
+        Alpine.stopObservingMutations();
+      });
+      document.addEventListener('astro:page-load', () => {
+        document.dispatchEvent(new Event('alpine:init'));
+        Alpine.initTree(document.documentElement);
+        Alpine.startObservingMutations();
+      });
     </script>
   </body>
 </html>

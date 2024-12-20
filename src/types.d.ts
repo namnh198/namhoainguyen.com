@@ -101,7 +101,7 @@ type Project = {
   name: string;
   url: string;
   type: string;
-  color: string;
+  color: Colors;
 };
 
 export type Toc = {

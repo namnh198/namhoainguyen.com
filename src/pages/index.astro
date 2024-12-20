@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import PostList from '@/components/post/post-list.astro';
-import ProjectCarousel from '../components/home/project-carousel.tsx';
+import ProjectCarousel from '../components/home/project-carousel.astro';
 import { BOOKMARKS } from '../lib/bookmarks';
 import { PROJECTS } from '../lib/projects';
 import { getMetaData } from '../lib/utils';
@@ -26,91 +26,91 @@ const metadata = getMetaData({
 
 <Layout metadata={metadata}>
   <main>
-    <section class="relative bg-mantle">
-      <div class="py-12 lg:py-24">
-        <div class="max-w-screen-xl mx-auto flex flex-wrap items-center justify-center">
-          <div class="relative flex-auto w-full lg:w-1/2 px-4 lg:px-6">
-            <div class="inline-flex items-center">
-              <Image src="/assets/notoemoji.webp" alt="" width={32} height={32} />
-              <p class="ml-2.5 text-lg md:text-xl text-text/80">Award Winning Branding Expert</p>
+    <section class='relative bg-mantle'>
+      <div class='py-12 lg:py-24'>
+        <div class='max-w-screen-xl mx-auto flex flex-wrap items-center justify-center'>
+          <div class='relative flex-auto w-full lg:w-1/2 px-4 lg:px-6'>
+            <div class='inline-flex items-center'>
+              <Image src='/assets/notoemoji.webp' alt='' width={32} height={32} />
+              <p class='ml-2.5 text-lg md:text-xl text-text/80'>Award Winning Branding Expert</p>
             </div>
             <h1
-              class="inline-flex lg:mt-4 font-bold text-4xl sm:text-5xl lg:text-6xl leading-tight text-transparent bg-clip-text bg-gradient-to-r from-text to-mauve/60"
+              class='inline-flex lg:mt-4 font-bold text-4xl sm:text-5xl lg:text-6xl leading-tight text-transparent bg-clip-text bg-gradient-to-r from-text to-mauve/60'
             >
               Bring your vision to ultimate reality
             </h1>
-            <p class="text-[1rem] sm:text-lg lg:text-xl mt-4 leading-normal">
+            <p class='text-[1rem] sm:text-lg lg:text-xl mt-4 leading-normal'>
               Specialize in creating unique visual identities for digital products and believe that a stunning design
               starts with common values, open communication, and respect for your audience.
             </p>
-            <div class="flex flex-wrap justify-center lg:justify-start items-center mt-4">
+            <div class='flex flex-wrap justify-center lg:justify-start items-center mt-4'>
               <a
-                href="#"
-                class="group relative inline-flex items-center justify-center px-5 py-3.5 bg-blue text-lg text-background font-medium rounded-full overflow-hidden"
+                href='#'
+                class='group relative inline-flex items-center justify-center px-5 py-3.5 bg-blue text-lg text-background font-medium rounded-full overflow-hidden'
               >
                 <span
-                  class="absolute inset-0 top-0 left-0 block size-full opacity-20 bg-text transition-transform will-change-transform duration-500 scale-x-0 origin-[100%_100%] group-hover:scale-x-100 group-hover:origin-[0_0]"
+                  class='absolute inset-0 top-0 left-0 block size-full opacity-20 bg-text transition-transform will-change-transform duration-500 scale-x-0 origin-[100%_100%] group-hover:scale-x-100 group-hover:origin-[0_0]'
                 ></span>
-                <span class="relative">View Portfolio</span>
+                <span class='relative'>View Portfolio</span>
               </a>
               <a
-                href="mailto:me@namhoainguyen.com"
-                target="_blank"
-                class="group relative inline-flex items-center justify-center px-5 py-3.5 text-lg font-medium rounded-full overflow-hidden"
+                href='mailto:me@namhoainguyen.com'
+                target='_blank'
+                class='group relative inline-flex items-center justify-center px-5 py-3.5 text-lg font-medium rounded-full overflow-hidden'
               >
-                <Icon name="lucide:mail" size={24} class="text-red mr-3" />
-                <span class="group-hover:underline group-hover:decoration-wavy">me@namhoainguyen.com</span>
+                <Icon name='lucide:mail' size={24} class='text-red mr-3' />
+                <span class='group-hover:underline group-hover:decoration-wavy'>me@namhoainguyen.com</span>
               </a>
             </div>
           </div>
-          <div class="w-full lg:w-1/2 flex-auto px-4 lg:px-6 space-y-4 mt-8 lg:mt-0">
-            <div class="flex items-center justify-center lg:justify-end">
+          <div class='w-full lg:w-1/2 flex-auto px-4 lg:px-6 space-y-4 mt-8 lg:mt-0'>
+            <div class='flex items-center justify-center lg:justify-end'>
               <div
-                class="group relative h-[500px] w-[400px] flex items-end justify-center rounded-[500px] transition-transform will-change-transform duration-300 bg-base ring-2 ring-mauve"
+                class='group relative h-[500px] w-[400px] flex items-end justify-center rounded-[500px] transition-transform will-change-transform duration-300 bg-base ring-2 ring-mauve'
               >
-                <Image src="/assets/avatar.webp" alt="Avatar" width={360} height={360} class="rounded-[500px]" />
-                <div class="absolute left-[2rem] bottom-[18rem] top-[70%] lg:-left-0">
+                <Image src='/assets/avatar.webp' alt='Avatar' width={360} height={360} class='rounded-[500px]' />
+                <div class='absolute left-[2rem] bottom-[18rem] top-[70%] lg:-left-0'>
                   <div
-                    class="relative px-4 py-2 rounded-lg bg-text text-background text-[1rem] font-semibold animation-cursor-left-sm lg:animation-cursor-left"
+                    class='relative px-4 py-2 rounded-lg bg-text text-background text-[1rem] font-semibold animation-cursor-left-sm lg:animation-cursor-left'
                   >
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="absolute -top-[16px] -right-[15px] text-yellow rotate-90"
+                      xmlns='http://www.w3.org/2000/svg'
+                      width='16'
+                      height='16'
+                      viewBox='0 0 24 24'
+                      fill='currentColor'
+                      stroke='currentColor'
+                      stroke-width='2'
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                      class='absolute -top-[16px] -right-[15px] text-yellow rotate-90'
                     >
                       <path
-                        d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"
+                        d='M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z'
                       ></path>
                     </svg>
 
                     <p>Brand Research</p>
                   </div>
                 </div>
-                <div class="absolute bottom-[2rem] lg:bottom-[5%] right-[2rem]">
+                <div class='absolute bottom-[2rem] lg:bottom-[5%] right-[2rem]'>
                   <div
-                    class="relative px-4 py-2 rounded-lg bg-text text-background text-[1rem] font-semibold animation-cursor-right-sm lg:animation-cursor-right"
+                    class='relative px-4 py-2 rounded-lg bg-text text-background text-[1rem] font-semibold animation-cursor-right-sm lg:animation-cursor-right'
                   >
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="absolute -top-[16px] -left-[15px] text-yellow"
+                      xmlns='http://www.w3.org/2000/svg'
+                      width='16'
+                      height='16'
+                      viewBox='0 0 24 24'
+                      fill='currentColor'
+                      stroke='currentColor'
+                      stroke-width='2'
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                      class='absolute -top-[16px] -left-[15px] text-yellow'
                     >
                       <path
-                        d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"
+                        d='M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z'
                       ></path>
                     </svg>
 
@@ -121,131 +121,131 @@ const metadata = getMetaData({
             </div>
           </div>
         </div>
-        <div class="max-w-screen-xl mx-auto px-6">
-          <p class="font-semibold text-lg md:text-xl text-text/80">Some Project of Nam:</p>
-          <ProjectCarousel projects={PROJECTS} client:load />
+        <div class='max-w-screen-xl mx-auto px-6'>
+          <p class='font-semibold text-lg md:text-xl text-text/80'>Some Project of Nam:</p>
+          <ProjectCarousel projects={PROJECTS} />
         </div>
       </div>
-      <div class="block h-8 w-full bg-wave-top"></div>
+      <div class='block h-8 w-full bg-wave-top'></div>
     </section>
-    <section class="relative py-12 lg:py-24">
-      <div class="pb-[6vh] text-center max-w-screen-md mx-auto">
+    <section class='relative py-12 lg:py-24'>
+      <div class='pb-[6vh] text-center max-w-screen-md mx-auto'>
         <h2
-          class="font-extrabold text-4xl sm:text-5xl lg:text-6xl mb-4 lg:mb-8 transition duration-300 text-transparent bg-clip-text bg-gradient-to-r from-text to-mauve/60"
+          class='font-extrabold text-4xl sm:text-5xl lg:text-6xl mb-4 lg:mb-8 transition duration-300 text-transparent bg-clip-text bg-gradient-to-r from-text to-mauve/60'
         >
           My Skills
         </h2>
-        <p class="text-[1rem] sm:text-lg lg:text-xl leading-normal">
+        <p class='text-[1rem] sm:text-lg lg:text-xl leading-normal'>
           We put your ideas and thus your wishes in the form of a unique web project that inspires you and you
           customers.
         </p>
       </div>
-      <div class="max-w-screen-xl mx-auto px-4">
-        <div class="flex flex-wrap justify-center items-center gap-5">
+      <div class='max-w-screen-xl mx-auto px-4'>
+        <div class='flex flex-wrap justify-center items-center gap-5'>
           <div
-            class="group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500"
+            class='group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500'
           >
-            <div class="w-full max-w-[60px] mx-auto mb-7">
+            <div class='w-full max-w-[60px] mx-auto mb-7'>
               <Image
-                src="/assets/figma.svg"
-                alt=""
+                src='/assets/figma.svg'
+                alt=''
                 width={60}
                 height={60}
-                class="grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300"
+                class='grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300'
               />
             </div>
             <div
-              class="text-xl font-bold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100"
+              class='text-xl font-bold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100'
             >
               Figma
             </div>
           </div>
           <div
-            class="group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500"
+            class='group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500'
           >
-            <div class="w-full max-w-[60px] mx-auto mb-7">
+            <div class='w-full max-w-[60px] mx-auto mb-7'>
               <Image
-                src="/assets/laravel.svg"
-                alt=""
+                src='/assets/laravel.svg'
+                alt=''
                 width={60}
                 height={60}
-                class="grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300"
+                class='grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300'
               />
             </div>
             <div
-              class="text-xl font-bold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100"
+              class='text-xl font-bold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100'
             >
               Laravel
             </div>
           </div>
           <div
-            class="group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500"
+            class='group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500'
           >
-            <div class="w-full max-w-[60px] mx-auto mb-7">
+            <div class='w-full max-w-[60px] mx-auto mb-7'>
               <Image
-                src="/assets/magento.svg"
-                alt=""
+                src='/assets/magento.svg'
+                alt=''
                 width={60}
                 height={60}
-                class="grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300"
+                class='grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300'
               />
             </div>
             <div
-              class="text-xl font-bold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100"
+              class='text-xl font-bold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100'
             >
               Magento
             </div>
           </div>
           <div
-            class="group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500"
+            class='group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500'
           >
-            <div class="w-full max-w-[60px] mx-auto mb-7">
+            <div class='w-full max-w-[60px] mx-auto mb-7'>
               <Image
-                src="/assets/react.svg"
-                alt=""
+                src='/assets/react.svg'
+                alt=''
                 width={60}
                 height={60}
-                class="grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300"
+                class='grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300'
               />
             </div>
             <div
-              class="text-xl font-bold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100"
+              class='text-xl font-bold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100'
             >
               React
             </div>
           </div>
           <div
-            class="group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500"
+            class='group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500'
           >
-            <div class="w-full max-w-[60px] mx-auto mb-7">
+            <div class='w-full max-w-[60px] mx-auto mb-7'>
               <Image
-                src="/assets/wp.svg"
-                alt=""
+                src='/assets/wp.svg'
+                alt=''
                 width={60}
                 height={60}
-                class="grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300"
+                class='grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300'
               />
             </div>
             <div
-              class="text-xl font-bold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100"
+              class='text-xl font-bold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100'
             >
               Wordpress
             </div>
           </div>
           <div
-            class="group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500"
+            class='group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500'
           >
-            <div class="w-full max-w-[60px] mx-auto mb-7">
+            <div class='w-full max-w-[60px] mx-auto mb-7'>
               <Image
-                src="/assets/js.svg"
-                alt=""
+                src='/assets/js.svg'
+                alt=''
                 width={60}
                 height={60}
-                class="grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300"
+                class='grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300'
               />
             </div>
             <div
-              class="text-xl font-extrabold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100"
+              class='text-xl font-extrabold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100'
             >
               Javascript
             </div>
@@ -253,47 +253,47 @@ const metadata = getMetaData({
         </div>
       </div>
     </section>
-    <section class="relative bg-mantle py-12 lg:py-24">
-      <div class="px-6 pt-[10vh] pb-[6vh] text-center max-w-screen-md mx-auto">
+    <section class='relative bg-mantle py-12 lg:py-24'>
+      <div class='px-6 pt-[10vh] pb-[6vh] text-center max-w-screen-md mx-auto'>
         <h2
-          class="font-extrabold mb-8 transition duration-300 text-transparent bg-clip-text bg-gradient-to-r from-text to-mauve/60"
+          class='font-extrabold mb-8 transition duration-300 text-transparent bg-clip-text bg-gradient-to-r from-text to-mauve/60'
         >
-          <a class="text-4xl sm:text-5xl lg:text-6xl mb-4 lg:mb-8" href="/notes">Recent updated notes</a>
+          <a class='text-4xl sm:text-5xl lg:text-6xl mb-4 lg:mb-8' href='/notes'>Recent updated notes</a>
         </h2>
-        <p class="text-[1rem] sm:text-lg lg:text-xl leading-normal">
+        <p class='text-[1rem] sm:text-lg lg:text-xl leading-normal'>
           We put your ideas and thus your wishes in the form of a unique web project that inspires you and you
           customers.
         </p>
       </div>
 
-      <div class="max-w-screen-xl xl:mx-auto">
-        <div class="mx-4 lg:mx-6 rounded-xl border border-surface0">
-          <PostList posts={posts} tag={recentTag} className="lg:!pl-20" />
+      <div class='max-w-screen-xl xl:mx-auto'>
+        <div class='mx-4 lg:mx-6 rounded-xl border border-surface0'>
+          <PostList posts={posts} tag={recentTag} className='lg:!pl-20' />
         </div>
       </div>
     </section>
 
-    <section class="relative py-12 lg:py-24">
-      <div class="px-6 pt-[10vh] pb-[6vh] text-center max-w-screen-md mx-auto">
+    <section class='relative py-12 lg:py-24'>
+      <div class='px-6 pt-[10vh] pb-[6vh] text-center max-w-screen-md mx-auto'>
         <h2
-          class="font-extrabold mb-8 transition duration-300 text-transparent bg-clip-text bg-gradient-to-r from-text to-mauve/60"
+          class='font-extrabold mb-8 transition duration-300 text-transparent bg-clip-text bg-gradient-to-r from-text to-mauve/60'
         >
-          <a class="text-4xl sm:text-5xl lg:text-6xl mb-4 lg:mb-8" href="/bookmarks">Bookmarks</a>
+          <a class='text-4xl sm:text-5xl lg:text-6xl mb-4 lg:mb-8' href='/bookmarks'>Bookmarks</a>
         </h2>
-        <p class="text-[1rem] sm:text-lg lg:text-xl leading-normal">
+        <p class='text-[1rem] sm:text-lg lg:text-xl leading-normal'>
           We put your ideas and thus your wishes in the form of a unique web project that inspires you and you
           customers.
         </p>
       </div>
 
-      <section class="max-w-screen-xl my-5 lg:my-8 mx-auto px-4 lg:px-6">
-        <div class="bg-mantle grid gap-x-2 p-2 sm:grid-cols-2 rounded-xl border border-surface0">
+      <section class='max-w-screen-xl my-5 lg:my-8 mx-auto px-4 lg:px-6'>
+        <div class='bg-mantle grid gap-x-2 p-2 sm:grid-cols-2 rounded-xl border border-surface0'>
           {
             bookmarks.map(item => (
               <a
                 href={item.url}
-                target="_blank"
-                class="flex flex-row items-center p-4 gap-4 transition-colors duration-300 hover:bg-surface0 rounded-lg"
+                target='_blank'
+                class='flex flex-row items-center p-4 gap-4 transition-colors duration-300 hover:bg-surface0 rounded-lg'
               >
                 {item.image && (
                   <Image
@@ -301,15 +301,15 @@ const metadata = getMetaData({
                     alt={item.name}
                     width={30}
                     height={30}
-                    loading="eager"
+                    loading='eager'
                     class:list={['rounded-md h-auto z-20', { 'dark:invert': item.invertDark }]}
                   />
                 )}
-                <div class="flex flex-col gap-1">
-                  <div class="font-normal">
-                    <span class="font-medium text-[0.95rem]">{item.name}</span>
+                <div class='flex flex-col gap-1'>
+                  <div class='font-normal'>
+                    <span class='font-medium text-[0.95rem]'>{item.name}</span>
                   </div>
-                  <div class="text-slate-500 text-[0.9rem]">{item.excerpt}</div>
+                  <div class='text-slate-500 text-[0.9rem]'>{item.excerpt}</div>
                 </div>
               </a>
             ))

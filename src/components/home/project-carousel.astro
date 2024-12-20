@@ -1,28 +1,13 @@
 ---
 import { PROJECTS } from '@/lib/projects';
 import { Icon } from 'astro-icon/components';
+import Badge from '../ui/badge.astro';
 ---
 
-<link rel='stylesheet' href='https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css' />
-<script is:raw src='https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js'></script>
-<div
-  x-data='{swiper: null}'
-  x-init='swiper = new Swiper($refs.container, {
-      loop: true,
-      slidesPerView: 1,
-      centeredSlides: true,
-      spaceBetween: 20,
-      breakpoints: {
-        992: {
-          slidesPerView: 4.5,
-        },
-      },
-    })'
-  class='relative mt-4 flex flex-row'
->
+<div x-data='swiper' class='relative mt-4 flex flex-row'>
   <div class='absolute inset-y-0 left-0 z-10 flex items-center'>
     <button
-      @click='swiper.slidePrev()'
+      @click='slidePrev()'
       class='absolute bg-mantle disabled:bg-base hover:bg-crust top-1/2 -translate-y-1/2 -left-4 z-10 size-10 inline-flex items-center justify-center shadow-lg rounded-full border border-surface0 text-text focus:outline-none'
     >
       <Icon name='lucide:chevron-left' size={24} />
@@ -44,29 +29,7 @@ import { Icon } from 'astro-icon/components';
               {name}
             </span>
             <span class='gap-2 items-center'>
-              <span
-                class:list={[
-                  'inline-block py-0.5 px-2 rounded-[.25rem] text-sm leading-4 font-semibold',
-                  {
-                    'bg-rosewater text-background': color === 'rosewater',
-                    'bg-flamingo text-background': color === 'flamingo',
-                    'bg-pink text-background': color === 'pink',
-                    'bg-mauve text-background': color === 'mauve',
-                    'bg-red text-background': color === 'red',
-                    'bg-maroon text-background': color === 'maroon',
-                    'bg-peach text-background': color === 'peach',
-                    'bg-yellow text-background': color === 'yellow',
-                    'bg-green text-background': color === 'green',
-                    'bg-teal text-background': color === 'teal',
-                    'bg-sky text-background': color === 'sky',
-                    'bg-lavender text-background': color === 'lavender',
-                    'bg-sapphire text-background': color === 'sapphire',
-                    'bg-blue text-background': color === 'blue'
-                  }
-                ]}
-              >
-                {type}
-              </span>
+              <Badge variant={color}>{type}</Badge>
             </span>
             <span class='absolute -bottom-0.5 w-full'>
               <svg
@@ -120,10 +83,48 @@ import { Icon } from 'astro-icon/components';
 
   <div class='absolute inset-y-0 right-0 z-10 flex items-center'>
     <button
-      @click='swiper.slideNext()'
+      @click='slideNext()'
       class='absolute bg-mantle disabled:bg-base hover:bg-crust top-1/2 -translate-y-1/2 -right-4 z-10 size-10 inline-flex items-center justify-center shadow-lg rounded-full border border-surface0 text-text focus:outline-none'
     >
       <Icon name='lucide:chevron-right' size={24} />
     </button>
   </div>
 </div>
+
+<script is:inline data-astro-rerun>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('swiper', () => ({
+      swiper: null,
+      init() {
+        if (this.swiper) return;
+
+        const script = document.createElement('script');
+        const style = document.createElement('link');
+        style.href = 'https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css';
+        style.rel = 'stylesheet';
+        document.head.appendChild(style);
+        script.src = 'https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js';
+        script.onload = () => {
+          this.swiper = new Swiper(this.$refs.container, {
+            loop: true,
+            slidesPerView: 1,
+            centeredSlides: true,
+            spaceBetween: 20,
+            breakpoints: {
+              992: {
+                slidesPerView: 4.5
+              }
+            }
+          });
+        };
+        document.head.appendChild(script);
+      },
+      slideNext() {
+        this.swiper?.slideNext();
+      },
+      slidePrev() {
+        this.swiper?.slidePrev();
+      }
+    }));
+  });
+</script>

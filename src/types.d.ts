@@ -17,7 +17,8 @@ export type Colors =
   | 'sky'
   | 'lavender'
   | 'sapphire'
-  | 'blue';
+  | 'blue'
+  | 'overlay0';
 
 export type NavMenuProps = {
   title: string;

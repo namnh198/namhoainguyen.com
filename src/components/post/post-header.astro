@@ -2,8 +2,9 @@
 import type { Post } from '@/types';
 import { Icon } from 'astro-icon/components';
 import HeroCover from '../ui/hero-cover.astro';
-import PostBadge from './post-badge.astro';
+import PostBadge from './post-badge.tsx';
 import Tag from '../ui/tag.astro';
+import DateComponent from './date-component.tsx';
 
 interface Props {
   post: Post;
@@ -13,32 +14,32 @@ const { post } = Astro.props;
 ---
 
 <HeroCover title={post.title} subtitle={post.excerpt}>
-  <div class="hidden xs:flex flex-wrap justify-between gap-4 items-center">
-    <div class="flex flex-wrap items-center">
-      <span class="flex items-center">
-        <Icon name="lucide:user" size={16} />
-        <span class="lowercase first-letter:uppercase ml-2">Nam Hoai Nguyen</span>
+  <div class='hidden xs:flex flex-wrap justify-between gap-4 items-center'>
+    <div class='flex flex-wrap items-center'>
+      <span class='flex items-center'>
+        <Icon name='lucide:user' size={16} />
+        <span class='lowercase first-letter:uppercase ml-2'>Nam Hoai Nguyen</span>
       </span>
-      <a href={`obsidian://open?vault=SecondBrain&file=${post.id}`} class="flex items-center mx-5">
-        <Icon name="lucide:file-pen" size={16} />
-        <span class="lowercase first-letter:uppercase ml-2">Edit</span>
+      <a href={`obsidian://open?vault=SecondBrain&file=${post.id}`} class='flex items-center mx-5'>
+        <Icon name='lucide:file-pen' size={16} />
+        <span class='lowercase first-letter:uppercase ml-2'>Edit</span>
       </a>
-      <span class="flex items-center">
-        <Icon name="lucide:clock" size={16} />
-        <span class="lowercase first-letter:uppercase ml-2">
-          <span>{post.createLabel}</span>
+      <span class='flex items-center'>
+        <Icon name='lucide:clock' size={16} />
+        <span class='lowercase first-letter:uppercase ml-2'>
+          <DateComponent date={post.createDate} dateLabel='Created' client:load />
         </span>
       </span>
     </div>
-    <PostBadge post={post} />
+    <PostBadge post={post} client:load />
   </div>
   {
     post?.tags && (
-      <div class="flex flex-wrap items-center justify-center xs:justify-start mt-6">
-        <Icon name="lucide:hash" size={18} class="mr-2 mb-2" />
-        <div class="flex flex-wrap">
+      <div class='flex flex-wrap items-center justify-center xs:justify-start mt-6'>
+        <Icon name='lucide:hash' size={18} class='mr-2 mb-2' />
+        <div class='flex flex-wrap'>
           {post.tags.map(tag => (
-            <Tag tag={tag} size="small" className="mr-2 mb-2" />
+            <Tag tag={tag} size='small' className='mr-2 mb-2' />
           ))}
         </div>
       </div>

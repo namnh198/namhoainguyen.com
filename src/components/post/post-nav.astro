@@ -1,0 +1,41 @@
+---
+import type { Tag } from '@/types';
+
+interface Props {
+  tags: Tag[];
+}
+
+const { tags } = Astro.props;
+---
+
+<nav
+  class='hidden xs:block bg-mantle w-[56px] xs:w-[62px] md:w-[68px] lg:[74px] xl:w-[80px] rounded-tl-xl rounded-bl-xl'
+>
+  <div class='counter-list sticky top-16'>
+    {
+      tags.map(tag => (
+        <a
+          href={`#${tag.slug}`}
+          class={`group flex items-center justify-center relative w-full h-[calc(80px*(62/86))]`}
+          data-toc-nav={tag.slug}
+          aria-label={tag.name}
+        >
+          <span
+            class={`absolute top-0 left-0 size-full transition-opacity ease-in-out duration-150 bg-gradient-to-r from-${tag.color}/5 to-${tag.color}/20`}
+          />
+          <span class={`absolute top-0 right-0 h-full w-1 bg-${tag.color}`} />
+
+          <span class='relative tooltip' data-tooltip={tag.name}>
+            <span
+              class:list={[
+                'counter inline-block text-[0px] font-extrabold before:text-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-200 ease-in-out'
+              ]}
+            >
+              {tag.name}
+            </span>
+          </span>
+        </a>
+      ))
+    }
+  </div>
+</nav>

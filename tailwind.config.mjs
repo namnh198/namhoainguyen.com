@@ -2,9 +2,6 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 import catppuccinPlugin from '@catppuccin/tailwindcss';
 import typographyPlugin from '@tailwindcss/typography';
 
-const accent = 'text';
-const linkColor = 'sky';
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,md,mdx,ts,tsx}'],

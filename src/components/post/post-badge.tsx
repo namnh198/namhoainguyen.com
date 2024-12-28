@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { usePostDateStatus } from './usePostDateStatus';
 import DateComponent from './date-component';
 
-export default function PostBadge({ post }: { post: Post }) {
+export default function PostBadge({ post, showCreateDate }: { post: Post; showCreateDate?: boolean }) {
   const status = usePostDateStatus(post.createDate, post.updateDate);
 
   return (
@@ -16,7 +16,7 @@ export default function PostBadge({ post }: { post: Post }) {
           <DateComponent date={post.updateDate} dateLabel="updated" />
         </Badge>
       )}
-      {status === 'normal' && (
+      {showCreateDate && status === 'normal' && (
         <Badge variant="overlay0">
           <DateComponent date={post.createDate} dateLabel="added" />
         </Badge>

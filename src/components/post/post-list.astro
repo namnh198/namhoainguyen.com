@@ -55,7 +55,7 @@ const postByTag = showAll ? posts : posts.slice(0, 8);
             <span class='py-3.5 pr-2.5 group-hover:underline group-hover:decoration-wavy'>{post.title}</span>
           </span>
           <span class='hidden md:flex md:gap-2 md:items-center'>
-            <PostBadge post={post} client:load />
+            <PostBadge post={post} showCreateDate client:load />
             <span class='text-sm opacity-70 transition-opacity group-hover:opacity-100'>
               {post.readingTime || 0} min
             </span>

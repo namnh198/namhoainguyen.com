@@ -1,10 +1,11 @@
 ---
 title: PHPStorm
-createDate: 2022-11-14
 published: true
 tags:
   - Skills
   - Tools
+createDate: 2022-11-14
+updateDate: 2024-12-28
 ---
 ## Installation
  
@@ -13,10 +14,10 @@ tags:
 ### Fonts
 - Font ligatures: **Setting** -> **Editor** -> **Font** -> **Enabled ligatures**
 ### Debuging
-1. Install Xdebug
-2. Settings -> PHP -> Debug
-3. Settings -> PHP -> Server
-4. Enabled Debug Mode
+1. Install `Xdebug`
+2. `Settings -> PHP -> Debug`
+3. `Settings -> PHP -> Server`
+4. Enabled `Debug Mode`
 **P/S:** If you're using Docker. You need to setup mapping path firstly.
 ## Keyboards Shortcut
 

@@ -1,9 +1,9 @@
 import type { Colors, Post } from '@/types';
 import clsx from 'clsx';
 import { usePostDateStatus } from './usePostDateStatus';
-import DateComponent from './date-component';
+import DateComponent from '../ui/date-component';
 
-export default function PostBadge({ post, showCreateDate }: { post: Post; showCreateDate?: boolean }) {
+export default function PostBadge({ post }: { post: Post }) {
   const status = usePostDateStatus(post.createDate, post.updateDate);
 
   return (
@@ -14,11 +14,6 @@ export default function PostBadge({ post, showCreateDate }: { post: Post; showCr
       {status === 'updatedWithin' && post.updateDate && (
         <Badge variant="sapphire">
           <DateComponent date={post.updateDate} dateLabel="updated" />
-        </Badge>
-      )}
-      {showCreateDate && status === 'normal' && (
-        <Badge variant="overlay0">
-          <DateComponent date={post.createDate} dateLabel="added" />
         </Badge>
       )}
     </span>

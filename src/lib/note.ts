@@ -1,7 +1,7 @@
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import type { Post, Tag } from '@/types';
 import { cleanSlug, getLastSegment, randomColor } from './utils';
-import { tags } from './tags';
+import { tags } from '../data/tags';
 
 let _posts: Post[], _tags: Tag[];
 

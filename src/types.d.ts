@@ -86,16 +86,18 @@ export interface Tag {
   posts?: Post[];
 }
 
+export interface BookmarkItem {
+  name: string;
+  url: string;
+  image?: string;
+  excerpt?: string;
+  invertDark?: boolean;
+  pinned?: boolean;
+}
+
 export interface Bookmark {
   title: string;
-  list: Array<{
-    name: string;
-    url: string;
-    image?: string;
-    excerpt?: string;
-    invertDark?: boolean;
-    pinned?: boolean;
-  }>;
+  list: Array<BookmarkItem>;
 }
 
 type Project = {

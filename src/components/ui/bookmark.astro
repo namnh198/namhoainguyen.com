@@ -1,0 +1,35 @@
+---
+import type { BookmarkItem } from '@/types';
+import { Image } from 'astro:assets';
+
+interface Props {
+  bookmark: BookmarkItem;
+}
+
+const { bookmark } = Astro.props;
+---
+
+<a
+  href={bookmark.url}
+  target='_blank'
+  class='flex flex-row items-center p-4 gap-4 transition-colors duration-300 hover:bg-surface0 rounded-lg'
+>
+  {
+    bookmark.image && (
+      <Image
+        src={bookmark.image}
+        alt={bookmark.name}
+        width={30}
+        height={30}
+        loading='eager'
+        class:list={['rounded-md h-auto z-20', { 'dark:invert': bookmark.invertDark }]}
+      />
+    )
+  }
+  <div class='flex flex-col gap-1'>
+    <div class='font-normal'>
+      <span class='font-medium text-[0.95rem]'>{bookmark.name}</span>
+    </div>
+    <div class='text-slate-500 text-[0.9rem]'>{bookmark.excerpt}</div>
+  </div>
+</a>

@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import Heading from '../ui/heading.astro';
+const SKILLS = [
+  {
+    name: 'Figma',
+    image: '/assets/figma.svg'
+  },
+  {
+    name: 'Laravel',
+    image: '/assets/laravel.svg'
+  },
+  {
+    name: 'Magento',
+    image: '/assets/magento.svg'
+  },
+  {
+    name: 'React',
+    image: '/assets/react.svg'
+  },
+  {
+    name: 'Wordpress',
+    image: '/assets/wp.svg'
+  },
+  {
+    name: 'Javascript',
+    image: '/assets/js.svg'
+  }
+];
+---
+
+<section class='relative py-12 lg:py-24'>
+  <Heading
+    title='My Skills'
+    subtitle='We put your ideas and thus your wishes in the form of a unique web project that inspires you and you customers.'
+  />
+  <div class='max-w-screen-xl mx-auto px-4'>
+    <div class='flex flex-wrap justify-center items-center gap-5'>
+      {
+        SKILLS.map(skill => (
+          <div class='group w-full max-w-[160px] sm:max-w-[180px] text-center p-[25px_15px_25px] md:p-[30px_15px_25px] xl:p-[40px_15px_30px] rounded-3xl bg-mantle border border-surface0 hover:border-mauve transition duration-500'>
+            <div class='w-full max-w-[60px] mx-auto mb-7'>
+              <Image
+                src={skill.image}
+                alt={skill.name}
+                width={60}
+                height={60}
+                class='grayscale-[90%] group-hover:grayscale-0 group-hover:scale-110 transition duration-300'
+              />
+            </div>
+            <div class='text-xl font-bold leading-normal text-text opacity-50 transition duration-300 group-hover:opacity-100'>
+              {skill.name}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

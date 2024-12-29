@@ -14,9 +14,8 @@ import rehypeExternalLinks from 'rehype-external-links';
 import compress from 'astro-compress';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import remarkCustomFrontmatter from './src/remark-plugins/remark-frontendmatter.mjs';
-import remarkObsidian from './src/remark-plugins/remark-obsidian.mjs';
 import { h } from 'hastscript';
+import remarkObsidian from './src/remark-plugins/remark-obsidian.mjs';
 
 const hasExternalScripts = false;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
@@ -75,7 +74,7 @@ export default defineConfig({
   ],
 
   markdown: {
-    remarkPlugins: [remarkCustomFrontmatter, remarkObsidian, remarkMath, remarkCallout],
+    remarkPlugins: [remarkObsidian, remarkMath, remarkCallout],
     rehypePlugins: [
       rehypeSlug,
       [

@@ -1,9 +1,10 @@
 ---
 import HeroCover from '@/components/ui/hero-cover.astro';
 import Layout from '@/layouts/Layout.astro';
-import { BOOKMARKS } from '@/lib/bookmarks';
-import { Image } from 'astro:assets';
+
+import { BOOKMARKS } from '@/data/bookmarks';
 import { getMetaData } from '../lib/utils';
+import BookmarkList from '@/components/ui/bookmark-list.astro';
 const metadata = getMetaData({
   title: 'Bookmarks'
 });
@@ -12,45 +13,20 @@ const totalBookmark = BOOKMARKS.reduce((total, bookmark) => total + bookmark.lis
 
 <Layout metadata={metadata}>
   <main>
-    <HeroCover title="Bookmarks" subtitle={`${totalBookmark} bookmark(s) that I usually use.`}>
-      <h2 class="text-lg md:text-xl leading-8 font-medium">
+    <HeroCover title='Bookmarks' subtitle={`${totalBookmark} bookmark(s) that I usually use.`}>
+      <h2 class='text-lg md:text-xl leading-8 font-medium'>
         I’m always on the lookout for new apps and websites that can help me learn and work more effectively. Here’s a
         list of tools that I’ve found really useful so far.
       </h2>
     </HeroCover>
 
-    <section class="max-w-screen-lg mx-auto my-20">
-      <div class="flex flex-col gap-8">
+    <section class='max-w-screen-lg mx-auto my-20'>
+      <div class='flex flex-col gap-8'>
         {
           BOOKMARKS.map(bookmark => (
-            <div class="flex flex-col rounded-xl bg-mantle p-1">
-              <div class="p-4 text-text">{bookmark.title}</div>
-              <div class="bg-base grid gap-x-2 p-2 sm:grid-cols-2 rounded-xl border border-surface0">
-                {bookmark.list.map(item => (
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    class="flex flex-row items-center p-4 gap-4 transition-colors duration-300 hover:bg-surface0 rounded-lg"
-                  >
-                    {item.image && (
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        width={30}
-                        height={30}
-                        loading="eager"
-                        class:list={['rounded-md h-auto z-20', { 'dark:invert': item.invertDark }]}
-                      />
-                    )}
-                    <div class="flex flex-col gap-1">
-                      <div class="font-normal">
-                        <span class="font-medium text-[0.95rem]">{item.name}</span>
-                      </div>
-                      <div class="text-slate-500 text-[0.9rem]">{item.excerpt}</div>
-                    </div>
-                  </a>
-                ))}
-              </div>
+            <div class='flex flex-col rounded-xl bg-mantle p-1'>
+              <div class='p-4 text-text'>{bookmark.title}</div>
+              <BookmarkList bookmarks={bookmark.list} />
             </div>
           ))
         }

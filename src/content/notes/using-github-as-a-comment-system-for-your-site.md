@@ -10,7 +10,7 @@ updateDate: 2024-12-14
 > [!todo] In this note, we will explore both [utterances](https://github.com/utterance/utterances) and [giscus](https://github.com/giscus/giscus). However, I prefer **giscus**.
 ## Why choose giscus over utterances?
 - giscus is actively maintained while utterances is not.
-- giscus utilizes discussions, whereas utterances uses issues.
+- giscus utilizes discussions, wherefas utterances uses issues.
 - giscus supports "reply" in comments, but utterances doesn't.
 - giscus provides wrappers for popular frameworks, unlike utterances, which only uses js (requiring manual implementation, though not overly complicated).
 ## How to use giscus

@@ -23,6 +23,21 @@ tags:
 > [!tips]
 > List keyboard shortcut that I usually use. If you want more please check on official guide: [https://www.jetbrains.com/help/phpstorm/mastering-keyboard-shortcuts.html](https://www.jetbrains.com/help/phpstorm/mastering-keyboard-shortcuts.html)
 
+## Live Templates
+
+Use **Live Templates** to create a custom snippets such as loops, conditions, print statements,...
+1. Go to `Settings -> Editors -> Live Templates`
+2. Click `+` button to add a new live template
+3. Give your template a name and a description
+ 
+```php
+
+// Print array
+echo '<pre>';
+print_r($END$);
+die;
+```
+
 ## Plugins
 - **Codeium:** Autocomplete code from AI
 - **GitToolBox:** Extends Git Integration with additional features

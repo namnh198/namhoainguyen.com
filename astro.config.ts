@@ -56,6 +56,7 @@ export default defineConfig({
       themeCssSelector: theme => `[class~='${theme.name.replace('catppuccin-', '')}']`,
       styleOverrides: {
         uiFontFamily: 'Inter, sans-serif',
+        codeFontFamily: '"JetBrains Mono", monospace',
         frames: {
           frameBoxShadowCssValue: 'none',
           editorTabBarBorderColor: 'rgb(var(--ctp-mantle))',

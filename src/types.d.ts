@@ -62,8 +62,8 @@ export interface Post {
   tags?: Tag[];
   createDate: Date;
   updateDate: Date;
-  draft?: boolean;
-  published?: boolean;
+  draft?: boolean | null;
+  published?: boolean | null;
   verified?: boolean;
   hideToc?: boolean;
   headings?: MarkdownHeading[];

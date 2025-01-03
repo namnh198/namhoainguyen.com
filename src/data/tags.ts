@@ -150,5 +150,12 @@ export const tags: Tag[] = [
     pinned: true,
     icon: 'https://res.cloudinary.com/doo2twtbu/image/upload/v1699115067/nhn.com-topics/web-dev_bkbdwc.svg',
     color: 'green'
+  },
+  {
+    name: 'Remix.run',
+    slug: 'remix-run',
+    pinned: false,
+    icon: 'https://res.cloudinary.com/doo2twtbu/image/upload/v1735888373/nhn.com-topics/remix_zipyxi.svg',
+    color: 'sky'
   }
 ];

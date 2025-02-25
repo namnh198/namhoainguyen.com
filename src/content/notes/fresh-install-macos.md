@@ -1,12 +1,12 @@
 ---
-title: Fresh Install Magento
-createDate: 2024-12-10
-updateDate: 2024-12-10
+title: Fresh Install MacOS
 tags:
   - MacOS
-draft: true
 published: true
+draft: true
+createDate: 2023-11-10
 ---
+
 > [!warning] This note for me only
 
 ## Create boot Installer USB

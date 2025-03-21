@@ -6,6 +6,7 @@ createDate: 2024-05-25
 tags:
   - Web-Dev
   - Tools
+updateDate: 2025-03-21
 ---
 
 > [!info] 
@@ -59,8 +60,8 @@ ddev sequeplace # launch Seq
 ```yaml
 web_extra_daemons: 
 	- name: 'http-1' 
-	- command: 'PORT=3000 npm run dev' 
-	- directory: /var/www/html
+	  command: 'PORT=3000 npm run dev' 
+	  directory: /var/www/html
 ```
 
 - `omit_containers`: List some containers should not be loaded automatically for one or more projects
@@ -93,6 +94,32 @@ server {
 	include /etc/nginx/common.d/*.conf; 
 	include /mnt/ddev_config/nginx/*.conf; 
 }
+```
+
+## Communicate other project
+
+Make the calls to projects B via the regular FQDN from project A
+
+```shell
+# call from project A inside container
+curl https://projectb.ddev.site
+```
+
+```yaml title=".ddev/docker-compose.communicate.yaml"
+services:
+	web:
+		external_links:
+			- ddev-router:projectB.ddev.site
+```
+
+- Example (Fix CORS errors call /graphql Magento in Next.Js Project)
+  
+```html title=.ddev/nginx_full/nginx-site.conf ins={2-4}
+...
+location /graphql {
+	proxy_pass https://projectb.ddev.site/graphql
+}
+...
 ```
 ## Performance Mode
 

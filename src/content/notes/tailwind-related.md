@@ -5,6 +5,7 @@ draft: true
 createDate: 2024-03-23
 tags:
   - Web-Dev
+updateDate: 2025-04-13
 ---
 ## Best practices
 - ([source](https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction)) Don't use `@apply` just to make things look "cleaner". Otherwise you are basically just writing CSS again and throwing away all of the workflow and maintainability advantages Tailwind gives you.

@@ -56,6 +56,8 @@
   function onLoad() {
     loadGiscus();
     const btn = document.querySelector('[data-toggle-theme]');
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     btn &&
       btn.addEventListener('click', () => {
         function changeGiscusTheme(theme) {

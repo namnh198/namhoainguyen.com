@@ -27,16 +27,16 @@ const postByTag = showAll ? posts : posts.slice(0, 8);
 >
   {
     showHeader && (
-      <header class='mb-8'>
-        <h3 class='text-[28px] md:text-[36px] lg:text-[40px] xl:text-[48px] font-bold mb-4'>{tag.name}</h3>
-        <div class='flex items-center'>
-          <Icon name='lucide:notebook-text' size={20} class='mr-4' />
-          <div class='text-[1rem] md:text-lg font-medium'>
+      <header class="mb-8">
+        <h3 class="text-[28px] md:text-[36px] lg:text-[40px] xl:text-[48px] font-bold mb-4">{tag.name}</h3>
+        <div class="flex items-center">
+          <Icon name="lucide:notebook-text" size={20} class="mr-4" />
+          <div class="text-[1rem] md:text-lg font-medium">
             {posts.length} Notes
             {!showAll && tag.slug !== 'recent' && (
               <>
-                <span class='mx-2 text-sm'>👉</span>
-                <a href={`/tags/${tag.slug}`} class='hover:text-mauve'>
+                <span class="mx-2 text-sm">👉</span>
+                <a href={`/tags/${tag.slug}`} class="hover:text-mauve">
                   View all
                 </a>
               </>
@@ -46,19 +46,19 @@ const postByTag = showAll ? posts : posts.slice(0, 8);
       </header>
     )
   }
-  <article class='flex flex-col font-medium w-full counter-list'>
+  <article class="flex flex-col font-medium w-full counter-list">
     <slot />
     {
       postByTag.map(post => (
-        <a href={`/notes/${post.slug}`} class='group flex items-center pr-2.5 py-3.5 bg-dotted'>
+        <a href={`/notes/${post.slug}`} class="group flex items-center pr-2.5 py-3.5 bg-dotted">
           <span class:list={['shrink-0 size-6 mr-2 counter before:font-semibold', [`text-${tag.color}`]]} />
-          <span class='flex-1'>
-            <span class='py-3.5 pr-2.5 group-hover:underline group-hover:decoration-wavy'>{post.title}</span>
+          <span class="flex-1">
+            <span class="py-3.5 pr-2.5 group-hover:underline group-hover:decoration-wavy">{post.title}</span>
           </span>
-          <span class='hidden md:flex md:gap-2 md:items-center'>
-            <PostBadge post={post} client:load />
-            <span class='text-sm opacity-70 transition-opacity group-hover:opacity-100'>
-              <DateComponent date={post.createDate} dateLabel='added' client:load />
+          <span class="hidden md:flex md:gap-2 md:items-center">
+            <PostBadge post={post} client:only="react" />
+            <span class="text-sm opacity-70 transition-opacity group-hover:opacity-100">
+              <DateComponent date={post.createDate} dateLabel="added " client:only="react" />
             </span>
           </span>
         </a>

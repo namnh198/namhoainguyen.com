@@ -13,7 +13,7 @@ export default function PostBadge({ post }: { post: Post }) {
       {status === 'new' && <Badge variant="red">new</Badge>}
       {status === 'updatedWithin' && post.updateDate && (
         <Badge variant="sapphire">
-          <DateComponent date={post.updateDate} dateLabel="updated" />
+          <DateComponent date={post.updateDate} dateLabel="updated " />
         </Badge>
       )}
     </span>

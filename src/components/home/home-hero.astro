@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { PROJECTS } from '@/data/projects';
 import ProjectCarousel from './project-carousel.tsx';
+import avatarImg from '../../../public/assets/avatar.webp';
+import noteEmojiImg from '../../../public/assets/notoemoji.webp';
 ---
 
 <section class='relative bg-mantle'>
@@ -10,7 +12,7 @@ import ProjectCarousel from './project-carousel.tsx';
     <div class='max-w-screen-xl mx-auto flex flex-wrap items-center justify-center'>
       <div class='relative flex-auto w-full lg:w-1/2 px-4 lg:px-6'>
         <div class='inline-flex items-center'>
-          <Image src='/assets/notoemoji.webp' alt='' width={32} height={32} />
+          <Image src={noteEmojiImg} alt='' loading='eager' width={64} height={64} class='w-8 h-8' />
           <p class='ml-2.5 text-lg md:text-xl text-text/80'>Award Winning Branding Expert</p>
         </div>
         <h1
@@ -24,7 +26,9 @@ import ProjectCarousel from './project-carousel.tsx';
         </p>
         <div class='flex flex-wrap justify-center lg:justify-start items-center mt-4'>
           <a
-            href='#'
+            href='https://cv.namhoainguyen.com'
+            target='_blank'
+            rel='noopener noreferrer nofollow'
             class='group relative inline-flex items-center justify-center px-5 py-3.5 bg-blue text-lg text-background font-medium rounded-full overflow-hidden'
           >
             <span
@@ -47,7 +51,7 @@ import ProjectCarousel from './project-carousel.tsx';
           <div
             class='group relative h-[500px] w-[400px] flex items-end justify-center rounded-[500px] transition-transform will-change-transform duration-300 bg-base ring-2 ring-mauve'
           >
-            <Image src='/assets/avatar.webp' alt='Avatar' width={360} height={360} class='rounded-[500px]' />
+            <Image src={avatarImg} alt='Avatar' width={360} height={360} loading='eager' class='rounded-[500px]' />
             <div class='absolute left-[2rem] bottom-[18rem] top-[70%] lg:-left-0'>
               <div
                 class='relative px-4 py-2 rounded-lg bg-text text-background text-[1rem] font-semibold animation-cursor-left-sm lg:animation-cursor-left'

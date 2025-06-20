@@ -25,7 +25,7 @@ const { bookmarks, className } = Astro.props;
             alt={name}
             width={30}
             height={30}
-            loading='eager'
+            loading='lazy'
             class:list={['rounded-md h-auto z-20', { 'dark:invert': invertDark }]}
           />
         )}
@@ -33,7 +33,7 @@ const { bookmarks, className } = Astro.props;
           <div class='font-normal'>
             <span class='font-medium text-[0.95rem]'>{name}</span>
           </div>
-          <div class='text-slate-500 text-[0.9rem]'>{excerpt}</div>
+          <div class='text-slate-500 dark:text-slate-200 text-[0.9rem]'>{excerpt}</div>
         </div>
       </a>
     ))

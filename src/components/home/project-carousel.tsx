@@ -33,6 +33,7 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
   return (
     <div className="w-full mt-4 relative flex-auto">
       <button
+        aria-label="Previous project"
         className="absolute bg-mantle disabled:bg-base hover:bg-crust top-1/2 -translate-y-1/2 -left-4 z-10 size-10 inline-flex items-center justify-center shadow-lg rounded-full border border-surface0 text-text"
         onClick={handlePrev}
         disabled={prevBtnDisabled}
@@ -60,6 +61,7 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
         </div>
       </div>
       <button
+        aria-label="Next project"
         className="absolute bg-mantle disabled:bg-base hover:bg-crust top-1/2 -translate-y-1/2 -right-4 z-10 size-10 inline-flex items-center justify-center shadow-lg rounded-full border border-surface0 text-text"
         onClick={handleNext}
         disabled={nextBtnDisabled}

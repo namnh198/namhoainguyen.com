@@ -8,10 +8,14 @@ tags:
   - Linux
 updateDate: 2024-08-04
 ---
+
 - Make your terminal looks like better. A collection of console terminal in serveral operations sytem.
-- In this note, I used [Weterm](https://wezfurlong.org/wezterm/) for MacOS. If you use windows, you can use Windows Terminal + WSL
+- In this note, I used [Weterm](https://wezfurlong.org/wezterm/) for MacOS. If you use windows, you can use Windows
+  Terminal + WSL
 - Checkout my dotfiles in [Github Repository](https://github.com/namnh198/dotfiles)
+
 ## Install zsh + zinit
+
 ### Install ZSH
 
 - Ubuntu + WSL
@@ -25,6 +29,7 @@ sudo chsh -s $(which zsh)
 ```
 
 - From MacOS Catalina, the default shell changed to the ZSH shell, you do not need to change.
+
 ### Install Zinit
 
 - Automatic
@@ -63,15 +68,17 @@ zinit wait lucid light-mode for \
 ## Font & Themes
 
 Install Nerd fonts (It provides for programing hight number icons)
+
 - Manual: Go to Github Repository -> Choose fonts you want to use -> Download & Install
 - Install by script:
-  
+
 ```bash frame="none"
-git clone https://github.com/ryanoasis/nerd-fonts.git 
+git clone https://github.com/ryanoasis/nerd-fonts.git
 cd nerd-fonts ./install.sh # (in Powershell run ./install.ps1
 ```
 
 Install themes (Catppuccin Mocha)
+
 1. Go to [https://catppuccin.com/ports](https://catppuccin.com/ports)
 2. Search tools that you want to change theme
 3. Follow their step to install
@@ -79,7 +86,7 @@ Install themes (Catppuccin Mocha)
 Install starship (theme zsh)
 
 - Add this code below in your `.zshrc`
-  
+
 ```bash
 zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
@@ -87,11 +94,16 @@ zinit ice as"command" from"gh-r" \
 zinit light starship/starship
 ```
 
-- To get started configuring starship, create the following file: `~/.config/starship.toml`. Follow official guide to configure: [https://starship.rs/config/](https://starship.rs/config/)
-- My Preset starship: [https://raw.githubusercontent.com/namnh198/dotfiles/main/zsh/.config/starship.toml](https://raw.githubusercontent.com/namnh198/dotfiles/main/zsh/.config/starship.toml)
+- To get started configuring starship, create the following file: `~/.config/starship.toml`. Follow official guide to
+  configure: [https://starship.rs/config/](https://starship.rs/config/)
+- My Preset starship:
+  [https://raw.githubusercontent.com/namnh198/dotfiles/main/zsh/.config/starship.toml](https://raw.githubusercontent.com/namnh198/dotfiles/main/zsh/.config/starship.toml)
 
-## Aliases 
-Sometimes you may encounter commands that are too long than necessary. Typing out such commands can become time-consuming and inefficient, especially if you regularly use the command. That’s where command aliases come into play.
+## Aliases
+
+Sometimes you may encounter commands that are too long than necessary. Typing out such commands can become
+time-consuming and inefficient, especially if you regularly use the command. That’s where command aliases come into
+play.
 
 You can define alias in file `.zshrc` follow:
 
@@ -115,3 +127,4 @@ zinit wait lucid for \ OMZL::git.zsh \ atload"unalias grv" \ OMZP::git
 # without turbo mode
 zinit snippet OMZL::git
 ```
+

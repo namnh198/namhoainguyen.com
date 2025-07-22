@@ -7,6 +7,7 @@ tags:
 published: true
 draft: true
 ---
+
 ## Installation
 
 You need to buy and generate a license key and add Private Packagist to `composer.json`
@@ -28,7 +29,9 @@ bin/magento setup:upgrade
 
 Switch current theme to `hyva/default` theme: `Content -> Design -> Configuration`
 
-In `developer` mode, the static content will be automatically generate, but in `production` mode, running `bin/magento setup:static-content:deploy` is required.
+In `developer` mode, the static content will be automatically generate, but in `production` mode, running
+`bin/magento setup:static-content:deploy` is required.
+
 ### Troubleshooting
 
 > [!bug] Hyva theme does not support old Magento Catcha. Please disable the default Magento Catcha form to work:
@@ -39,7 +42,8 @@ bin/magento config:set customer/catpcha/enable 0
 
 > [!bug] Hyva theme does not support buit-in minification and bundling
 
-Because Hyva theme has another command to minfy `CSS` and `JS`. If you enabled buit-in minification and bundling `HTML`, `CSS`, `JS` maybe cause unwanted effects
+Because Hyva theme has another command to minfy `CSS` and `JS`. If you enabled buit-in minification and bundling `HTML`,
+`CSS`, `JS` maybe cause unwanted effects
 
 ```shell
 bin/magento config:set dev/template/minify_html 0
@@ -53,14 +57,15 @@ bin/magento config:set dev/css/minify_files 0
 
 > [!missing] Hyva theme makes use of the Magento GraphQL API. Ensure required GraphQL modules are enabled
 
-By default all Magento GraphQL modules are enabled. However, often unused GraphQL modules are disabled in Magento Stores using Luma theme.
+By default all Magento GraphQL modules are enabled. However, often unused GraphQL modules are disabled in Magento Stores
+using Luma theme.
 
 ## Building your theme
 
-The first step is to create a child theme that will contain all your customization. 
-Set the parent theme to `Hyva/default`
+The first step is to create a child theme that will contain all your customization. Set the parent theme to
+`Hyva/default`
 
-```
+```bash
 app/design/frontend/YourCompany/
 ├── default/
 │   ├── registration.php
@@ -68,7 +73,8 @@ app/design/frontend/YourCompany/
 │   ├── composer.json
 ```
 
-Next, copy the `web` directory will all files from the parent theme `vendor/hyva-themes/magento2-default-theme/web/` to your own child theme `app/design/frontend/YourCompany/default/web/`
+Next, copy the `web` directory will all files from the parent theme `vendor/hyva-themes/magento2-default-theme/web/` to
+your own child theme `app/design/frontend/YourCompany/default/web/`
 
 ## TailwindCSS
 
@@ -101,6 +107,7 @@ Once you make a change to your theme, be aware that you have to regenerate your 
 @tailwind components;
 @tailwind utilities;
 ```
+
 ### Generating CSS
 
 ```shell
@@ -119,7 +126,7 @@ Please read [[tailwind-related]] to take more information TailwindCSS
 
 The source CSS files are located in the directory `web/tailwind`
 
-```
+```bash
 ./web/tailwind
 ├── components
 └── theme
@@ -127,5 +134,7 @@ The source CSS files are located in the directory `web/tailwind`
         └── style
 ```
 
-- The `components` directory is for reusable elements such as `button`, `input`, `slides` 
-- The `theme/components` directory is intend for larger components or pages, such as categories page, products page, account pages, etc
+- The `components` directory is for reusable elements such as `button`, `input`, `slides`
+- The `theme/components` directory is intend for larger components or pages, such as categories page, products page,
+  account pages, etc
+

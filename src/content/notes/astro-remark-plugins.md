@@ -10,6 +10,7 @@ published: true
 > This is not a tutorial to create an Astro website, this is only a note! You can find some every new and useful techniques on this note alongside the official documentation.
 
 ## Installation
+
 - First install nodejs
 - Create a astro projects
 
@@ -18,8 +19,11 @@ npm create astro@latest
 ```
 
 You should follow the installation steps given in the theme you choose.
+
 ## Setup & Deploy
+
 ## Templating
+
 ### Using `sass`
 
 Installing `sass` module to compile
@@ -33,23 +37,26 @@ Write stylesheet
 ```astro title="src/components/MyComponent.astro"
 <!-- css for inline -->
 <style lang="sass">
-	// write code here
+ // write code here
 </style>
 
 <!-- css for global -->
 <style is:global lang="sass">
-	// write code here
+ // write code here
 </style>
 ```
+
 ### Using `tailwindcss`
+
 #### Installing
 
 ```shell
 npx astro add tailwind
 ```
+
 #### Configuration
 
-- ConfigFile: Default the config of tailwind is `tailwind.config.ts` 
+- ConfigFile: Default the config of tailwind is `tailwind.config.ts`
 
 ```js title="astro.config.mjs" ins={8}
 import { defineConfig } from 'astro/config';
@@ -80,7 +87,9 @@ export default defineConfig({
   ],
 });
 ```
+
 ## Content Collections
+
 ### Define Collections
 
 ```ts title="src/content/config.ts"
@@ -90,9 +99,10 @@ const blogCollection = defineCollection({ /* ... */ });
 
 // this key should match your collection directory name in "src/content"
 export const collections = {
-	'blog': blogCollection,
+ 'blog': blogCollection,
 };
 ```
+
 ### Define collection schema
 
 ```ts title="src/content/config.ts"
@@ -102,19 +112,20 @@ import { defineCollection, z } from 'astro:content';
 const blogCollection = defineCollection({ /* ... */ });
 
 const blogCollection = defineCollection({
-	type: 'content', // content or data
-	schema: z.object({
-		title: z.string(),
-		tags: z.array(z.string()).optional(),
-		// ... more schema
-	})
+ type: 'content', // content or data
+ schema: z.object({
+  title: z.string(),
+  tags: z.array(z.string()).optional(),
+  // ... more schema
+ })
 });
 
 // this key should match your collection directory name in "src/content"
 export const collections = {
-	'blog': blogCollection,
+ 'blog': blogCollection,
 };
 ```
+
 ### Using content in Astro
 
 ```astro title="src/pages/index.astro"
@@ -123,13 +134,14 @@ import { getCollection } from 'astro:content';
 const posts = await getCollection('blog');
 ---
 <ul>
-	{posts.map(post => (
-		<li>
-			<a href={post.slug}/>{ post.data.title }</a>
-		</li>
-	))}
+ {posts.map(post => (
+  <li>
+   <a href={post.slug}/>{ post.data.title }</a>
+  </li>
+ ))}
 </ul>
 ```
+
 ### Render content to HTML
 
 ```astro title="src/pages/index.astro"
@@ -141,8 +153,11 @@ const { Content } = await post.render();
 
 <Content/>
 ```
+
 ## Framework Components
+
 Astro supports a variety of popular frameworks including `react`, `preact`, `svelte`, `vue`, `solidjs`, `alpinejs`, `lit` with official integrations. To install it, please follow [this official guide](https://docs.astro.build/en/guides/framework-components/)
+
 ### Using frameworks
 
 ```astro title="src/pages/index.astro"
@@ -150,12 +165,13 @@ Astro supports a variety of popular frameworks including `react`, `preact`, `sve
 import MyReactComponent from '../components/react/my-react-component.jsx';
 ---
 <html>
-	<body>
-		<h1>Use React Component</h1>
-		<MyReactComponent />
-	</body>
+ <body>
+  <h1>Use React Component</h1>
+  <MyReactComponent />
+ </body>
 </html>
 ```
+
 ### Hydrating interactive Components
 
 ```astro title="src/pages/index.astro"
@@ -177,30 +193,33 @@ the user scrolls down and the component is visible on the page -->
 ```
 
 ## Remark and Rehype
+
 - Remark parses Markdown and MDX files and convert theme to HTML.
 - Rehype parses and transforms HTML and exports HTML
   
 > [!note] Astro supports adding third-party remark and rehype plugins for Markdown and MDX.
 
 Plugins for both Remark and Rehype may be registered in the Markdown or MDX integrations in `astro.config.mjs`. Below, we is and example remark plugins of the markdown
+
 ### Create a Remark Plugins
+
 Somewhere in a root project, create a `.mjs` file with the name you like, such as `remark-post-status.mjs`
 
 ```js title="remark-post-status.mjs"
 export function remarkPostStatus () {
-	return function (tree, file) {
-		const currentDate = new Date();
-		const sevenDaysAgo = new Date();
-		sevenDaysAgo.setDate(currentDate.getDate() -  7);
-		
-		const createdDate = new Date(
-			file.data.astro.frontendmatter.createDate || currentDate
-		); // get create date of post via frontendmatter
-		
-		if (createdDate >= sevenDaysAgo) {
-			file.data.astro.frontendmatter.isNew = true;
-		}
-	}
+ return function (tree, file) {
+  const currentDate = new Date();
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(currentDate.getDate() -  7);
+  
+  const createdDate = new Date(
+   file.data.astro.frontendmatter.createDate || currentDate
+  ); // get create date of post via frontendmatter
+  
+  if (createdDate >= sevenDaysAgo) {
+   file.data.astro.frontendmatter.isNew = true;
+  }
+ }
 }
 ```
 
@@ -223,5 +242,6 @@ export default defineConfig({
 ```
 
 ### List example `remark-plugin`
+
 - `remark-toc`
 - `remark-reading-time`

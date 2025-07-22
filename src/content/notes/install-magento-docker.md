@@ -6,15 +6,21 @@ tags:
   - Web-Dev
   - Magento
 ---
+
 ## What's Magento
-1. Open-Source PHP eCommerce 
+
+1. Open-Source PHP eCommerce
 2. Large community
 3. Full-featured eCommerce Platform (Products, Checkout, Order, Customer,...)
 4. Incredibly flexible & highly structured
 5. Very steep learning curve due to complexity
 6. Enterprise edition & cloud edition available
+
 ## Prerequisites
-In this note, we will install Magento version 2.4.6-p2. It's required some equipments. If you install another version, please check system requirements firstly.
+
+In this note, we will install Magento version 2.4.6-p2. It's required some equipments. If you install another version,
+please check system requirements firstly.
+
 1. PHP >= 8.1 (should use PHP 8.2)
 2. Composer >= 2.2
 3. MySQL >= 8.0 (MariaDB >= 10.6)
@@ -22,18 +28,19 @@ In this note, we will install Magento version 2.4.6-p2. It's required some equip
 5. Redis >= 7.0 (Optional - Handle cache and session if not, can use file)
 6. RabbitMQ >= 3.11 (Optional)
 7. Varnish >= 6 (Optional - Handle full page-cache)
+
 ## Docker
 
 If you do not understand Docker. You can read note firstly: [[docker]]
 
 ### Folder structured
 
-```
+```bash
 / # root folder
 ├─ .docker/
 │  ├─ nginx
 │  │  ├─ nginx.conf
-│  │  ├─ vhost.conf 
+│  │  ├─ vhost.conf
 │  ├─ mysql
 │  │  ├─my.cnf
 │  ├─ php
@@ -48,7 +55,7 @@ If you do not understand Docker. You can read note firstly: [[docker]]
 ### List services
 
 ```yml title="docker-compose.yml"
-version: "3.5"
+version: '3.5'
 services:
   # nginx:
   # generic:
@@ -59,8 +66,9 @@ services:
 ```
 
 Explain container:
+
 - `generic`: include global configuration for PHP-FPM
-- `fpm & fpm-debug`: PHP-FPM 
+- `fpm & fpm-debug`: PHP-FPM
 - `nginx`, `mysql`, `elasticsearch`: create & configuration for nginx, mysql, elasticsearch
 
 ### Environment Variables
@@ -79,7 +87,7 @@ MAIN_DOMAIN=!LOCAL_DOMAIN! # REPLACE TO YOUR DOMAIN
 #UPLOAD_MAX_FILESIZE=128M
 ```
 
-### Nginx 
+### Nginx
 
 ```yml title="docker-compose.yml" del={3} ins={4-18}
 version: "3.5"
@@ -109,7 +117,7 @@ You can switch PHP version from Magento Docker Hub. The tag image has format: **
 
 Example: image `8.2-fpm-1.3.6`
 
-```yml title="docker-compose.yml" del={4,20,26} ins={5-19,21-25,27-33} 
+```yml title="docker-compose.yml" del={4,20,26} ins={5-19,21-25,27-33}
 version: "3.5"
 services:
   ...
@@ -182,19 +190,20 @@ services:
 ```yml title="docker-compose.yml"  del={4} ins={5-17}
 version: "3.5"
 services:
-	...
-	# elasticsearch:
-	elasticsearch:
-		container_name: ddev-${DDEV_SITENAME}-elasticsearch
-		hostname: ${DDEV_SITENAME}-elasticsearch
-		image: elasticsearch:7.17.14
-		ports:
-		- '9200:9200'
-	environment:
-		- cluster.name=docker-cluster
-		- discovery.type=single-node
-		- bootstrap.memory_lock=true
-		- "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+ ...
+ # elasticsearch:
+ elasticsearch:
+  container_name: ddev-${DDEV_SITENAME}-elasticsearch
+  hostname: ${DDEV_SITENAME}-elasticsearch
+  image: elasticsearch:7.17.14
+  ports:
+  - '9200:9200'
+ environment:
+  - cluster.name=docker-cluster
+  - discovery.type=single-node
+  - bootstrap.memory_lock=true
+  - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
   volumes:
-		- ./elasticsearch:/usr/share/elasticsearch/data
+  - ./elasticsearch:/usr/share/elasticsearch/data
 ```
+

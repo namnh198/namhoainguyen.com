@@ -30,17 +30,23 @@ sudo /Applications/Install\ macOS\ Ventura.app/Contents/Resources/createinstallm
 
 Go to **Keyboard Settings** and then
 
-1. Should choose "U.S" instead of "U.S. International" because with the later, we have underline score below special symbols like `"`
-2. For Vietnamese Input method, **Don't** choose built-in VN input options. Use [OpenKey](https://open-key.org/) instead (Need to allow this app in _Privacy & Security_ if you don't want to turn off _Gate keeper_) because there have uncomfortable underline when we type and I have problem when typing in some apps like Messenger,...
-   - The [OpenKey](https://open-key.org/) support auto switch input method smart: You're using Skype with `V` mode but when you switch to Terminal the input method will be automatically `E` mode
-   - The [OpenKey](https://open-key.org/) support both **Telex** and **VNI** but I recommend you should use **VNI** to avoid conflicts when typing English in `V` mode such as `as => á`, etc
+1. Should choose "U.S" instead of "U.S. International" because with the later, we have underline score below special
+   symbols like `"`
+2. For Vietnamese Input method, **Don't** choose built-in VN input options. Use [OpenKey](https://open-key.org/) instead
+   (Need to allow this app in _Privacy & Security_ if you don't want to turn off _Gate keeper_) because there have
+   uncomfortable underline when we type and I have problem when typing in some apps like Messenger,...
+   - The [OpenKey](https://open-key.org/) support auto switch input method smart: You're using Skype with `V` mode but
+     when you switch to Terminal the input method will be automatically `E` mode
+   - The [OpenKey](https://open-key.org/) support both **Telex** and **VNI** but I recommend you should use **VNI** to
+     avoid conflicts when typing English in `V` mode such as `as => á`, etc
 3. Turn off "Use F1, F2 etc. keys as standard function keys" if you rarely uses them.
 4. Key repeat rate -> Fast, Delay until repeat -> Short to skip delay when holding key
 
 ### Other useful keyboard tips
 
 1. Enabled "Three finders to drag": \*\*System Settings -> Accessibility -> Pointer Control -> Trackpad Options"
-2. Short switch new desktops: **Settings -> Keyboard -> Keyboard Shortcut -> Missing Control** -> Checked all **"Switch to Desktop"**
+2. Short switch new desktops: **Settings -> Keyboard -> Keyboard Shortcut -> Missing Control** -> Checked all **"Switch
+   to Desktop"**
 
 ## Brew
 

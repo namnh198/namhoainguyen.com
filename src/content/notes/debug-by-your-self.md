@@ -1,6 +1,9 @@
 ---
-title: Debug by Your Self slug: debug-by-your-self createDate: 2022-11-20 tags:
-- Blog
+title: Debug by Your Self
+slug: debug-by-your-self
+createDate: 2022-11-20
+tags:
+  - Blog
 ---
 
 Hôm nay là một ngày mưa gió, người ta thường bảo trời mưa thường mang nhiều tâm sự. Có lẽ nó đúng với tôi. Giới thiệu
@@ -83,4 +86,3 @@ Có thể tôi còn ngu hơn nữa, còn nhiều thất bại hơn nữa. Nhưng
 Tôi không có bí quyết thành công, cũng không giỏi cho lời khuyên nên tôi chỉ chúc những ai có thể sẽ giống mình **"tay
 cứng phím mềm, con tim sắt đá, tấm lòng kiên định"**. Điều quan trọng là bạn học được gì qua những sai lầm, những sai
 lầm bạn mắc phải sẽ không huỷ hoại sự nghiệp của bạn, nhưng cách bạn phản ứng với chúng thì có thể!!!
-

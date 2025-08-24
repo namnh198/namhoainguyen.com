@@ -5,7 +5,8 @@ draft: true
 createDate: 2024-05-25
 tags:
   - Web-Dev
-  - Tools updateDate: 2025-03-21
+  - Tools
+updateDate: 2025-03-21
 ---
 
 > [!info] Quick references DDEV to launch web development environments. View the
@@ -132,4 +133,3 @@ ddev config --performance-mode=none # disable for per-project
   - Uncompress the zip. (DO NOT use default unzip applications MacOS. Need to use CLI or another tool example
     [The Unarchiver](https://theunarchiver.com/))
   - Install Plugins by steps Install from disk -> choose file `ddev-intellij-plugin-0.0.1-dev.zip`
-

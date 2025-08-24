@@ -1,9 +1,9 @@
 ---
-
-title: REST API with cURL published: true createDate: 2022-01-05 tags:
-
-- Web-Dev
-
+title: REST API with cURL
+published: true
+createDate: 2022-01-05
+tags:
+  - Web-Dev
 ---
 
 - [Official Docs](https://curl.se/)

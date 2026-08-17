@@ -1,38 +1,29 @@
-/**
- * For more details on how to configure Wrangler, refer to:
- * https://developers.cloudflare.com/workers/wrangler/configuration/
- */
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "namhoainguyen",
-	"compatibility_date": "2026-08-17",
-	"main": "./workers/app.ts",
-	"vars": {
-		"VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare"
-	},
-	"observability": {
-		"enabled": true
-	},
-	"upload_source_maps": true
-	/**
-	 * Smart Placement
-	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
-	 */
-	// "placement": {  "mode": "smart" }
-	/**
-	 * Bindings
-	 * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
-	 * databases, object storage, AI inference, real-time communication and more.
-	 * https://developers.cloudflare.com/workers/runtime-apis/bindings/
-	 */
-	/**
-	 * Static Assets
-	 * https://developers.cloudflare.com/workers/static-assets/binding/
-	 */
-	// "assets": {  "directory": "./public/",  "binding": "ASSETS" }
-	/**
-	 * Service Bindings (communicate between multiple Workers)
-	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
-	 */
-	// "services": [  {   "binding": "MY_SERVICE",   "service": "my-service"  } ]
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "namhoainguyen",
+  "compatibility_date": "2026-08-17",
+  "main": "./workers/app.ts",
+  "vars": {
+    "NOTION_SCHEMA_TITLE": "title",
+    "NOTION_SCHEMA_SLUG": "Fxoz",
+    "NOTION_SCHEMA_PUBLISHED": "N|TD",
+    "NOTION_SCHEMA_PINNED": "QES=",
+    "NOTION_SCHEMA_VERIFIED": ";vXQ",
+    "NOTION_SCHEMA_DISCRETE": "xZ_D",
+    "NOTION_SCHEMA_HIDE": "Iq;T",
+    "NOTION_SCHEMA_DESCRIPTION": "S@J<",
+    "NOTION_SCHEMA_TAGS": "LOXq",
+    "NOTION_SCHEMA_LANGUAGE": "tEJX",
+    "NOTION_SCHEMA_LAST_MODIFIED": "iyy?",
+  },
+  "observability": {
+    "enabled": true,
+  },
+  "upload_source_maps": true,
+  "compatibility_flags": ["nodejs_compat"],
+  "placement": { "mode": "smart" },
+  "cache": {
+    "enabled": true,
+  },
+  "assets": { "directory": "./build/client/", "binding": "ASSETS" },
 }

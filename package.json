@@ -18,9 +18,12 @@
 		"clsx": "^2.1.1",
 		"isbot": "^5.1.36",
 		"motion": "^13.1.0",
+		"notion-types": "^7.12.0",
+		"p-memoize": "^8.0.0",
 		"react": "^19.2.7",
 		"react-dom": "^19.2.7",
 		"react-router": "^8",
+		"slugify": "^1.6.9",
 		"tailwind-merge": "^3.6.0"
 	},
 	"devDependencies": {

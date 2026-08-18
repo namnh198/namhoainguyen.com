@@ -14,12 +14,11 @@ export function PostHeader({
 }: {
   title: string;
   icon?: ReactNode | string;
-  desc?: string;
+  desc?: ReactNode | string;
   tags?: Tag[];
   notionDomain?: string;
   children?: ReactNode;
 }) {
-  console.log(icon);
   return (
     <div className="relative border-b border-border mb-12 pt-14 pb-12">
       <div className="absolute inset-0 cursor-none bg-glow-mesh" />

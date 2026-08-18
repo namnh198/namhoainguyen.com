@@ -6,9 +6,9 @@ import { getUri } from "~/lib/helpers";
 import { usePostDateStatus, type PostDateStatus } from "~/hooks/use-post-date-status";
 import { cn } from "~/lib/utils";
 
-export function PostList({ posts }: { posts: Post[] }) {
+export function PostList({ posts, className }: { posts: Post[]; className?: string }) {
   return (
-    <article className="border rounded-xl overflow-hidden">
+    <article className={cn("border rounded-xl overflow-hidden", className)}>
       {posts.map((post) => (
         <PostListItem key={post.id} post={post} />
       ))}

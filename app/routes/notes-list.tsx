@@ -62,7 +62,7 @@ const NoteListSection = ({ posts, tag }: { posts: Post[]; tag: Tag }) => {
     <div className="relative flex flex-col md:flex-row gap-y-6" id={`#tag-${tag.slug}`}>
       <div className="hidden lg:block md:w-48 shrink-0">
         <div className="md:sticky md:top-8 pb-10">
-          <Link to={tagUri} className="text-sm font-medium text-muted-foreground block mb-3">
+          <Link to={tagUri} className="font-heading text-sm font-medium text-muted-foreground block mb-3">
             {tag.name}
           </Link>
           {tag.icon && (

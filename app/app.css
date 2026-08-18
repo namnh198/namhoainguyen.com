@@ -1,10 +1,12 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
+@import "@fontsource-variable/oxanium";
 @import "@fontsource-variable/jetbrains-mono";
 
 @theme inline {
   --font-sans: "Inter Variable", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono Variable", monospace;
+  --font-heading: "Oxanium Variable", "Inter Variable", system-ui, -apple-system, sans-serif;
 
   --color-bg: var(--bg);
   --color-bg-card: var(--bg-card);

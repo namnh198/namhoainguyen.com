@@ -9,13 +9,13 @@ export function SearchTrigger({ className, showText }: { className?: string; sho
         "inline-flex items-center justify-center rounded-lg bg-linear-(--btn-gradient) [&_svg]:size-4",
         {
           "p-0! size-10": !showText,
-          "gap-2 py-2 px-3.5 ": showText,
+          "gap-1 py-2 px-3.5 ": showText,
         },
         [className],
       )}
     >
-      <IconSearch stroke={2} />
-      {showText && <span className="text-xs">Search</span>}
+      <IconSearch stroke={3} className="size-5" />
+      {showText && <span className="text-sm font-medium">Search</span>}
     </ModalTrigger>
   );
 }

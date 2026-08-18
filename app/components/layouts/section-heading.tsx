@@ -16,7 +16,7 @@ export function SectionHeading({
   return (
     <div className={cn("flex items-center gap-3 [&_svg]:text-accent", [className])}>
       {icon}
-      <h2 className="text-2xl font-extrabold text-gradient">{title}</h2>
+      <h2 className="font-heading text-2xl font-extrabold text-gradient">{title}</h2>
       <div className="flex-1 divider-gradient" />
       {viewAll && (
         <Link to={viewAll} className="text-sm text-accent whitespace-nowrap font-medium">

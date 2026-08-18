@@ -2,32 +2,36 @@ import { type ReactNode } from "react";
 import { Link } from "react-router";
 import { getUri } from "~/lib/helpers";
 import type { Tag } from "~/lib/types";
+import { PageIcon } from "../notion/page-icon";
 
 export function PostHeader({
   title,
   icon,
   desc,
   tags = [],
+  notionDomain,
   children,
 }: {
   title: string;
   icon?: ReactNode | string;
   desc?: string;
   tags?: Tag[];
+  notionDomain?: string;
   children?: ReactNode;
 }) {
+  console.log(icon);
   return (
     <div className="relative border-b border-border mb-12 pt-14 pb-12">
       <div className="absolute inset-0 cursor-none bg-glow-mesh" />
       <div className="absolute inset-0 bg-size-[40px_40px] bg-[linear-gradient(#4f80ff08_1px,#0000_1px),linear-gradient(90deg,#4f80ff08_1px,#0000_1px)] mask-[radial-gradient(100%_100%_at_0%,#000_20%,#0000_80%)]" />
-      <div className="relative container">
-        <div className="flex items-center gap-2.5 mb-3.5">
+      <div className="relative container space-y-3.5">
+        <div className="flex items-center gap-2.5">
           {icon && (
             <div className="inline-flex items-center justify-center size-10 bg-accent-glow border border-[#4f80ff40] rounded-lg text-accent">
-              {icon}
+              <PageIcon icon={icon as string} notionDomain={notionDomain!} />
             </div>
           )}
-          <h1 className="text-[1.75rem] lg:text-[2.5rem] leading-tight font-extrabold tracking-[-0.02em] text-gradient">
+          <h1 className="text-[1.75rem] lg:text-[2.5rem] leading-tight font-heading font-extrabold tracking-[-0.02em] text-gradient">
             {title}
           </h1>
         </div>

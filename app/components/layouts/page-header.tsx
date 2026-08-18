@@ -26,8 +26,8 @@ const MENU = [
     href: "/about",
   },
   {
-    label: "Resources",
-    href: "/resources",
+    label: "Bookmarks",
+    href: "/bookmarks",
   },
 ];
 

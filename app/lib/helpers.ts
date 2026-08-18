@@ -74,3 +74,18 @@ export const mapTag = (tag: string): Tag => {
     slug: makeSlugText(tag),
   };
 };
+
+/**
+ * get uri for note or tag
+ */
+export const getUri = (uri: string = "/", type: "note" | "tag" = "note"): string => {
+  const slug = makeSlugText(uri);
+  switch (type) {
+    case "note":
+      return `/notes/${slug}`;
+    case "tag":
+      return `/tags/${slug}`;
+    default:
+      throw new Error(`Unknown URI type: ${type}`);
+  }
+};

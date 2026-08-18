@@ -11,8 +11,8 @@ export type Post = {
   title: string;
   slug: string;
   description?: string;
-  createdAt?: string | Date;
-  updatedAt?: string | Date;
+  createdAt: string;
+  updatedAt: string;
   icon?: string;
   tags: Tag[];
   published?: boolean;

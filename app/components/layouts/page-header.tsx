@@ -35,7 +35,7 @@ export function PageHeader() {
     <ModalProvider>
       <SearchModal />
       <header className="sticky top-0 left-0 z-50 bg-[rgba(7,10,20,0.88)] backdrop-blur-lg shadow-[0_1px_0_var(--border),0_4px_24px_rgba(0,0,0,0.3)]">
-        <div className="px-4 md:container mx-auto flex items-center justify-between h-16">
+        <div className="container flex items-center justify-between h-16">
           <NavLink to="/" className="flex items-center shrink-0 gap-2">
             <span className="inline-flex items-center justify-center size-9 rounded-[10px] bg-linear-(--btn-gradient)">
               <IconPrompt stroke={3} width={20} height={20} />

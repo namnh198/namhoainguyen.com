@@ -20,6 +20,9 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
+
+  --background-image-glow-mesh:
+    radial-gradient(60% 80% at 20%, #4f80ff1f, #0000), radial-gradient(44% 64% at 76% 48%, #9b6dff1a, #0000);
 }
 
 :root {
@@ -54,6 +57,35 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+}
+
+@utility container {
+  padding-inline: 0.5rem;
+  margin-inline: auto;
+
+  @variant md {
+    padding-inline: 1rem;
+  }
+}
+
+@utility text-gradient {
+  background: linear-gradient(115deg, var(--text), #89a9ff 54%, #b69aff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility divider-gradient {
+  background: linear-gradient(90deg, #4f80ffb8 0%, #9b6dff57 42%, #0000 100%);
+  box-shadow: 0 0 14px #4f80ff2e;
+  height: 1px;
+}
+
+@utility bg-dotted {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABAQMAAAAoxSaNAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAZQTFRFpq3IAAAAUWzW8gAAAAJ0Uk5T2QAmabNuAAAACklEQVR4nGO0AwAAQgBA4PYNTwAAAABJRU5ErkJggg==);
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 7px 1px;
 }
 
 @layer components {

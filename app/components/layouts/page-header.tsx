@@ -18,6 +18,10 @@ const MENU = [
     href: "/notes",
   },
   {
+    label: "Topics",
+    href: "/tags",
+  },
+  {
     label: "About Me",
     href: "/about",
   },
@@ -29,13 +33,13 @@ const MENU = [
 
 export function PageHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile(992);
 
   return (
     <ModalProvider>
       <SearchModal />
       <header className="sticky top-0 left-0 z-50 bg-[rgba(7,10,20,0.88)] backdrop-blur-lg shadow-[0_1px_0_var(--border),0_4px_24px_rgba(0,0,0,0.3)]">
-        <div className="container flex items-center justify-between h-16">
+        <div className="relative container flex items-center justify-between h-16">
           <NavLink to="/" className="flex items-center shrink-0 gap-2">
             <span className="inline-flex items-center justify-center size-9 rounded-[10px] bg-linear-(--btn-gradient)">
               <IconPrompt stroke={3} width={20} height={20} />
@@ -46,21 +50,18 @@ export function PageHeader() {
             </span>
           </NavLink>
           {isMobile && (
-            <div className="flex gap-2 md:hidden">
+            <div className="flex gap-2">
               <SearchTrigger showText={false} />
               <ToggleMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
             </div>
           )}
 
           <nav
-            className={cn(
-              "flex flex-col md:flex-row gap-1.5 items-start md:items-center bg-[rgba(7,10,20,0.88)] backdrop-blur-lg",
-              {
-                "absolute top-[calc(100%+0.5rem)] left-4 right-4 z-50 border rounded-lg p-2 [&_a]:w-full":
-                  isMobile && menuOpen,
-                "h-0 hidden": isMobile && !menuOpen,
-              },
-            )}
+            className={cn("flex flex-col lg:flex-row gap-1.5 items-start md:items-center bg-[rgba(7,10,20,1)]", {
+              "absolute top-[calc(100%+0.5rem)] left-4 right-4 z-50 border rounded-lg p-2 [&_a]:w-full":
+                isMobile && menuOpen,
+              "h-0 hidden": isMobile && !menuOpen,
+            })}
           >
             {MENU.map(({ href, label }) => (
               <NavLink

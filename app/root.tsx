@@ -5,6 +5,7 @@ import "./app.css";
 import { PageHeader } from "./components/layouts/page-header";
 import { ModalProvider } from "./components/ui/animated-modal";
 import { SearchModal } from "./components/layouts/search-modal";
+import { PageFooter } from "./components/layouts/page-footer";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,6 +19,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <PageHeader />
         {children}
+        <PageFooter />
         <ScrollRestoration />
         <Scripts />
       </body>

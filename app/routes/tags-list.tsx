@@ -31,7 +31,7 @@ export function meta({}: Route.MetaArgs) {
 export default function TagsList({ loaderData }: Route.ComponentProps) {
   const { posts, tags, notionDomain } = loaderData;
   return (
-    <main className="min-h-100vh">
+    <main className="min-h-dvh">
       <PostHeader
         title="List all tags"
         icon={<IconTags stroke={2} />}
@@ -43,7 +43,7 @@ export default function TagsList({ loaderData }: Route.ComponentProps) {
           </span>
         }
       />
-      <div className="relative container">
+      <div className="relative container mb-12">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4">
           {tags.map((tag) => (
             <Link

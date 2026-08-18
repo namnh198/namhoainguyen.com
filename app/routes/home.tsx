@@ -1,9 +1,18 @@
+import { HomeHero } from "~/components/home/hero";
 import type { Route } from "./+types/home";
+import { getMetaData } from "~/lib/get-meta-data";
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: "New React Router App" }, { name: "description", content: "Welcome to React Router!" }];
+  return getMetaData({
+    title: "Hi! I'm Nam",
+    prefix: false,
+  });
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  return "Home Page";
+  return (
+    <main>
+      <HomeHero />
+    </main>
+  );
 }

@@ -25,7 +25,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
 export default function NotesDetail({ loaderData }: Route.ComponentProps) {
   const { post, notionDomain } = loaderData;
   return (
-    <main className="min-h-vh-100">
+    <main className="min-h-dvh">
       <PostHeader
         title={post.title}
         desc={post.description}
@@ -48,8 +48,7 @@ export default function NotesDetail({ loaderData }: Route.ComponentProps) {
           </div>
         </div>
       </PostHeader>
-      {/*<PostHeader post={post} notionDomain={notionDomain} />*/}
-      <div className="px-4 container mx-auto">NOTES DETAILS</div>
+      <div className="relative container mb-12">NOTES DETAILS</div>
     </main>
   );
 }

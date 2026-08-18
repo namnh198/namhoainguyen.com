@@ -25,7 +25,7 @@ export function loader() {
 export default function Bookmarks({ loaderData }: Route.ComponentProps) {
   const { bookmarks, totalBookmarks, totalCatBookmarks } = loaderData;
   return (
-    <main className="min-h-100vh">
+    <main className="min-h-dvh">
       <PostHeader
         title="Bookmarks"
         desc="I’m always on the lookout for new apps and websites that can help me learn and work more effectively. Here’s a list of tools that I’ve found really useful so far."
@@ -36,7 +36,7 @@ export default function Bookmarks({ loaderData }: Route.ComponentProps) {
           <span className="py-2 px-4 text-xs font-mono font-medium rounded-full whitespace-nowrap border border-border bg-bg-card transition-colors ease-in-out text-text-2">{`${totalCatBookmarks} Categories`}</span>
         </div>
       </PostHeader>
-      <div className="relative container lg:max-w-5xl">
+      <div className="relative container lg:max-w-5xl pb-12">
         <div className="flex flex-col gap-12">
           {bookmarks.map((bookmark) => (
             <div key={bookmark.title}>

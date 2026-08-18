@@ -23,14 +23,14 @@ export async function loader({ params }: Route.LoaderArgs) {
 export default function TagsDetail({ loaderData }: Route.ComponentProps) {
   const { tagPosts, pinnedTags, tag } = loaderData;
   return (
-    <main className="min-h-100vh">
+    <main className="min-h-dvh">
       <PostHeader
         title={`Tag ${tag.name}`}
         icon={<IconNotebook />}
         desc={`A list of posts with the tag ${tag.name}.`}
         tags={pinnedTags}
       />
-      <div className="relative container space-y-6">
+      <div className="relative container space-y-6 mb-12">
         <div className="flex flex-col gap-2">
           <SectionHeading title={tag.name} icon={<IconLayoutGrid stroke={2} />} />
         </div>

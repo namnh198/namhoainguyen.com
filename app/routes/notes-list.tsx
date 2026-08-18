@@ -35,14 +35,14 @@ export default function NotesList({ loaderData }: Route.ComponentProps) {
   const { posts, tags } = loaderData;
   const recentTag: Tag = { name: "Recently Post", slug: "recent", icon: "/icons/clock-code.svg" };
   return (
-    <main className="min-h-100vh">
+    <main className="min-h-dvh">
       <PostHeader
         title="My Taking Notes"
         icon={<IconNotebook />}
         tags={tags}
         desc="When I learn something new, I write it down here. It helps me to remember and understand better. I hope you find it useful."
       />
-      <div className="relative container">
+      <div className="relative container mb-12">
         <NoteListSection posts={posts.slice(0, POST_LIMIT)} tag={recentTag} />
         {tags.map((tag) => {
           const tagPosts = posts.filter((post) => post.tags.find((t) => t.slug === tag.slug)).slice(0, POST_LIMIT);
@@ -76,7 +76,7 @@ const NoteListSection = ({ posts, tag }: { posts: Post[]; tag: Tag }) => {
         </div>
       </div>
       <div className="flex-1 md:pl-8 relative pb-10">
-        <div className="hidden lg:block absolute top-2 left-0 w-px h-full bg-accent-glow">
+        <div className="hidden lg:block absolute top-2 left-0 bottom-0 w-px bg-accent-glow">
           <div className="hidden lg:block absolute -translate-x-1/2 size-3 bg-accent rounded-full z-10" />
         </div>
         <div className="space-y-6">

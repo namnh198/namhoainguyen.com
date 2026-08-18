@@ -6,30 +6,7 @@ import { useIsMobile } from "~/hooks/use-mobile";
 import { ToggleMenu } from "./toggle-menu";
 import { SearchModal, SearchTrigger } from "./search-modal";
 import { ModalProvider } from "../ui/animated-modal";
-import { label } from "motion/react-m";
-
-const MENU = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Lab Notes",
-    href: "/notes",
-  },
-  {
-    label: "Topics",
-    href: "/tags",
-  },
-  {
-    label: "About Me",
-    href: "/about",
-  },
-  {
-    label: "Bookmarks",
-    href: "/bookmarks",
-  },
-];
+import { MENU } from "~/data/menu";
 
 export function PageHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -65,7 +42,7 @@ export function PageHeader() {
           >
             {MENU.map(({ href, label }) => (
               <NavLink
-                key={href}
+                key={`header-menu-${href}`}
                 to={href}
                 className={({ isActive }) =>
                   cn("relative text-text rounded-md py-2 px-3.5 text-sm font-medium transition-all", {

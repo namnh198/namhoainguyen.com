@@ -59,15 +59,61 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+
+  .nhn-scrollbar {
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #aab5c9b0;
+      border-radius: 10px;
+      &:hover {
+        background: #aab5c9;
+      }
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &.nhn-scrollbar-small {
+      &::-webkit-scrollbar {
+        width: 7px;
+        height: 7px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 7px;
+      }
+    }
+  }
+
+  .nav-menu-button {
+    span {
+      background: currentColor;
+      width: 18px;
+      height: 2px;
+      border-radius: 2px;
+      transition:
+        transform 0.18s,
+        opacity 0.18s;
+    }
+  }
+  .nav-menu-button-open {
+    span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
 }
 
 @utility container {
-  padding-inline: 0.5rem;
+  padding-inline: 1rem;
   margin-inline: auto;
-
-  @variant md {
-    padding-inline: 1rem;
-  }
 }
 
 @utility text-gradient {
@@ -83,35 +129,116 @@
   height: 1px;
 }
 
-@utility bg-dotted {
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABAQMAAAAoxSaNAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAZQTFRFpq3IAAAAUWzW8gAAAAJ0Uk5T2QAmabNuAAAACklEQVR4nGO0AwAAQgBA4PYNTwAAAABJRU5ErkJggg==);
-  background-position: 0 100%;
-  background-repeat: repeat-x;
-  background-size: 7px 1px;
-}
+@utility notion-page {
+  :where(a) {
+    @apply text-accent hover:text-accent-2 no-underline;
+  }
 
-@layer components {
-  .nav-menu-button {
-    span {
-      background: currentColor;
-      width: 18px;
-      height: 2px;
-      border-radius: 2px;
-      transition:
-        transform 0.18s,
-        opacity 0.18s;
+  :where(h1, h2, h3, h4, h5, h6) {
+    @apply font-heading my-0 font-semibold;
+    font-family: var(--font-quicksand), ui-sans-serif, system-ui, sans-serif !important;
+    font-weight: 600;
+  }
+
+  :where(h1) {
+    font-size: 1.55rem;
+  }
+
+  :where(h2) {
+    font-size: 1.45rem;
+  }
+
+  :where(h3) {
+    font-size: 1.35rem;
+  }
+
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    :where(h1) {
+      font-size: 1.45rem;
+    }
+    :where(h2) {
+      font-size: 1.3rem;
+    }
+    :where(h3) {
+      font-size: 1.2rem;
     }
   }
 
-  .nav-menu-button-open {
-    span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
+  :where(img) {
+    @apply my-0;
+  }
+
+  /*:where(code) {
+    @apply rounded-md bg-bg-card p-[1px_8px_2px_6px] font-mono text-[90%] font-normal wrap-break-word before:content-[''] after:content-[''];
+  }*/
+  :where(pre) {
+    @apply bg-bg-card border;
+  }
+
+  :where(li) {
+    @apply my-1.5;
+  }
+
+  :where(ol) {
+    @apply my-0;
+  }
+
+  :where(ul) {
+    @apply my-0;
+  }
+
+  :where(td) {
+    @apply px-2.5 py-1.25;
+  }
+
+  :where(hr) {
+    @apply border-border-bright my-6;
+  }
+
+  :where(figure) {
+    margin: 0.75rem 0;
+  }
+
+  :where(strong, b) {
+    @apply font-semibold text-text;
+  }
+
+  /* Keep link color when strong/b is inside <a> or <a> is inside strong/b */
+  :where(a strong, a b, strong a, b a) {
+    @apply text-accent hover:text-accent-2 font-semibold;
+  }
+
+  :where(table) {
+    @apply my-0;
+  }
+
+  /* There is a strange problem where ul inside ol or ol inside ul: */
+  /* normally, we should have ol > ul but rendered as ol > ol > ul */
+  /* -1.625em is the opposite of the default margin-left of padding-inline-start of an ul/ol given */
+  /* by prose class */
+  :where(ol > ol > ul),
+  :where(ul > ul > ol) {
+    margin-left: -1.625em;
+  }
+
+  :where(ul, ol) {
+    & > *:not(ul):not(ol) {
+      margin-top: 0.5rem !important;
+      margin-bottom: 0.5rem !important;
     }
-    span:nth-child(2) {
-      opacity: 0;
-    }
-    span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
+  }
+
+  :where(ul > li::marker) {
+    font-size: 1rem;
+  }
+
+  :where(table) {
+    table-layout: auto;
+    width: 100%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    font-size: 0.875em;
+    line-height: 1.71429;
   }
 }

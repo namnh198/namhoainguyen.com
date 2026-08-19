@@ -1,18 +1,22 @@
 import { cn } from "~/lib/utils";
 import { LazyImage } from "../ui/lazy-image";
 import type { ReactNode } from "react";
+import type { Block } from "notion-types";
 
 export function PageIcon({
-  icon,
+  block,
+  inputIcon,
   defaultIcon,
   notionDomain,
   className,
 }: {
-  icon?: ReactNode | string;
+  block?: Block;
+  inputIcon?: ReactNode | string;
   defaultIcon?: ReactNode | string;
   notionDomain: string;
   className?: string;
 }) {
+  const icon = inputIcon ?? (block?.format?.page_icon || defaultIcon);
   if (!icon) {
     return defaultIcon;
   }

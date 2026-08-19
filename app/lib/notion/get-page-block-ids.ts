@@ -1,4 +1,5 @@
 import type { ExtendedRecordMap, Block, Collection, CollectionView, User, NotionMapBox } from "notion-types";
+import { getBlockValue } from "./get-block-value";
 
 /**
  * Gets the IDs of all blocks contained on a page starting from a root block ID.
@@ -70,21 +71,3 @@ export const getPageBlockIds = (recordMap: ExtendedRecordMap, blockId?: string):
   addContentBlocks(rootBlockId);
   return Array.from(contentBlockIds);
 };
-
-function getBlockValue<T extends Block | Collection | CollectionView | User>(
-  block: T | NotionMapBox<T> | undefined,
-): T | undefined {
-  if (!block) {
-    return undefined;
-  }
-
-  if ((block as any).value) {
-    return getBlockValue((block as any).value);
-  }
-
-  if (!(block as any).id) {
-    return undefined;
-  }
-
-  return block as any as T;
-}

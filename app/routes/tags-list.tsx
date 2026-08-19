@@ -54,7 +54,7 @@ export default function TagsList({ loaderData }: Route.ComponentProps) {
               <span className="flex items-center gap-1.5">
                 <span className="inline-flex items-center justify-center size-6 overflow-hidden rounded-full">
                   <PageIcon
-                    icon={tag.icon}
+                    inputIcon={tag.icon}
                     notionDomain={notionDomain}
                     className="object-cover"
                     defaultIcon={<IconTag stroke={2} />}

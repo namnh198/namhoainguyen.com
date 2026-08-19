@@ -1,4 +1,4 @@
-import type { Block } from "notion-types";
+import type { Block, Color } from "notion-types";
 import type { Post, Tag } from "./types";
 
 import slugify from "slugify";
@@ -87,5 +87,68 @@ export const getUri = (uri: string = "/", type: "note" | "tag" = "note"): string
       return `/tags/${slug}`;
     default:
       throw new Error(`Unknown URI type: ${type}`);
+  }
+};
+
+export const hashKey = (queryKey: string | readonly unknown[]) => {
+  const rawKeys = Array.isArray(queryKey) ? queryKey : [queryKey];
+  let hash = "";
+  for (const key of rawKeys) {
+    if (key !== null && typeof key === "object") {
+      hash += JSON.stringify(key);
+    } else if (key !== null) {
+      hash += key.toString();
+    }
+  }
+  return hash;
+};
+
+export function generateAnchor(blockId: string, text: string) {
+  return `${makeSlugText(text)}-${blockId.slice(-5)}`;
+}
+
+export const uuidToId = (uuid: string) => uuid.replaceAll("-", "");
+
+export const mapBlockColorClass = (color: Color | undefined) => {
+  switch (color) {
+    case "gray":
+      return "text-[#94a3b8] [&_*]:text-[#94a3b8]";
+    case "brown":
+      return "text-[#fcaf8c] [&_*]:text-[#fcaf8c]";
+    case "orange":
+      return "text-[#fca5a5] [&_*]:text-[#fca5a5]";
+    case "yellow":
+      return "text-[#fb923c] [&_*]:text-[#fb923c]";
+    case "teal":
+      return "text-[#4ade80] [&_*]:text-[#4ade80]";
+    case "blue":
+      return "text-[#38bdf8] [&_*]:text-[#38bdf8]";
+    case "purple":
+      return "text-[#818cf8] [&_*]:text-[#818cf8]";
+    case "pink":
+      return "text-[#e879f9] [&_*]:text-[#e879f9]";
+    case "red":
+      return "text-[#f87171] [&_*]:text-[#f87171]";
+    // Highlight
+    case "gray_background":
+      return "text-[#94a3b8] bg-[#1a1d2e] border border-[#334155] p-0.5 rounded-sm";
+    case "brown_background":
+      return "text-[#fcaf8c] bg-[#1d100c] border border-[#7c3d12] p-0.5 rounded-sm";
+    case "orange_background":
+      return "text-[#fca5a5] bg-[#2d1515] border border-[#7f1d1d] p-0.5 rounded-sm";
+    case "yellow_background":
+      return "text-[#fb923c] bg-[#2a2010] border border-[#7c3d12] p-0.5 rounded-sm";
+    case "blue_background":
+      return "text-[#38bdf8] bg-[#101e2e] border border-[#0c4a6e] p-0.5 rounded-sm";
+    case "purple_background":
+      return "text-[#818cf8] bg-[#181828] border border-[#3730a3] p-0.5 rounded-sm";
+    case "pink_background":
+      return "text-[#e879f9] bg-[#1e1028] border border-[#7e22ce] p-0.5 rounded-sm";
+    case "red_background":
+      return "text-[#f87171] bg-[#1c1010] border border-[#6b1414] p-0.5 rounded-sm";
+    case "teal_background":
+      return "text-[#4ade80] bg-[#101e15] border border-[#14532d] p-0.5 rounded-sm";
+    default:
+      return "bg-bg text-text-2";
   }
 };

@@ -58,62 +58,67 @@ export const getCollection = pMemoize(
 /**
  * fetch notion page with all its blocks
  */
-export const getPage = async (notionDomain: string, pageId: string): Promise<ExtendedRecordMap> => {
-  const parsedPageId = parsePageId(pageId);
-  if (!parsedPageId) {
-    throw new Error(`Invalid Notion page ID: ${pageId}`);
-  }
-  const page = await notionFetch<PageChunk>({
-    notionDomain,
-    endpoint: "loadPageChunk",
-    body: {
-      pageId: parsedPageId,
-      cursor: {
-        stack: [],
+export const getPage = pMemoize(
+  async (notionDomain: string, pageId: string): Promise<ExtendedRecordMap> => {
+    const parsedPageId = parsePageId(pageId);
+    if (!parsedPageId) {
+      throw new Error(`Invalid Notion page ID: ${pageId}`);
+    }
+    const page = await notionFetch<PageChunk>({
+      notionDomain,
+      endpoint: "loadPageChunk",
+      body: {
+        pageId: parsedPageId,
+        cursor: {
+          stack: [],
+        },
+        limit: 999,
+        chunkNumber: 0,
+        verticalColumns: false,
       },
-      limit: 999,
-      chunkNumber: 0,
-      verticalColumns: false,
-    },
-  });
+    });
 
-  if (page?.recordMap) {
-    page.recordMap = normalizeRecordMap(page.recordMap);
-  }
-
-  const recordMap: ExtendedRecordMap = {
-    ...(page?.recordMap || {}),
-    collection: page?.recordMap?.collection ?? {},
-    collection_view: page?.recordMap?.collection_view ?? {},
-    notion_user: page?.recordMap?.notion_user ?? {},
-    collection_query: {},
-    signed_urls: {},
-  };
-
-  if (!recordMap?.block) {
-    throw new Error(`Notion page not found "${parsedPageId}"`);
-  }
-
-  let iterations = 0;
-  const maxIterations = 10; // Prevent infinite loops
-
-  while (iterations < maxIterations) {
-    // Find blocks that are referenced but not yet loaded
-    const pendingBlockIds = getPageBlockIds(recordMap).filter((id) => !recordMap.block[id]);
-
-    if (!pendingBlockIds.length) {
-      break;
+    if (page?.recordMap) {
+      page.recordMap = normalizeRecordMap(page.recordMap);
     }
 
-    // Fetch missing blocks
-    const newBlocks = await getBlocksByIds(notionDomain, pendingBlockIds);
-    recordMap.block = { ...recordMap.block, ...newBlocks.recordMap.block };
+    const recordMap: ExtendedRecordMap = {
+      ...(page?.recordMap || {}),
+      collection: page?.recordMap?.collection ?? {},
+      collection_view: page?.recordMap?.collection_view ?? {},
+      notion_user: page?.recordMap?.notion_user ?? {},
+      collection_query: {},
+      signed_urls: {},
+    };
 
-    iterations++;
-  }
+    if (!recordMap?.block) {
+      throw new Error(`Notion page not found "${parsedPageId}"`);
+    }
 
-  return recordMap;
-};
+    let iterations = 0;
+    const maxIterations = 10; // Prevent infinite loops
+
+    while (iterations < maxIterations) {
+      // Find blocks that are referenced but not yet loaded
+      const pendingBlockIds = getPageBlockIds(recordMap).filter((id) => !recordMap.block[id]);
+
+      if (!pendingBlockIds.length) {
+        break;
+      }
+
+      // Fetch missing blocks
+      const newBlocks = await getBlocksByIds(notionDomain, pendingBlockIds);
+      recordMap.block = { ...recordMap.block, ...newBlocks.recordMap.block };
+
+      iterations++;
+    }
+
+    return recordMap;
+  },
+  {
+    cacheKey: (...args) => JSON.stringify(args),
+  },
+);
 
 /**
  * fetch multiple blocks by their IDs

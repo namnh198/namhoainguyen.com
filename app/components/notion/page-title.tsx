@@ -1,0 +1,68 @@
+import type { Block, Decoration } from "notion-types";
+import { getBlockTitle } from "~/lib/notion/get-page-title";
+import * as React from "react";
+
+import { useNotionContext } from "./context";
+import { cn } from "~/lib/utils";
+import { PageIcon } from "./page-icon";
+import { Text } from "./text";
+
+export const PageTitleImpl: React.FC<{
+  block: Block;
+  className?: string;
+  defaultIcon?: string;
+  hideIcon?: boolean;
+}> = ({ block, className, defaultIcon, hideIcon, ...rest }) => {
+  const { recordMap, blockOptions } = useNotionContext();
+
+  if (!block) return null;
+
+  if (block.type === "collection_view_page" || block.type === "collection_view") {
+    const title = getBlockTitle(block, recordMap);
+    if (!title) {
+      return null;
+    }
+
+    const titleDecoration: Decoration[] = [[title]];
+
+    return (
+      <span className={cn("notion-page-title", className)} {...rest}>
+        {!hideIcon && (
+          <PageIcon
+            block={block}
+            notionDomain={blockOptions.notionDomain}
+            defaultIcon={defaultIcon}
+            className="notion-page-title-icon"
+          />
+        )}
+
+        <span className="notion-page-title-text">
+          <Text value={titleDecoration} block={block} />
+        </span>
+      </span>
+    );
+  }
+
+  if (!block.properties?.title) {
+    return null;
+  }
+
+  return (
+    <span className={cn("notion-page-title", className)} {...rest}>
+      {!hideIcon && (
+        <PageIcon
+          block={block}
+          notionDomain={blockOptions.notionDomain}
+          defaultIcon={defaultIcon}
+          className="notion-page-title-icon"
+        />
+      )}
+
+      <span className="notion-page-title-text">
+        <Text value={block.properties?.title} block={block} />
+      </span>
+    </span>
+  );
+};
+
+export const PageTitle = React.memo(PageTitleImpl);

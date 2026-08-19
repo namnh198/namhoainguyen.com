@@ -1,11 +1,13 @@
 import type { Route } from "./+types/notes-detail";
 import { env } from "cloudflare:workers";
 import { data } from "react-router";
-import { IconUser, IconCalendarEvent, IconRefresh } from "@tabler/icons-react";
-import { getPosts } from "~/lib/fetcher";
-import { getMetaData } from "~/lib/get-meta-data";
+import { IconUser, IconCalendarEvent, IconRefresh, IconNote, IconNotes } from "@tabler/icons-react";
 import { PostHeader } from "~/components/posts/post-header";
 import { DateComponent } from "~/components/ui/date-component";
+import { PostBody } from "~/components/posts/post-body";
+import { getPosts, getRecordMap } from "~/lib/fetcher";
+import { getMetaData } from "~/lib/get-meta-data";
+import { parsePageId } from "~/lib/notion/parse-page-id";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const allPosts = await getPosts(env);
@@ -13,8 +15,13 @@ export async function loader({ params }: Route.LoaderArgs) {
   if (!post || !post.id) {
     throw data("Post Not Found", { status: 404 });
   }
+  const parseIdWithDash = parsePageId(post.id);
+  if (!parseIdWithDash) {
+    throw data("Invalid Notion Page ID", { status: 400 });
+  }
+  const recordMap = await getRecordMap(parseIdWithDash, env);
 
-  return { post, slugKey: env.NOTION_SCHEMA_SLUG, notionDomain: env.NOTION_SITE_DOMAIN };
+  return { post, recordMap, slugKey: env.NOTION_SCHEMA_SLUG, notionDomain: env.NOTION_SITE_DOMAIN };
 }
 
 export function meta({ loaderData }: Route.MetaArgs) {
@@ -23,14 +30,14 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export default function NotesDetail({ loaderData }: Route.ComponentProps) {
-  const { post, notionDomain } = loaderData;
+  const { post, recordMap, slugKey, notionDomain } = loaderData;
   return (
     <main className="min-h-dvh">
       <PostHeader
         title={post.title}
         desc={post.description}
         tags={post.tags}
-        icon={post.icon}
+        icon={post.icon || <IconNotes />}
         notionDomain={notionDomain}
       >
         <div className="flex flex-wrap gap-3 items-center justify-center sm:justify-start">
@@ -48,7 +55,11 @@ export default function NotesDetail({ loaderData }: Route.ComponentProps) {
           </div>
         </div>
       </PostHeader>
-      <div className="relative container mb-12">NOTES DETAILS</div>
+      <PostBody
+        recordMap={recordMap}
+        blockOptions={{ slugKey, notionDomain }}
+        className="notion-page relative container mb-12"
+      />
     </main>
   );
 }

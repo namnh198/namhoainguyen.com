@@ -34,11 +34,14 @@ export function PageHeader() {
           )}
 
           <nav
-            className={cn("flex flex-col lg:flex-row gap-1.5 items-start md:items-center bg-[rgba(7,10,20,1)]", {
-              "absolute top-[calc(100%+0.5rem)] left-4 right-4 z-50 border rounded-lg p-2 [&_a]:w-full":
-                isMobile && menuOpen,
-              "h-0 hidden": isMobile && !menuOpen,
-            })}
+            className={cn(
+              "flex flex-col lg:flex-row gap-1.5 items-start md:items-center bg-[rgba(7,10,20,1)] lg:bg-transparent",
+              {
+                "absolute top-[calc(100%+0.5rem)] left-4 right-4 z-50 border rounded-lg p-2 [&_a]:w-full":
+                  isMobile && menuOpen,
+                "h-0 hidden": isMobile && !menuOpen,
+              },
+            )}
           >
             {MENU.map(({ href, label }) => (
               <NavLink

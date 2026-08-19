@@ -38,7 +38,10 @@ export const getPosts = async (env: Env, forceRefresh: boolean = false): Promise
     posts.push(post);
   }
 
-  return posts;
+  return posts.sort(
+    (a: Post, b: Post) =>
+      Number(b.pinned) - Number(a.pinned) || new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+  );
 };
 
 /**

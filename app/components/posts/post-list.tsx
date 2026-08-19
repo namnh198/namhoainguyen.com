@@ -4,7 +4,9 @@ import { IconNotes, IconPin } from "@tabler/icons-react";
 import { DateComponent } from "../ui/date-component";
 import { getUri } from "~/lib/helpers";
 import { usePostDateStatus, type PostDateStatus } from "~/hooks/use-post-date-status";
-import { cn } from "~/lib/utils";
+import { cn, getLabelLang } from "~/lib/utils";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
+import { Badge } from "../ui/badge";
 
 export function PostList({ posts, className }: { posts: Post[]; className?: string }) {
   return (
@@ -28,14 +30,21 @@ export function PostListItem({ post, withinDay = 7 }: { post: Post; withinDay?: 
         <span className="font-medium text-text" role="heading" aria-level={3}>
           {post.title}
         </span>
-        {post.language !== "en" && (
-          <span className="inline-flex text-xs items-center justify-center whitespace-nowrap py-0.5 px-2 border rounded-full bg-accent-glow text-accent">
-            {post.language}
-          </span>
+        {post.language && post.language !== "en" && (
+          <Tooltip>
+            <TooltipTrigger>
+              <Badge variant="grey" className="font-mono">
+                {post.language}
+              </Badge>
+            </TooltipTrigger>
+            <TooltipContent side="right" sideOffset={8}>
+              <p>written in {getLabelLang(post.language)}</p>
+            </TooltipContent>
+          </Tooltip>
         )}
       </span>
       <span className="flex items-center flex-wrap gap-2">
-        <PostDateStatusBadge status={postStatus} updateDate={post.updatedAt} />
+        <PostDateStatusBadge className="font-mono" status={postStatus} updateDate={post.updatedAt} />
       </span>
     </Link>
   );
@@ -50,18 +59,11 @@ export function PostDateStatusBadge({
   status: PostDateStatus;
   className?: string;
 }) {
+  const variant = status === "new" ? "orange" : "green";
+
   return (
-    <span
-      className={cn(
-        "inline-flex items-center justify-center whitespace-nowrap font-medium py-0.5 px-1.5 border rounded-sm text-xs",
-        {
-          "text-[#fb923c] bg-[#201510] border-[#7c2d12]": status === "new",
-          "text-[#4ade80] bg-[#101e15] border-[#14532d]": status === "updated" || status == "updatedWithin",
-        },
-        [className],
-      )}
-    >
+    <Badge variant={variant} className={className}>
       <DateComponent date={updateDate} dateLabel={status == "new" ? "created" : "updated "} />
-    </span>
+    </Badge>
   );
 }

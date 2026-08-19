@@ -27,7 +27,7 @@ export function PostHeader({
         <div className="flex items-center gap-2.5">
           {icon && (
             <div className="inline-flex items-center justify-center size-10 bg-accent-glow border border-[#4f80ff40] rounded-lg text-accent">
-              <PageIcon icon={icon as string} notionDomain={notionDomain!} />
+              <PageIcon inputIcon={icon as string} notionDomain={notionDomain!} />
             </div>
           )}
           <h1 className="text-[1.75rem] lg:text-[2.5rem] leading-tight font-heading font-extrabold tracking-[-0.02em] text-gradient">

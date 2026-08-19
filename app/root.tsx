@@ -6,6 +6,7 @@ import { PageHeader } from "./components/layouts/page-header";
 import { ModalProvider } from "./components/ui/animated-modal";
 import { SearchModal } from "./components/layouts/search-modal";
 import { PageFooter } from "./components/layouts/page-footer";
+import { TooltipProvider } from "./components/ui/tooltip";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,9 +18,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <PageHeader />
-        {children}
-        <PageFooter />
+        <TooltipProvider>
+          <PageHeader />
+          {children}
+          <PageFooter />
+        </TooltipProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

@@ -26,7 +26,7 @@ export function LazyImage({ showLoader = true, ...props }: ImageProps) {
         className={cn("inline-flex items-center justify-center animate-spin", props.className)}
         style={{ width: props.width || "auto", height: props.height || "auto" }}
       >
-        <IconLoader3 stroke={2} />
+        <IconLoader3 stroke={2} width={props.width || 16} height={props.height || 16} />
       </span>
     );
   }

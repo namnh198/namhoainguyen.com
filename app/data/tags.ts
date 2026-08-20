@@ -5,7 +5,7 @@ export const TAGS: Tag[] = [
     name: "11ty",
     slug: "11ty",
     pinned: false,
-    icon: "https://res.cloudinary.com/doo2twtbu/image/upload/v1699115194/nhn.com-topics/11ty_lusyhd.svg",
+    icon: "https://res.cloudinary.com/dabgirqbj/image/upload/v1787204957/nhn.com/11ty_mkts2h.svg",
   },
   {
     name: "AI",
@@ -84,7 +84,7 @@ export const TAGS: Tag[] = [
     name: "Next.Js",
     slug: "nextjs",
     pinned: false,
-    icon: "https://res.cloudinary.com/doo2twtbu/image/upload/v1701611583/nhn.com-topics/nextjs_cmmxr1.svg",
+    icon: "https://res.cloudinary.com/dabgirqbj/image/upload/v1787204941/nhn.com/nextjs_lrj50o.svg",
   },
   {
     name: "Node.js",

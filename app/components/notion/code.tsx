@@ -4,7 +4,7 @@ import { useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 
 import { useNotionContext } from "./context";
-import Mermaid from "./mermaid";
+import { Mermaid } from "./mermaid";
 import { Text } from "./text";
 import { getBlockTitle } from "~/lib/notion/get-page-title";
 import { IconCopy, IconCopyCheck } from "@tabler/icons-react";
@@ -60,17 +60,9 @@ export function Code(props: BlockCodeProps) {
     </CopyToClipboard>
   );
 
-  // const syntaxWraper = (
-  //   <SyntaxHighlighter
-  //     language={formatCodeLang(language)}
-  //     style={vscDarkPlus}
-  //     className="syntax-highlighter-pre my-0! max-h-75 border rounded-xl bg-bg-card!"
-  //     showLineNumbers={true}
-  //     customStyle={{ fontSize: "15px" }}
-  //   >
-  //     {content}
-  //   </SyntaxHighlighter>
-  // );
+  if (language === "mermaid") {
+    return <Mermaid chart={content} className={cn(className, blurBlockClassName)} />;
+  }
 
   return (
     <div className={cn(className, blurBlockClassName, "group/code relative flex flex-col gap-2")}>

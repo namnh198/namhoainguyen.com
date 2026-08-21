@@ -8,4 +8,6 @@ export default [
   route("/bookmarks", "routes/bookmarks.tsx"),
   route("/notes", "routes/notes-list.tsx"),
   route("/notes/:slug", "routes/notes-detail.tsx"),
+  route("/robots.txt", "./routes/robots.ts"),
+  route("/sitemap.xml", "./routes/sitemaps.ts"),
 ] satisfies RouteConfig;

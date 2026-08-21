@@ -2,8 +2,6 @@ import type { CodeBlock } from "notion-types";
 import * as React from "react";
 import { useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { Prism, type SyntaxHighlighterProps } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import { useNotionContext } from "./context";
 import Mermaid from "./mermaid";
@@ -12,23 +10,36 @@ import { getBlockTitle } from "~/lib/notion/get-page-title";
 import { IconCopy, IconCopyCheck } from "@tabler/icons-react";
 import { cn } from "~/lib/utils";
 
-const SyntaxHighlighter = Prism as any as React.FC<SyntaxHighlighterProps>;
-
 type BlockCodeProps = {
   block: CodeBlock;
   className?: string;
   defaultLanguage?: string;
-  updatedBlock?: React.ReactElement;
   blurBlockClassName?: string;
 };
 
 export function Code(props: BlockCodeProps) {
-  const { block, className, defaultLanguage, updatedBlock, blurBlockClassName } = props;
+  const { block, className, defaultLanguage, blurBlockClassName } = props;
+  const [highlightCode, setHighlightCode] = useState<string | null>(null);
 
   const { recordMap, blockOptions } = useNotionContext();
   const content = getBlockTitle(block, recordMap);
   const language = (block.properties?.language?.[0]?.[0] || defaultLanguage || "typescript").toLowerCase();
   const caption = block.properties.caption;
+
+  React.useEffect(() => {
+    if (!content) {
+      return;
+    }
+    // @ts-expect-error: load shiki from esm.sh to avoid large worker bundle
+    import("https://esm.sh/shiki").then(async ({ codeToHtml }) => {
+      setHighlightCode(
+        await codeToHtml(content, {
+          lang: formatCodeLang(language),
+          theme: "tokyo-night",
+        }),
+      );
+    });
+  }, [content, language]);
 
   const [copied, setCopied] = useState(false);
   const onSuccess = () => {
@@ -49,17 +60,17 @@ export function Code(props: BlockCodeProps) {
     </CopyToClipboard>
   );
 
-  const syntaxWraper = (
-    <SyntaxHighlighter
-      language={formatCodeLang(language)}
-      style={vscDarkPlus}
-      className="syntax-highlighter-pre my-0! max-h-75 border rounded-xl bg-bg-card!"
-      showLineNumbers={true}
-      customStyle={{ fontSize: "15px" }}
-    >
-      {content}
-    </SyntaxHighlighter>
-  );
+  // const syntaxWraper = (
+  //   <SyntaxHighlighter
+  //     language={formatCodeLang(language)}
+  //     style={vscDarkPlus}
+  //     className="syntax-highlighter-pre my-0! max-h-75 border rounded-xl bg-bg-card!"
+  //     showLineNumbers={true}
+  //     customStyle={{ fontSize: "15px" }}
+  //   >
+  //     {content}
+  //   </SyntaxHighlighter>
+  // );
 
   return (
     <div className={cn(className, blurBlockClassName, "group/code relative flex flex-col gap-2")}>
@@ -70,7 +81,15 @@ export function Code(props: BlockCodeProps) {
         {copyBtnWrapper}
       </div>
       <div className={`language-${formatCodeLang(language)} syntax-highlighter relative overflow-hidden text-sm`}>
-        <div className="w-full overflow-hidden">{syntaxWraper}</div>
+        {highlightCode ? (
+          <div className="w-full overflow-hidden" dangerouslySetInnerHTML={{ __html: highlightCode }}></div>
+        ) : (
+          <div className="w-full overflow-hidden">
+            <pre className="my-0 max-h-75 font-mono rounded-lg bg-bg-card border p-[1em]">
+              <code>{content}</code>
+            </pre>
+          </div>
+        )}
       </div>
 
       {caption && (
@@ -79,7 +98,7 @@ export function Code(props: BlockCodeProps) {
         </div>
       )}
 
-      {language === "mermaid" && <Mermaid chart={content} updatedBlock={updatedBlock} className={blurBlockClassName} />}
+      {language === "mermaid" && <Mermaid chart={content} className={blurBlockClassName} />}
     </div>
   );
 }
@@ -89,7 +108,7 @@ export function Code(props: BlockCodeProps) {
  * https://developers.notion.com/reference/block#code-blocks
  * https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/
  */
-const formatCodeLang = (lang: string) => {
+const formatCodeLang = (lang: string): string => {
   switch (lang) {
     case "plain text":
       return "plaintext";

@@ -6,8 +6,7 @@
 @theme inline {
   --font-sans: "Inter Variable", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono Variable", monospace;
-  --font-heading:
-    "Oxanium Variable", "Inter Variable", system-ui, -apple-system, sans-serif;
+  --font-heading: "Oxanium Variable", "Inter Variable", system-ui, -apple-system, sans-serif;
 
   --color-bg: var(--bg);
   --color-bg-card: var(--bg-card);
@@ -25,8 +24,7 @@
   --color-danger: var(--danger);
 
   --background-image-glow-mesh:
-    radial-gradient(60% 80% at 20%, #4f80ff1f, #0000),
-    radial-gradient(44% 64% at 76% 48%, #9b6dff1a, #0000);
+    radial-gradient(60% 80% at 20%, #4f80ff1f, #0000), radial-gradient(44% 64% at 76% 48%, #9b6dff1a, #0000);
 
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
@@ -158,8 +156,7 @@
 
   :where(h1, h2, h3, h4, h5, h6) {
     @apply font-heading my-0 font-semibold;
-    font-family:
-      var(--font-quicksand), ui-sans-serif, system-ui, sans-serif !important;
+    font-family: var(--font-quicksand), ui-sans-serif, system-ui, sans-serif !important;
     font-weight: 600;
   }
 
@@ -196,7 +193,7 @@
     @apply rounded-md bg-bg-card p-[1px_8px_2px_6px] font-mono text-[90%] font-normal wrap-break-word before:content-[''] after:content-[''];
   }*/
   :where(pre) {
-    @apply bg-bg-card border;
+    @apply bg-bg-card! border rounded-xl p-[1em];
   }
 
   :where(li) {
@@ -263,6 +260,17 @@
     margin-bottom: 2em;
     font-size: 0.875em;
     line-height: 1.71429;
+  }
+
+  :where(.shiki) {
+    counter-reset: step;
+    counter-increment: step 0;
+    .line {
+      &::before {
+        counter-increment: step;
+        @apply mr-6 inline-block w-4 border-transparent text-right text-text-3 content-[counter(step)];
+      }
+    }
   }
 }
 

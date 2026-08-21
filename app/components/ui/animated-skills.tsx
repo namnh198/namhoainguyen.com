@@ -41,7 +41,7 @@ function BadgeSkill({ tech }: { tech: TechItem }) {
       title={tech.name}
       target="_blank"
       rel="noreferrer noopener"
-      className="inline-flex items-center justify-center gap-1.5 w-fit py-2 px-3.5 transition-colors border hover:border-border-bright rounded-lg bg-bg-card"
+      className="about-item"
     >
       <LazyImage
         src={tech.image}

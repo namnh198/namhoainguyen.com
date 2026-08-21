@@ -6,7 +6,8 @@
 @theme inline {
   --font-sans: "Inter Variable", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono Variable", monospace;
-  --font-heading: "Oxanium Variable", "Inter Variable", system-ui, -apple-system, sans-serif;
+  --font-heading:
+    "Oxanium Variable", "Inter Variable", system-ui, -apple-system, sans-serif;
 
   --color-bg: var(--bg);
   --color-bg-card: var(--bg-card);
@@ -24,7 +25,8 @@
   --color-danger: var(--danger);
 
   --background-image-glow-mesh:
-    radial-gradient(60% 80% at 20%, #4f80ff1f, #0000), radial-gradient(44% 64% at 76% 48%, #9b6dff1a, #0000);
+    radial-gradient(60% 80% at 20%, #4f80ff1f, #0000),
+    radial-gradient(44% 64% at 76% 48%, #9b6dff1a, #0000);
 
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
@@ -156,7 +158,8 @@
 
   :where(h1, h2, h3, h4, h5, h6) {
     @apply font-heading my-0 font-semibold;
-    font-family: var(--font-quicksand), ui-sans-serif, system-ui, sans-serif !important;
+    font-family:
+      var(--font-quicksand), ui-sans-serif, system-ui, sans-serif !important;
     font-weight: 600;
   }
 
@@ -260,5 +263,11 @@
     margin-bottom: 2em;
     font-size: 0.875em;
     line-height: 1.71429;
+  }
+}
+
+@layer components {
+  .about-item {
+    @apply inline-flex items-center justify-center gap-1.5 w-fit py-2 px-3.5 text-sm transition-colors border hover:border-border-bright rounded-lg bg-bg-card;
   }
 }

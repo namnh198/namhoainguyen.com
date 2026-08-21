@@ -1,5 +1,9 @@
+import { IconChevronRight } from "@tabler/icons-react";
+import { useState } from "react";
 import { AnimatedSkills } from "~/components/ui/animated-skills";
+import { PROJECTS } from "~/data/projects";
 import { getMetaData } from "~/lib/get-meta-data";
+import { cn } from "~/lib/utils";
 
 export function meta() {
   return getMetaData({
@@ -17,8 +21,9 @@ export default function About() {
             About me
           </h1>
           <p className="mt-4 max-w-2xl text-text-2">
-            I'm a senior full-stack engineer, creative coder and self-proclaimed designer who specializes in web
-            development. I make it my mission to translate user-focused designs into pixel-perfect websites or
+            I'm a senior full-stack engineer, creative coder and self-proclaimed
+            designer who specializes in web development. I make it my mission to
+            translate user-focused designs into pixel-perfect websites or
             applications that run blazing fast.
           </p>
         </div>
@@ -32,8 +37,12 @@ export default function About() {
             </div>
             <div className="flex-1 bg-bg-card border rounded-xl py-4 px-5 transition-colors hover:border-border-bright overflow-hidden">
               <div className="flex flex-wrap items-baseline gap-3 mb-3.5">
-                <h2 className="font-heading uppercase tracking-[0.04em] font-extrabold">Tech Stacks</h2>
-                <p className="text-[.82rem] text-text-3">What I actually do it with</p>
+                <h2 className="font-heading uppercase tracking-[0.04em] font-extrabold">
+                  Tech Stacks
+                </h2>
+                <p className="text-[.82rem] text-text-3">
+                  What I actually do it with
+                </p>
               </div>
               <AnimatedSkills />
             </div>
@@ -47,8 +56,12 @@ export default function About() {
             </div>
             <div className="flex-1 bg-bg-card border rounded-xl py-4 px-5 transition-colors hover:border-border-bright">
               <div className="flex flex-wrap items-baseline gap-3 mb-3.5">
-                <h2 className="font-heading uppercase tracking-[0.04em] font-extrabold">Experiences</h2>
-                <p className="text-[.82rem] text-text-3">What I actually do it with</p>
+                <h2 className="font-heading uppercase tracking-[0.04em] font-extrabold">
+                  Experiences
+                </h2>
+                <p className="text-[.82rem] text-text-3">
+                  What I actually do it with
+                </p>
               </div>
             </div>
           </section>
@@ -61,8 +74,91 @@ export default function About() {
             </div>
             <div className="flex-1 bg-bg-card border rounded-xl py-4 px-5 transition-colors hover:border-border-bright">
               <div className="flex flex-wrap items-baseline gap-3 mb-3.5">
-                <h2 className="font-heading uppercase tracking-[0.04em] font-extrabold">Projects</h2>
-                <p className="text-[.82rem] text-text-3">What I actually do it with</p>
+                <h2 className="font-heading uppercase tracking-[0.04em] font-extrabold">
+                  Projects
+                </h2>
+                <p className="text-[.82rem] text-text-3">
+                  What I actually do it with
+                </p>
+              </div>
+              <div className="flex flex-wrap items-start gap-3">
+                {PROJECTS.map((project) => {
+                  const [open, setOpen] = useState(false);
+                  return (
+                    <div
+                      key={project.name}
+                      className={cn(
+                        "bg-bg-elevated border rounded-lg transition-colors overflow-hidden",
+                        {
+                          "border-accent basis-full w-full": open,
+                        },
+                      )}
+                    >
+                      <button
+                        className={cn(
+                          "about-item text-text-2 justify-between w-full",
+                          {
+                            "bg-bg-card": !open,
+                            "rounded-none! bg-bg-elevated border-b-0!": open,
+                          },
+                        )}
+                        onClick={() => setOpen(!open)}
+                      >
+                        <span>{project.name}</span>
+                        <IconChevronRight
+                          width={16}
+                          height={16}
+                          className={cn({
+                            "stroke-text-text-2": !open,
+                            "stroke-accent rotate-90": open,
+                          })}
+                        />
+                      </button>
+                      {open && (
+                        <div className="p-[0_.8rem_.8rem]">
+                          <div className="flex flex-col mb-2.5">
+                            <div className="border-t flex items-center justify-between gap-4 py-1.5 text-sm font-mono">
+                              <span className="text-text-3">Name</span>
+                              <span className="text-text-2 text-right font-mono">
+                                {project.name}
+                              </span>
+                            </div>
+                            <div className="border-t flex items-center justify-between gap-4 py-1.5 text-sm font-mono">
+                              <span className="text-text-3">Type</span>
+                              <span className="text-text-2 text-right font-mono">
+                                {project.type}
+                              </span>
+                            </div>
+                            <div className="border-t flex items-center justify-between gap-4 py-1.5 text-sm font-mono">
+                              <span className="text-text-3">Github</span>
+                              <a
+                                href={project.githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-text-2 text-right font-mono"
+                              >
+                                {project.githubUrl}
+                              </a>
+                            </div>
+                            {project.previewUrl && (
+                              <div className="border-t flex items-center justify-between gap-4 py-1.5 text-sm font-mono">
+                                <span className="text-text-3">Preview</span>
+                                <a
+                                  href={project.previewUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-text-2 text-right font-mono"
+                                >
+                                  {project.previewUrl}
+                                </a>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -75,8 +171,12 @@ export default function About() {
             </div>
             <div className="flex-1 bg-bg-card border rounded-xl py-4 px-5 transition-colors hover:border-border-bright">
               <div className="flex flex-wrap items-baseline gap-3 mb-3.5">
-                <h2 className="font-heading uppercase tracking-[0.04em] font-extrabold">Educations</h2>
-                <p className="text-[.82rem] text-text-3">What I actually do it with</p>
+                <h2 className="font-heading uppercase tracking-[0.04em] font-extrabold">
+                  Educations
+                </h2>
+                <p className="text-[.82rem] text-text-3">
+                  What I actually do it with
+                </p>
               </div>
             </div>
           </section>
@@ -84,4 +184,8 @@ export default function About() {
       </div>
     </main>
   );
+}
+
+function AboutItem() {
+  // return
 }

@@ -33,7 +33,11 @@ const POST_LIMIT = 10;
 
 export default function NotesList({ loaderData }: Route.ComponentProps) {
   const { posts, tags } = loaderData;
-  const recentTag: Tag = { name: "Recently Post", slug: "recent", icon: "/icons/clock-code.svg" };
+  const recentTag: Tag = {
+    name: "Recently Post",
+    slug: "recent",
+    icon: "https://res.cloudinary.com/dabgirqbj/image/upload/v1787331458/nhn.com/clock_cdrtbp.png",
+  };
   return (
     <main className="min-h-dvh">
       <PostHeader

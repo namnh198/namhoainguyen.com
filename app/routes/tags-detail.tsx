@@ -1,12 +1,12 @@
 import { IconLayoutGrid, IconNotebook, IconPinned } from "@tabler/icons-react";
 import type { Route } from "./+types/tags-detail";
 import { env } from "cloudflare:workers";
-import { PostHeader } from "~/components/posts/post-header";
+import { PostHeader } from "~/components/elements/post-header";
 import { getPosts } from "~/lib/fetcher";
 import { data } from "react-router";
 import { TAGS } from "~/data/tags";
 import { SectionHeading } from "~/components/layouts/section-heading";
-import { PostList } from "~/components/posts/post-list";
+import { PostList } from "~/components/elements/post-list";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const posts = await getPosts(env);

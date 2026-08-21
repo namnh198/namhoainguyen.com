@@ -9,7 +9,7 @@ import { MENU } from "~/data/menu";
 
 export function PageHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const isMobile = useIsMobile(992);
+  const isMobile = useIsMobile(1024);
 
   return (
     <header className="sticky top-0 left-0 z-50 bg-[rgba(7,10,20,0.88)] backdrop-blur-lg shadow-[0_1px_0_var(--border),0_4px_24px_rgba(0,0,0,0.3)]">
@@ -32,7 +32,7 @@ export function PageHeader() {
 
         <nav
           className={cn(
-            "flex flex-col lg:flex-row gap-1.5 items-start md:items-center bg-[rgba(7,10,20,1)] lg:bg-transparent",
+            "flex flex-col lg:flex-row gap-1.5 items-start lg:items-center bg-[rgba(7,10,20,1)] lg:bg-transparent",
             {
               "absolute top-[calc(100%+0.5rem)] left-4 right-4 z-50 border rounded-lg p-2 [&_a]:w-full":
                 isMobile && menuOpen,

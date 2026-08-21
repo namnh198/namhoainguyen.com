@@ -1,4 +1,4 @@
-import { IconLoader, IconNotebook, IconSearch, IconX } from "@tabler/icons-react";
+import { IconLoader2, IconNotebook, IconSearch, IconX } from "@tabler/icons-react";
 import { Button, buttonVariants } from "../ui/button";
 import {
   Dialog,
@@ -132,7 +132,7 @@ export function SearchModal({}) {
                 className: `rounded-none ${loading && query ? "animate-spin" : ""}`,
               })}
             >
-              {loading && query ? <IconLoader /> : <IconSearch />}
+              {loading && query ? <IconLoader2 /> : <IconSearch />}
             </span>
             <Input
               aria-activedescendant={activeIndex >= 0 ? `action-${results[activeIndex]?.id}` : undefined}
@@ -179,7 +179,7 @@ export function SearchModal({}) {
           )}
           {results.length > 0 && (
             <div className="text-text-2 p-3 pl-4 text-xs">
-              Found <span>{results.length}</span> results
+              Found <span className="font-medium text-success">{results.length}</span> results
             </div>
           )}
         </div>

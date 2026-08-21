@@ -4,6 +4,7 @@
 @import "@fontsource-variable/jetbrains-mono";
 
 @theme inline {
+  --breakpoint-xs: 28rem;
   --font-sans: "Inter Variable", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono Variable", monospace;
   --font-heading: "Oxanium Variable", "Inter Variable", system-ui, -apple-system, sans-serif;

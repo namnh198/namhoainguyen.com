@@ -3,12 +3,12 @@ import type { Route } from "./+types/notes-list";
 import type { Post, Tag } from "~/lib/types";
 import { getPosts } from "~/lib/fetcher";
 import { env } from "cloudflare:workers";
-import { PostHeader } from "~/components/posts/post-header";
+import { PostHeader } from "~/components/elements/post-header";
 import { IconNotebook, IconNotes, IconPin, IconLayoutGrid } from "@tabler/icons-react";
 import { TAGS } from "~/data/tags";
 import { Link } from "react-router";
 import { getUri } from "~/lib/helpers";
-import { PostList } from "~/components/posts/post-list";
+import { PostList } from "~/components/elements/post-list";
 import { LazyImage } from "~/components/ui/lazy-image";
 import { SectionHeading } from "~/components/layouts/section-heading";
 

@@ -43,7 +43,7 @@ export function PostListItem({ post, withinDay = 7 }: { post: Post; withinDay?: 
           </Tooltip>
         )}
       </span>
-      <span className="flex items-center flex-wrap gap-2">
+      <span className="hidden sm:flex items-center flex-wrap gap-2">
         <PostDateStatusBadge className="font-mono" status={postStatus} updateDate={post.updatedAt} />
       </span>
     </Link>

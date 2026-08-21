@@ -80,29 +80,38 @@
     cursor: pointer;
   }
 
+  ::selection {
+    color: #fff;
+    background: #4f80ff4d;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-bright);
+    border-radius: 3px;
+    &:hover {
+      background: var(--text-3);
+    }
+  }
+
   .nhn-scrollbar {
     &::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
+      width: 6px;
+      height: 6px;
     }
     &::-webkit-scrollbar-thumb {
-      background: #aab5c9b0;
-      border-radius: 10px;
+      background: var(--border-bright);
+      border-radius: 3px;
       &:hover {
         background: #aab5c9;
-      }
-    }
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    &.nhn-scrollbar-small {
-      &::-webkit-scrollbar {
-        width: 7px;
-        height: 7px;
-      }
-      &::-webkit-scrollbar-thumb {
-        border-radius: 7px;
       }
     }
   }
@@ -193,7 +202,7 @@
     @apply rounded-md bg-bg-card p-[1px_8px_2px_6px] font-mono text-[90%] font-normal wrap-break-word before:content-[''] after:content-[''];
   }*/
   :where(pre) {
-    @apply bg-bg-card! border rounded-xl p-[1em];
+    @apply border rounded-xl p-[1em] bg-bg-elevated!;
   }
 
   :where(li) {

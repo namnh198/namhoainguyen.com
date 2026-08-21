@@ -5,3 +5,12 @@ type CollectionInstance = NotionCollectionInstance & {
 };
 
 export type { CollectionInstance, PageChunk, ExtendedRecordMap };
+
+export type SearchResult = {
+  id: string;
+  title: string;
+  slug: string;
+  titleHighlighted: string;
+  textHighlighted: string;
+  published: boolean;
+};

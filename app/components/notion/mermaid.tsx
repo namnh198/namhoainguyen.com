@@ -147,7 +147,7 @@ export function Mermaid({
 
       {/* 5. Idle State */}
       {status === "idle" && (
-        <div className="flex items-center justify-center w-full h-full min-h-[150px] border-2 border-dashed rounded-lg border-muted-foreground/20">
+        <div className="flex items-center justify-center w-full h-full min-h-37.5 border-2 border-dashed rounded-lg border-muted-foreground/20">
           <p className="text-sm text-muted-foreground">No diagram code provided</p>
         </div>
       )}

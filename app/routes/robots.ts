@@ -9,7 +9,7 @@ export function loader({ url }: Route.LoaderArgs): Response {
   } else {
     robots.push("User-agent: *");
     robots.push("Allow: /");
-    robots.push("Disallow: /api/search-notion");
+    robots.push("Disallow: /api/search");
     robots.push("");
     robots.push(`Sitemap: ${url.origin}/sitemap.xml`);
   }

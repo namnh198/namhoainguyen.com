@@ -3,8 +3,6 @@ import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration }
 import type { Route } from "./+types/root";
 import "./app.css";
 import { PageHeader } from "./components/layouts/page-header";
-import { ModalProvider } from "./components/ui/animated-modal";
-import { SearchModal } from "./components/layouts/search-modal";
 import { PageFooter } from "./components/layouts/page-footer";
 import { TooltipProvider } from "./components/ui/tooltip";
 

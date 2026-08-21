@@ -202,30 +202,23 @@ export const Asset: React.FC<{
               className="notion-asset-object-fit -mt-2 -ml-2"
               src={src}
               title="GitHub Gist"
-              frameBorder="0"
               // TODO: is this sandbox necessary?
-              // sandbox='allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin'
+              sandbox="allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin"
               // this is important for perf but react's TS definitions don't seem to like it
               loading="lazy"
-              scrolling="auto"
             />
           );
         } else {
           src += block.type === "typeform" ? "&disable-auto-focus=true" : "";
-
           content = (
             <iframe
-              className="notion-asset-object-fit"
+              className="notion-asset-object-fit -mt-2 -ml-2"
               style={assetStyle}
               src={src}
               title={`iframe ${block.type}`}
-              frameBorder="0"
-              // TODO: is this sandbox necessary?
-              // sandbox='allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin'
+              sandbox="allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin"
               allowFullScreen
-              // this is important for perf but react's TS definitions don't seem to like it
               loading="lazy"
-              scrolling="auto"
             />
           );
         }
@@ -255,7 +248,7 @@ export const Asset: React.FC<{
 
   return (
     <>
-      <div style={style} className="thi-scrollbar">
+      <div style={style} className="nhn-scrollbar">
         {content}
         {block.type === "image" && children}
       </div>

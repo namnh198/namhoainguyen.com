@@ -1,7 +1,9 @@
+import type { Route } from "./+types/search";
 import { searchNotion } from "~/lib/notion/api";
-import type { Route } from "./+types/search-notion";
+
 import { env } from "cloudflare:workers";
 import { makeSlugText } from "~/lib/helpers";
+import type { SearchResult } from "~/lib/notion/types";
 
 export async function loader({ url }: Route.LoaderArgs) {
   const query = url.searchParams.get("q");
@@ -15,15 +17,6 @@ export async function loader({ url }: Route.LoaderArgs) {
   });
   return parseSearchResults(results);
 }
-
-export type SearchResult = {
-  id: string;
-  title: string;
-  slug: string;
-  titleHighlighted: string;
-  textHighlighted: string;
-  published: boolean;
-};
 
 /**
  * We convert the format of search results got from /api/search-notion to the format we want
@@ -43,28 +36,20 @@ function parseSearchResults(data: any): SearchResult[] {
       continue;
     }
 
-    const published =
-      properties?.[env.NOTION_SCHEMA_PUBLISHED]?.[0]?.[0] === "Yes";
+    const published = properties?.[env.NOTION_SCHEMA_PUBLISHED]?.[0]?.[0] === "Yes";
     const hide = properties?.[env.NOTION_SCHEMA_HIDE]?.[0]?.[0] === "Yes";
     const title = properties?.[env.NOTION_SCHEMA_TITLE]?.[0]?.[0];
     if (!title || hide || (import.meta.env.PROD && !published)) {
       continue;
     }
-    const slug =
-      properties?.[env.NOTION_SCHEMA_SLUG]?.[0]?.[0] || makeSlugText(title);
+    const slug = properties?.[env.NOTION_SCHEMA_SLUG]?.[0]?.[0] || makeSlugText(title);
     const titleHighlighted =
       result?.highlight?.title
-        ?.replaceAll(
-          `<${env.NOTION_BOLD_SEARCH_KEY}>`,
-          `<span class="text-yellow-text-dark">`,
-        )
+        ?.replaceAll(`<${env.NOTION_BOLD_SEARCH_KEY}>`, `<span style="color:#fbbf24;">`)
         ?.replaceAll(`</${env.NOTION_BOLD_SEARCH_KEY}>`, `</span>`) || title;
     const textHighlighted =
       result.highlight?.text
-        ?.replaceAll(
-          `<${env.NOTION_BOLD_SEARCH_KEY}>`,
-          `<span class="text-yellow-text-dark">`,
-        )
+        ?.replaceAll(`<${env.NOTION_BOLD_SEARCH_KEY}>`, `<span style="color:#fbbf24;">`)
         ?.replaceAll(`</${env.NOTION_BOLD_SEARCH_KEY}>`, `</span>`) || null;
 
     results.push({

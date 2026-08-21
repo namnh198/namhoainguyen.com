@@ -1,5 +1,5 @@
 import { MENU } from "~/data/menu";
-import type { Route } from "./+types/sitemaps";
+import type { Route } from "./+types/sitemap";
 import { getPosts } from "~/lib/fetcher";
 import { env } from "cloudflare:workers";
 import { getUri } from "~/lib/helpers";
@@ -7,14 +7,7 @@ import { getUri } from "~/lib/helpers";
 interface SitemapUrl {
   path: string;
   lastmod?: string;
-  changefreq?:
-    | "always"
-    | "hourly"
-    | "daily"
-    | "weekly"
-    | "monthly"
-    | "yearly"
-    | "never";
+  changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
   priority?: number;
 }
 

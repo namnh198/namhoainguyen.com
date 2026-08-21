@@ -4,13 +4,11 @@ import { LazyImage } from "./lazy-image";
 import { Marquee } from "./marquee";
 
 function AnimatedSkills() {
-  const techs = useMemo(() => {
-    return TECHS.filter((tech) => tech.image);
-  }, []);
-  const itemsPerRow = Math.ceil(techs.length / 3);
-  const row1 = techs.slice(0, itemsPerRow);
-  const row2 = techs.slice(itemsPerRow, itemsPerRow * 2);
-  const row3 = techs.slice(itemsPerRow * 2);
+  const itemsPerRow = Math.ceil(TECHS.length / 4);
+  const row1 = TECHS.slice(0, itemsPerRow);
+  const row2 = TECHS.slice(itemsPerRow, itemsPerRow * 2);
+  const row3 = TECHS.slice(itemsPerRow * 2, itemsPerRow * 3);
+  const row4 = TECHS.slice(itemsPerRow * 3);
   return (
     <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
       <Marquee pauseOnHover className="[--duration:40s]">
@@ -18,13 +16,18 @@ function AnimatedSkills() {
           <BadgeSkill key={tech.name} tech={tech} />
         ))}
       </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:60s]">
+      <Marquee reverse pauseOnHover className="[--duration:40s]">
         {row2.map((tech) => (
           <BadgeSkill key={tech.name} tech={tech} />
         ))}
       </Marquee>
       <Marquee pauseOnHover className="[--duration:40s]">
         {row3.map((tech) => (
+          <BadgeSkill key={tech.name} tech={tech} />
+        ))}
+      </Marquee>
+      <Marquee reverse pauseOnHover className="[--duration:40s]">
+        {row4.map((tech) => (
           <BadgeSkill key={tech.name} tech={tech} />
         ))}
       </Marquee>
@@ -36,13 +39,7 @@ function AnimatedSkills() {
 
 function BadgeSkill({ tech }: { tech: TechItem }) {
   return (
-    <a
-      href={tech.url}
-      title={tech.name}
-      target="_blank"
-      rel="noreferrer noopener"
-      className="about-item"
-    >
+    <a href={tech.url} title={tech.name} target="_blank" rel="noreferrer noopener" className="about-item">
       <LazyImage
         src={tech.image}
         alt={tech.name}

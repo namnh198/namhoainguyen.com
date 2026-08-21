@@ -37,7 +37,7 @@ export default function Bookmarks({ loaderData }: Route.ComponentProps) {
           <span className="py-2 px-4 text-xs font-mono font-medium rounded-full whitespace-nowrap border border-border bg-bg-card transition-colors ease-in-out text-text-2">{`${totalCatBookmarks} Categories`}</span>
         </div>
       </PostHeader>
-      <div className="relative container lg:max-w-5xl pb-12">
+      <div className="relative container pb-12">
         <div className="flex flex-col gap-12">
           {bookmarks.map((bookmark) => (
             <div key={bookmark.title}>

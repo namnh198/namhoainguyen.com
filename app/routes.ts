@@ -10,4 +10,5 @@ export default [
   route("/notes/:slug", "routes/notes-detail.tsx"),
   route("/robots.txt", "./routes/robots.ts"),
   route("/sitemap.xml", "./routes/sitemaps.ts"),
+  route("/api/search-notion", "routes/api/search-notion.tsx"),
 ] satisfies RouteConfig;

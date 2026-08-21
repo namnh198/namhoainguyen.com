@@ -100,7 +100,9 @@ export const getPage = pMemoize(
 
     while (iterations < maxIterations) {
       // Find blocks that are referenced but not yet loaded
-      const pendingBlockIds = getPageBlockIds(recordMap).filter((id) => !recordMap.block[id]);
+      const pendingBlockIds = getPageBlockIds(recordMap).filter(
+        (id) => !recordMap.block[id],
+      );
 
       if (!pendingBlockIds.length) {
         break;
@@ -120,11 +122,63 @@ export const getPage = pMemoize(
   },
 );
 
+export const searchNotion = pMemoize(
+  async ({
+    query,
+    notionDomain,
+    ancestorId,
+  }: {
+    query: string;
+    notionDomain: string;
+    ancestorId: string;
+  }) => {
+    const data = await notionFetch<CollectionInstance>({
+      notionDomain,
+      endpoint: "search",
+      body: {
+        type: "BlocksInAncestor",
+        query: query,
+        ancestorId: ancestorId,
+        source: "quick_find_input_change",
+        sort: {
+          field: "relevance",
+        },
+        limit: 100,
+        filters: {
+          isDeletedOnly: false,
+          excludeTemplates: false,
+          navigableBlockContentOnly: false,
+          requireEditPermissions: false,
+          includePublicPagesWithoutExplicitAccess: true,
+          ancestors: [],
+          createdBy: [],
+          editedBy: [],
+          lastEditedTime: {},
+          createdTime: {},
+          inTeams: [],
+        },
+      },
+    });
+
+    if (data?.recordMap) {
+      data.recordMap = normalizeRecordMap(data.recordMap);
+    }
+
+    return data;
+  },
+  {
+    cacheKey: (...args) => JSON.stringify(args),
+  },
+);
+
 /**
  * fetch multiple blocks by their IDs
  * @returns
  */
-export const getBlocksByIds = async (notionDomain: string, blockIds: string[]): Promise<PageChunk> => {
+export const getBlocksByIds = async (
+  notionDomain: string,
+  blockIds: string[],
+): Promise<PageChunk> => {
   const data = await notionFetch<PageChunk>({
     notionDomain,
     endpoint: "syncRecordValuesMain",
@@ -171,7 +225,9 @@ export const notionFetch = async <T>({
   });
 
   if (!res.ok) {
-    throw new Error(`failed to fetchData from Notion API: ${res.status} ${res.statusText}`);
+    throw new Error(
+      `failed to fetchData from Notion API: ${res.status} ${res.statusText}`,
+    );
   }
 
   return await res.json<T>();
@@ -189,7 +245,14 @@ function normalizeRecordMap(recordMap: any) {
   if (!recordMap || recordMap.__version__ !== 3) {
     return recordMap;
   }
-  const tablesToNormalize = ["block", "collection", "collection_view", "notion_user", "space", "custom_emoji"];
+  const tablesToNormalize = [
+    "block",
+    "collection",
+    "collection_view",
+    "notion_user",
+    "space",
+    "custom_emoji",
+  ];
 
   for (const table of tablesToNormalize) {
     const entries = recordMap[table];

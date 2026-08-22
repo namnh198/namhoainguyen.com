@@ -164,37 +164,6 @@
     @apply text-accent hover:text-accent-2 no-underline;
   }
 
-  :where(h1, h2, h3, h4, h5, h6) {
-    @apply font-heading my-0 font-semibold;
-    font-family: var(--font-quicksand), ui-sans-serif, system-ui, sans-serif !important;
-    font-weight: 600;
-  }
-
-  :where(h1) {
-    font-size: 1.55rem;
-  }
-
-  :where(h2) {
-    font-size: 1.45rem;
-  }
-
-  :where(h3) {
-    font-size: 1.35rem;
-  }
-
-  /* Mobile styles */
-  @media (max-width: 768px) {
-    :where(h1) {
-      font-size: 1.45rem;
-    }
-    :where(h2) {
-      font-size: 1.3rem;
-    }
-    :where(h3) {
-      font-size: 1.2rem;
-    }
-  }
-
   :where(img) {
     @apply my-0;
   }
@@ -247,8 +216,8 @@
   /* normally, we should have ol > ul but rendered as ol > ol > ul */
   /* -1.625em is the opposite of the default margin-left of padding-inline-start of an ul/ol given */
   /* by prose class */
-  :where(ol > ol),
-  :where(ul > ul),
+  :where(.discrete-content ol > ol),
+  :where(.discrete-content ul > ul),
   :where(ol > ol > ul),
   :where(ul > ul > ol) {
     margin-left: -1.625em;

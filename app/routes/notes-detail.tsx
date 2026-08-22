@@ -8,6 +8,9 @@ import { PostBody } from "~/components/elements/post-body";
 import { getPosts, getRecordMap } from "~/lib/fetcher";
 import { getMetaData } from "~/lib/get-meta-data";
 import { parsePageId } from "~/lib/notion/parse-page-id";
+import type { NotionComponents } from "~/components/notion/context";
+import { DiscreteHeading } from "~/components/notion/discrete-heading";
+import { cn } from "~/lib/utils";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const allPosts = await getPosts(env);
@@ -56,9 +59,10 @@ export default function NotesDetail({ loaderData }: Route.ComponentProps) {
         </div>
       </PostHeader>
       <PostBody
+        post={post}
         recordMap={recordMap}
         blockOptions={{ slugKey, notionDomain }}
-        className="notion-page relative container mb-12"
+        className={cn("notion-page relative container mb-12", { "discrete-page": post.discrete })}
       />
     </main>
   );

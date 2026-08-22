@@ -45,13 +45,12 @@ export function Block({ block, level, children }: BlockProps) {
           {/*<PageTitle block={block} />*/}
         </components.PageLink>
       );
-      return <div>{children}</div>;
     case "header":
     case "sub_header":
     case "sub_sub_header":
       if (!block.properties) return null;
       if (components.Header) {
-        return <components.Header block={block} />;
+        return <components.Header block={block}>{children}</components.Header>;
       }
       return <Heading block={block}>{children}</Heading>;
     case "divider":

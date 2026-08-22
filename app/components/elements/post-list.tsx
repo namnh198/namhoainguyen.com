@@ -44,7 +44,12 @@ export function PostListItem({ post, withinDay = 7 }: { post: Post; withinDay?: 
         )}
       </span>
       <span className="hidden sm:flex items-center flex-wrap gap-2">
-        <PostDateStatusBadge className="font-mono" status={postStatus} updateDate={post.updatedAt} />
+        <PostDateStatusBadge
+          className="font-mono"
+          status={postStatus}
+          createdDate={post.createdAt}
+          updateDate={post.updatedAt}
+        />
       </span>
     </Link>
   );
@@ -52,18 +57,21 @@ export function PostListItem({ post, withinDay = 7 }: { post: Post; withinDay?: 
 
 export function PostDateStatusBadge({
   updateDate,
+  createdDate,
   status,
   className,
 }: {
   updateDate: string;
+  createdDate: string;
   status: PostDateStatus;
   className?: string;
 }) {
-  const variant = status === "new" ? "orange" : "green";
+  const isNew = status === "new";
+  const variant = isNew ? "orange" : "green";
 
   return (
     <Badge variant={variant} className={className}>
-      <DateComponent date={updateDate} dateLabel={status == "new" ? "created" : "updated "} />
+      <DateComponent date={isNew ? createdDate : updateDate} dateLabel={status == "new" ? "created" : "updated "} />
     </Badge>
   );
 }

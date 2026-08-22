@@ -247,6 +247,8 @@
   /* normally, we should have ol > ul but rendered as ol > ol > ul */
   /* -1.625em is the opposite of the default margin-left of padding-inline-start of an ul/ol given */
   /* by prose class */
+  :where(ol > ol),
+  :where(ul > ul),
   :where(ol > ol > ul),
   :where(ul > ul > ol) {
     margin-left: -1.625em;
@@ -280,6 +282,21 @@
         counter-increment: step;
         @apply mr-6 inline-block w-4 border-transparent text-right text-text-3 content-[counter(step)];
       }
+    }
+  }
+}
+
+@utility discrete-page {
+  counter-reset: step-discrete;
+  counter-increment: step-discrete 0;
+
+  .discrete {
+    counter-increment: step-discrete;
+  }
+
+  .discrete-heading {
+    &::before {
+      @apply content-[counter(step-discrete)] shrink-0 rounded-full size-5.5 inline-flex items-center justify-center border border-accent bg-accent-glow font-medium text-xs text-accent font-mono;
     }
   }
 }

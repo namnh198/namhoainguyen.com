@@ -4,12 +4,17 @@ import { useMemo } from "react";
 import { Link as ReactLink, type LinkProps } from "react-router";
 import { LazyImage } from "../ui/lazy-image";
 import type { BlockOptionContext } from "../notion/context";
+import type { Post } from "~/lib/types";
+import { DiscreteHeading } from "../notion/discrete-heading";
+import { Heading } from "../notion/heading";
 
 export function PostBody({
+  post,
   recordMap,
   blockOptions,
   className,
 }: {
+  post: Post;
   recordMap: ExtendedRecordMap;
   className?: string;
   blockOptions?: BlockOptionContext;
@@ -19,6 +24,7 @@ export function PostBody({
       PageLink: Link,
       Link: Link,
       Image: LazyImage,
+      Header: post.discrete ? DiscreteHeading : Heading,
     }),
     [],
   );

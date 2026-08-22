@@ -29,9 +29,9 @@ export function PostBody({
     [],
   );
   return (
-    <article className={className}>
+    <section className={className}>
       <NotionRenderer recordMap={recordMap} components={components} level={0} blockOptions={blockOptions} />
-    </article>
+    </section>
   );
 }
 

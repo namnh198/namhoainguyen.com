@@ -1,4 +1,4 @@
-import type { Block, CodeBlock, EquationBlock, Block as NotionBlock, TableBlock } from "notion-types";
+import type { Block, CodeBlock, EquationBlock, Block as NotionBlock, PageBlock, TableBlock } from "notion-types";
 import { cn } from "~/lib/utils";
 import { useNotionContext } from "./context";
 import { Text } from "./text";
@@ -17,6 +17,8 @@ import { getTextContent } from "~/lib/notion/get-text-content";
 import { Bookmark } from "./bookmark";
 import { Callout } from "./callout";
 import { PageIcon } from "./page-icon";
+import { getPageTocs } from "~/lib/notion/get-page-tocs";
+import { Tocs } from "./tocs";
 
 export type BlockProps = {
   block: NotionBlock;
@@ -33,9 +35,16 @@ export function Block({ block, level, children }: BlockProps) {
   const blockColor = block.format?.block_color;
 
   switch (block.type) {
+    case "collection_view_page":
     case "page":
       if (level < 1) {
-        return <div>{children}</div>;
+        const tocs = getPageTocs(block as PageBlock, recordMap);
+        return (
+          <div className="relative flex flex-col lg:flex-row flex-wrap gap-6">
+            {tocs.length > 0 && <Tocs tocs={tocs} className="max-w-75 lg:order-1" />}
+            <article className="notion-page-content flex-1 w-full max-w-full">{children}</article>
+          </div>
+        );
       }
       return (
         <components.PageLink

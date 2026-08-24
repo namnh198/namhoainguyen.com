@@ -74,9 +74,9 @@ export const TAGS: Tag[] = [
     icon: "https://res.cloudinary.com/doo2twtbu/image/upload/v1699115189/nhn.com-topics/adobe-commerce_ggth8l.png",
   },
   {
-    name: "MOOC",
-    slug: "mooc",
-    tooltip: "Massive Open Online Course",
+    name: "Learning",
+    slug: "learning",
+    tooltip: "Online Course / Reading Book",
     pinned: true,
     icon: "https://res.cloudinary.com/doo2twtbu/image/upload/v1701630750/nhn.com-topics/mooc_h65btc.webp",
   },

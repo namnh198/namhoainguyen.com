@@ -40,9 +40,9 @@ export function Block({ block, level, children }: BlockProps) {
       if (level < 1) {
         const tocs = getPageTocs(block as PageBlock, recordMap);
         return (
-          <div className="relative flex flex-col lg:flex-row flex-wrap gap-6">
-            {tocs.length > 0 && <Tocs tocs={tocs} className="max-w-75 lg:order-1" />}
-            <article className="notion-page-content flex-1 w-full max-w-full">{children}</article>
+          <div className="relative flex flex-col lg:flex-row gap-4">
+            {tocs.length > 0 && <Tocs tocs={tocs} className="w-full lg:w-75 lg:order-1" />}
+            <article className="notion-page-content shrink-0 flex-1 w-full lg:w-[calc(100%-308px)]">{children}</article>
           </div>
         );
       }

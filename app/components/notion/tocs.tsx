@@ -13,7 +13,7 @@ export function Tocs({ tocs, className }: { tocs: Array<TableOfContentsEntry>; c
   return (
     <aside
       className={cn(
-        "tocs flex bg-bg-card w-full border rounded-xl flex-col lg:sticky lg:top-18 h-fit lg:h-[calc(100vh-110px)] overflow-hidden",
+        "tocs shrink-0 flex bg-bg-card w-full border rounded-xl flex-col lg:sticky z-10 lg:top-18 h-fit lg:h-[calc(100vh-7.5rem)] overflow-hidden",
         className,
       )}
     >

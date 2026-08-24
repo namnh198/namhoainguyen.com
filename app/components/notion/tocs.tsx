@@ -31,10 +31,15 @@ export function Tocs({ tocs, className }: { tocs: Array<TableOfContentsEntry>; c
           block: isMobile && openToc,
         })}
       >
-        {tocs.map((toc) => {
+        {tocs.map((toc, index) => {
           const tocId = generateAnchor(toc.id, toc.text);
           const isActive = activeId === tocId;
           const isDone = doneTocs.indexOf(tocId) !== -1;
+          const nextToc = index === tocs.length ? undefined : tocs[index + 1];
+          const isHiddenDivider =
+            !nextToc ||
+            (toc.type === "sub_header" && nextToc.type === "header") ||
+            (toc.type === "sub_sub_header" && nextToc.type !== "sub_sub_header");
           return (
             <div
               key={toc.id}
@@ -73,7 +78,7 @@ export function Tocs({ tocs, className }: { tocs: Array<TableOfContentsEntry>; c
                     </svg>
                   </span>
                 </span>
-                <span className="absolute -left-4 bottom-0 size-0 toc-divider">
+                <span className={cn("absolute -left-4 bottom-0 size-0 toc-divider", { hidden: isHiddenDivider })}>
                   <span className="absolute -top-1.5 -left-px bg-border-bright w-0.5 h-2"></span>
                 </span>
               </a>

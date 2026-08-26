@@ -25,7 +25,8 @@
   --color-danger: var(--danger);
 
   --background-image-glow-mesh:
-    radial-gradient(60% 80% at 20%, #4f80ff1f, #0000), radial-gradient(44% 64% at 76% 48%, #9b6dff1a, #0000);
+    radial-gradient(60% 80% at 20%, #4f80ff1f, #0000),
+    radial-gradient(44% 64% at 76% 48%, #9b6dff1a, #0000);
 
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
@@ -246,6 +247,7 @@
   :where(.shiki) {
     counter-reset: step;
     counter-increment: step 0;
+    overflow-x: auto;
     .line {
       &::before {
         counter-increment: step;

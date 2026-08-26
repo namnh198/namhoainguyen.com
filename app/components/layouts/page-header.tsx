@@ -44,6 +44,7 @@ export function PageHeader() {
             <NavLink
               key={`header-menu-${href}`}
               to={href}
+              onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
                 cn("relative text-text rounded-md py-2 px-3.5 text-sm font-medium transition-all", {
                   "hover:text-text hover:bg-bg-elevated": !isActive,

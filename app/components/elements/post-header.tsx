@@ -26,7 +26,7 @@ export function PostHeader({
       <div className="relative container space-y-3.5">
         <div className="flex items-center gap-2.5">
           {icon && (
-            <div className="inline-flex items-center justify-center size-10 bg-accent-glow border border-[#4f80ff40] rounded-lg text-accent">
+            <div className="shrink-0 inline-flex items-center justify-center size-10 bg-accent-glow border border-[#4f80ff40] rounded-lg text-accent">
               <PageIcon inputIcon={icon as string} notionDomain={notionDomain!} />
             </div>
           )}

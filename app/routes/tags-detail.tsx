@@ -7,6 +7,7 @@ import { data } from "react-router";
 import { TAGS } from "~/data/tags";
 import { SectionHeading } from "~/components/layouts/section-heading";
 import { PostList } from "~/components/elements/post-list";
+import { getMetaData } from "~/lib/get-meta-data";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const posts = await getPosts(env);
@@ -18,6 +19,14 @@ export async function loader({ params }: Route.LoaderArgs) {
   }
 
   return { tagPosts, pinnedTags, tag };
+}
+
+export function meta({ loaderData }: Route.ComponentProps) {
+  const { tag } = loaderData;
+  return getMetaData({
+    title: `Tag ${tag.name}`,
+    desc: tag.tooltip || `A list of posts with the tag ${tag.name}.`,
+  });
 }
 
 export default function TagsDetail({ loaderData }: Route.ComponentProps) {

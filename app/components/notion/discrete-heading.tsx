@@ -1,10 +1,16 @@
 import type { Block } from "notion-types";
 import type { ReactNode } from "react";
 import { generateAnchor, uuidToId } from "~/lib/helpers";
-import { getTextContent } from "~/lib/notion/get-text-content";
+import { getTextContent } from "~/lib/notion/get-block-value";
 import { Text } from "./text";
 
-export function DiscreteHeading({ block, children }: { block: Block; children?: ReactNode }) {
+export function DiscreteHeading({
+  block,
+  children,
+}: {
+  block: Block;
+  children?: ReactNode;
+}) {
   if (!block.properties) {
     return null;
   }

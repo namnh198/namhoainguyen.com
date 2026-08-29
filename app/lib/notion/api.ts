@@ -1,5 +1,5 @@
 import { parsePageId } from "./parse-page-id";
-import { getPageBlockIds } from "./get-page-block-ids";
+import { getPageBlockIds } from "./get-block-value";
 import type { CollectionInstance, ExtendedRecordMap, PageChunk } from "./types";
 import pMemoize from "p-memoize";
 

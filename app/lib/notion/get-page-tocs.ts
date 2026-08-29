@@ -1,7 +1,6 @@
 import type { PageBlock, ID, BlockType, ExtendedRecordMap } from "notion-types";
 
-import { getBlockValue } from "./get-block-value";
-import { getTextContent } from "./get-text-content";
+import { getBlockValue, getTextContent } from "./get-block-value";
 
 export interface TableOfContentsEntry {
   id: ID;
@@ -21,7 +20,10 @@ const indentLevels = {
  * Gets the metadata for a table of contents block by parsing the page's
  * H1, H2, and H3 elements.
  */
-export const getPageTocs = (page: PageBlock, recordMap: ExtendedRecordMap): Array<TableOfContentsEntry> => {
+export const getPageTocs = (
+  page: PageBlock,
+  recordMap: ExtendedRecordMap,
+): Array<TableOfContentsEntry> => {
   type MapResult = TableOfContentsEntry | null | MapResult[];
 
   // Maps `content` property to TOC entries.
@@ -33,7 +35,12 @@ export const getPageTocs = (page: PageBlock, recordMap: ExtendedRecordMap): Arra
       if (block) {
         const { type } = block;
 
-        if (type === "header" || type === "sub_header" || type === "sub_sub_header" || type === "header_4") {
+        if (
+          type === "header" ||
+          type === "sub_header" ||
+          type === "sub_sub_header" ||
+          type === "header_4"
+        ) {
           return {
             id: blockId,
             type,
@@ -42,7 +49,11 @@ export const getPageTocs = (page: PageBlock, recordMap: ExtendedRecordMap): Arra
           };
         }
 
-        if (type === "transclusion_container" || type === "column_list" || type === "column") {
+        if (
+          type === "transclusion_container" ||
+          type === "column_list" ||
+          type === "column"
+        ) {
           return mapContentToEntries(block.content);
         }
       }

@@ -1,5 +1,5 @@
 import type { Block, Decoration } from "notion-types";
-import { getBlockTitle } from "~/lib/notion/get-page-title";
+import { getBlockTitle } from "~/lib/notion/get-block-value";
 import * as React from "react";
 
 import { useNotionContext } from "./context";
@@ -17,7 +17,10 @@ export const PageTitleImpl: React.FC<{
 
   if (!block) return null;
 
-  if (block.type === "collection_view_page" || block.type === "collection_view") {
+  if (
+    block.type === "collection_view_page" ||
+    block.type === "collection_view"
+  ) {
     const title = getBlockTitle(block, recordMap);
     if (!title) {
       return null;

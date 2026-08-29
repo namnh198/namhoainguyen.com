@@ -25,8 +25,7 @@
   --color-danger: var(--danger);
 
   --background-image-glow-mesh:
-    radial-gradient(60% 80% at 20%, #4f80ff1f, #0000),
-    radial-gradient(44% 64% at 76% 48%, #9b6dff1a, #0000);
+    radial-gradient(60% 80% at 20%, #4f80ff1f, #0000), radial-gradient(44% 64% at 76% 48%, #9b6dff1a, #0000);
 
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
@@ -173,7 +172,7 @@
     @apply rounded-md bg-bg-card p-[1px_8px_2px_6px] font-mono text-[90%] font-normal wrap-break-word before:content-[''] after:content-[''];
   }*/
   :where(pre) {
-    @apply border rounded-xl p-[1em] bg-bg-elevated!;
+    @apply bg-bg-elevated! rounded-xl border p-[1em];
   }
 
   :where(li) {
@@ -201,7 +200,7 @@
   }
 
   :where(strong, b) {
-    @apply font-semibold text-text;
+    @apply text-text font-semibold;
   }
 
   /* Keep link color when strong/b is inside <a> or <a> is inside strong/b */
@@ -251,7 +250,7 @@
     .line {
       &::before {
         counter-increment: step;
-        @apply mr-6 inline-block w-4 border-transparent text-right text-text-3 content-[counter(step)];
+        @apply text-text-3 mr-6 inline-block w-4 border-transparent text-right content-[counter(step)];
       }
     }
   }
@@ -267,13 +266,13 @@
 
   .discrete-heading {
     &::before {
-      @apply content-[counter(step-discrete)] shrink-0 rounded-full size-5.5 inline-flex items-center justify-center border border-accent bg-accent-glow font-medium text-xs text-accent font-mono;
+      @apply border-accent bg-accent-glow text-accent inline-flex size-5.5 shrink-0 items-center justify-center rounded-full border font-mono text-xs font-medium content-[counter(step-discrete)];
     }
   }
 }
 
 @layer components {
   .about-item {
-    @apply inline-flex items-center justify-center gap-1.5 w-fit py-2 px-3.5 text-sm transition-colors border hover:border-border-bright rounded-lg bg-bg-card;
+    @apply hover:border-border-bright bg-bg-card inline-flex w-fit items-center justify-center gap-1.5 rounded-lg border px-3.5 py-2 text-sm transition-colors;
   }
 }

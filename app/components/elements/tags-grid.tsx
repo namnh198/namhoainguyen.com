@@ -1,8 +1,11 @@
-import { Link } from "react-router";
-import { getUri } from "~/lib/helpers";
 import type { Post, Tag } from "~/lib/types";
-import { PageIcon } from "../notion/page-icon";
+
 import { IconTag } from "@tabler/icons-react";
+import { Link } from "react-router";
+
+import { getUri } from "~/lib/helpers";
+
+import { PageIcon } from "../notion/page-icon";
 
 export function TagsGrid({ notionDomain, tags, posts }: { notionDomain: string; tags: Tag[]; posts: Post[] }) {
   return (
@@ -11,10 +14,10 @@ export function TagsGrid({ notionDomain, tags, posts }: { notionDomain: string; 
         <Link
           key={tag.slug}
           to={getUri(tag.slug, "tag")}
-          className="space-y-2 bg-bg-elevated border transition-colors hover:border-border-bright rounded-lg py-4 px-5"
+          className="bg-bg-elevated hover:border-border-bright space-y-2 rounded-lg border px-5 py-4 transition-colors"
         >
           <span className="flex items-center gap-1.5">
-            <span className="inline-flex items-center justify-center size-6 overflow-hidden rounded-full">
+            <span className="inline-flex size-6 items-center justify-center overflow-hidden rounded-full">
               <PageIcon
                 inputIcon={tag.icon}
                 notionDomain={notionDomain}
@@ -24,7 +27,7 @@ export function TagsGrid({ notionDomain, tags, posts }: { notionDomain: string; 
             </span>
             <span>{tag.name}</span>
           </span>
-          <span className="inline-flex items-center justify-center bg-[#4f80ff14] text-accent text-xs py-0.5 px-1 rounded-sm border border-[#4f80ff3d] font-mono">
+          <span className="text-accent inline-flex items-center justify-center rounded-sm border border-[#4f80ff3d] bg-[#4f80ff14] px-1 py-0.5 font-mono text-xs">
             {posts.filter((post) => post.tags.find((t) => t.slug == tag.slug)).length} posts
           </span>
         </Link>

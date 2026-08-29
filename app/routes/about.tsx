@@ -1,9 +1,12 @@
-import { IconChevronRight } from "@tabler/icons-react";
 import { useState } from "react";
-import { AnimatedSkills } from "~/components/ui/animated-skills";
-import { PROJECTS } from "~/data/projects";
+
+import { IconChevronRight } from "@tabler/icons-react";
+
 import { getMetaData } from "~/lib/get-meta-data";
 import { cn } from "~/lib/utils";
+import { PROJECTS } from "~/data/projects";
+
+import { AnimatedSkills } from "~/components/ui/animated-skills";
 
 export function meta() {
   return getMetaData({
@@ -17,69 +20,56 @@ export default function About() {
     <main className="min-h-dvh">
       <div className="container pt-2">
         <div className="pt-10 pb-5">
-          <h1 className="font-heading font-extrabold tracking-[-0.01em] text-gradient leading-tight text-[1.7rem] lg:text-[2.3rem]">
+          <h1 className="font-heading text-gradient text-[1.7rem] leading-tight font-extrabold tracking-[-0.01em] lg:text-[2.3rem]">
             About me
           </h1>
-          <p className="mt-4 max-w-2xl text-text-2">
-            I'm a senior full-stack engineer, creative coder and self-proclaimed
-            designer who specializes in web development. I make it my mission to
-            translate user-focused designs into pixel-perfect websites or
+          <p className="text-text-2 mt-4 max-w-2xl">
+            I'm a senior full-stack engineer, creative coder and self-proclaimed designer who specializes in web
+            development. I make it my mission to translate user-focused designs into pixel-perfect websites or
             applications that run blazing fast.
           </p>
         </div>
         <div className="flex flex-col pb-14">
           <section className="relative flex gap-4 pb-5">
-            <div className="relative shrink-0 flex justify-center w-11">
-              <span className="font-heading text-accent bg-bg-card border border-border-bright size-9 inline-flex items-center justify-center rounded-lg font-extrabold text-sm mt-1 relative z-1">
+            <div className="relative flex w-11 shrink-0 justify-center">
+              <span className="font-heading text-accent bg-bg-card border-border-bright relative z-1 mt-1 inline-flex size-9 items-center justify-center rounded-lg border text-sm font-extrabold">
                 01
               </span>
-              <span className="absolute inset-0 top-10 left-1/2 -bottom-1 -translate-x-1/2 w-0.5 opacity-30 bg-linear-[var(--accent),var(--accent-2)]" />
+              <span className="absolute inset-0 top-10 -bottom-1 left-1/2 w-0.5 -translate-x-1/2 bg-linear-[var(--accent),var(--accent-2)] opacity-30" />
             </div>
-            <div className="flex-1 bg-bg-card border rounded-xl py-4 px-5 transition-colors hover:border-border-bright overflow-hidden">
-              <div className="flex flex-wrap items-baseline gap-3 mb-3.5">
-                <h2 className="font-heading uppercase tracking-[0.04em] font-extrabold">
-                  Tech Stacks
-                </h2>
-                <p className="text-[.82rem] text-text-3">
-                  What I actually do it with
-                </p>
+            <div className="bg-bg-card hover:border-border-bright flex-1 overflow-hidden rounded-xl border px-5 py-4 transition-colors">
+              <div className="mb-3.5 flex flex-wrap items-baseline gap-3">
+                <h2 className="font-heading font-extrabold tracking-[0.04em] uppercase">Tech Stacks</h2>
+                <p className="text-text-3 text-[.82rem]">What I actually do it with</p>
               </div>
               <AnimatedSkills />
             </div>
           </section>
           <section className="relative flex gap-4 pb-5">
-            <div className="relative shrink-0 flex justify-center w-11">
-              <span className="font-heading text-accent bg-bg-card border border-border-bright size-9 inline-flex items-center justify-center rounded-lg font-extrabold text-sm mt-1 relative z-1">
+            <div className="relative flex w-11 shrink-0 justify-center">
+              <span className="font-heading text-accent bg-bg-card border-border-bright relative z-1 mt-1 inline-flex size-9 items-center justify-center rounded-lg border text-sm font-extrabold">
                 02
               </span>
-              <span className="absolute inset-0 top-10 left-1/2 -bottom-1 -translate-x-1/2 w-0.5 opacity-30 bg-linear-[var(--accent),var(--accent-2)]" />
+              <span className="absolute inset-0 top-10 -bottom-1 left-1/2 w-0.5 -translate-x-1/2 bg-linear-[var(--accent),var(--accent-2)] opacity-30" />
             </div>
-            <div className="flex-1 bg-bg-card border rounded-xl py-4 px-5 transition-colors hover:border-border-bright">
-              <div className="flex flex-wrap items-baseline gap-3 mb-3.5">
-                <h2 className="font-heading uppercase tracking-[0.04em] font-extrabold">
-                  Experiences
-                </h2>
-                <p className="text-[.82rem] text-text-3">
-                  What I actually do it with
-                </p>
+            <div className="bg-bg-card hover:border-border-bright flex-1 rounded-xl border px-5 py-4 transition-colors">
+              <div className="mb-3.5 flex flex-wrap items-baseline gap-3">
+                <h2 className="font-heading font-extrabold tracking-[0.04em] uppercase">Experiences</h2>
+                <p className="text-text-3 text-[.82rem]">What I actually do it with</p>
               </div>
             </div>
           </section>
           <section className="relative flex gap-4 pb-5">
-            <div className="relative shrink-0 flex justify-center w-11">
-              <span className="font-heading text-accent bg-bg-card border border-border-bright size-9 inline-flex items-center justify-center rounded-lg font-extrabold text-sm mt-1 relative z-1">
+            <div className="relative flex w-11 shrink-0 justify-center">
+              <span className="font-heading text-accent bg-bg-card border-border-bright relative z-1 mt-1 inline-flex size-9 items-center justify-center rounded-lg border text-sm font-extrabold">
                 03
               </span>
-              <span className="absolute inset-0 top-10 left-1/2 -bottom-1 -translate-x-1/2 w-0.5 opacity-30 bg-linear-[var(--accent),var(--accent-2)]" />
+              <span className="absolute inset-0 top-10 -bottom-1 left-1/2 w-0.5 -translate-x-1/2 bg-linear-[var(--accent),var(--accent-2)] opacity-30" />
             </div>
-            <div className="flex-1 bg-bg-card border rounded-xl py-4 px-5 transition-colors hover:border-border-bright">
-              <div className="flex flex-wrap items-baseline gap-3 mb-3.5">
-                <h2 className="font-heading uppercase tracking-[0.04em] font-extrabold">
-                  Projects
-                </h2>
-                <p className="text-[.82rem] text-text-3">
-                  What I actually do it with
-                </p>
+            <div className="bg-bg-card hover:border-border-bright flex-1 rounded-xl border px-5 py-4 transition-colors">
+              <div className="mb-3.5 flex flex-wrap items-baseline gap-3">
+                <h2 className="font-heading font-extrabold tracking-[0.04em] uppercase">Projects</h2>
+                <p className="text-text-3 text-[.82rem]">What I actually do it with</p>
               </div>
               <div className="flex flex-wrap items-start gap-3">
                 {PROJECTS.map((project) => {
@@ -87,21 +77,15 @@ export default function About() {
                   return (
                     <div
                       key={project.name}
-                      className={cn(
-                        "bg-bg-elevated border rounded-lg transition-colors overflow-hidden",
-                        {
-                          "border-accent basis-full w-full": open,
-                        },
-                      )}
+                      className={cn("bg-bg-elevated overflow-hidden rounded-lg border transition-colors", {
+                        "border-accent w-full basis-full": open,
+                      })}
                     >
                       <button
-                        className={cn(
-                          "about-item text-text-2 justify-between w-full",
-                          {
-                            "bg-bg-card": !open,
-                            "rounded-none! bg-bg-elevated border-b-0!": open,
-                          },
-                        )}
+                        className={cn("about-item text-text-2 w-full justify-between", {
+                          "bg-bg-card": !open,
+                          "bg-bg-elevated rounded-none! border-b-0!": open,
+                        })}
                         onClick={() => setOpen(!open)}
                       >
                         <span>{project.name}</span>
@@ -116,20 +100,16 @@ export default function About() {
                       </button>
                       {open && (
                         <div className="p-[0_.8rem_.8rem]">
-                          <div className="flex flex-col mb-2.5">
-                            <div className="border-t flex items-center justify-between gap-4 py-1.5 text-sm font-mono">
+                          <div className="mb-2.5 flex flex-col">
+                            <div className="flex items-center justify-between gap-4 border-t py-1.5 font-mono text-sm">
                               <span className="text-text-3">Name</span>
-                              <span className="text-text-2 text-right font-mono">
-                                {project.name}
-                              </span>
+                              <span className="text-text-2 text-right font-mono">{project.name}</span>
                             </div>
-                            <div className="border-t flex items-center justify-between gap-4 py-1.5 text-sm font-mono">
+                            <div className="flex items-center justify-between gap-4 border-t py-1.5 font-mono text-sm">
                               <span className="text-text-3">Type</span>
-                              <span className="text-text-2 text-right font-mono">
-                                {project.type}
-                              </span>
+                              <span className="text-text-2 text-right font-mono">{project.type}</span>
                             </div>
-                            <div className="border-t flex items-center justify-between gap-4 py-1.5 text-sm font-mono">
+                            <div className="flex items-center justify-between gap-4 border-t py-1.5 font-mono text-sm">
                               <span className="text-text-3">Github</span>
                               <a
                                 href={project.githubUrl}
@@ -141,7 +121,7 @@ export default function About() {
                               </a>
                             </div>
                             {project.previewUrl && (
-                              <div className="border-t flex items-center justify-between gap-4 py-1.5 text-sm font-mono">
+                              <div className="flex items-center justify-between gap-4 border-t py-1.5 font-mono text-sm">
                                 <span className="text-text-3">Preview</span>
                                 <a
                                   href={project.previewUrl}
@@ -163,20 +143,16 @@ export default function About() {
             </div>
           </section>
           <section className="relative flex gap-4 pb-5">
-            <div className="relative shrink-0 flex justify-center w-11">
-              <span className="font-heading text-accent bg-bg-card border border-border-bright size-9 inline-flex items-center justify-center rounded-lg font-extrabold text-sm mt-1 relative z-1">
+            <div className="relative flex w-11 shrink-0 justify-center">
+              <span className="font-heading text-accent bg-bg-card border-border-bright relative z-1 mt-1 inline-flex size-9 items-center justify-center rounded-lg border text-sm font-extrabold">
                 04
               </span>
-              <span className="absolute inset-0 top-10 left-1/2 -bottom-1 -translate-x-1/2 w-0.5 opacity-30 bg-linear-[var(--accent),var(--accent-2)]" />
+              <span className="absolute inset-0 top-10 -bottom-1 left-1/2 w-0.5 -translate-x-1/2 bg-linear-[var(--accent),var(--accent-2)] opacity-30" />
             </div>
-            <div className="flex-1 bg-bg-card border rounded-xl py-4 px-5 transition-colors hover:border-border-bright">
-              <div className="flex flex-wrap items-baseline gap-3 mb-3.5">
-                <h2 className="font-heading uppercase tracking-[0.04em] font-extrabold">
-                  Educations
-                </h2>
-                <p className="text-[.82rem] text-text-3">
-                  What I actually do it with
-                </p>
+            <div className="bg-bg-card hover:border-border-bright flex-1 rounded-xl border px-5 py-4 transition-colors">
+              <div className="mb-3.5 flex flex-wrap items-baseline gap-3">
+                <h2 className="font-heading font-extrabold tracking-[0.04em] uppercase">Educations</h2>
+                <p className="text-text-3 text-[.82rem]">What I actually do it with</p>
               </div>
             </div>
           </section>

@@ -1,16 +1,12 @@
-import type { Block } from "notion-types";
 import type { ReactNode } from "react";
+import type { Block } from "notion-types";
+
 import { generateAnchor, uuidToId } from "~/lib/helpers";
 import { getTextContent } from "~/lib/notion/get-block-value";
+
 import { Text } from "./text";
 
-export function DiscreteHeading({
-  block,
-  children,
-}: {
-  block: Block;
-  children?: ReactNode;
-}) {
+export function DiscreteHeading({ block, children }: { block: Block; children?: ReactNode }) {
   if (!block.properties) {
     return null;
   }
@@ -25,11 +21,11 @@ export function DiscreteHeading({
   );
 
   return (
-    <div className="border rounded-xl bg-bg-elevated bg-linear-[180deg,#4f80ff09,transparent_45%)] overflow-hidden mb-8 last:mb-0 discrete">
-      <div className="flex items-center justify-start gap-1.5 py-3 px-4 border-b bg-[#ffffff05] font-medium discrete-heading">
+    <div className="bg-bg-elevated bg-linear-[180deg,#4f80ff09,transparent_45%)] discrete mb-8 overflow-hidden rounded-xl border last:mb-0">
+      <div className="discrete-heading flex items-center justify-start gap-1.5 border-b bg-[#ffffff05] px-4 py-3 font-medium">
         {innerHeader}
       </div>
-      <div className="relative p-4 discrete-content">{children}</div>
+      <div className="discrete-content relative p-4">{children}</div>
     </div>
   );
 

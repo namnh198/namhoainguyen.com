@@ -1,7 +1,9 @@
-import { cn } from "~/lib/utils";
-import { LazyImage } from "../ui/lazy-image";
 import type { ReactNode } from "react";
 import type { Block } from "notion-types";
+
+import { cn } from "~/lib/utils";
+
+import { LazyImage } from "../ui/lazy-image";
 
 export function PageIcon({
   block,
@@ -48,5 +50,5 @@ export function PageIcon({
     );
   }
 
-  return <span className={cn(className, "text-xl leading-none notion-page-icon icon-emoji")}>{icon}</span>;
+  return <span className={cn(className, "notion-page-icon icon-emoji text-xl leading-none")}>{icon}</span>;
 }

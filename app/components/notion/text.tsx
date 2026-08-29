@@ -1,15 +1,19 @@
-import type { Block, Decoration, ExternalObjectInstance, User } from "notion-types";
-import { useNotionContext, type NotionComponents } from "./context";
 import { Fragment, useMemo } from "react";
-import { LazyImage } from "../ui/lazy-image";
-import { PageTitle } from "./page-title";
+import type { Block, Decoration, ExternalObjectInstance, User } from "notion-types";
+
+import type { NotionComponents } from "./context";
+
 import { getUri, mapBlockColorClass } from "~/lib/helpers";
+import { formatDate } from "~/lib/notion/format-date";
 import { parsePageId } from "~/lib/notion/parse-page-id";
 import { cn, getHashFragmentValue, removeBaseUrl } from "~/lib/utils";
-import { formatDate } from "~/lib/notion/format-date";
-import { GraceFullImage } from "./grace-full-image";
-import { Equation } from "./equation";
+
+import { LazyImage } from "../ui/lazy-image";
+import { useNotionContext } from "./context";
 import { EOI } from "./eoi";
+import { Equation } from "./equation";
+import { GraceFullImage } from "./grace-full-image";
+import { PageTitle } from "./page-title";
 
 export function Text({
   value,
@@ -81,7 +85,7 @@ export function Text({
 
                 return (
                   <components.PageLink
-                    className="text-accent transition-colors hover:text-accent-2 notion-link"
+                    className="text-accent hover:text-accent-2 notion-link transition-colors"
                     href={getUri(postSlug, "note")}
                   >
                     <PageTitle block={linkedBlock} hideIcon={true} />
@@ -119,7 +123,7 @@ export function Text({
 
                     return (
                       <components.PageLink
-                        className="text-accent transition-colors hover:text-accent-2 notion-link"
+                        className="text-accent hover:text-accent-2 notion-link transition-colors"
                         href={mapPageUrl(id)}
                         {...linkProps}
                         target="_blank"
@@ -139,7 +143,7 @@ export function Text({
 
               case "c":
                 return (
-                  <code className="font-mono text-text-2 border bg-[#ffffff05] rounded-sm p-[1px_8px_2px_6px] text-[90%] wrap-break-word">
+                  <code className="text-text-2 rounded-sm border bg-[#ffffff05] p-[1px_8px_2px_6px] font-mono text-[90%] wrap-break-word">
                     {element}
                   </code>
                 );
@@ -178,7 +182,7 @@ export function Text({
 
                   return (
                     <components.PageLink
-                      className="text-accent transition-colors hover:text-accent-2 notion-link"
+                      className="text-accent hover:text-accent-2 notion-link transition-colors"
                       href={href}
                       {...linkProps}
                     >
@@ -195,7 +199,7 @@ export function Text({
                   if (hostName === "localhost" || hostName?.includes(blockOptions.notionDomain || "cannotBeIncluded")) {
                     return (
                       <components.PageLink
-                        className="text-accent transition-colors hover:text-accent-2 notion-link"
+                        className="text-accent hover:text-accent-2 notion-link transition-colors"
                         href={removeBaseUrl(decorator[1])}
                       >
                         {element}
@@ -205,7 +209,7 @@ export function Text({
 
                   return (
                     <components.Link
-                      className="text-accent transition-colors hover:text-accent-2 notion-link"
+                      className="text-accent hover:text-accent-2 notion-link transition-colors"
                       href={linkProtocol ? `${linkProtocol}:${decorator[1]}` : decorator[1]}
                       {...linkProps}
                     >
@@ -288,7 +292,7 @@ export function Text({
                         layout="constrained"
                       />
                     )}
-                    <span className="text-accent transition-colors hover:text-accent-2 text-[1em] leading-[1.1]">
+                    <span className="text-accent hover:text-accent-2 text-[1em] leading-[1.1] transition-colors">
                       {title}
                     </span>
                   </a>

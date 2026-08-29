@@ -1,10 +1,13 @@
-import type { Route } from "./+types/tags-list";
-import { env } from "cloudflare:workers";
 import { IconTags } from "@tabler/icons-react";
-import { PostHeader } from "~/components/elements/post-header";
-import { TagsGrid } from "~/components/elements/tags-grid";
+import { env } from "cloudflare:workers";
+
+import type { Route } from "./+types/tags-list";
+
 import { getPosts } from "~/lib/fetcher";
 import { getMetaData } from "~/lib/get-meta-data";
+
+import { PostHeader } from "~/components/elements/post-header";
+import { TagsGrid } from "~/components/elements/tags-grid";
 
 export async function loader({}: Route.LoaderArgs) {
   const posts = await getPosts(env);
@@ -35,7 +38,7 @@ export default function TagsList({ loaderData }: Route.ComponentProps) {
         desc={
           <span>
             A list of topics I write about. You can use{" "}
-            <kbd className="bg-accent-glow text-accent rounded-sm text-sm py-0.5 px-1 font-mono">⌘ F</kbd> to quickly
+            <kbd className="bg-accent-glow text-accent rounded-sm px-1 py-0.5 font-mono text-sm">⌘ F</kbd> to quickly
             find a topic you wanna check.
           </span>
         }

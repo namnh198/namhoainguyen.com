@@ -11,16 +11,17 @@ React Router (`ssr: true`) + Tailwind, deployed to a Cloudflare Worker via
 re-fetched when stale.
 
 **What we explicitly rejected**, and why:
-- Build-time scrape / deploy-time content → *rejected.* Content must refresh
+
+- Build-time scrape / deploy-time content → _rejected._ Content must refresh
   without a redeploy.
-- Pre-rendering the corpus → *rejected.* The corpus changes live; it can't be
+- Pre-rendering the corpus → _rejected._ The corpus changes live; it can't be
   frozen at build.
-- KV / Redis / Durable Object / Notion webhook / Cron cache-warmer → *rejected.*
+- KV / Redis / Durable Object / Notion webhook / Cron cache-warmer → _rejected._
   Only justified by "clear-on-publish instantly," which a personal blog doesn't
   need. Stay on the **Cloudflare `Cache` API** — zero new dependencies.
-- Official Notion API → *rejected.* Private-API scraping is an accepted,
+- Official Notion API → _rejected._ Private-API scraping is an accepted,
   deliberate dependency (no SLA, shape churn, `__version__` renames).
-- "Instant freshness" → *rejected.* Within-hours staleness is accepted.
+- "Instant freshness" → _rejected._ Within-hours staleness is accepted.
 
 ## The model, one sentence
 
@@ -31,40 +32,40 @@ re-fetched when stale.
 
 The single most important consequence: **your site's uptime now depends on
 Notion's private endpoint.** The 4h/SIE cache is the only mitigation, so it must
-actually be implemented (see Gaps — it is *not* correct in the repo today).
+actually be implemented (see Gaps — it is _not_ correct in the repo today).
 
 ## Caching (`app/lib/fetcher-cache.ts`, `app/lib/cache.ts`)
 
 Three **independent** cache keys so one key's error can't cascade:
 
-| Key | Source | `max-age` | `staleWhileRevalidate` | `staleIfError` |
-|-----|--------|-----------|------------------------|----------------|
-| `manifest` | `getCollection` → normalized `Post[]` | 4h | 1h | 24h |
-| `slug:{id}` | `getRecordMap` → normalized recordMap | 24h | 1h | 24h |
-| `sitemap` | prerendered sitemap source, 1h | 1h | — | 24h |
+| Key         | Source                                | `max-age` | `staleWhileRevalidate` | `staleIfError` |
+| ----------- | ------------------------------------- | --------- | ---------------------- | -------------- |
+| `manifest`  | `getCollection` → normalized `Post[]` | 4h        | 1h                     | 24h            |
+| `slug:{id}` | `getRecordMap` → normalized recordMap | 24h       | 1h                     | 24h            |
+| `sitemap`   | prerendered sitemap source, 1h        | 1h        | —                      | 24h            |
 
-- **Cache the *normalized* output** (`Post[]`, cleaned `recordMap`), **not** raw
+- **Cache the _normalized_ output** (`Post[]`, cleaned `recordMap`), **not** raw
   Notion JSON. Keeps a future Notion shape-churn from poisoning the cache with
   already-broken data.
 - **HTML is not cached** — it is re-rendered per request from the normalized,
   cached Notion data. Trivial cost at one-author traffic.
 - **Revalidate-on-next-request + `staleIfError`** (no Cron warmer). On a stale
-  hit: try a *foreground* refresh only within the request budget; otherwise serve
-  the stale copy and hand back a `staleIfError` window. On a *fetch error*:
+  hit: try a _foreground_ refresh only within the request budget; otherwise serve
+  the stale copy and hand back a `staleIfError` window. On a _fetch error_:
   serve the last cached entry while `age < staleIfError`; send it on its way.
 - **No fire-and-forget after response.** The current `fetcher-cache.ts` detaches
   the revalidation `Promise` (never awaited). Cloudflare tears the isolate down
   after the response returns, so that `cache.put` often silently dies. Either
   foreground the refresh within the request, or accept that revalidation happens
-  on the *next* request — do not rely on a detached background promise completing.
+  on the _next_ request — do not rely on a detached background promise completing.
 - **Per-key TTLs**, not one global 4h. A settled post (slug) is read far more
   than it changes → 24h. New posts reach readers via the manifest's 4h + swr 1h.
 
 ## Schema (`wrangler.jsonc` + `app/lib/notion/*`)
 
-- **Resolve Notion properties by *name*, not the hardcoded internal IDs**
+- **Resolve Notion properties by _name_, not the hardcoded internal IDs**
   (`NOTION_SCHEMA_SLUG: "Fxoz"` etc. in `wrangler.jsonc`). Resolve
-  name→id from the collection's own schema and cache *that* mapping on a long
+  name→id from the collection's own schema and cache _that_ mapping on a long
   TTL. This survives a property rename; the current hardcoding silently produces
   empty/wrong fields for a full cache window if Notion rekeys.
 - Keep the `__version__:3` normalization that is already present.

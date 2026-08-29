@@ -1,5 +1,8 @@
 import { useMemo } from "react";
-import { TECHS, type TechItem } from "~/data/techs";
+import type { TechItem } from "~/data/techs";
+
+import { TECHS } from "~/data/techs";
+
 import { LazyImage } from "./lazy-image";
 import { Marquee } from "./marquee";
 
@@ -31,8 +34,8 @@ function AnimatedSkills() {
           <BadgeSkill key={tech.name} tech={tech} />
         ))}
       </Marquee>
-      <div className="bg-linear-to-r from-bg-card pointer-events-none absolute inset-y-0 left-0 w-1/4"></div>
-      <div className="bg-linear-to-l from-bg-card pointer-events-none absolute inset-y-0 right-0 w-1/4"></div>
+      <div className="from-bg-card pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r"></div>
+      <div className="from-bg-card pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l"></div>
     </div>
   );
 }

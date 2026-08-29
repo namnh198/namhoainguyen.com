@@ -1,7 +1,9 @@
 import type { Block, Color } from "notion-types";
-import type { Post, Tag } from "./types";
 
 import slugify from "slugify";
+
+import type { Post, Tag } from "./types";
+
 import { TAGS } from "~/data/tags";
 
 /**

@@ -1,30 +1,26 @@
-import type {
-  Block,
-  CodeBlock,
-  EquationBlock,
-  Block as NotionBlock,
-  PageBlock,
-  TableBlock,
-} from "notion-types";
-import { cn } from "~/lib/utils";
-import { useNotionContext } from "./context";
-import { Text } from "./text";
-import { Heading } from "./heading";
-import { Toggle } from "./toggle";
-import { getListNumber } from "~/lib/notion/utils";
-import { Equation } from "./equation";
-import { EOI } from "./eoi";
+import type { Block, CodeBlock, EquationBlock, Block as NotionBlock, PageBlock, TableBlock } from "notion-types";
+
 import { IconSquare, IconSquareCheck } from "@tabler/icons-react";
-import { AssetWrapper } from "./asset-wrapper";
-import { Video } from "./video";
-import { Code } from "./code";
+
 import { mapBlockColorClass } from "~/lib/helpers";
-import { PageTitle } from "./page-title";
+import { getPageTocs } from "~/lib/notion/get-page-tocs";
+import { getListNumber } from "~/lib/notion/utils";
+import { cn } from "~/lib/utils";
+
+import { AssetWrapper } from "./asset-wrapper";
 import { Bookmark } from "./bookmark";
 import { Callout } from "./callout";
+import { Code } from "./code";
+import { useNotionContext } from "./context";
+import { EOI } from "./eoi";
+import { Equation } from "./equation";
+import { Heading } from "./heading";
 import { PageIcon } from "./page-icon";
-import { getPageTocs } from "~/lib/notion/get-page-tocs";
+import { PageTitle } from "./page-title";
+import { Text } from "./text";
 import { Tocs } from "./tocs";
+import { Toggle } from "./toggle";
+import { Video } from "./video";
 
 export type BlockProps = {
   block: NotionBlock;
@@ -46,23 +42,15 @@ export function Block({ block, level, children }: BlockProps) {
       if (level < 1) {
         const tocs = getPageTocs(block as PageBlock, recordMap);
         return (
-          <div className="relative flex flex-col lg:flex-row gap-4">
-            {tocs.length > 0 && (
-              <Tocs tocs={tocs} className="w-full lg:w-75 lg:order-1" />
-            )}
-            <article className="notion-page-content shrink-0 flex-1 w-full lg:w-[calc(100%-308px)]">
-              {children}
-            </article>
+          <div className="relative flex flex-col gap-4 lg:flex-row">
+            {tocs.length > 0 && <Tocs tocs={tocs} className="w-full lg:order-1 lg:w-75" />}
+            <article className="notion-page-content w-full flex-1 shrink-0 lg:w-[calc(100%-308px)]">{children}</article>
           </div>
         );
       }
       return (
         <components.PageLink
-          className={cn(
-            "notion-page-link",
-            blockColor && `notion-${blockColor}`,
-            blockId,
-          )}
+          className={cn("notion-page-link", blockColor && `notion-${blockColor}`, blockId)}
           href={mapPageUrl(block.id)}
         >
           {/*<PageTitle block={block} />*/}
@@ -77,11 +65,7 @@ export function Block({ block, level, children }: BlockProps) {
       }
       return <Heading block={block}>{children}</Heading>;
     case "divider":
-      return (
-        <hr
-          className={cn("w-full h-px bg-border notion-divider my-6", [blockId])}
-        />
-      );
+      return <hr className={cn("bg-border notion-divider my-6 h-px w-full", [blockId])} />;
     case "text":
       if (!block.properties && !block.content?.length) {
         return <div className={cn("notion-blank", [blockId])}>&nbsp;</div>;
@@ -97,9 +81,7 @@ export function Block({ block, level, children }: BlockProps) {
           )}
         >
           {/*{updatedBlock}*/}
-          {block.properties?.title && (
-            <Text value={block.properties.title} block={block} />
-          )}
+          {block.properties?.title && <Text value={block.properties.title} block={block} />}
 
           {children && <div className="notion-text-children">{children}</div>}
         </div>
@@ -108,21 +90,13 @@ export function Block({ block, level, children }: BlockProps) {
     case "numbered_list": {
       const wrapList = (content: React.ReactNode, start?: number) =>
         block.type === "bulleted_list" ? (
-          <ul
-            className={cn(
-              "notion-list notion-list-disc list-disc relative text-text-2 pl-6.5",
-              blockId,
-            )}
-          >
+          <ul className={cn("notion-list notion-list-disc text-text-2 relative list-disc pl-6.5", blockId)}>
             {content}
           </ul>
         ) : (
           <ol
             start={start}
-            className={cn(
-              "notion-list notion-list-numbered list-decimal relative text-text-2 pl-6.5",
-              blockId,
-            )}
+            className={cn("notion-list notion-list-numbered text-text-2 relative list-decimal pl-6.5", blockId)}
           >
             {content}
           </ol>
@@ -149,8 +123,7 @@ export function Block({ block, level, children }: BlockProps) {
         ) : null;
       }
 
-      const isTopLevel =
-        block.type !== (recordMap.block[block.parent_id]?.value as Block)?.type;
+      const isTopLevel = block.type !== (recordMap.block[block.parent_id]?.value as Block)?.type;
       const start = getListNumber(block.id, recordMap.block);
 
       return isTopLevel ? wrapList(output, start) : output;
@@ -183,7 +156,7 @@ export function Block({ block, level, children }: BlockProps) {
       return (
         <blockquote
           className={cn(
-            "my-6 py-4 px-6 notion-quote relative",
+            "notion-quote relative my-6 px-6 py-4",
             {
               [`notion-${blockColor}`]: blockColor,
               // "text-[115%]": get(block, "format.quote_size") === "large",
@@ -191,7 +164,7 @@ export function Block({ block, level, children }: BlockProps) {
             blockId,
           )}
         >
-          <div className="absolute inset-0 top-0 bottom-0 left-0 w-0.75 bg-linear-[180deg,var(--accent),var(--accent-2)] quote-divider" />
+          <div className="quote-divider absolute inset-0 top-0 bottom-0 left-0 w-0.75 bg-linear-[180deg,var(--accent),var(--accent-2)]" />
           <div className={cn("quote-title")}>
             <Text value={block.properties.title} block={block} />
           </div>
@@ -206,12 +179,7 @@ export function Block({ block, level, children }: BlockProps) {
         <div className={cn("notion-to-do relative", blockId)}>
           <div className={cn("flex items-start gap-2")}>
             <div className="mt-0.75 h-4 w-4">
-              {isChecked && (
-                <IconSquareCheck
-                  className="text-slate-500 dark:text-slate-300"
-                  size={16}
-                />
-              )}
+              {isChecked && <IconSquareCheck className="text-slate-500 dark:text-slate-300" size={16} />}
               {!isChecked && <IconSquare className="mt-0.5" size={16} />}
             </div>
             <div>
@@ -225,31 +193,12 @@ export function Block({ block, level, children }: BlockProps) {
     }
     case "equation":
       if (components.Equation) {
-        return (
-          <components.Equation
-            block={block as EquationBlock}
-            inline={false}
-            className={cn(blockId)}
-          />
-        );
+        return <components.Equation block={block as EquationBlock} inline={false} className={cn(blockId)} />;
       }
-      return (
-        <Equation
-          block={block as EquationBlock}
-          inline={false}
-          className={cn(blockId)}
-        />
-      );
+      return <Equation block={block as EquationBlock} inline={false} className={cn(blockId)} />;
     case "column_list": {
       return (
-        <div
-          className={cn(
-            "block-column-list relative md:flex md:flex-nowrap md:gap-4",
-            blockId,
-          )}
-        >
-          {children}
-        </div>
+        <div className={cn("block-column-list relative md:flex md:flex-nowrap md:gap-4", blockId)}>{children}</div>
       );
     }
     case "column": {
@@ -275,12 +224,7 @@ export function Block({ block, level, children }: BlockProps) {
         return (
           <Callout
             className={cn(blockId)}
-            icon={
-              <PageIcon
-                block={block}
-                notionDomain={blockOptions.notionDomain}
-              />
-            }
+            icon={<PageIcon block={block} notionDomain={blockOptions.notionDomain} />}
             text={<Text value={block.properties?.title} block={block} />}
             color={block.format?.block_color}
           >
@@ -312,8 +256,7 @@ export function Block({ block, level, children }: BlockProps) {
           <table className={cn("notion-simple-table my-0 table-auto", blockId)}>
             <tbody
               className={cn({
-                table_block_column_header:
-                  block?.format?.table_block_column_header,
+                table_block_column_header: block?.format?.table_block_column_header,
                 table_block_row_header: block?.format.table_block_row_header,
               })}
             >
@@ -334,25 +277,13 @@ export function Block({ block, level, children }: BlockProps) {
       }
 
       return (
-        <tr
-          className={cn(
-            "notion-simple-table-row",
-            backgroundColor && `notion-${backgroundColor}`,
-            blockId,
-          )}
-        >
+        <tr className={cn("notion-simple-table-row", backgroundColor && `notion-${backgroundColor}`, blockId)}>
           {order.map((column: any) => {
             const color = formatMap?.[column]?.color;
             return (
-              <td
-                key={column}
-                className={cn("border p-2!", [mapBlockColorClass(color!)])}
-              >
+              <td key={column} className={cn("border p-2!", [mapBlockColorClass(color!)])}>
                 <div className="notion-simple-table-cell">
-                  <Text
-                    value={block.properties?.[column] || [["ㅤ"]]}
-                    block={block}
-                  />
+                  <Text value={block.properties?.[column] || [["ㅤ"]]} block={block} />
                 </div>
               </td>
             );
@@ -370,10 +301,7 @@ export function Block({ block, level, children }: BlockProps) {
       }
 
       return (
-        <components.PageLink
-          className={cn("notion-page-link", blockPointerId)}
-          href={mapPageUrl(blockPointerId)}
-        >
+        <components.PageLink className={cn("notion-page-link", blockPointerId)} href={mapPageUrl(blockPointerId)}>
           <PageTitle block={linkedBlock} />
         </components.PageLink>
       );

@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { useDebounce } from "~/hooks/use-debounce";
+
 import { cn } from "~/lib/utils";
+import { useDebounce } from "~/hooks/use-debounce";
 
 function useMermaid(chart: string, debounceTime: number) {
   const [svg, setSvg] = useState<string | null>(null);
@@ -108,10 +109,10 @@ export function Mermaid({
   const { svg, error, status, renderRef } = useMermaid(chart, debounceTime);
   // console.log(svg, error, status, renderRef);
   return (
-    <div className={cn("relative w-full min-h-25 bg-bg-elevated border rounded-xl p-[1em]", className)}>
+    <div className={cn("bg-bg-elevated relative min-h-25 w-full rounded-xl border p-[1em]", className)}>
       {status === "success" && svg && (
         <div
-          className="flex items-center justify-center w-full h-full overflow-auto animate-in fade-in duration-300 [&_svg]:max-w-full [&_svg]:h-auto"
+          className="animate-in fade-in flex h-full w-full items-center justify-center overflow-auto duration-300 [&_svg]:h-auto [&_svg]:max-w-full"
           dangerouslySetInnerHTML={{ __html: svg }}
           role="img"
           aria-label="Mermaid diagram"
@@ -119,26 +120,26 @@ export function Mermaid({
       )}
       <div
         ref={renderRef}
-        className="absolute inset-0 invisible -z-50 w-full h-full pointer-events-none overflow-hidden"
+        className="pointer-events-none invisible absolute inset-0 -z-50 h-full w-full overflow-hidden"
         aria-hidden="true"
       />
 
       {/* 3. Loading State */}
       {status === "loading" && (
-        <div className="absolute inset-0 flex items-center justify-center bg-background/50 backdrop-blur-[1px]">
+        <div className="bg-background/50 absolute inset-0 flex items-center justify-center backdrop-blur-[1px]">
           <div className="flex flex-col items-center gap-3">
-            <div className="w-5 h-5 border-2 border-primary rounded-full animate-spin border-t-transparent" />
-            <span className="text-xs text-muted-foreground font-medium">Rendering...</span>
+            <div className="border-primary h-5 w-5 animate-spin rounded-full border-2 border-t-transparent" />
+            <span className="text-muted-foreground text-xs font-medium">Rendering...</span>
           </div>
         </div>
       )}
 
       {/* 4. Error State */}
       {status === "error" && error && (
-        <div className="flex items-center justify-center w-full p-6 border border-destructive/20 bg-destructive/5 rounded-lg">
-          <div className="flex flex-col items-center gap-2 max-w-md text-center">
-            <span className="text-xs font-bold text-destructive uppercase tracking-wider">Syntax Error</span>
-            <code className="text-xs text-muted-foreground font-mono bg-background/50 px-2 py-1 rounded w-full break-all">
+        <div className="border-destructive/20 bg-destructive/5 flex w-full items-center justify-center rounded-lg border p-6">
+          <div className="flex max-w-md flex-col items-center gap-2 text-center">
+            <span className="text-destructive text-xs font-bold tracking-wider uppercase">Syntax Error</span>
+            <code className="text-muted-foreground bg-background/50 w-full rounded px-2 py-1 font-mono text-xs break-all">
               {error.split("\n")[0]} {/* Show only first line of error for brevity */}
             </code>
           </div>
@@ -147,8 +148,8 @@ export function Mermaid({
 
       {/* 5. Idle State */}
       {status === "idle" && (
-        <div className="flex items-center justify-center w-full h-full min-h-37.5 border-2 border-dashed rounded-lg border-muted-foreground/20">
-          <p className="text-sm text-muted-foreground">No diagram code provided</p>
+        <div className="border-muted-foreground/20 flex h-full min-h-37.5 w-full items-center justify-center rounded-lg border-2 border-dashed">
+          <p className="text-muted-foreground text-sm">No diagram code provided</p>
         </div>
       )}
     </div>

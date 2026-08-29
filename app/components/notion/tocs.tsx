@@ -1,10 +1,12 @@
-import { IconCheck, IconChevronRight } from "@tabler/icons-react";
 import { useState } from "react";
+import type { TableOfContentsEntry } from "~/lib/notion/get-page-tocs";
+
+import { IconCheck, IconChevronRight } from "@tabler/icons-react";
+
+import { generateAnchor } from "~/lib/helpers";
+import { cn } from "~/lib/utils";
 import { useIsMobile } from "~/hooks/use-mobile";
 import { useTocObserver } from "~/hooks/use-toc-observer";
-import { generateAnchor } from "~/lib/helpers";
-import type { TableOfContentsEntry } from "~/lib/notion/get-page-tocs";
-import { cn } from "~/lib/utils";
 
 export function Tocs({ tocs, className }: { tocs: Array<TableOfContentsEntry>; className?: string }) {
   const { activeId, doneTocs } = useTocObserver([".notion-page h2", ".notion-page h3"]);
@@ -13,19 +15,19 @@ export function Tocs({ tocs, className }: { tocs: Array<TableOfContentsEntry>; c
   return (
     <aside
       className={cn(
-        "tocs shrink-0 flex bg-bg-card w-full border rounded-xl flex-col lg:sticky z-10 lg:top-18 h-fit lg:h-[calc(100vh-7.5rem)] overflow-hidden",
+        "tocs bg-bg-card z-10 flex h-fit w-full shrink-0 flex-col overflow-hidden rounded-xl border lg:sticky lg:top-18 lg:h-[calc(100vh-7.5rem)]",
         className,
       )}
     >
       <div
-        className="flex py-3 bg-bg-elevated border-b px-5 gap-1.5 items-center justify-between cursor-pointer lg:hidden"
+        className="bg-bg-elevated flex cursor-pointer items-center justify-between gap-1.5 border-b px-5 py-3 lg:hidden"
         onClick={() => setOpenToc(!openToc)}
       >
         <span>In this notes</span>
         <IconChevronRight width={20} height={20} />
       </div>
       <div
-        className={cn("px-3 overflow-y-auto", {
+        className={cn("overflow-y-auto px-3", {
           "py-5 lg:px-5": !isMobile,
           hidden: isMobile && !openToc,
           block: isMobile && openToc,
@@ -50,17 +52,17 @@ export function Tocs({ tocs, className }: { tocs: Array<TableOfContentsEntry>; c
             >
               <a
                 href={`#${tocId}`}
-                className={cn("group block relative py-1.5 transition-colors", {
+                className={cn("group relative block py-1.5 transition-colors", {
                   "is-active": !isDone && isActive,
                   "is-done": isDone,
                 })}
               >
-                <span className="text-sm text-text-2 hover:text-text group-[.is-active]:text-text! group-[.is-done]:text-text!">
+                <span className="text-text-2 hover:text-text group-[.is-active]:text-text! group-[.is-done]:text-text! text-sm">
                   {toc.text}
                 </span>
                 <span className="absolute top-1/2 -left-4 size-0">
-                  <span className="block absolute -top-0.75 -left-0.75 size-1.5 rounded-sm bg-border-bright transition-all ease-in-out scale-100 group-[.is-active]:bg-accent-2 group-[.is-active]:scale-150 group-[.is-done]:scale-0"></span>
-                  <span className="block absolute -top-1.25 -left-0.75 size-2.5 transition-transform scale-0 text-success group-[.is-done]:scale-100">
+                  <span className="bg-border-bright group-[.is-active]:bg-accent-2 absolute -top-0.75 -left-0.75 block size-1.5 scale-100 rounded-sm transition-all ease-in-out group-[.is-active]:scale-150 group-[.is-done]:scale-0"></span>
+                  <span className="text-success absolute -top-1.25 -left-0.75 block size-2.5 scale-0 transition-transform group-[.is-done]:scale-100">
                     <svg
                       version="1.1"
                       id="Calque_1"
@@ -78,8 +80,8 @@ export function Tocs({ tocs, className }: { tocs: Array<TableOfContentsEntry>; c
                     </svg>
                   </span>
                 </span>
-                <span className={cn("absolute -left-4 bottom-0 size-0 toc-divider", { hidden: isHiddenDivider })}>
-                  <span className="absolute -top-1.5 -left-px bg-border-bright w-0.5 h-2"></span>
+                <span className={cn("toc-divider absolute bottom-0 -left-4 size-0", { hidden: isHiddenDivider })}>
+                  <span className="bg-border-bright absolute -top-1.5 -left-px h-2 w-0.5"></span>
                 </span>
               </a>
             </div>

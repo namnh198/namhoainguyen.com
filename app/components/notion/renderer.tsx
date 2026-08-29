@@ -1,5 +1,8 @@
-import { Block, type BlockProps } from "./block";
-import { NotionContextProvider, useNotionContext, type PartialNotionContext } from "./context";
+import type { BlockProps } from "./block";
+import type { PartialNotionContext } from "./context";
+
+import { Block } from "./block";
+import { NotionContextProvider, useNotionContext } from "./context";
 
 type NotionBlockRendererProps = Omit<BlockProps, "block"> & {
   blockId?: string;

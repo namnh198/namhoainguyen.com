@@ -1,8 +1,10 @@
-import { MENU } from "~/data/menu";
-import type { Route } from "./+types/sitemap";
-import { getPosts } from "~/lib/fetcher";
 import { env } from "cloudflare:workers";
+
+import type { Route } from "./+types/sitemap";
+
+import { getPosts } from "~/lib/fetcher";
 import { getUri } from "~/lib/helpers";
+import { MENU } from "~/data/menu";
 
 interface SitemapUrl {
   path: string;

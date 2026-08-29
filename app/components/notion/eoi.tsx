@@ -1,8 +1,10 @@
-import { cn } from "~/lib/utils";
-import type { Block } from "notion-types";
 import * as React from "react";
-import { formatNotionDateTime } from "~/lib/notion/format-date";
+import type { Block } from "notion-types";
+
 import { IconBrandGithub, IconCircle } from "@tabler/icons-react";
+
+import { formatNotionDateTime } from "~/lib/notion/format-date";
+import { cn } from "~/lib/utils";
 
 export const EOI: React.FC<{
   block: Block;
@@ -43,13 +45,13 @@ export const EOI: React.FC<{
           <a
             className={cn(
               className,
-              "group/github flex flex-row items-center gap-3 rounded-xl border py-4 px-5 bg-bg-card transition-colors hover:border-border-bright",
+              "group/github bg-bg-card hover:border-border-bright flex flex-row items-center gap-3 rounded-xl border px-5 py-4 transition-colors",
             )}
             target="_blank"
             href={original_url}
             rel="noopener noreferrer"
           >
-            <IconBrandGithub width={30} height={30} className="transition-colors text-text" />
+            <IconBrandGithub width={30} height={30} className="text-text transition-colors" />
             <div className={cn("flex flex-col gap-0")}>
               <div className="text-text text-base">{title}</div>
               <div className="text-text-2 flex flex-row items-center gap-1 text-[0.9em]">

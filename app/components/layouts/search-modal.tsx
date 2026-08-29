@@ -1,20 +1,23 @@
+import { useCallback, useEffect, useState } from "react";
+import type { SearchResult } from "~/lib/notion/types";
+
 import { IconLoader2, IconNotebook, IconSearch, IconX } from "@tabler/icons-react";
+import { useNavigate } from "react-router";
+
+import { getUri } from "~/lib/helpers";
+import { useDebounce } from "~/hooks/use-debounce";
+
 import { Button, buttonVariants } from "../ui/button";
 import {
   Dialog,
-  DialogTrigger,
+  DialogClose,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
-  DialogClose,
+  DialogTrigger,
 } from "../ui/dialog";
 import { Input } from "../ui/input";
-import { useCallback, useEffect, useState } from "react";
-import { useDebounce } from "~/hooks/use-debounce";
-import type { SearchResult } from "~/lib/notion/types";
-import { useNavigate } from "react-router";
-import { getUri } from "~/lib/helpers";
 
 export function SearchModal({}) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -108,7 +111,7 @@ export function SearchModal({}) {
         render={
           <Button
             variant="outline"
-            className="border-0 lg:border lg:bg-linear-(--btn-gradient) outline-none w-10 h-10 lg:w-fit lg:h-9"
+            className="h-10 w-10 border-0 outline-none lg:h-9 lg:w-fit lg:border lg:bg-linear-(--btn-gradient)"
           >
             <IconSearch stroke={2} className="size-4" />
             <span className="hidden lg:inline-block">Search</span>
@@ -117,14 +120,14 @@ export function SearchModal({}) {
       />
       <DialogContent
         showCloseButton={false}
-        className="top-18 ring-border translate-y-0 w-11/12 lg:w-full max-w-xl md:max-w-170 overflow-hidden p-0! mx-auto"
+        className="ring-border top-18 mx-auto w-11/12 max-w-xl translate-y-0 overflow-hidden p-0! md:max-w-170 lg:w-full"
       >
         <DialogHeader className="sr-only">
           <DialogTitle>Search notes</DialogTitle>
           <DialogDescription>Search through your notes</DialogDescription>
         </DialogHeader>
         <div className="divide-border-muted flex h-full min-h-0 flex-1 flex-col divide-y">
-          <div className="relative flex justify-between items-center">
+          <div className="relative flex items-center justify-between">
             <span
               className={buttonVariants({
                 variant: "outline",
@@ -140,7 +143,7 @@ export function SearchModal({}) {
               autoComplete="off"
               aria-expanded={results.length > 0}
               role="combobox"
-              className="px-0 rounded-none border-0 ring-0 text-text-2 focus-visible:ring-0 focus-visible:ring-offset-0"
+              className="text-text-2 rounded-none border-0 px-0 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
               value={query}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
@@ -148,7 +151,7 @@ export function SearchModal({}) {
             />
             <DialogClose
               render={
-                <Button type="button" className="size-10 text-text-2 rounded-none">
+                <Button type="button" className="text-text-2 size-10 rounded-none">
                   <IconX />
                 </Button>
               }
@@ -159,13 +162,13 @@ export function SearchModal({}) {
               {results.map((result, index) => (
                 <div
                   key={result.id}
-                  className={`group cursor-pointer flex items-start gap-3 rounded-lg px-3 py-2 text-sm outline-none border border-transparent aria-selected:bg-bg-elevated aria-selected:border-border-bright`}
+                  className={`group aria-selected:bg-bg-elevated aria-selected:border-border-bright flex cursor-pointer items-start gap-3 rounded-lg border border-transparent px-3 py-2 text-sm outline-none`}
                   aria-selected={activeIndex === index}
                   onMouseEnter={() => setActiveIndex(index)}
                   onMouseLeave={() => setActiveIndex(-1)}
                   onClick={handleSearchResultClick}
                 >
-                  <span className="shrink-0 size-6 inline-flex items-center justify-center">{<IconNotebook />}</span>
+                  <span className="inline-flex size-6 shrink-0 items-center justify-center">{<IconNotebook />}</span>
                   <div className="text-text flex flex-col gap-2">
                     <div
                       className="text-text font-bold"
@@ -179,7 +182,7 @@ export function SearchModal({}) {
           )}
           {results.length > 0 && (
             <div className="text-text-2 p-3 pl-4 text-xs">
-              Found <span className="font-medium text-success">{results.length}</span> results
+              Found <span className="text-success font-medium">{results.length}</span> results
             </div>
           )}
         </div>

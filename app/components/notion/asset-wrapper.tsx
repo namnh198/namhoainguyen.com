@@ -1,11 +1,12 @@
-import type { BaseContentBlock, Block, PreviewImage } from "notion-types";
 import * as React from "react";
+import type { BaseContentBlock, Block, PreviewImage } from "notion-types";
 
-import { useNotionContext } from "./context";
-import { Asset } from "./asset";
-import { Text } from "./text";
-import { cn } from "~/lib/utils";
 import { parsePageId } from "~/lib/notion/parse-page-id";
+import { cn } from "~/lib/utils";
+
+import { Asset } from "./asset";
+import { useNotionContext } from "./context";
+import { Text } from "./text";
 
 const urlStyle = { width: "100%" };
 
@@ -44,7 +45,7 @@ export const AssetWrapper: React.FC<{
     >
       <Asset block={value} customPreviewImage={customPreviewImage}>
         {value?.properties?.caption && !isURL && (
-          <figcaption className="notion-asset-caption mt-4 italic text-sm text-text-2 text-center">
+          <figcaption className="notion-asset-caption text-text-2 mt-4 text-center text-sm italic">
             <Text value={value.properties.caption} block={block} />
           </figcaption>
         )}

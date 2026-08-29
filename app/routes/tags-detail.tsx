@@ -1,13 +1,16 @@
 import { IconLayoutGrid, IconNotebook, IconPinned } from "@tabler/icons-react";
-import type { Route } from "./+types/tags-detail";
 import { env } from "cloudflare:workers";
-import { PostHeader } from "~/components/elements/post-header";
-import { getPosts } from "~/lib/fetcher";
 import { data } from "react-router";
-import { TAGS } from "~/data/tags";
-import { SectionHeading } from "~/components/layouts/section-heading";
-import { PostList } from "~/components/elements/post-list";
+
+import type { Route } from "./+types/tags-detail";
+
+import { getPosts } from "~/lib/fetcher";
 import { getMetaData } from "~/lib/get-meta-data";
+import { TAGS } from "~/data/tags";
+
+import { PostHeader } from "~/components/elements/post-header";
+import { PostList } from "~/components/elements/post-list";
+import { SectionHeading } from "~/components/layouts/section-heading";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const posts = await getPosts(env);
@@ -39,7 +42,7 @@ export default function TagsDetail({ loaderData }: Route.ComponentProps) {
         desc={`A list of posts with the tag ${tag.name}.`}
         tags={pinnedTags}
       />
-      <div className="relative container space-y-6 mb-12">
+      <div className="relative container mb-12 space-y-6">
         <div className="flex flex-col gap-2">
           <SectionHeading title={tag.name} icon={<IconLayoutGrid stroke={2} />} />
         </div>

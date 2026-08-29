@@ -1,12 +1,16 @@
-import type { ExtendedRecordMap } from "notion-types";
-import { NotionRenderer } from "../notion/renderer";
+import type { LinkProps } from "react-router";
 import { useMemo } from "react";
-import { Link as ReactLink, type LinkProps } from "react-router";
-import { LazyImage } from "../ui/lazy-image";
-import type { BlockOptionContext } from "../notion/context";
 import type { Post } from "~/lib/types";
+import type { ExtendedRecordMap } from "notion-types";
+
+import { Link as ReactLink } from "react-router";
+
+import type { BlockOptionContext } from "../notion/context";
+
 import { DiscreteHeading } from "../notion/discrete-heading";
 import { Heading } from "../notion/heading";
+import { NotionRenderer } from "../notion/renderer";
+import { LazyImage } from "../ui/lazy-image";
 
 export function PostBody({
   post,

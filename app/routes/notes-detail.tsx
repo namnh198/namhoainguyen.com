@@ -1,16 +1,20 @@
-import type { Route } from "./+types/notes-detail";
+import type { NotionComponents } from "~/components/notion/context";
+
+import { IconCalendarEvent, IconNote, IconNotes, IconRefresh, IconUser } from "@tabler/icons-react";
 import { env } from "cloudflare:workers";
 import { data } from "react-router";
-import { IconUser, IconCalendarEvent, IconRefresh, IconNote, IconNotes } from "@tabler/icons-react";
-import { PostHeader } from "~/components/elements/post-header";
-import { DateComponent } from "~/components/ui/date-component";
-import { PostBody } from "~/components/elements/post-body";
+
+import type { Route } from "./+types/notes-detail";
+
 import { getPosts, getRecordMap } from "~/lib/fetcher";
 import { getMetaData } from "~/lib/get-meta-data";
 import { parsePageId } from "~/lib/notion/parse-page-id";
-import type { NotionComponents } from "~/components/notion/context";
-import { DiscreteHeading } from "~/components/notion/discrete-heading";
 import { cn } from "~/lib/utils";
+
+import { DateComponent } from "~/components/ui/date-component";
+import { PostBody } from "~/components/elements/post-body";
+import { PostHeader } from "~/components/elements/post-header";
+import { DiscreteHeading } from "~/components/notion/discrete-heading";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const allPosts = await getPosts(env);
@@ -43,7 +47,7 @@ export default function NotesDetail({ loaderData }: Route.ComponentProps) {
         icon={post.icon || <IconNotes />}
         notionDomain={notionDomain}
       >
-        <div className="flex flex-wrap gap-3 items-center justify-center sm:justify-start">
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
           <div className="inline-flex items-center gap-1 font-medium">
             <IconUser stroke={1.5} size={20} className="stroke-text-2" />
             <span className="text-text-2 text-sm">Nam-Hoai Nguyen</span>
@@ -54,7 +58,7 @@ export default function NotesDetail({ loaderData }: Route.ComponentProps) {
           </div>
           <div className="inline-flex items-center gap-1 font-medium">
             <IconRefresh stroke={1.5} size={20} className="stroke-[#4ade80]" />
-            <DateComponent date={post.updatedAt} dateLabel="updated" className="text-[#4ade80] text-sm" />
+            <DateComponent date={post.updatedAt} dateLabel="updated" className="text-sm text-[#4ade80]" />
           </div>
         </div>
       </PostHeader>

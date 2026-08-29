@@ -1,15 +1,19 @@
-import { getMetaData } from "~/lib/get-meta-data";
-import type { Route } from "./+types/notes-list";
 import type { Post, Tag } from "~/lib/types";
-import { getPosts } from "~/lib/fetcher";
+
+import { IconLayoutGrid, IconNotebook, IconNotes, IconPin } from "@tabler/icons-react";
 import { env } from "cloudflare:workers";
-import { PostHeader } from "~/components/elements/post-header";
-import { IconNotebook, IconNotes, IconPin, IconLayoutGrid } from "@tabler/icons-react";
-import { TAGS } from "~/data/tags";
 import { Link } from "react-router";
+
+import type { Route } from "./+types/notes-list";
+
+import { getPosts } from "~/lib/fetcher";
+import { getMetaData } from "~/lib/get-meta-data";
 import { getUri } from "~/lib/helpers";
-import { PostList } from "~/components/elements/post-list";
+import { TAGS } from "~/data/tags";
+
 import { LazyImage } from "~/components/ui/lazy-image";
+import { PostHeader } from "~/components/elements/post-header";
+import { PostList } from "~/components/elements/post-list";
 import { SectionHeading } from "~/components/layouts/section-heading";
 
 export function meta({}: Route.MetaArgs) {
@@ -63,25 +67,25 @@ export default function NotesList({ loaderData }: Route.ComponentProps) {
 const NoteListSection = ({ posts, tag }: { posts: Post[]; tag: Tag }) => {
   const tagUri = tag.slug === "recent" ? "/notes" : getUri(tag.slug, "tag");
   return (
-    <div className="relative flex flex-col md:flex-row gap-y-6" id={`#tag-${tag.slug}`}>
-      <div className="hidden lg:block md:w-48 shrink-0">
-        <div className="md:sticky md:top-8 pb-10">
-          <Link to={tagUri} className="font-heading text-sm font-medium text-muted-foreground block mb-3">
+    <div className="relative flex flex-col gap-y-6 md:flex-row" id={`#tag-${tag.slug}`}>
+      <div className="hidden shrink-0 md:w-48 lg:block">
+        <div className="pb-10 md:sticky md:top-8">
+          <Link to={tagUri} className="font-heading text-muted-foreground mb-3 block text-sm font-medium">
             {tag.name}
           </Link>
           {tag.icon && (
             <Link
               to={tagUri}
-              className="inline-flex relative z-10 items-center justify-center w-10 h-10 text-text border border-border rounded-lg text-sm font-bold"
+              className="text-text border-border relative z-10 inline-flex h-10 w-10 items-center justify-center rounded-lg border text-sm font-bold"
             >
               <LazyImage src={tag.icon} alt={tag.name} width={20} height={20} className="size-5" layout="constrained" />
             </Link>
           )}
         </div>
       </div>
-      <div className="flex-1 md:pl-8 relative pb-10">
-        <div className="hidden lg:block absolute top-2 left-0 bottom-0 w-px bg-accent-glow">
-          <div className="hidden lg:block absolute -translate-x-1/2 size-3 bg-accent rounded-full z-10" />
+      <div className="relative flex-1 pb-10 md:pl-8">
+        <div className="bg-accent-glow absolute top-2 bottom-0 left-0 hidden w-px lg:block">
+          <div className="bg-accent absolute z-10 hidden size-3 -translate-x-1/2 rounded-full lg:block" />
         </div>
         <div className="space-y-6">
           <div className="relative z-10 flex flex-col gap-2">

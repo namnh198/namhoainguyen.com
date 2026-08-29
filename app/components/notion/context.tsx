@@ -1,5 +1,6 @@
-import type { ExtendedRecordMap, Block } from "notion-types";
 import * as React from "react";
+import type { Block, ExtendedRecordMap } from "notion-types";
+
 import { defaultMapImageUrl } from "~/lib/notion/map-image-url";
 import { defaultMapPageUrl } from "~/lib/notion/map-page-url";
 

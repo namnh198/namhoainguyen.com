@@ -1,14 +1,16 @@
-import type { CodeBlock } from "notion-types";
 import * as React from "react";
 import { useState } from "react";
+import type { CodeBlock } from "notion-types";
+
+import { IconCopy, IconCopyCheck } from "@tabler/icons-react";
 import CopyToClipboard from "react-copy-to-clipboard";
+
+import { getBlockTitle } from "~/lib/notion/get-block-value";
+import { cn } from "~/lib/utils";
 
 import { useNotionContext } from "./context";
 import { Mermaid } from "./mermaid";
 import { Text } from "./text";
-import { getBlockTitle } from "~/lib/notion/get-block-value";
-import { IconCopy, IconCopyCheck } from "@tabler/icons-react";
-import { cn } from "~/lib/utils";
 
 type BlockCodeProps = {
   block: CodeBlock;
@@ -23,11 +25,7 @@ export function Code(props: BlockCodeProps) {
 
   const { recordMap, blockOptions } = useNotionContext();
   const content = getBlockTitle(block, recordMap);
-  const language = (
-    block.properties?.language?.[0]?.[0] ||
-    defaultLanguage ||
-    "typescript"
-  ).toLowerCase();
+  const language = (block.properties?.language?.[0]?.[0] || defaultLanguage || "typescript").toLowerCase();
   const caption = block.properties.caption;
 
   React.useEffect(() => {
@@ -53,9 +51,7 @@ export function Code(props: BlockCodeProps) {
 
   const copyBtn = (
     <button>
-      {!copied && (
-        <IconCopy className="text-text-2 hover:text-text" size={18} />
-      )}
+      {!copied && <IconCopy className="text-text-2 hover:text-text" size={18} />}
       {copied && <IconCopyCheck className="text-success" size={18} />}
     </button>
   ) as any;
@@ -67,36 +63,23 @@ export function Code(props: BlockCodeProps) {
   );
 
   if (language === "mermaid") {
-    return (
-      <Mermaid chart={content} className={cn(className, blurBlockClassName)} />
-    );
+    return <Mermaid chart={content} className={cn(className, blurBlockClassName)} />;
   }
 
   return (
-    <div
-      className={cn(
-        className,
-        blurBlockClassName,
-        "group/code relative flex flex-col gap-2",
-      )}
-    >
+    <div className={cn(className, blurBlockClassName, "group/code relative flex flex-col gap-2")}>
       <div
         id={`copy-${block.id}`}
-        className="absolute! top-4 right-4 z-10! duration-100 opacity-0 transition-opacity group-hover/code:opacity-100 hover:cursor-pointer"
+        className="absolute! top-4 right-4 z-10! opacity-0 transition-opacity duration-100 group-hover/code:opacity-100 hover:cursor-pointer"
       >
         {copyBtnWrapper}
       </div>
-      <div
-        className={`language-${formatCodeLang(language)} syntax-highlighter relative overflow-hidden text-sm`}
-      >
+      <div className={`language-${formatCodeLang(language)} syntax-highlighter relative overflow-hidden text-sm`}>
         {highlightCode ? (
-          <div
-            className="w-full overflow-hidden"
-            dangerouslySetInnerHTML={{ __html: highlightCode }}
-          ></div>
+          <div className="w-full overflow-hidden" dangerouslySetInnerHTML={{ __html: highlightCode }}></div>
         ) : (
           <div className="w-full overflow-hidden">
-            <pre className="my-0 max-h-75 font-mono rounded-lg bg-bg-card border p-[1em]">
+            <pre className="bg-bg-card my-0 max-h-75 rounded-lg border p-[1em] font-mono">
               <code>{content}</code>
             </pre>
           </div>
@@ -109,9 +92,7 @@ export function Code(props: BlockCodeProps) {
         </div>
       )}
 
-      {language === "mermaid" && (
-        <Mermaid chart={content} className={blurBlockClassName} />
-      )}
+      {language === "mermaid" && <Mermaid chart={content} className={blurBlockClassName} />}
     </div>
   );
 }

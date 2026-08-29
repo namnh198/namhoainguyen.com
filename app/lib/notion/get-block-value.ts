@@ -1,20 +1,17 @@
 import type {
   Block,
-  ExtendedRecordMap,
   Collection,
   CollectionView,
-  NotionMapBox,
   Decoration,
+  ExtendedRecordMap,
+  NotionMapBox,
   User,
 } from "notion-types";
 
 /**
  * Gets the IDs of all blocks contained on a page starting from a root block ID.
  */
-export const getPageBlockIds = (
-  recordMap: ExtendedRecordMap,
-  blockId?: string,
-): string[] => {
+export const getPageBlockIds = (recordMap: ExtendedRecordMap, blockId?: string): string[] => {
   const rootBlockId = blockId || Object.keys(recordMap.block)[0]!;
   const contentBlockIds = new Set<string>();
 
@@ -87,10 +84,7 @@ export function getBlockTitle(block: Block, recordMap: ExtendedRecordMap) {
     return getTextContent(block.properties.title);
   }
 
-  if (
-    block.type === "collection_view_page" ||
-    block.type === "collection_view"
-  ) {
+  if (block.type === "collection_view_page" || block.type === "collection_view") {
     const collectionId = getBlockCollectionId(block, recordMap);
 
     if (collectionId) {
@@ -105,13 +99,8 @@ export function getBlockTitle(block: Block, recordMap: ExtendedRecordMap) {
   return "";
 }
 
-export function getBlockCollectionId(
-  block: Block,
-  recordMap: ExtendedRecordMap,
-): string | null {
-  const collectionId =
-    (block as any).collection_id ||
-    (block as any).format?.collection_pointer?.id;
+export function getBlockCollectionId(block: Block, recordMap: ExtendedRecordMap): string | null {
+  const collectionId = (block as any).collection_id || (block as any).format?.collection_pointer?.id;
 
   if (collectionId) {
     return collectionId;
@@ -119,9 +108,7 @@ export function getBlockCollectionId(
 
   const collectionViewId = (block as any)?.view_ids?.[0];
   if (collectionViewId) {
-    const collectionView = getBlockValue(
-      recordMap.collection_view?.[collectionViewId],
-    );
+    const collectionView = getBlockValue(recordMap.collection_view?.[collectionViewId]);
 
     if (collectionView) {
       const collectionId = collectionView.format?.collection_pointer?.id;
@@ -136,9 +123,9 @@ export function getBlockCollectionId(
 // after Notion changed their API for some blocks to be doubly-nested.
 // https://github.com/NotionX/react-notion-x/issues/682
 
-export function getBlockValue<
-  T extends Block | Collection | CollectionView | User,
->(block: T | NotionMapBox<T> | undefined): T | undefined {
+export function getBlockValue<T extends Block | Collection | CollectionView | User>(
+  block: T | NotionMapBox<T> | undefined,
+): T | undefined {
   if (!block) {
     return undefined;
   }
@@ -159,11 +146,7 @@ export const getTextContent = (text?: Decoration[]): string => {
     return "";
   } else if (Array.isArray(text)) {
     return (
-      text?.reduce(
-        (prev, current) =>
-          prev + (current[0] !== "⁍" && current[0] !== "‣" ? current[0] : ""),
-        "",
-      ) ?? ""
+      text?.reduce((prev, current) => prev + (current[0] !== "⁍" && current[0] !== "‣" ? current[0] : ""), "") ?? ""
     );
   } else {
     return text;

@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
+
 import { Link } from "react-router";
+
 import { cn } from "~/lib/utils";
 
 export function SectionHeading({
@@ -14,12 +16,12 @@ export function SectionHeading({
   viewAll?: string;
 }) {
   return (
-    <div className={cn("flex items-center gap-3 [&_svg]:text-accent", [className])}>
+    <div className={cn("[&_svg]:text-accent flex items-center gap-3", [className])}>
       {icon}
-      <h2 className="font-heading text-2xl font-extrabold text-gradient">{title}</h2>
-      <div className="flex-1 divider-gradient" />
+      <h2 className="font-heading text-gradient text-2xl font-extrabold">{title}</h2>
+      <div className="divider-gradient flex-1" />
       {viewAll && (
-        <Link to={viewAll} className="text-sm text-accent whitespace-nowrap font-medium">
+        <Link to={viewAll} className="text-accent text-sm font-medium whitespace-nowrap">
           View all →
         </Link>
       )}

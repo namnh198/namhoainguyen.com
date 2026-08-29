@@ -18,7 +18,7 @@ export function YoutubeEmbed({ id, className, width, height, title }: BlockYoutu
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         title={title || "A video from YouTube"}
-        className="w-full h-full absolute inset-0"
+        className="absolute inset-0 h-full w-full"
       />
     </div>
   );

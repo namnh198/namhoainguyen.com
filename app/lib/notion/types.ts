@@ -1,4 +1,4 @@
-import type { CollectionInstance as NotionCollectionInstance, ID, PageChunk, ExtendedRecordMap } from "notion-types";
+import type { ExtendedRecordMap, ID, CollectionInstance as NotionCollectionInstance, PageChunk } from "notion-types";
 
 type CollectionInstance = NotionCollectionInstance & {
   allBlockIds: ID[];

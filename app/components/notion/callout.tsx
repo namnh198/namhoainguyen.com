@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
+import type { Color } from "notion-types";
 
 import { mapBlockColorClass } from "~/lib/helpers";
-import type { Color } from "notion-types";
 import { cn } from "~/lib/utils";
 
 export function Callout({

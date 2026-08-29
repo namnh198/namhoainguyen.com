@@ -1,9 +1,11 @@
-import type { Route } from "./+types/search";
-import { searchNotion } from "~/lib/notion/api";
+import type { SearchResult } from "~/lib/notion/types";
 
 import { env } from "cloudflare:workers";
+
+import type { Route } from "./+types/search";
+
 import { makeSlugText } from "~/lib/helpers";
-import type { SearchResult } from "~/lib/notion/types";
+import { searchNotion } from "~/lib/notion/api";
 
 export async function loader({ url }: Route.LoaderArgs) {
   const query = url.searchParams.get("q");

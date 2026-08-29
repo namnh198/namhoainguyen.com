@@ -1,9 +1,11 @@
 import type { Block } from "notion-types";
-import { cn } from "~/lib/utils";
-import { Text } from "./text";
-import { LazyImage } from "../ui/lazy-image";
+
 import { getTextContent } from "~/lib/notion/get-block-value";
+import { cn } from "~/lib/utils";
+
+import { LazyImage } from "../ui/lazy-image";
 import { useNotionContext } from "./context";
+import { Text } from "./text";
 
 function Bookmark({ block }: { block: Block }) {
   if (!block.properties) {
@@ -34,9 +36,7 @@ function Bookmark({ block }: { block: Block }) {
   return (
     <div className={cn("notion-bookmark")}>
       <a
-        className={cn(
-          "flex w-full gap-4 rounded-xl border transition-colors hover:border-border-bright p-4",
-        )}
+        className={cn("hover:border-border-bright flex w-full gap-4 rounded-xl border p-4 transition-colors")}
         href={link[0][0]}
         target="_blank"
         rel="noreferrer"
@@ -57,11 +57,7 @@ function Bookmark({ block }: { block: Block }) {
           <div className="flex items-center gap-2">
             {block.format?.bookmark_icon && (
               <div className="relative h-4 w-4 shrink-0">
-                <LazyImage
-                  src={mapImageUrl(block.format?.bookmark_icon, block)}
-                  alt={title}
-                  layout="fullWidth"
-                />
+                <LazyImage src={mapImageUrl(block.format?.bookmark_icon, block)} alt={title} layout="fullWidth" />
               </div>
             )}
             <div className="text-text-2! truncate text-[0.9em] font-normal">

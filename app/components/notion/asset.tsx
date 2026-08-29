@@ -1,9 +1,10 @@
-import type { BaseContentBlock, Block, PreviewImage } from "notion-types";
 import * as React from "react";
+import type { BaseContentBlock, Block, PreviewImage } from "notion-types";
 
-import { useNotionContext } from "./context";
-import { LazyImage } from "../ui/lazy-image";
 import { getTextContent } from "~/lib/notion/get-block-value";
+
+import { LazyImage } from "../ui/lazy-image";
+import { useNotionContext } from "./context";
 
 const isServer = typeof window === "undefined";
 
@@ -48,14 +49,8 @@ export const Asset: React.FC<{
   // console.log('asset', block)
 
   if (block.format) {
-    const {
-      block_aspect_ratio,
-      block_height,
-      block_width,
-      block_full_width,
-      block_page_width,
-      block_preserve_scale,
-    } = block.format;
+    const { block_aspect_ratio, block_height, block_width, block_full_width, block_page_width, block_preserve_scale } =
+      block.format;
 
     if (block_full_width || block_page_width) {
       if (block_full_width) {
@@ -125,8 +120,7 @@ export const Asset: React.FC<{
     }
   }
 
-  let source =
-    recordMap.signed_urls?.[block.id] || block.properties?.source?.[0]?.[0];
+  let source = recordMap.signed_urls?.[block.id] || block.properties?.source?.[0]?.[0];
   let content = null as any;
 
   if (!source) {
@@ -191,16 +185,7 @@ export const Asset: React.FC<{
     ) {
       style.paddingBottom = undefined;
 
-      content = (
-        <video
-          playsInline
-          controls
-          preload="metadata"
-          style={assetStyle}
-          src={source}
-          title={block.type}
-        />
-      );
+      content = <video playsInline controls preload="metadata" style={assetStyle} src={source} title={block.type} />;
     } else {
       let src = block.format?.display_source || source;
 
@@ -256,7 +241,7 @@ export const Asset: React.FC<{
         alt={alt}
         height={style.height as number}
         width={style.width as number}
-        className="border rounded-xl"
+        className="rounded-xl border"
         layout="constrained"
       />
     );

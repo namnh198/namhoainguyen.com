@@ -1,7 +1,9 @@
 import type { Block, ExtendedRecordMap } from "notion-types";
-import { getCollection, getPage } from "./notion/api";
+
 import type { Post } from "./types";
+
 import { transformBlockToPost } from "./helpers";
+import { getCollection, getPage } from "./notion/api";
 
 export const runWithRedisCache = async <T>() => {};
 

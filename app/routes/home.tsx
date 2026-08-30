@@ -30,11 +30,7 @@ export async function loader({}: Route.LoaderArgs) {
   const allTags = posts.flatMap((post) => post.tags);
   const tags = [...new Map(allTags.map((tag) => [tag.slug, tag])).values()];
   const allBookmarks = BOOKMARKS.flatMap((bookmark) => bookmark.list);
-  const bookmarks = [
-    ...new Map(
-      allBookmarks.map((bookmark) => [bookmark.url, bookmark]),
-    ).values(),
-  ];
+  const bookmarks = [...new Map(allBookmarks.map((bookmark) => [bookmark.url, bookmark])).values()];
   return { posts, tags, bookmarks, notionDomain: env.NOTION_SITE_DOMAIN };
 }
 
@@ -72,9 +68,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </span>
               </h1>
               <p className="text-text-2 relative mb-9 max-w-135 text-sm sm:text-[1.12rem] sm:leading-7">
-                I'm a senior full-stack engineer based in Ho Chi Minh City, Viet
-                Nam with a focus on Web Design and Cloud Services. On this site,
-                You can find the notes that I made when I discovered something.
+                I'm a senior full-stack engineer based in Ho Chi Minh City, Viet Nam with a focus on Web Design and
+                Cloud Services. On this site, You can find the notes that I made when I discovered something.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
@@ -101,11 +96,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                   rel="noopener noreferrer"
                   className="hover:border-border-bright hover:bg-bg-elevated inline-flex items-center justify-center gap-2 rounded-full border p-[.45rem_1rem] text-xs backdrop-blur-lg transition-colors"
                 >
-                  <IconBrandLinkedin
-                    width={16}
-                    height={16}
-                    className="stroke-accent"
-                  />
+                  <IconBrandLinkedin width={16} height={16} className="stroke-accent" />
                   <span className="text-accent">LinkedIn</span>
                 </a>
                 <a
@@ -114,11 +105,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                   rel="noopener noreferrer"
                   className="hover:border-border-bright hover:bg-bg-elevated inline-flex items-center justify-center gap-2 rounded-full border p-[.45rem_1rem] text-xs backdrop-blur-lg transition-colors"
                 >
-                  <IconBrandFacebook
-                    width={16}
-                    height={16}
-                    className="stroke-success"
-                  />
+                  <IconBrandFacebook width={16} height={16} className="stroke-success" />
                   <span className="text-success">Facebook</span>
                 </a>
                 <a
@@ -127,16 +114,12 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                   rel="noopener noreferrer"
                   className="hover:border-border-bright hover:bg-bg-elevated inline-flex items-center justify-center gap-2 rounded-full border p-[.45rem_1rem] text-xs backdrop-blur-lg transition-colors"
                 >
-                  <IconAddressBook
-                    width={16}
-                    height={16}
-                    className="stroke-accent-2"
-                  />
+                  <IconAddressBook width={16} height={16} className="stroke-accent-2" />
                   <span className="text-accent-2">Contact Me</span>
                 </a>
               </div>
             </div>
-            <div className="flex w-full items-center justify-center lg:w-150 lg:justify-end">
+            <div className="flex w-full items-center justify-center lg:w-110 lg:justify-end xl:w-150">
               <div className="relative">
                 <LazyImage
                   src="https://res.cloudinary.com/dabgirqbj/image/upload/v1788027211/nhn.com/developer-hero_ohunzu.webp"
@@ -152,45 +135,26 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       </section>
       <section className="py-8">
         <div className="container space-y-8">
-          <SectionHeading
-            title="Latest Notes"
-            icon={<IconNotes width={20} height={20} />}
-            viewAll="/notes"
-          />
+          <SectionHeading title="Latest Notes" icon={<IconNotes width={20} height={20} />} viewAll="/notes" />
           <PostList posts={posts.slice(0, 15)} />
         </div>
       </section>
       <section className="py-8">
         <div className="container space-y-8">
-          <SectionHeading
-            title="Bookmarks"
-            icon={<IconLink width={20} height={20} />}
-            viewAll="/bookmarks"
-          />
+          <SectionHeading title="Bookmarks" icon={<IconLink width={20} height={20} />} viewAll="/bookmarks" />
           <BookmarkList bookmarks={bookmarks.slice(0, 6)} />
         </div>
       </section>
       <section className="py-8">
         <div className="container space-y-8">
-          <SectionHeading
-            title="Tech Stacks"
-            icon={<IconCode width={20} height={20} />}
-          />
+          <SectionHeading title="Tech Stacks" icon={<IconCode width={20} height={20} />} />
           <AnimatedSkills />
         </div>
       </section>
       <section className="py-8">
         <div className="container space-y-8">
-          <SectionHeading
-            title="Main Topics"
-            icon={<IconTags width={20} height={20} />}
-            viewAll="/tags"
-          />
-          <TagsGrid
-            tags={pinnedTag}
-            posts={posts}
-            notionDomain={notionDomain}
-          />
+          <SectionHeading title="Main Topics" icon={<IconTags width={20} height={20} />} viewAll="/tags" />
+          <TagsGrid tags={pinnedTag} posts={posts} notionDomain={notionDomain} />
         </div>
       </section>
     </main>

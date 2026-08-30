@@ -1,5 +1,30 @@
 import type { Block, BlockMap } from "notion-types";
 
+import type { NotionDateTime } from "./types";
+
+export const formatDate = (input: string | number, { month = "short" }: { month?: "long" | "short" } = {}) => {
+  const date = new Date(input);
+  const monthLocale = date.toLocaleString("en-US", { month });
+  return `${monthLocale} ${date.getUTCDate()}, ${date.getUTCFullYear()}`;
+};
+
+export const formatNotionDateTime = (datetime: NotionDateTime) => {
+  // Adding +00:00 preserve the time in UTC.
+  const dateString = `${datetime.start_date}T${datetime.start_time || "00:00"}+00:00`;
+  return formatDate(dateString);
+};
+
+export const getListNumber = (blockId: string, blockMap: BlockMap) => {
+  const groups = groupBlockContent(blockMap);
+  const group = groups.find((g) => g.includes(blockId));
+
+  if (!group) {
+    return;
+  }
+
+  return group.indexOf(blockId) + 1;
+};
+
 const groupBlockContent = (blockMap: BlockMap): string[][] => {
   const output: string[][] = [];
 
@@ -31,16 +56,6 @@ const groupBlockContent = (blockMap: BlockMap): string[][] => {
   return output;
 };
 
-export const getListNumber = (blockId: string, blockMap: BlockMap) => {
-  const groups = groupBlockContent(blockMap);
-  const group = groups.find((g) => g.includes(blockId));
-
-  if (!group) {
-    return;
-  }
-
-  return group.indexOf(blockId) + 1;
-};
 export const getYoutubeId = (url: string): string | null => {
   try {
     const youtubeDomains = new Set([

@@ -3,7 +3,7 @@ import type { Block } from "notion-types";
 
 import { IconBrandGithub, IconCircle } from "@tabler/icons-react";
 
-import { formatNotionDateTime } from "~/lib/notion/format-date";
+import { formatNotionDateTime } from "~/lib/notion/utils";
 import { cn } from "~/lib/utils";
 
 export const EOI: React.FC<{

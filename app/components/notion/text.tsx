@@ -4,8 +4,8 @@ import type { Block, Decoration, ExternalObjectInstance, User } from "notion-typ
 import type { NotionComponents } from "./context";
 
 import { getUri, mapBlockColorClass } from "~/lib/helpers";
-import { formatDate } from "~/lib/notion/format-date";
 import { parsePageId } from "~/lib/notion/parse-page-id";
+import { formatDate } from "~/lib/notion/utils";
 import { cn, getHashFragmentValue, removeBaseUrl } from "~/lib/utils";
 
 import { LazyImage } from "../ui/lazy-image";

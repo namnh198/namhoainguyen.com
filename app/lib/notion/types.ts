@@ -4,7 +4,12 @@ type CollectionInstance = NotionCollectionInstance & {
   allBlockIds: ID[];
 };
 
-export type { CollectionInstance, PageChunk, ExtendedRecordMap };
+export interface NotionDateTime {
+  type: "datetime";
+  start_date: string;
+  start_time?: string;
+  time_zone?: string;
+}
 
 export type SearchResult = {
   id: string;
@@ -14,3 +19,5 @@ export type SearchResult = {
   textHighlighted: string;
   published: boolean;
 };
+
+export type { CollectionInstance, PageChunk, ExtendedRecordMap };

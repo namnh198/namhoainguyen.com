@@ -15,23 +15,23 @@
     "NOTION_SCHEMA_TAGS": "LOXq",
     "NOTION_SCHEMA_LANGUAGE": "tEJX",
     "NOTION_SCHEMA_LAST_MODIFIED": "iyy?",
-    "NOTION_BOLD_SEARCH_KEY": "gzkNfoUU",
+    "NOTION_BOLD_SEARCH_KEY": "gzkNfoUU"
   },
   "observability": {
     "logs": {
       "enabled": true,
-      "invocation_logs": true,
+      "invocation_logs": true
     },
     "traces": {
       "enabled": true,
-      "persist": true,
-    },
+      "persist": true
+    }
   },
   "upload_source_maps": true,
   "compatibility_flags": ["nodejs_compat"],
   "placement": { "mode": "smart" },
   "cache": {
-    "enabled": true,
+    "enabled": true
   },
-  "assets": { "directory": "./build/client/", "binding": "ASSETS" },
+  "assets": { "directory": "./build/client/", "binding": "ASSETS" }
 }

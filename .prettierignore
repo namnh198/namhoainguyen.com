@@ -8,3 +8,4 @@ package-lock.json
 phpm-lock.yaml
 yarn.lock
 bun.lock
+wrangler.jsonc

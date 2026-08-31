@@ -21,7 +21,7 @@ export function SectionHeading({
       <h2 className="font-heading text-gradient text-2xl font-extrabold">{title}</h2>
       <div className="divider-gradient flex-1" />
       {viewAll && (
-        <Link to={viewAll} className="text-accent text-sm font-medium whitespace-nowrap">
+        <Link to={viewAll} className="text-accent text-sm font-medium whitespace-nowrap" aria-label="View All">
           View all →
         </Link>
       )}

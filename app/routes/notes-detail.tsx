@@ -1,6 +1,6 @@
 import type { NotionComponents } from "~/components/notion/context";
 
-import { IconCalendarEvent, IconNote, IconNotes, IconRefresh, IconUser } from "@tabler/icons-react";
+import { IconCalendarEvent, IconNotes, IconRefresh, IconUser } from "@tabler/icons-react";
 import { env } from "cloudflare:workers";
 import { data } from "react-router";
 
@@ -14,7 +14,6 @@ import { cn } from "~/lib/utils";
 import { DateComponent } from "~/components/ui/date-component";
 import { PostBody } from "~/components/elements/post-body";
 import { PostHeader } from "~/components/elements/post-header";
-import { DiscreteHeading } from "~/components/notion/discrete-heading";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const allPosts = await getPosts(env);
@@ -33,11 +32,12 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 export function meta({ loaderData }: Route.MetaArgs) {
   const { post } = loaderData;
-  return getMetaData({ title: post.title });
+  return getMetaData({ title: post.title, desc: "I fail my way to success." });
 }
 
 export default function NotesDetail({ loaderData }: Route.ComponentProps) {
   const { post, recordMap, slugKey, notionDomain } = loaderData;
+
   return (
     <main className="min-h-dvh">
       <PostHeader

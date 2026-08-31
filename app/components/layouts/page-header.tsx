@@ -48,6 +48,7 @@ export function PageHeader() {
               key={`header-menu-${href}`}
               to={href}
               onClick={() => setMenuOpen(false)}
+              title={label}
               className={({ isActive }) =>
                 cn("text-text relative rounded-md px-3.5 py-2 text-sm font-medium transition-all", {
                   "hover:text-text hover:bg-bg-elevated": !isActive,

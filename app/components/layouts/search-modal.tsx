@@ -111,6 +111,8 @@ export function SearchModal({}) {
         render={
           <Button
             variant="outline"
+            aria-label="Open Search Popup"
+            aria-expanded={modalOpen}
             className="h-10 w-10 border-0 outline-none lg:h-9 lg:w-fit lg:border lg:bg-linear-(--btn-gradient)"
           >
             <IconSearch stroke={2} className="size-4" />

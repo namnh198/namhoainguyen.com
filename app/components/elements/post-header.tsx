@@ -44,6 +44,7 @@ export function PostHeader({
             <Link
               to={`/tags`}
               className="bg-accent-flow text-accent rounded-full border border-[#4f80ff66] px-4 py-2 text-sm font-medium whitespace-nowrap"
+              aria-label="All Tags"
             >
               All
             </Link>
@@ -52,6 +53,7 @@ export function PostHeader({
                 key={tag.slug}
                 to={getUri(tag.slug, "tag")}
                 className="border-border bg-bg-card text-text-2 hover:border-border-bright hover:text-text hover:bg-bg-elevated rounded-full border px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ease-in-out"
+                aria-label={`Tag ${tag.name}`}
               >
                 {tag.name}
               </Link>

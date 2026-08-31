@@ -82,3 +82,9 @@ export const getYoutubeId = (url: string): string | null => {
 
   return null;
 };
+
+// export function getJoinedRichText(richTextArr?: RichTextItemResponse[]): string {
+//   if (!richTextArr || !richTextArr.length) return "";
+//   const textArr = richTextArr.map((richText: RichTextItemResponse) => richText.plain_text);
+//   return textArr.join("");
+// }

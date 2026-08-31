@@ -9,7 +9,7 @@ export function PageFooter() {
       <div className="container">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <Link to="/" className="flex shrink-0 items-center gap-2">
+            <Link to="/" className="flex shrink-0 items-center gap-2" aria-label="Footer Logo">
               <span className="inline-flex size-9 items-center justify-center rounded-[10px] bg-linear-(--btn-gradient)">
                 <IconPrompt stroke={3} width={20} height={20} />
               </span>
@@ -22,6 +22,7 @@ export function PageFooter() {
                 key={`footer-menu-${href}`}
                 to={href}
                 className="text-text-2 hover:text-text text-sm transition-colors"
+                aria-label={`Menu ${label}`}
               >
                 {label}
               </Link>

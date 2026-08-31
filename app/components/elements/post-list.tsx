@@ -28,6 +28,7 @@ export function PostListItem({ post, withinDay = 7 }: { post: Post; withinDay?: 
     <Link
       to={getUri(post.slug, "note")}
       className="hover:bg-bg-card flex items-center gap-3 border-b px-6 py-4 transition-colors last:border-none"
+      aria-label={`${post.title} note`}
     >
       {post.pinned ? <IconPin stroke={2} /> : <IconNotes stroke={2} />}
       <span className="inline-flex flex-1 items-center gap-1.5">

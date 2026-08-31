@@ -13,4 +13,5 @@ export default [
   route("/robots.txt", "./routes/robots.ts"),
   route("/sitemap.xml", "./routes/sitemap.ts"),
   route("/api/search", "routes/api/search.ts"),
+  route("/api/og-image", "routes/api/og-image.tsx"),
 ] satisfies RouteConfig;

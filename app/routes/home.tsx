@@ -34,7 +34,7 @@ export async function loader({}: Route.LoaderArgs) {
   return { posts, tags, bookmarks, notionDomain: env.NOTION_SITE_DOMAIN };
 }
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ location }: Route.MetaArgs) {
   return getMetaData({
     title: "Hi! I'm Nam",
     prefix: false,
@@ -75,6 +75,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <Link
                   to="/notes"
                   className="xs:w-auto inline-flex w-full items-center justify-center gap-2 rounded-lg bg-linear-(--btn-gradient) px-6.5 py-3 text-sm font-medium shadow-[0_2px_12px_#4f80ff4d] transition-all hover:-translate-y-px hover:shadow-[0_4px_20px_#4f80ff66]"
+                  aria-label="Open Lab Notes"
                 >
                   Open Lab Notes
                   <IconArrowRight width={20} height={20} />
@@ -84,6 +85,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-text hover:bg-accent-glow hover:text-accent hover:border-accent xs:w-auto inline-flex w-full items-center justify-center gap-2 rounded-lg border px-6.5 py-3 text-sm transition-all"
+                  aria-label="View on github"
                 >
                   <IconBrandGithub width={20} height={20} />
                   View on Github
@@ -95,6 +97,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:border-border-bright hover:bg-bg-elevated inline-flex items-center justify-center gap-2 rounded-full border p-[.45rem_1rem] text-xs backdrop-blur-lg transition-colors"
+                  aria-label="View on linkedin"
                 >
                   <IconBrandLinkedin width={16} height={16} className="stroke-accent" />
                   <span className="text-accent">LinkedIn</span>
@@ -104,6 +107,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:border-border-bright hover:bg-bg-elevated inline-flex items-center justify-center gap-2 rounded-full border p-[.45rem_1rem] text-xs backdrop-blur-lg transition-colors"
+                  aria-label="View on facebook"
                 >
                   <IconBrandFacebook width={16} height={16} className="stroke-success" />
                   <span className="text-success">Facebook</span>
@@ -113,6 +117,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:border-border-bright hover:bg-bg-elevated inline-flex items-center justify-center gap-2 rounded-full border p-[.45rem_1rem] text-xs backdrop-blur-lg transition-colors"
+                  aria-label="Contact me"
                 >
                   <IconAddressBook width={16} height={16} className="stroke-accent-2" />
                   <span className="text-accent-2">Contact Me</span>

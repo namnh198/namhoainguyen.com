@@ -70,13 +70,18 @@ const NoteListSection = ({ posts, tag }: { posts: Post[]; tag: Tag }) => {
     <div className="relative flex flex-col gap-y-6 md:flex-row" id={`#tag-${tag.slug}`}>
       <div className="hidden shrink-0 md:w-48 lg:block">
         <div className="pb-10 md:sticky md:top-8">
-          <Link to={tagUri} className="font-heading text-muted-foreground mb-3 block text-sm font-medium">
+          <Link
+            to={tagUri}
+            className="font-heading text-muted-foreground mb-3 block text-sm font-medium"
+            aria-label={`Tag ${tag.name}`}
+          >
             {tag.name}
           </Link>
           {tag.icon && (
             <Link
               to={tagUri}
               className="text-text border-border relative z-10 inline-flex h-10 w-10 items-center justify-center rounded-lg border text-sm font-bold"
+              aria-label={`Tag ${tag.name}`}
             >
               <LazyImage src={tag.icon} alt={tag.name} width={20} height={20} className="size-5" layout="constrained" />
             </Link>

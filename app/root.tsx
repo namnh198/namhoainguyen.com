@@ -30,6 +30,19 @@ export const loader = ({ url }: Route.LoaderArgs) => {
   };
 };
 
+export const links: Route.LinksFunction = () => [
+  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  {
+    rel: "preconnect",
+    href: "https://fonts.gstatic.com",
+    crossOrigin: "anonymous",
+  },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital@0;1&family=Oxanium:wght@800&display=swap",
+  },
+];
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const { gaMeasurementId, canonical } = useRouteLoaderData<typeof loader>("root") || {};
   const location = useLocation();

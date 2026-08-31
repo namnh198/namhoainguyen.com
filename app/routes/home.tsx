@@ -19,7 +19,6 @@ import { getMetaData } from "~/lib/get-meta-data";
 import { BOOKMARKS } from "~/data/bookmarks";
 
 import { AnimatedSkills } from "~/components/ui/animated-skills";
-import { LazyImage } from "~/components/ui/lazy-image";
 import { BookmarkList } from "~/components/elements/bookmarks-list";
 import { PostList } from "~/components/elements/post-list";
 import { TagsGrid } from "~/components/elements/tags-grid";
@@ -124,16 +123,18 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </a>
               </div>
             </div>
-            <div className="flex w-full items-center justify-center lg:w-110 lg:justify-end xl:w-150">
-              <div className="relative">
-                <LazyImage
-                  src="https://res.cloudinary.com/dabgirqbj/image/upload/v1788027211/nhn.com/developer-hero_ohunzu.webp"
-                  alt="Developer Hero Banner"
-                  width={660}
-                  height={667}
-                  layout="fixed"
-                />
-              </div>
+            <div className="hidden w-full items-center justify-center lg:flex lg:w-110 lg:justify-end xl:w-150">
+              <img
+                alt="Developer Hero Banner"
+                className="relative aspect-660/667"
+                sizes="660px"
+                style={{ objectFit: "cover", width: 660, height: 667 }}
+                srcSet="https://res.cloudinary.com/dabgirqbj/image/upload/w_660,h_667,f_auto,c_lfill/v1788027211/nhn.com/developer-hero_ohunzu.webp 660w,https://res.cloudinary.com/dabgirqbj/image/upload/w_1320,h_1334,f_auto,c_lfill/v1788027211/nhn.com/developer-hero_ohunzu.webp 1320w"
+                src="https://res.cloudinary.com/dabgirqbj/image/upload/w_660,h_667,f_auto,c_lfill/v1788027211/nhn.com/developer-hero_ohunzu.webp"
+                width="660"
+                height="667"
+                fetchPriority="high"
+              />
             </div>
           </div>
         </div>

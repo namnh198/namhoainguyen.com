@@ -143,7 +143,7 @@ export function Text({
 
               case "c":
                 return (
-                  <code className="text-text-2 rounded-sm border bg-[#ffffff05] p-[1px_8px_2px_6px] font-mono text-[90%] wrap-break-word">
+                  <code className="text-text-2 bg-text/[0.02] rounded-sm border p-[1px_8px_2px_6px] font-mono text-[90%] wrap-break-word">
                     {element}
                   </code>
                 );

@@ -1,30 +1,36 @@
 import { useState } from "react";
 
-import { IconChevronDown, IconPrompt } from "@tabler/icons-react";
+import { IconChevronDown, IconMoon, IconPrompt, IconSun } from "@tabler/icons-react";
 import { Link, NavLink } from "react-router";
 
 import { getUri } from "~/lib/helpers";
-import { cn } from "~/lib/utils";
 import { MENU } from "~/data/menu";
 import { TAGS } from "~/data/tags";
 
-import { buttonVariants } from "../ui/button";
 import { SearchModal } from "./search-modal";
 import { ToggleMenu } from "./toggle-menu";
 
 const NAV = MENU.filter(({ href }) => href !== "/");
-const PRIMARY = { href: "/notes", label: "Read the notes" };
 
-function Arrow() {
+// Catppuccin Mocha (dark) / Latte (light); the head script in root.tsx sets the first value before paint
+function ThemeToggle() {
+  const toggle = () => {
+    const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {}
+  };
   return (
-    <svg
-      viewBox="0 0 12 12"
-      aria-hidden="true"
-      className="size-3 fill-none stroke-current stroke-[1.5] transition-transform duration-150 [stroke-linecap:round] [stroke-linejoin:round] pointer-fine:group-hover/button:translate-x-[3px]"
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label="Switch light or dark theme"
+      className="text-text-2 hover:text-text grid size-11 place-items-center transition-colors"
     >
-      <path d="M1 6h8" />
-      <path d="M4.5 2.5 8 6l-3.5 3.5" />
-    </svg>
+      <IconSun aria-hidden="true" className="light:hidden size-5" />
+      <IconMoon aria-hidden="true" className="light:block hidden size-5" />
+    </button>
   );
 }
 
@@ -100,10 +106,7 @@ export function PageHeader() {
 
         <div className="nav__actions flex items-center gap-2 lg:gap-4 xl:gap-6">
           <SearchModal />
-          <Link to={PRIMARY.href} className={cn(buttonVariants(), "hidden sm:inline-flex")}>
-            {PRIMARY.label}
-            <Arrow />
-          </Link>
+          <ThemeToggle />
           <div className="lg:hidden">
             <ToggleMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           </div>
@@ -127,10 +130,6 @@ export function PageHeader() {
                 </li>
               ))}
             </ul>
-            <Link to={PRIMARY.href} className={cn(buttonVariants(), "mt-6 w-full sm:hidden")}>
-              {PRIMARY.label}
-              <Arrow />
-            </Link>
           </nav>
         </div>
       )}

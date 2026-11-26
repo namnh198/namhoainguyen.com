@@ -60,9 +60,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     // the head script adds m-enter before hydration
-    <html lang="en" data-type="software" data-radius="sharp" data-buttons="arrow" suppressHydrationWarning>
+    <html lang="en" data-type="software" data-radius="soft" data-buttons="arrow" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
+        {/* theme before paint: saved choice, else the OS setting; Mocha when neither says light */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t}catch(e){}",
+          }}
+        />
         {/* the hero's entrance runs once; m-enter-done is its safety mark */}
         <script
           dangerouslySetInnerHTML={{

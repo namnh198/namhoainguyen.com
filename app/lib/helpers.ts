@@ -114,42 +114,42 @@ export const uuidToId = (uuid: string) => uuid.replaceAll("-", "");
 export const mapBlockColorClass = (color: Color | undefined) => {
   switch (color) {
     case "gray":
-      return "text-[#94a3b8] [&_*]:text-[#94a3b8]";
+      return "text-text-2 [&_*]:text-text-2";
     case "brown":
-      return "text-[#fcaf8c] [&_*]:text-[#fcaf8c]";
+      return "text-ctp-flamingo [&_*]:text-ctp-flamingo";
     case "orange":
-      return "text-[#fca5a5] [&_*]:text-[#fca5a5]";
+      return "text-ctp-peach [&_*]:text-ctp-peach";
     case "yellow":
-      return "text-[#fb923c] [&_*]:text-[#fb923c]";
+      return "text-ctp-yellow [&_*]:text-ctp-yellow";
     case "teal":
-      return "text-[#4ade80] [&_*]:text-[#4ade80]";
+      return "text-ctp-teal [&_*]:text-ctp-teal";
     case "blue":
-      return "text-[#38bdf8] [&_*]:text-[#38bdf8]";
+      return "text-ctp-blue [&_*]:text-ctp-blue";
     case "purple":
-      return "text-[#818cf8] [&_*]:text-[#818cf8]";
+      return "text-ctp-mauve [&_*]:text-ctp-mauve";
     case "pink":
-      return "text-[#e879f9] [&_*]:text-[#e879f9]";
+      return "text-ctp-pink [&_*]:text-ctp-pink";
     case "red":
-      return "text-[#f87171] [&_*]:text-[#f87171]";
+      return "text-ctp-red [&_*]:text-ctp-red";
     // Highlight
     case "gray_background":
-      return "text-[#94a3b8] bg-[#1a1d2e] border border-[#334155] p-0.5 rounded-sm";
+      return "text-text-2 bg-bg-elevated border border-border-bright p-0.5 rounded-sm";
     case "brown_background":
-      return "text-[#fcaf8c] bg-[#1d100c] border border-[#7c3d12] p-0.5 rounded-sm";
+      return "text-ctp-flamingo bg-ctp-flamingo/10 border border-ctp-flamingo/30 p-0.5 rounded-sm";
     case "orange_background":
-      return "text-[#fca5a5] bg-[#2d1515] border border-[#7f1d1d] p-0.5 rounded-sm";
+      return "text-ctp-peach bg-ctp-peach/10 border border-ctp-peach/30 p-0.5 rounded-sm";
     case "yellow_background":
-      return "text-[#fb923c] bg-[#2a2010] border border-[#7c3d12] p-0.5 rounded-sm";
-    case "blue_background":
-      return "text-[#38bdf8] bg-[#101e2e] border border-[#0c4a6e] p-0.5 rounded-sm";
-    case "purple_background":
-      return "text-[#818cf8] bg-[#181828] border border-[#3730a3] p-0.5 rounded-sm";
-    case "pink_background":
-      return "text-[#e879f9] bg-[#1e1028] border border-[#7e22ce] p-0.5 rounded-sm";
-    case "red_background":
-      return "text-[#f87171] bg-[#1c1010] border border-[#6b1414] p-0.5 rounded-sm";
+      return "text-ctp-yellow bg-ctp-yellow/10 border border-ctp-yellow/30 p-0.5 rounded-sm";
     case "teal_background":
-      return "text-[#4ade80] bg-[#101e15] border border-[#14532d] p-0.5 rounded-sm";
+      return "text-ctp-teal bg-ctp-teal/10 border border-ctp-teal/30 p-0.5 rounded-sm";
+    case "blue_background":
+      return "text-ctp-blue bg-ctp-blue/10 border border-ctp-blue/30 p-0.5 rounded-sm";
+    case "purple_background":
+      return "text-ctp-mauve bg-ctp-mauve/10 border border-ctp-mauve/30 p-0.5 rounded-sm";
+    case "pink_background":
+      return "text-ctp-pink bg-ctp-pink/10 border border-ctp-pink/30 p-0.5 rounded-sm";
+    case "red_background":
+      return "text-ctp-red bg-ctp-red/10 border border-ctp-red/30 p-0.5 rounded-sm";
     default:
       return "bg-bg text-text-2";
   }

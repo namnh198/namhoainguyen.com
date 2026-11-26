@@ -97,9 +97,8 @@ export function ToggleHeading({
       <div className={triggerClassName}>
         <CollapsibleTrigger
           className={cn("z-20 mt-0.5 cursor-pointer rounded-md border border-transparent p-0.5", {
-            "group-hover/toggle:bg-bg-elevated group-hover/toggle:text-text group-hover/toggle:border-[#5ab9fc33]":
-              !open,
-            "bg-bg-elevated text-text border-[#5ab9fc33]": open,
+            "group-hover/toggle:bg-bg-elevated group-hover/toggle:text-text group-hover/toggle:border-accent/20": !open,
+            "bg-bg-elevated text-text border-accent/20": open,
             "mt-0.75 -ml-2.5": headingType === "h3",
             "-mt-0.5": headingType === "h2" || headingType === "h1",
           })}
@@ -117,7 +116,7 @@ export function ToggleHeading({
         <div className="toggle-heading-content-container pl-8">{children}</div>
       </CollapsibleContent>
       <div
-        className={cn("absolute top-0 left-0 z-10 mt-3 ml-2.5 h-[calc(100%-8px)] w-1 border-l-2 border-[#5ab9fc33]", {
+        className={cn("border-accent/20 absolute top-0 left-0 z-10 mt-3 ml-2.5 h-[calc(100%-8px)] w-1 border-l-2", {
           hidden: !open,
           "mt-5 ml-[16.5px] border-l-3": headingType === "h2" || headingType === "h1",
           "mt-3.75 ml-1.25 border-l-2": headingType === "h3",

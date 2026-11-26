@@ -37,20 +37,24 @@ function useMermaid(chart: string, debounceTime: number) {
 
         if (isCancelled) return;
 
+        const css = getComputedStyle(document.documentElement);
+        const token = (name: string) => css.getPropertyValue(name).trim();
+
         // Initialize Mermaid
         // Note: startOnLoad must be false so we can manually render
         mermaid.initialize({
           startOnLoad: false,
           theme: "base",
+          // shortcut: colours are read once per render, so a theme switch shows on the next page load
           themeVariables: {
-            primaryColor: "#070a14",
-            primaryTextColor: "#dde3f0",
-            primaryBorderColor: "#1a2035",
-            background: "#070a14",
-            textColor: "#dde3f0",
-            lineColor: "#263050",
-            secondaryColor: "#8492b8",
-            tertiaryColor: "#4a5475",
+            primaryColor: token("--bg-card"),
+            primaryTextColor: token("--text"),
+            primaryBorderColor: token("--border-bright"),
+            background: token("--bg"),
+            textColor: token("--text"),
+            lineColor: token("--text-3"),
+            secondaryColor: token("--bg-elevated"),
+            tertiaryColor: token("--bg-elevated"),
           },
           look: "classic",
           fontFamily: "Funnel Sans, sans-serif",

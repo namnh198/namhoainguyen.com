@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
 @theme inline {
   --breakpoint-xs: 28rem;
-  --radius-btn: 4px;
+  --radius-btn: 6px;
   --spacing-nav: 3.5rem;
   --spacing-nav-lg: 4.5rem;
   --font-sans: "Funnel Sans", system-ui, sans-serif;
@@ -26,6 +28,16 @@
   --color-inv-muted: var(--inv-muted);
   --color-accent-glow: var(--accent-glow);
   --color-success: var(--success);
+  /* Catppuccin hues as text-safe inks: Latte's are pulled toward --text so they pass 4.5:1 */
+  --color-ctp-red: var(--ctp-red-ink);
+  --color-ctp-peach: var(--ctp-peach-ink);
+  --color-ctp-yellow: var(--ctp-yellow-ink);
+  --color-ctp-green: var(--ctp-green-ink);
+  --color-ctp-teal: var(--ctp-teal-ink);
+  --color-ctp-blue: var(--ctp-blue-ink);
+  --color-ctp-mauve: var(--ctp-mauve-ink);
+  --color-ctp-pink: var(--ctp-pink-ink);
+  --color-ctp-flamingo: var(--ctp-flamingo-ink);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
 
@@ -64,27 +76,79 @@
 }
 
 :root {
-  /* taste-skill deal: palette blue-black-cornflower, type funnel, radius sharp */
-  --bg: #0a0d14;
-  --bg-deep: #06080d;
-  --bg-card: #131824;
-  --bg-elevated: #1a2030;
-  --border: #272a31;
-  --border-bright: #3b3e45;
-  --text: #e9edf3;
-  --text-2: #a3abba;
-  --text-3: #828b9c;
-  --accent: #5ab9fc;
-  --accent-ink: #0a0d14;
-  --accent-glow: #5ab9fc29;
-  --success: #34d399;
-  --warning: #fbbf24;
-  --danger: #f87171;
-  /* the inverse ground, for UI windows shown on the dark page */
-  --inv-bg: #e9edf3;
-  --inv-surface: #d7dbe1;
-  --inv-ink: #0a0d14;
-  --inv-muted: #54575f;
+  /* Catppuccin Mocha (dark, the default); accent mauve */
+  color-scheme: dark;
+  --bg: #1e1e2e; /* base */
+  --bg-deep: #11111b; /* crust */
+  --bg-card: #181825; /* mantle */
+  --bg-elevated: #313244; /* surface0 */
+  --border: #313244; /* surface0 */
+  --border-bright: #45475a; /* surface1 */
+  --text: #cdd6f4;
+  --text-2: #a6adc8; /* subtext0 */
+  --text-3: #9399b2; /* overlay2 */
+  --accent: #cba6f7; /* mauve */
+  --accent-ink: #11111b;
+  --accent-glow: #cba6f729;
+  --ctp-red: #f38ba8;
+  --ctp-peach: #fab387;
+  --ctp-yellow: #f9e2af;
+  --ctp-green: #a6e3a1;
+  --ctp-teal: #94e2d5;
+  --ctp-blue: #89b4fa;
+  --ctp-mauve: #cba6f7;
+  --ctp-pink: #f5c2e7;
+  --ctp-flamingo: #f2cdcd;
+  --ctp-mix: 0%;
+  /* the inverse ground, for UI windows shown on the page: the other flavour */
+  --inv-bg: #eff1f5;
+  --inv-surface: #dce0e8;
+  --inv-ink: #4c4f69;
+  --inv-muted: #5c5f77;
+
+  &[data-theme="light"] {
+    /* Catppuccin Latte */
+    color-scheme: light;
+    --bg: #eff1f5; /* base */
+    --bg-deep: #dce0e8; /* crust */
+    --bg-card: #e6e9ef; /* mantle */
+    --bg-elevated: #dce0e8; /* crust */
+    --border: #ccd0da; /* surface0 */
+    --border-bright: #bcc0cc; /* surface1 */
+    --text: #4c4f69;
+    --text-2: #5c5f77; /* subtext1 */
+    --text-3: #5c5f77; /* subtext1: subtext0 misses 4.5:1 on base */
+    --accent: #8839ef; /* mauve */
+    --accent-ink: #eff1f5;
+    --accent-glow: #8839ef1f;
+    --ctp-red: #d20f39;
+    --ctp-peach: #fe640b;
+    --ctp-yellow: #df8e1d;
+    --ctp-green: #40a02b;
+    --ctp-teal: #179299;
+    --ctp-blue: #1e66f5;
+    --ctp-mauve: #8839ef;
+    --ctp-pink: #ea76cb;
+    --ctp-flamingo: #dd7878;
+    --ctp-mix: 45%;
+    --inv-bg: #1e1e2e;
+    --inv-surface: #313244;
+    --inv-ink: #cdd6f4;
+    --inv-muted: #a6adc8;
+  }
+
+  --ctp-red-ink: color-mix(in oklab, var(--ctp-red), var(--text) var(--ctp-mix));
+  --ctp-peach-ink: color-mix(in oklab, var(--ctp-peach), var(--text) var(--ctp-mix));
+  --ctp-yellow-ink: color-mix(in oklab, var(--ctp-yellow), var(--text) var(--ctp-mix));
+  --ctp-green-ink: color-mix(in oklab, var(--ctp-green), var(--text) var(--ctp-mix));
+  --ctp-teal-ink: color-mix(in oklab, var(--ctp-teal), var(--text) var(--ctp-mix));
+  --ctp-blue-ink: color-mix(in oklab, var(--ctp-blue), var(--text) var(--ctp-mix));
+  --ctp-mauve-ink: color-mix(in oklab, var(--ctp-mauve), var(--text) var(--ctp-mix));
+  --ctp-pink-ink: color-mix(in oklab, var(--ctp-pink), var(--text) var(--ctp-mix));
+  --ctp-flamingo-ink: color-mix(in oklab, var(--ctp-flamingo), var(--text) var(--ctp-mix));
+  --success: var(--ctp-green-ink);
+  --warning: var(--ctp-yellow-ink);
+  --danger: var(--ctp-red-ink);
   --gut: 24px;
   @media (min-width: 640px) {
     --gut: 48px;
@@ -141,7 +205,7 @@
   }
 
   ::selection {
-    color: #fff;
+    color: var(--text);
     background: color-mix(in oklab, var(--accent) 30%, transparent);
   }
 
@@ -347,6 +411,14 @@
     margin-bottom: 2em;
     font-size: 0.875em;
     line-height: 1.71429;
+  }
+
+  /* shiki renders both flavours as CSS vars (code.tsx); pick the one for the theme */
+  :where(.shiki, .shiki span) {
+    color: var(--shiki-dark);
+    @variant light {
+      color: var(--shiki-light);
+    }
   }
 
   :where(.shiki) {

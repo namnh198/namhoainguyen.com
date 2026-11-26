@@ -37,7 +37,8 @@ export function Code(props: BlockCodeProps) {
       setHighlightCode(
         await codeToHtml(content, {
           lang: formatCodeLang(language),
-          theme: "tokyo-night",
+          themes: { dark: "catppuccin-mocha", light: "catppuccin-latte" },
+          defaultColor: false,
         }),
       );
     });

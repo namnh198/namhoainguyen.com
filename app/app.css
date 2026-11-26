@@ -28,7 +28,7 @@
   --color-inv-muted: var(--inv-muted);
   --color-accent-glow: var(--accent-glow);
   --color-success: var(--success);
-  /* Catppuccin hues as text-safe inks: Latte's are pulled toward --text so they pass 4.5:1 */
+  /* Catppuccin hues as text-safe inks: Latte's are mixed 40% toward Mocha crust so they pass 4.5:1 */
   --color-ctp-red: var(--ctp-red-ink);
   --color-ctp-peach: var(--ctp-peach-ink);
   --color-ctp-yellow: var(--ctp-yellow-ink);
@@ -130,22 +130,22 @@
     --ctp-mauve: #8839ef;
     --ctp-pink: #ea76cb;
     --ctp-flamingo: #dd7878;
-    --ctp-mix: 45%;
+    --ctp-mix: 40%;
     --inv-bg: #1e1e2e;
     --inv-surface: #313244;
     --inv-ink: #cdd6f4;
     --inv-muted: #a6adc8;
   }
 
-  --ctp-red-ink: color-mix(in oklab, var(--ctp-red), var(--text) var(--ctp-mix));
-  --ctp-peach-ink: color-mix(in oklab, var(--ctp-peach), var(--text) var(--ctp-mix));
-  --ctp-yellow-ink: color-mix(in oklab, var(--ctp-yellow), var(--text) var(--ctp-mix));
-  --ctp-green-ink: color-mix(in oklab, var(--ctp-green), var(--text) var(--ctp-mix));
-  --ctp-teal-ink: color-mix(in oklab, var(--ctp-teal), var(--text) var(--ctp-mix));
-  --ctp-blue-ink: color-mix(in oklab, var(--ctp-blue), var(--text) var(--ctp-mix));
-  --ctp-mauve-ink: color-mix(in oklab, var(--ctp-mauve), var(--text) var(--ctp-mix));
-  --ctp-pink-ink: color-mix(in oklab, var(--ctp-pink), var(--text) var(--ctp-mix));
-  --ctp-flamingo-ink: color-mix(in oklab, var(--ctp-flamingo), var(--text) var(--ctp-mix));
+  --ctp-red-ink: color-mix(in oklab, var(--ctp-red), #11111b var(--ctp-mix));
+  --ctp-peach-ink: color-mix(in oklab, var(--ctp-peach), #11111b var(--ctp-mix));
+  --ctp-yellow-ink: color-mix(in oklab, var(--ctp-yellow), #11111b var(--ctp-mix));
+  --ctp-green-ink: color-mix(in oklab, var(--ctp-green), #11111b var(--ctp-mix));
+  --ctp-teal-ink: color-mix(in oklab, var(--ctp-teal), #11111b var(--ctp-mix));
+  --ctp-blue-ink: color-mix(in oklab, var(--ctp-blue), #11111b var(--ctp-mix));
+  --ctp-mauve-ink: color-mix(in oklab, var(--ctp-mauve), #11111b var(--ctp-mix));
+  --ctp-pink-ink: color-mix(in oklab, var(--ctp-pink), #11111b var(--ctp-mix));
+  --ctp-flamingo-ink: color-mix(in oklab, var(--ctp-flamingo), #11111b var(--ctp-mix));
   --success: var(--ctp-green-ink);
   --warning: var(--ctp-yellow-ink);
   --danger: var(--ctp-red-ink);

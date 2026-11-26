@@ -5,7 +5,7 @@ export function ToggleMenu({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMe
     <button
       className={cn(
         "border-border-bright bg-bg text-text rounded-btn flex size-11 flex-col items-center justify-center gap-1 border",
-        "nav-menu-button",
+        "nav-menu-button nav__toggle",
         {
           "nav-menu-button-open": menuOpen,
         },

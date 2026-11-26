@@ -58,17 +58,23 @@ export function PageHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-bg h-nav lg:h-nav-lg fixed inset-x-0 top-0 z-50 border-b">
-      <div className="container flex h-full items-center justify-between gap-6">
-        <NavLink to="/" className="flex shrink-0 items-center gap-2.5" aria-label="Nam Hoai Nguyen, home">
+    <header className="nav bg-bg h-nav lg:h-nav-lg fixed inset-x-0 top-0 z-50 border-b">
+      <a
+        href="#content"
+        className="bg-accent text-accent-ink rounded-btn sr-only z-60 px-4 py-3 font-medium focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
+      >
+        Skip to content
+      </a>
+      <div className="wrap container flex h-full items-center justify-between gap-6">
+        <NavLink to="/" className="nav__logo flex shrink-0 items-center gap-2.5" aria-label="Nam Hoai Nguyen, home">
           <span className="bg-accent text-accent-ink inline-flex size-9 items-center justify-center rounded-md">
             <IconPrompt stroke={3} width={20} height={20} />
           </span>
-          <span className="font-heading text-xl leading-none">Nam Hoai Nguyen</span>
+          <span className="font-heading text-xl leading-none max-[359px]:hidden">Nam Hoai Nguyen</span>
         </NavLink>
 
         <nav aria-label="Main" className="hidden h-full lg:block">
-          <ul className="flex h-full items-center gap-8">
+          <ul className="flex h-full items-center gap-6 xl:gap-8">
             {NAV.map(({ href, label }) =>
               href === "/tags" ? (
                 <li key={href} className="group/topics flex h-full items-center">
@@ -92,7 +98,7 @@ export function PageHeader() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2 lg:gap-6">
+        <div className="nav__actions flex items-center gap-2 lg:gap-4 xl:gap-6">
           <SearchModal />
           <Link to={PRIMARY.href} className={cn(buttonVariants(), "hidden sm:inline-flex")}>
             {PRIMARY.label}

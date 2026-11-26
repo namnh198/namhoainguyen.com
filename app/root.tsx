@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLocation,
+  useMatches,
   useRouteLoaderData,
 } from "react-router";
 
@@ -46,6 +47,8 @@ export const links: Route.LinksFunction = () => [
 export function Layout({ children }: { children: React.ReactNode }) {
   const { gaMeasurementId, canonical } = useRouteLoaderData<typeof loader>("root") || {};
   const location = useLocation();
+  // a route whose page is built in whole screens (home) starts under the fixed header and ends on the closing footer
+  const screens = useMatches().some((match) => (match.handle as { screens?: boolean } | undefined)?.screens);
   const isGaInitialized = useGoogleAnalytics(gaMeasurementId);
   useEffect(() => {
     if (isGaInitialized && gaMeasurementId) {
@@ -56,28 +59,34 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }, [isGaInitialized, location, gaMeasurementId]);
 
   return (
-    <html lang="en">
+    // the head script adds m-enter before hydration
+    <html lang="en" data-type="software" data-radius="sharp" data-buttons="arrow" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
+        {/* the hero's entrance runs once; m-enter-done is its safety mark */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)",
+          }}
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {canonical && <link rel="canonical" href={canonical} />}
         <Meta />
         <Links />
       </head>
       <body>
-        <a
-          href="#content"
-          className="bg-accent text-accent-ink rounded-btn sr-only z-60 px-4 py-3 font-medium focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
-        >
-          Skip to content
-        </a>
         <TooltipProvider>
           <PageHeader />
           {/* the header is fixed: this pads the page below it */}
-          <div id="content" tabIndex={-1} className="pt-nav lg:pt-nav-lg outline-none">
-            {children}
-          </div>
-          <PageFooter />
+          {screens ? (
+            children
+          ) : (
+            <div id="content" tabIndex={-1} className="pt-nav lg:pt-nav-lg outline-none">
+              {children}
+            </div>
+          )}
+          <PageFooter closing={screens} />
         </TooltipProvider>
         <ScrollRestoration />
         <Scripts />

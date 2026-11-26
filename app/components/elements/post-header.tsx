@@ -23,36 +23,33 @@ export function PostHeader({
   children?: ReactNode;
 }) {
   return (
-    <div className="border-border relative mb-12 border-b pt-14 pb-12">
-      <div className="absolute inset-0 bg-[linear-gradient(#5ab9fc08_1px,#0000_1px),linear-gradient(90deg,#5ab9fc08_1px,#0000_1px)] mask-[radial-gradient(100%_100%_at_0%,#000_20%,#0000_80%)] bg-size-[40px_40px]" />
-      <div className="relative container space-y-3.5">
-        <div className="flex items-center gap-2.5">
+    <div className="border-border mb-12 border-b pt-16 pb-12 lg:pt-24 lg:pb-16">
+      <div className="container space-y-5">
+        <div className="flex items-center gap-3">
           {icon && (
-            <div className="bg-accent-glow text-accent inline-flex size-10 shrink-0 items-center justify-center rounded-lg border border-[#5ab9fc40]">
+            <div className="bg-bg-card text-text-2 inline-flex size-10 shrink-0 items-center justify-center rounded-md border lg:size-12">
               <PageIcon inputIcon={icon as string} notionDomain={notionDomain!} />
             </div>
           )}
-          <h1 className="font-heading text-[1.75rem] leading-tight font-extrabold tracking-[-0.02em] lg:text-[2.5rem]">
+          <h1 className="font-heading text-[34px] leading-[1.05] font-medium tracking-[-0.03em] lg:text-[56px]">
             {title}
           </h1>
         </div>
-        {desc && <p className="text-text-2 max-w-xl text-lg">{desc}</p>}
+        {desc && <p className="text-text-2 max-w-[62ch] text-lg">{desc}</p>}
         {children}
         {tags.length > 0 && (
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 pt-3">
             <Link
               to={`/tags`}
-              className="bg-accent-glow text-accent rounded-full border border-[#5ab9fc66] px-4 py-2 text-sm font-medium whitespace-nowrap"
-              aria-label="All Tags"
+              className="rounded-btn border-border-bright text-text inline-flex min-h-11 items-center border px-4 text-sm font-medium whitespace-nowrap"
             >
-              All
+              All topics
             </Link>
             {tags.map((tag) => (
               <Link
                 key={tag.slug}
                 to={getUri(tag.slug, "tag")}
-                className="border-border bg-bg-card text-text-2 hover:border-border-bright hover:text-text hover:bg-bg-elevated rounded-full border px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ease-in-out"
-                aria-label={`Tag ${tag.name}`}
+                className="rounded-btn border-border text-text-2 hover:border-border-bright hover:text-text inline-flex min-h-11 items-center border px-4 text-sm font-medium whitespace-nowrap transition-colors"
               >
                 {tag.name}
               </Link>

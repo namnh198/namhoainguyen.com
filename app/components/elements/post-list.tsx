@@ -14,7 +14,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export function PostList({ posts, className }: { posts: Post[]; className?: string }) {
   return (
-    <article className={cn("overflow-hidden rounded-xl border", className)}>
+    <article className={cn("bg-bg-card overflow-hidden rounded-lg border", className)}>
       {posts.map((post) => (
         <PostListItem key={post.id} post={post} />
       ))}
@@ -27,10 +27,14 @@ export function PostListItem({ post, withinDay = 7 }: { post: Post; withinDay?: 
   return (
     <Link
       to={getUri(post.slug, "note")}
-      className="hover:bg-bg-card flex items-center gap-3 border-b px-6 py-4 transition-colors last:border-none"
+      className="hover:bg-bg-elevated flex min-h-14 items-center gap-3 border-b px-4 py-3 transition-colors last:border-none sm:px-6"
       aria-label={`${post.title} note`}
     >
-      {post.pinned ? <IconPin stroke={2} /> : <IconNotes stroke={2} />}
+      {post.pinned ? (
+        <IconPin stroke={2} aria-label="Pinned" className="text-text-2 size-5 shrink-0" />
+      ) : (
+        <IconNotes stroke={2} aria-hidden="true" className="text-text-2 size-5 shrink-0" />
+      )}
       <span className="inline-flex flex-1 items-center gap-1.5">
         <span className="text-text font-medium" role="heading" aria-level={3}>
           {post.title}

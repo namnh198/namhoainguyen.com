@@ -16,13 +16,14 @@ export function SectionHeading({
   viewAll?: string;
 }) {
   return (
-    <div className={cn("[&_svg]:text-accent flex items-center gap-3", [className])}>
+    <div className={cn("[&_svg]:text-text-2 flex items-center gap-3", [className])}>
       {icon}
-      <h2 className="font-heading text-2xl font-extrabold">{title}</h2>
-      <div className="bg-border h-px flex-1" />
+      <h2 className="font-heading flex-1 text-2xl leading-tight font-medium tracking-[-0.02em] lg:text-[28px]">
+        {title}
+      </h2>
       {viewAll && (
-        <Link to={viewAll} className="text-accent text-sm font-medium whitespace-nowrap" aria-label="View All">
-          View all →
+        <Link to={viewAll} className="inline-flex min-h-11 items-center text-sm font-medium whitespace-nowrap">
+          <span className="nav-word">All {title} notes →</span>
         </Link>
       )}
     </div>

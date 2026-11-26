@@ -1,4 +1,4 @@
-import { IconLayoutGrid, IconNotebook, IconPinned } from "@tabler/icons-react";
+import { IconNotebook } from "@tabler/icons-react";
 import { env } from "cloudflare:workers";
 import { data } from "react-router";
 
@@ -42,11 +42,9 @@ export default function TagsDetail({ loaderData }: Route.ComponentProps) {
         desc={`A list of posts with the tag ${tag.name}.`}
         tags={pinnedTags}
       />
-      <div className="relative container mb-12 space-y-6">
-        <div className="flex flex-col gap-2">
-          <SectionHeading title={tag.name} icon={<IconLayoutGrid stroke={2} />} />
-        </div>
-        <PostList posts={tagPosts} className="max-w-5xl" />
+      <div className="container mb-24 space-y-6">
+        <SectionHeading title={`${tagPosts.length} ${tagPosts.length === 1 ? "note" : "notes"}`} />
+        <PostList posts={tagPosts} />
       </div>
     </main>
   );

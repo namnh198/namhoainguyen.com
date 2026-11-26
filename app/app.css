@@ -376,9 +376,3 @@
     }
   }
 }
-
-@layer components {
-  .about-item {
-    @apply hover:border-border-bright bg-bg-card inline-flex w-fit items-center justify-center gap-1.5 rounded-lg border px-3.5 py-2 text-sm transition-colors;
-  }
-}

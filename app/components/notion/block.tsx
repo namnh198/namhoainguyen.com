@@ -42,9 +42,9 @@ export function Block({ block, level, children }: BlockProps) {
       if (level < 1) {
         const tocs = getPageTocs(block as PageBlock, recordMap);
         return (
-          <div className="relative flex flex-col gap-4 lg:flex-row">
-            {tocs.length > 0 && <Tocs tocs={tocs} className="w-full lg:order-1 lg:w-75" />}
-            <article className="notion-page-content w-full flex-1 shrink-0 lg:w-[calc(100%-308px)]">{children}</article>
+          <div className="relative flex flex-col gap-6 lg:grid lg:grid-cols-12">
+            {tocs.length > 0 && <Tocs tocs={tocs} className="lg:order-1 lg:col-span-3 lg:col-start-10" />}
+            <article className="notion-page-content w-full min-w-0 lg:col-span-8 lg:row-start-1">{children}</article>
           </div>
         );
       }
@@ -164,7 +164,7 @@ export function Block({ block, level, children }: BlockProps) {
             blockId,
           )}
         >
-          <div className="quote-divider absolute inset-0 top-0 bottom-0 left-0 w-0.75 bg-accent" />
+          <div className="quote-divider bg-accent absolute inset-0 top-0 bottom-0 left-0 w-0.75" />
           <div className={cn("quote-title")}>
             <Text value={block.properties.title} block={block} />
           </div>
@@ -198,7 +198,9 @@ export function Block({ block, level, children }: BlockProps) {
       return <Equation block={block as EquationBlock} inline={false} className={cn(blockId)} />;
     case "column_list": {
       return (
-        <div className={cn("block-column-list relative md:flex md:flex-nowrap md:gap-4", blockId)}>{children}</div>
+        <div className={cn("block-column-list relative flex flex-col gap-4 md:flex-row md:flex-nowrap", blockId)}>
+          {children}
+        </div>
       );
     }
     case "column": {

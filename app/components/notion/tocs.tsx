@@ -15,17 +15,24 @@ export function Tocs({ tocs, className }: { tocs: Array<TableOfContentsEntry>; c
   return (
     <aside
       className={cn(
-        "tocs bg-bg-card z-10 flex h-fit w-full shrink-0 flex-col overflow-hidden rounded-xl border lg:sticky lg:top-18 lg:h-[calc(100vh-7.5rem)]",
+        "tocs bg-bg-card z-10 flex h-fit max-h-[calc(100vh-8rem)] w-full shrink-0 flex-col overflow-hidden rounded-lg border lg:sticky lg:top-24",
         className,
       )}
     >
-      <div
-        className="bg-bg-elevated flex cursor-pointer items-center justify-between gap-1.5 border-b px-5 py-3 lg:hidden"
+      <button
+        type="button"
+        aria-expanded={openToc}
+        className="bg-bg-elevated flex min-h-11 items-center justify-between gap-1.5 border-b px-5 font-medium lg:hidden"
         onClick={() => setOpenToc(!openToc)}
       >
-        <span>In this notes</span>
-        <IconChevronRight width={20} height={20} />
-      </div>
+        <span>In this note</span>
+        <IconChevronRight
+          aria-hidden="true"
+          width={20}
+          height={20}
+          className={cn("transition-transform", openToc && "rotate-90")}
+        />
+      </button>
       <div
         className={cn("overflow-y-auto px-3", {
           "py-5 lg:px-5": !isMobile,

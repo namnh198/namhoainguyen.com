@@ -10,7 +10,7 @@ import { cn } from "~/lib/utils";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible";
 import { Text } from "./text";
 
-const headingCommonClassName = "flex items-center gap-2 font-heading font-extrabold scroll-mt-18";
+const headingCommonClassName = "flex items-center gap-2 font-heading font-medium tracking-[-0.02em] scroll-mt-24";
 
 export function Heading({ block, children }: { block: Block; children?: React.ReactNode }) {
   if (!block.properties) return null;
@@ -31,7 +31,7 @@ export function Heading({ block, children }: { block: Block; children?: React.Re
     headerBlock = (
       <h1
         id={anchor}
-        className={cn(headingCommonClassName, "notion-heading notion-h1 text-5xl")}
+        className={cn(headingCommonClassName, "notion-heading notion-h1 text-[32px] lg:text-[40px]")}
         data-id={id}
       >
         {innerHeader}
@@ -41,7 +41,7 @@ export function Heading({ block, children }: { block: Block; children?: React.Re
     headerBlock = (
       <h2
         id={anchor}
-        className={cn(headingCommonClassName, "notion-heading notion-h2 text-4xl")}
+        className={cn(headingCommonClassName, "notion-heading notion-h2 text-[28px] lg:text-[32px]")}
         data-id={id}
       >
         {innerHeader}
@@ -51,7 +51,7 @@ export function Heading({ block, children }: { block: Block; children?: React.Re
     headerBlock = (
       <h3
         id={anchor}
-        className={cn(headingCommonClassName, "notion-heading notion-h3 text-2xl font-bold")}
+        className={cn(headingCommonClassName, "notion-heading notion-h3 text-[22px] lg:text-2xl")}
         data-id={id}
       >
         {innerHeader}
@@ -59,8 +59,8 @@ export function Heading({ block, children }: { block: Block; children?: React.Re
     );
   }
   const wrapperClassName = cn("group/heading relative flex items-center gap-1.5", {
-    "my-8 [&_svg]:text-accent": isH2 || isH1,
-    "my-6": isH3,
+    "mt-14 mb-4 [&_svg]:text-text-2": isH2 || isH1,
+    "mt-10 mb-3": isH3,
   });
   if (block?.format?.toggleable) {
     return (
@@ -74,12 +74,7 @@ export function Heading({ block, children }: { block: Block; children?: React.Re
     );
   }
 
-  return (
-    <div className={wrapperClassName}>
-      {headerBlock}
-      {(isH1 || isH2) && <div className="bg-border h-px flex-1" />}
-    </div>
-  );
+  return <div className={wrapperClassName}>{headerBlock}</div>;
 }
 
 export function ToggleHeading({

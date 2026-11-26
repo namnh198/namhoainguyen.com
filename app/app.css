@@ -42,7 +42,6 @@
   --color-ring: var(--accent);
   --color-input: var(--border-bright);
 
-
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
 
@@ -274,7 +273,12 @@
     @apply rounded-md bg-bg-card p-[1px_8px_2px_6px] font-mono text-[90%] font-normal wrap-break-word before:content-[''] after:content-[''];
   }*/
   :where(pre) {
-    @apply bg-bg-elevated! rounded-xl border p-[1em];
+    @apply bg-bg-elevated! rounded-lg border p-[1em];
+  }
+
+  /* reading measure for prose; code, tables and media keep the column's width */
+  :where(.notion-text, ul, ol, blockquote) {
+    max-width: 72ch;
   }
 
   :where(li) {

@@ -11,6 +11,8 @@ import { useNotionContext } from "./context";
 const katexSettings = {
   throwOnError: false,
   strict: false,
+  // browsers draw MathML natively; the HTML output needs katex.css, which the site does not load
+  output: "mathml" as const,
 };
 
 export function Equation(props: { block?: EquationBlock; math?: string; inline?: boolean; className?: string }) {

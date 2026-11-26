@@ -48,6 +48,12 @@ export function SearchModal({}) {
       });
   }, [debouncedQuery]);
 
+  const openResult = (result?: SearchResult) => {
+    if (!result) return;
+    navigate(getUri(result.slug));
+    handleModalOpenChange(false);
+  };
+
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (!results.length) return;
@@ -63,33 +69,22 @@ export function SearchModal({}) {
           break;
         case "Enter":
           e.preventDefault();
-          if (activeIndex >= 0 && results[activeIndex]) {
-            handleSearchResultClick();
-          }
+          // nothing highlighted yet: Enter opens the top result
+          openResult(results[Math.max(activeIndex, 0)]);
           break;
         case "Escape":
           setActiveIndex(-1);
           break;
       }
     },
-    [results, activeIndex],
+    [results, activeIndex, openResult],
   );
-
-  const handleSearchResultClick = useCallback(() => {
-    if (activeIndex < 1) {
-      return;
-    }
-    const selectedItem = results[activeIndex];
-    if (selectedItem) {
-      navigate(getUri(selectedItem.slug), { replace: true });
-      setModalOpen(false);
-    }
-  }, [results, activeIndex]);
 
   const handleModalOpenChange = (open: boolean) => {
     setModalOpen(open);
     if (!open) {
       setQuery("");
+      setActiveIndex(-1);
     }
   };
 
@@ -167,7 +162,7 @@ export function SearchModal({}) {
                   aria-selected={activeIndex === index}
                   onMouseEnter={() => setActiveIndex(index)}
                   onMouseLeave={() => setActiveIndex(-1)}
-                  onClick={handleSearchResultClick}
+                  onClick={() => openResult(result)}
                 >
                   <span className="inline-flex size-6 shrink-0 items-center justify-center">{<IconNotebook />}</span>
                   <div className="text-text flex flex-col gap-2">

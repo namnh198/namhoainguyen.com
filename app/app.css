@@ -2,11 +2,15 @@
 
 @theme inline {
   --breakpoint-xs: 28rem;
+  --radius-btn: 4px;
+  --spacing-nav: 3.5rem;
+  --spacing-nav-lg: 4.5rem;
   --font-sans: "Funnel Sans", system-ui, sans-serif;
   --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --font-heading: "Funnel Display", system-ui, sans-serif;
 
   --color-bg: var(--bg);
+  --color-bg-deep: var(--bg-deep);
   --color-bg-card: var(--bg-card);
   --color-bg-elevated: var(--bg-elevated);
   --color-border: var(--border);
@@ -59,6 +63,7 @@
 :root {
   /* taste-skill deal: palette blue-black-cornflower, type funnel, radius sharp */
   --bg: #0a0d14;
+  --bg-deep: #06080d;
   --bg-card: #131824;
   --bg-elevated: #1a2030;
   --border: #272a31;
@@ -83,6 +88,15 @@
   }
   html {
     @apply font-sans;
+    /* fixed header: keep anchors and focused controls out from under it */
+    scroll-padding-top: calc(var(--spacing-nav) + 1rem);
+    @variant lg {
+      scroll-padding-top: calc(var(--spacing-nav-lg) + 1rem);
+    }
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {
@@ -145,6 +159,48 @@
     }
     span:nth-child(3) {
       transform: translateY(-6px) rotate(-45deg);
+    }
+  }
+}
+
+/* nav and footer words: rest bare, brighten and draw a 1px line 4px under the word; the current page holds a 2px bar */
+@utility nav-word {
+  position: relative;
+  color: var(--text-2);
+  transition: color 120ms ease-out;
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -4px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 120ms ease-out;
+  }
+  /* the word reacts to its own hover or to its link's (a link can be taller than the word for a 44px target) */
+  &:hover,
+  :hover > &,
+  :focus-visible > &,
+  [aria-current="page"] > & {
+    color: var(--text);
+    transition-duration: 150ms;
+  }
+  &:hover::after,
+  :hover > &::after,
+  :focus-visible > &::after {
+    transform: scaleX(1);
+    transform-origin: left;
+    transition-duration: 150ms;
+  }
+  [aria-current="page"] > &::after {
+    height: 2px;
+    transform: scaleX(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      transition: none;
     }
   }
 }

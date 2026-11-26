@@ -4,7 +4,7 @@ export function ToggleMenu({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMe
   return (
     <button
       className={cn(
-        "bg-bg-card text-text flex size-10 flex-col items-center justify-center gap-1 rounded-lg",
+        "border-border-bright bg-bg text-text rounded-btn flex size-11 flex-col items-center justify-center gap-1 border",
         "nav-menu-button",
         {
           "nav-menu-button-open": menuOpen,
@@ -12,6 +12,7 @@ export function ToggleMenu({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMe
       )}
       onClick={() => setMenuOpen(!menuOpen)}
       aria-expanded={menuOpen}
+      aria-controls="site-menu"
       aria-label={menuOpen ? "Close menu" : "Open menu"}
     >
       <span></span>

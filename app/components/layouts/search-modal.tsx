@@ -109,15 +109,16 @@ export function SearchModal({}) {
     <Dialog open={modalOpen} onOpenChange={handleModalOpenChange}>
       <DialogTrigger
         render={
-          <Button
-            variant="outline"
-            aria-label="Open Search Popup"
+          <button
+            type="button"
+            aria-label="Search notes"
             aria-expanded={modalOpen}
-            className="h-10 w-10 border-0 outline-none lg:h-9 lg:w-fit lg:border lg:bg-accent lg:text-accent-ink"
+            className="border-border-bright rounded-btn text-text inline-flex size-11 items-center justify-center gap-2 border text-[15px] font-medium lg:size-auto lg:min-h-11 lg:border-0"
           >
-            <IconSearch stroke={2} className="size-4" />
-            <span className="hidden lg:inline-block">Search</span>
-          </Button>
+            <IconSearch stroke={2} className="text-text-2 size-4" />
+            <span className="nav-word hidden lg:inline">Search</span>
+            <kbd className="text-text-2 hidden rounded-sm border px-1 font-mono text-xs lg:inline">⌘K</kbd>
+          </button>
         }
       />
       <DialogContent
@@ -153,7 +154,7 @@ export function SearchModal({}) {
             />
             <DialogClose
               render={
-                <Button type="button" className="text-text-2 size-10 rounded-none">
+                <Button type="button" variant="ghost" aria-label="Close search" className="text-text-2 size-11 rounded-none">
                   <IconX />
                 </Button>
               }

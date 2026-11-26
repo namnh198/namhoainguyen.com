@@ -65,9 +65,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <a
+          href="#content"
+          className="bg-accent text-accent-ink rounded-btn sr-only z-60 px-4 py-3 font-medium focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
+        >
+          Skip to content
+        </a>
         <TooltipProvider>
           <PageHeader />
-          {children}
+          {/* the header is fixed: this pads the page below it */}
+          <div id="content" tabIndex={-1} className="pt-nav lg:pt-nav-lg outline-none">
+            {children}
+          </div>
           <PageFooter />
         </TooltipProvider>
         <ScrollRestoration />

@@ -21,7 +21,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     throw data("Tag Not Found", { status: 404 });
   }
 
-  return { tagPosts, pinnedTags, tag };
+  return { tagPosts, pinnedTags, tag, notionDomain: env.NOTION_SITE_DOMAIN };
 }
 
 export function meta({ loaderData }: Route.ComponentProps) {
@@ -33,7 +33,7 @@ export function meta({ loaderData }: Route.ComponentProps) {
 }
 
 export default function TagsDetail({ loaderData }: Route.ComponentProps) {
-  const { tagPosts, pinnedTags, tag } = loaderData;
+  const { tagPosts, pinnedTags, tag, notionDomain } = loaderData;
   return (
     <main className="min-h-dvh">
       <PostHeader
@@ -44,7 +44,7 @@ export default function TagsDetail({ loaderData }: Route.ComponentProps) {
       />
       <div className="container mb-24 space-y-6">
         <SectionHeading title={`${tagPosts.length} ${tagPosts.length === 1 ? "note" : "notes"}`} />
-        <PostList posts={tagPosts} />
+        <PostList posts={tagPosts} notionDomain={notionDomain} />
       </div>
     </main>
   );

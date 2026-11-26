@@ -26,7 +26,7 @@ function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label="Switch light or dark theme"
-      className="text-text-2 hover:text-text grid size-11 place-items-center transition-colors"
+      className="text-text-2 hover:text-text hover:bg-secondary rounded-btn grid size-10 place-items-center transition-colors duration-150"
     >
       <IconSun aria-hidden="true" className="light:hidden size-5" />
       <IconMoon aria-hidden="true" className="light:block hidden size-5" />

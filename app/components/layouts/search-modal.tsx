@@ -7,7 +7,6 @@ import { useNavigate } from "react-router";
 import { getUri } from "~/lib/helpers";
 import { useDebounce } from "~/hooks/use-debounce";
 
-import { Button, buttonVariants } from "../ui/button";
 import {
   Dialog,
   DialogClose,
@@ -113,7 +112,7 @@ export function SearchModal({}) {
             type="button"
             aria-label="Search notes"
             aria-expanded={modalOpen}
-            className="border-border-bright rounded-btn text-text inline-flex size-11 items-center justify-center gap-2 border text-[15px] font-medium lg:size-auto lg:min-h-11 lg:border-0"
+            className="text-text hover:bg-secondary rounded-btn inline-flex size-10 items-center justify-center gap-2 text-[15px] font-medium transition-colors duration-150 lg:size-auto lg:min-h-11 lg:hover:bg-transparent"
           >
             <IconSearch stroke={2} className="text-text-2 size-4" />
             <span className="nav-word hidden lg:inline">Search</span>
@@ -131,14 +130,9 @@ export function SearchModal({}) {
         </DialogHeader>
         <div className="divide-border flex h-full min-h-0 flex-1 flex-col divide-y">
           <div className="relative flex items-center justify-between">
-            <span
-              className={buttonVariants({
-                variant: "outline",
-                size: "icon-lg",
-                className: `rounded-none ${loading && query ? "animate-spin" : ""}`,
-              })}
-            >
-              {loading && query ? <IconLoader2 /> : <IconSearch />}
+            {/* both end icons: same 44px box, same 20px glyph, no hover fill or border */}
+            <span aria-hidden="true" className="text-text-2 grid size-11 shrink-0 place-items-center">
+              {loading && query ? <IconLoader2 className="size-5 animate-spin" /> : <IconSearch className="size-5" />}
             </span>
             <Input
               aria-activedescendant={activeIndex >= 0 ? `action-${results[activeIndex]?.id}` : undefined}
@@ -146,7 +140,7 @@ export function SearchModal({}) {
               autoComplete="off"
               aria-expanded={results.length > 0}
               role="combobox"
-              className="text-text-2 rounded-none border-0 px-0 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+              className="text-text-2 rounded-none border-0 bg-transparent px-0 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none"
               value={query}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
@@ -154,9 +148,13 @@ export function SearchModal({}) {
             />
             <DialogClose
               render={
-                <Button type="button" variant="ghost" aria-label="Close search" className="text-text-2 size-11 rounded-none">
-                  <IconX />
-                </Button>
+                <button
+                  type="button"
+                  aria-label="Close search"
+                  className="text-text-2 hover:text-text grid w-11 shrink-0 place-items-center self-stretch transition-colors duration-150"
+                >
+                  <IconX className="size-5" />
+                </button>
               }
             />
           </div>

@@ -29,13 +29,14 @@ export async function loader({}: Route.LoaderArgs) {
   return {
     posts,
     tags,
+    notionDomain: env.NOTION_SITE_DOMAIN,
   };
 }
 
 const POST_LIMIT = 10;
 
 export default function NotesList({ loaderData }: Route.ComponentProps) {
-  const { posts, tags } = loaderData;
+  const { posts, tags, notionDomain } = loaderData;
   const recentTag: Tag = {
     name: "Recent",
     slug: "recent",
@@ -50,20 +51,20 @@ export default function NotesList({ loaderData }: Route.ComponentProps) {
         desc="When I learn something new, I write it down here. It helps me to remember and understand better. I hope you find it useful."
       />
       <div className="container mb-24 space-y-16">
-        <NoteListSection posts={posts.slice(0, POST_LIMIT)} tag={recentTag} />
+        <NoteListSection posts={posts.slice(0, POST_LIMIT)} tag={recentTag} notionDomain={notionDomain} />
         {tags.map((tag) => {
           const tagPosts = posts.filter((post) => post.tags.find((t) => t.slug === tag.slug)).slice(0, POST_LIMIT);
           if (tagPosts.length === 0) {
             return null;
           }
-          return <NoteListSection key={tag.slug} posts={tagPosts} tag={tag} />;
+          return <NoteListSection key={tag.slug} posts={tagPosts} tag={tag} notionDomain={notionDomain} />;
         })}
       </div>
     </main>
   );
 }
 
-const NoteListSection = ({ posts, tag }: { posts: Post[]; tag: Tag }) => {
+const NoteListSection = ({ posts, tag, notionDomain }: { posts: Post[]; tag: Tag; notionDomain: string }) => {
   const tagUri = tag.slug === "recent" ? "/notes" : getUri(tag.slug, "tag");
   return (
     <section className="space-y-6" id={`tag-${tag.slug}`}>
@@ -76,7 +77,7 @@ const NoteListSection = ({ posts, tag }: { posts: Post[]; tag: Tag }) => {
         }
         viewAll={tag.slug !== "recent" ? tagUri : ""}
       />
-      <PostList posts={posts} />
+      <PostList posts={posts} notionDomain={notionDomain} />
     </section>
   );
 };

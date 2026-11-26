@@ -312,15 +312,18 @@
   margin-inline: auto;
 }
 
-/* a page section exactly one or two screens tall (--h), h2 first at the top padding */
-@utility screen-section {
-  height: calc(var(--h, 1) * 100svh);
-  padding-top: 120px;
-  padding-bottom: 72px;
-  @media (max-width: 639px) {
-    height: calc(var(--hm, var(--h, 1)) * 100lvh);
-    padding-top: 96px;
-    padding-bottom: 48px;
+/* a tinted band behind a section: inset half a gutter and rounded, so content edges stay on the wrap */
+@utility band {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset-block: 0 var(--band-end, 0);
+    inset-inline: calc(var(--gut) / 2);
+    border-radius: 16px;
+    background: var(--band, var(--bg-card));
   }
 }
 

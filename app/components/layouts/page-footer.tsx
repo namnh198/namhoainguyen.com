@@ -53,8 +53,8 @@ export function PageFooter({ closing = false }: { closing?: boolean }) {
   if (closing) {
     // taste-skill close-type: the page's last screen holds the close (row 1) and the directory (row 2)
     return (
-      <footer className="closing bg-bg-deep screen-section">
-        <div className="wrap container flex h-full flex-col justify-between gap-12">
+      <footer className="closing band pt-24 pb-[calc(6rem+var(--gut)/2)] [--band-end:calc(var(--gut)/2)] [--band:var(--bg-deep)]">
+        <div className="wrap container flex flex-col gap-24">
           <div className="space-y-6">
             <h2 className="font-heading text-[30px] leading-[1.1] font-medium tracking-[-0.03em] lg:text-5xl">
               Every note, newest first
@@ -78,7 +78,7 @@ export function PageFooter({ closing = false }: { closing?: boolean }) {
               </svg>
             </Link>
           </div>
-          <div className="space-y-10">
+          <div className="space-y-10 border-t pt-24">
             <Directory />
             <p className="text-text-2 border-t pt-6 text-sm">{legal}</p>
           </div>

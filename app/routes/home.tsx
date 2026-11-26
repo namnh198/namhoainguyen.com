@@ -32,7 +32,11 @@ export async function loader({}: Route.LoaderArgs) {
     .sort((a, b) => b.count - a.count);
   const recent = [...posts].sort((a, b) => +new Date(b.createdAt) - +new Date(a.createdAt));
   const bookmarks = new Set(BOOKMARKS.flatMap((group) => group.list.map((bookmark) => bookmark.url))).size;
-  return { recent, topics, bookmarks };
+  const pinned = posts
+    .filter((post) => post.pinned)
+    .sort((a, b) => +new Date(b.updatedAt) - +new Date(a.updatedAt))
+    .slice(0, 5);
+  return { recent, topics, bookmarks, pinned };
 }
 
 export function meta({}: Route.MetaArgs) {
@@ -60,10 +64,12 @@ function Arrow({ className }: { className?: string }) {
 }
 
 const h2 = "font-heading text-[30px] leading-[1.1] font-medium tracking-[-0.03em] lg:text-5xl";
-const stat = "t-stat font-heading text-[28px] leading-none font-medium lg:text-[38px]";
+const stat = "t-stat font-heading text-[48px] leading-none font-medium tracking-[-0.03em] lg:text-[72px]";
+// each figure gets its own Catppuccin hue: the number in the ink, a 2px rule above it in the same hue
+const figure = "border-t-2 pt-6";
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const { recent, topics, bookmarks } = loaderData;
+  const { recent, topics, bookmarks, pinned } = loaderData;
   const [latest, ...older] = recent;
   // the search window shows a real query: the busiest topic and the notes filed under it
   const search = {
@@ -87,8 +93,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
   }, []);
 
   return (
-    <main id="content" tabIndex={-1} className="outline-none">
-      <section className="hero screen-section pt-24 pb-6 sm:pb-16 lg:pt-30" data-enter aria-labelledby="hero-h">
+    <main id="content" tabIndex={-1} className="space-y-24 pb-24 outline-none">
+      <section className="hero pt-24 lg:pt-30" data-enter aria-labelledby="hero-h">
         <div className="wrap container h-full">
           <div className="hero-text flex h-full flex-col">
             <div className="mx-auto grid max-w-[880px] justify-items-center gap-4 text-center">
@@ -133,50 +139,90 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               </div>
             </div>
 
-            {latest && (
+            {pinned.length > 0 && (
               <div
                 data-visual
-                className="hero__window border-border relative mt-8 min-h-60 flex-1 overflow-hidden rounded-lg border bg-[radial-gradient(80%_120%_at_50%_0%,color-mix(in_oklab,var(--accent)_22%,var(--bg-elevated)),var(--bg-card)_70%)] [mask-image:linear-gradient(#000_82%,transparent)] max-[359px]:hidden"
-                role="img"
-                aria-label={`The newest note, ${latest.title}, as it opens on this site`}
+                className="hero__window border-border relative mt-8 overflow-hidden rounded-lg border bg-[radial-gradient(80%_120%_at_50%_0%,color-mix(in_oklab,var(--accent)_22%,var(--bg-elevated)),var(--bg-card)_70%)] p-4 max-[359px]:hidden lg:p-8"
               >
-                <div
+                <section
                   data-enter-settle
-                  aria-hidden="true"
-                  className="bg-inv-bg text-inv-ink absolute top-4 left-4 max-h-[calc(100%-16px)] w-[calc(100%-32px)] overflow-hidden rounded-lg shadow-[0_24px_48px_rgb(0_0_0/0.35)] lg:top-8 lg:left-1/2 lg:w-[min(880px,calc(100%-64px))] lg:-translate-x-1/2"
+                  aria-labelledby="pinned-h"
+                  className="bg-inv-bg text-inv-ink mx-auto max-w-[880px] overflow-hidden rounded-lg shadow-[0_24px_48px_rgb(0_0_0/0.35)]"
                 >
                   <div className="border-inv-ink/10 flex min-h-10 items-center gap-3 border-b px-4 py-2 font-mono text-xs">
-                    <span className="flex gap-1.5">
+                    <span className="flex gap-1.5" aria-hidden="true">
                       <i className="bg-inv-ink/20 size-2.5 rounded-full" />
                       <i className="bg-inv-ink/20 size-2.5 rounded-full" />
                       <i className="bg-inv-ink/20 size-2.5 rounded-full" />
                     </span>
-                    <span className="text-inv-muted min-w-0 break-all">notes/{latest.slug}</span>
+                    <h2 id="pinned-h" className="text-inv-muted flex-1">
+                      notes/pinned
+                    </h2>
+                    <span className="text-inv-muted">
+                      {pinned.length} {pinned.length === 1 ? "note" : "notes"}
+                    </span>
                   </div>
-                  <div className="space-y-3 p-5 lg:p-8">
-                    <div className="flex flex-wrap gap-1.5">
-                      {latest.tags.map((tag) => (
+                  {/* the first pinned note keeps the featured layout; the rest follow as rows */}
+                  <Link
+                    to={getUri(pinned[0].slug, "note")}
+                    className="hover:bg-inv-surface/60 block space-y-3 p-5 transition-colors duration-150 lg:p-8"
+                  >
+                    <span className="flex flex-wrap gap-1.5">
+                      {pinned[0].tags.map((tag) => (
                         <span key={tag.slug} className="bg-inv-surface rounded-sm px-2 py-0.5 font-mono text-xs">
                           {tag.name}
                         </span>
                       ))}
-                    </div>
-                    <p className="font-heading text-2xl leading-tight font-medium tracking-[-0.02em] lg:text-[32px]">
-                      {latest.title}
-                    </p>
-                    {latest.description && <p className="text-inv-muted line-clamp-2">{latest.description}</p>}
-                    <p className="text-inv-muted font-mono text-xs">
-                      Created {formatDate(latest.createdAt)} · updated {formatDate(latest.updatedAt)}
-                    </p>
-                  </div>
-                </div>
+                    </span>
+                    <span className="font-heading block text-2xl leading-tight font-medium tracking-[-0.02em] lg:text-[32px]">
+                      {pinned[0].title}
+                    </span>
+                    {pinned[0].description && (
+                      <span className="text-inv-muted line-clamp-2 block">{pinned[0].description}</span>
+                    )}
+                    <span className="text-inv-muted block font-mono text-xs">
+                      Created {formatDate(pinned[0].createdAt)} · updated {formatDate(pinned[0].updatedAt)}
+                    </span>
+                  </Link>
+                  {pinned.length > 1 && (
+                    <ul className="border-inv-ink/10 border-t p-1.5 lg:p-2">
+                      {pinned.slice(1).map((post) => (
+                        <li key={post.id}>
+                          <Link
+                            to={getUri(post.slug, "note")}
+                            className="hover:bg-inv-surface rounded-btn flex min-h-14 items-center gap-3 px-3 py-2.5 transition-colors duration-150 lg:px-4"
+                          >
+                            <IconPin aria-hidden="true" className="text-inv-muted size-4 shrink-0" />
+                            <span className="flex min-w-0 flex-1 flex-col gap-1.5">
+                              <span className="font-medium lg:text-lg">{post.title}</span>
+                              <span className="hidden flex-wrap gap-1.5 sm:flex">
+                                {post.tags.map((tag) => (
+                                  <span
+                                    key={tag.slug}
+                                    className="bg-inv-surface rounded-sm px-2 py-0.5 font-mono text-xs"
+                                  >
+                                    {tag.name}
+                                  </span>
+                                ))}
+                              </span>
+                            </span>
+                            <span className="text-inv-muted shrink-0 font-mono text-xs">
+                              <span className="max-sm:sr-only">updated </span>
+                              {formatDate(post.updatedAt)}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
               </div>
             )}
           </div>
         </div>
       </section>
 
-      <section id="notes" className="screen-section" aria-labelledby="notes-h">
+      <section id="notes" aria-labelledby="notes-h">
         <div className="wrap container">
           <h2 id="notes-h" className={h2}>
             Latest notes. <span className="text-text-2">Newest first.</span>
@@ -237,7 +283,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         </div>
       </section>
 
-      <section id="topics" className="screen-section bg-bg-card" aria-labelledby="topics-h">
+      <section id="topics" className="band py-24" aria-labelledby="topics-h">
         <div className="wrap container">
           <h2 id="topics-h" className={h2}>
             Topics I write about
@@ -276,25 +322,25 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             ref={figures}
             id="home-figures"
             data-moment="counter-rolls"
-            className="mt-10 grid gap-3 sm:mt-16 sm:grid-cols-3 sm:gap-6"
+            className="mt-10 grid gap-10 sm:mt-16 sm:grid-cols-3 sm:gap-6"
           >
-            <div>
-              <p className={stat}>{recent.length}</p>
-              <p className="text-text-2 mt-2 text-sm">notes written so far</p>
+            <div className={cn(figure, "border-ctp-mauve")}>
+              <p className={cn(stat, "text-ctp-mauve")}>{recent.length}</p>
+              <p className="text-text-2 mt-3 text-base">notes written so far</p>
             </div>
-            <div>
-              <p className={stat}>{topics.length}</p>
-              <p className="text-text-2 mt-2 text-sm">topics the notes are filed under</p>
+            <div className={cn(figure, "border-ctp-blue")}>
+              <p className={cn(stat, "text-ctp-blue")}>{topics.length}</p>
+              <p className="text-text-2 mt-3 text-base">topics the notes are filed under</p>
             </div>
-            <div>
-              <p className={stat}>{bookmarks}</p>
-              <p className="text-text-2 mt-2 text-sm">links kept on the bookmarks page</p>
+            <div className={cn(figure, "border-ctp-peach")}>
+              <p className={cn(stat, "text-ctp-peach")}>{bookmarks}</p>
+              <p className="text-text-2 mt-3 text-base">links kept on the bookmarks page</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="about" className="screen-section" aria-labelledby="about-h">
+      <section id="about" aria-labelledby="about-h">
         <div className="wrap container grid h-full items-start gap-10 lg:grid-cols-12 lg:gap-6">
           <div className="space-y-6 lg:col-span-5">
             <h2 id="about-h" className={h2}>

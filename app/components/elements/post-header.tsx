@@ -24,16 +24,15 @@ export function PostHeader({
 }) {
   return (
     <div className="border-border relative mb-12 border-b pt-14 pb-12">
-      <div className="bg-glow-mesh absolute inset-0 cursor-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(#4f80ff08_1px,#0000_1px),linear-gradient(90deg,#4f80ff08_1px,#0000_1px)] mask-[radial-gradient(100%_100%_at_0%,#000_20%,#0000_80%)] bg-size-[40px_40px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(#5ab9fc08_1px,#0000_1px),linear-gradient(90deg,#5ab9fc08_1px,#0000_1px)] mask-[radial-gradient(100%_100%_at_0%,#000_20%,#0000_80%)] bg-size-[40px_40px]" />
       <div className="relative container space-y-3.5">
         <div className="flex items-center gap-2.5">
           {icon && (
-            <div className="bg-accent-glow text-accent inline-flex size-10 shrink-0 items-center justify-center rounded-lg border border-[#4f80ff40]">
+            <div className="bg-accent-glow text-accent inline-flex size-10 shrink-0 items-center justify-center rounded-lg border border-[#5ab9fc40]">
               <PageIcon inputIcon={icon as string} notionDomain={notionDomain!} />
             </div>
           )}
-          <h1 className="font-heading text-gradient text-[1.75rem] leading-tight font-extrabold tracking-[-0.02em] lg:text-[2.5rem]">
+          <h1 className="font-heading text-[1.75rem] leading-tight font-extrabold tracking-[-0.02em] lg:text-[2.5rem]">
             {title}
           </h1>
         </div>
@@ -43,7 +42,7 @@ export function PostHeader({
           <div className="mt-6 flex flex-wrap gap-2">
             <Link
               to={`/tags`}
-              className="bg-accent-flow text-accent rounded-full border border-[#4f80ff66] px-4 py-2 text-sm font-medium whitespace-nowrap"
+              className="bg-accent-glow text-accent rounded-full border border-[#5ab9fc66] px-4 py-2 text-sm font-medium whitespace-nowrap"
               aria-label="All Tags"
             >
               All

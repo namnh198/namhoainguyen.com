@@ -54,14 +54,12 @@ function OgCard({ title, desc }: { title: string; desc: string }) {
           style={{
             fontSize: "72px",
             fontWeight: "bold",
-            backgroundClip: "text",
-            color: "transparent",
-            background: "linear-gradient(135deg, #4f80ff 0%, #9b6dff 100%)",
+            color: "#5ab9fc",
           }}
         >
           {title}
         </h1>
-        <p style={{ fontSize: "42px", color: "#8492b8" }}>{desc}</p>
+        <p style={{ fontSize: "42px", color: "#8891a1" }}>{desc}</p>
       </div>
     </div>
   );

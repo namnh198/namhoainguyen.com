@@ -2,9 +2,9 @@
 
 @theme inline {
   --breakpoint-xs: 28rem;
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-  --font-heading: "Oxanium", "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Funnel Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-heading: "Funnel Display", system-ui, sans-serif;
 
   --color-bg: var(--bg);
   --color-bg-card: var(--bg-card);
@@ -15,14 +15,25 @@
   --color-text-2: var(--text-2);
   --color-text-3: var(--text-3);
   --color-accent: var(--accent);
-  --color-accent-2: var(--accent-2);
+  --color-accent-ink: var(--accent-ink);
   --color-accent-glow: var(--accent-glow);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
 
-  --background-image-glow-mesh:
-    radial-gradient(60% 80% at 20%, #4f80ff1f, #0000), radial-gradient(44% 64% at 76% 48%, #9b6dff1a, #0000);
+  /* shadcn-style names used by app/components/ui */
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-ink);
+  --color-secondary: var(--bg-elevated);
+  --color-secondary-foreground: var(--text);
+  --color-muted: var(--bg-elevated);
+  --color-muted-foreground: var(--text-2);
+  --color-destructive: var(--danger);
+  --color-ring: var(--accent);
+  --color-input: var(--border-bright);
+
 
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
@@ -46,21 +57,21 @@
 }
 
 :root {
-  --bg: #070a14;
-  --bg-card: #0c101e;
-  --bg-elevated: #111526;
-  --border: #1a2035;
-  --border-bright: #263050;
-  --text: #dde3f0;
-  --text-2: #8492b8;
-  --text-3: #4a5475;
-  --accent: #4f80ff;
-  --accent-2: #9b6dff;
-  --accent-glow: #4f80ff2e;
+  /* taste-skill deal: palette blue-black-cornflower, type funnel, radius sharp */
+  --bg: #0a0d14;
+  --bg-card: #131824;
+  --bg-elevated: #1a2030;
+  --border: #272a31;
+  --border-bright: #3b3e45;
+  --text: #e9edf3;
+  --text-2: #8891a1;
+  --text-3: #828b9c;
+  --accent: #5ab9fc;
+  --accent-ink: #0a0d14;
+  --accent-glow: #5ab9fc29;
   --success: #34d399;
   --warning: #fbbf24;
   --danger: #f87171;
-  --btn-gradient: 135deg, var(--accent), var(--accent-2);
 }
 
 @layer base {
@@ -80,7 +91,7 @@
 
   ::selection {
     color: #fff;
-    background: #4f80ff4d;
+    background: color-mix(in oklab, var(--accent) 30%, transparent);
   }
 
   ::-webkit-scrollbar {
@@ -109,7 +120,7 @@
       background: var(--border-bright);
       border-radius: 3px;
       &:hover {
-        background: #aab5c9;
+        background: var(--text-3);
       }
     }
   }
@@ -143,22 +154,9 @@
   margin-inline: auto;
 }
 
-@utility text-gradient {
-  background: linear-gradient(115deg, var(--text), #89a9ff 54%, #b69aff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-@utility divider-gradient {
-  background: linear-gradient(90deg, #4f80ffb8 0%, #9b6dff57 42%, #0000 100%);
-  box-shadow: 0 0 14px #4f80ff2e;
-  height: 1px;
-}
-
 @utility notion-page {
   :where(a) {
-    @apply text-accent hover:text-accent-2 no-underline;
+    @apply text-accent hover:text-text no-underline;
   }
 
   :where(img) {
@@ -202,7 +200,7 @@
 
   /* Keep link color when strong/b is inside <a> or <a> is inside strong/b */
   :where(a strong, a b, strong a, b a) {
-    @apply text-accent hover:text-accent-2 font-semibold;
+    @apply text-accent hover:text-text font-semibold;
   }
 
   :where(table) {

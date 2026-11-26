@@ -18,7 +18,7 @@ export function PageHeader() {
     <header className="sticky top-0 left-0 z-50 bg-[rgba(7,10,20,0.88)] shadow-[0_1px_0_var(--border),0_4px_24px_rgba(0,0,0,0.3)] backdrop-blur-lg">
       <div className="relative container flex h-16 items-center justify-between">
         <NavLink to="/" className="flex shrink-0 items-center gap-2">
-          <span className="inline-flex size-9 items-center justify-center rounded-[10px] bg-linear-(--btn-gradient)">
+          <span className="inline-flex size-9 items-center justify-center rounded-[10px] bg-accent text-accent-ink">
             <IconPrompt stroke={3} width={20} height={20} />
           </span>
           <span className="flex flex-col gap-0.5">

@@ -27,7 +27,7 @@ export function TagsGrid({ notionDomain, tags, posts }: { notionDomain: string; 
             </span>
             <span>{tag.name}</span>
           </span>
-          <span className="text-accent inline-flex items-center justify-center rounded-sm border border-[#4f80ff3d] bg-[#4f80ff14] px-1 py-0.5 font-mono text-xs">
+          <span className="text-accent inline-flex items-center justify-center rounded-sm border border-[#5ab9fc3d] bg-[#5ab9fc14] px-1 py-0.5 font-mono text-xs">
             {posts.filter((post) => post.tags.find((t) => t.slug == tag.slug)).length} posts
           </span>
         </Link>

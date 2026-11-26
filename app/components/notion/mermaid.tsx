@@ -53,7 +53,7 @@ function useMermaid(chart: string, debounceTime: number) {
             tertiaryColor: "#4a5475",
           },
           look: "classic",
-          fontFamily: "Inter, sans-serif",
+          fontFamily: "Funnel Sans, sans-serif",
           fontSize: 14,
           logLevel: "error",
           securityLevel: "loose",

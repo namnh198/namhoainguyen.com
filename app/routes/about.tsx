@@ -20,7 +20,7 @@ export default function About() {
     <main className="min-h-dvh">
       <div className="container pt-2">
         <div className="pt-10 pb-5">
-          <h1 className="font-heading text-gradient text-[1.7rem] leading-tight font-extrabold tracking-[-0.01em] lg:text-[2.3rem]">
+          <h1 className="font-heading text-[1.7rem] leading-tight font-extrabold tracking-[-0.01em] lg:text-[2.3rem]">
             About me
           </h1>
           <p className="text-text-2 mt-4 max-w-2xl">
@@ -35,7 +35,7 @@ export default function About() {
               <span className="font-heading text-accent bg-bg-card border-border-bright relative z-1 mt-1 inline-flex size-9 items-center justify-center rounded-lg border text-sm font-extrabold">
                 01
               </span>
-              <span className="absolute inset-0 top-10 -bottom-1 left-1/2 w-0.5 -translate-x-1/2 bg-linear-[var(--accent),var(--accent-2)] opacity-30" />
+              <span className="absolute inset-0 top-10 -bottom-1 left-1/2 w-0.5 -translate-x-1/2 bg-accent opacity-30" />
             </div>
             <div className="bg-bg-card hover:border-border-bright flex-1 overflow-hidden rounded-xl border px-5 py-4 transition-colors">
               <div className="mb-3.5 flex flex-wrap items-baseline gap-3">
@@ -50,7 +50,7 @@ export default function About() {
               <span className="font-heading text-accent bg-bg-card border-border-bright relative z-1 mt-1 inline-flex size-9 items-center justify-center rounded-lg border text-sm font-extrabold">
                 02
               </span>
-              <span className="absolute inset-0 top-10 -bottom-1 left-1/2 w-0.5 -translate-x-1/2 bg-linear-[var(--accent),var(--accent-2)] opacity-30" />
+              <span className="absolute inset-0 top-10 -bottom-1 left-1/2 w-0.5 -translate-x-1/2 bg-accent opacity-30" />
             </div>
             <div className="bg-bg-card hover:border-border-bright flex-1 rounded-xl border px-5 py-4 transition-colors">
               <div className="mb-3.5 flex flex-wrap items-baseline gap-3">
@@ -64,7 +64,7 @@ export default function About() {
               <span className="font-heading text-accent bg-bg-card border-border-bright relative z-1 mt-1 inline-flex size-9 items-center justify-center rounded-lg border text-sm font-extrabold">
                 03
               </span>
-              <span className="absolute inset-0 top-10 -bottom-1 left-1/2 w-0.5 -translate-x-1/2 bg-linear-[var(--accent),var(--accent-2)] opacity-30" />
+              <span className="absolute inset-0 top-10 -bottom-1 left-1/2 w-0.5 -translate-x-1/2 bg-accent opacity-30" />
             </div>
             <div className="bg-bg-card hover:border-border-bright flex-1 rounded-xl border px-5 py-4 transition-colors">
               <div className="mb-3.5 flex flex-wrap items-baseline gap-3">
@@ -147,7 +147,7 @@ export default function About() {
               <span className="font-heading text-accent bg-bg-card border-border-bright relative z-1 mt-1 inline-flex size-9 items-center justify-center rounded-lg border text-sm font-extrabold">
                 04
               </span>
-              <span className="absolute inset-0 top-10 -bottom-1 left-1/2 w-0.5 -translate-x-1/2 bg-linear-[var(--accent),var(--accent-2)] opacity-30" />
+              <span className="absolute inset-0 top-10 -bottom-1 left-1/2 w-0.5 -translate-x-1/2 bg-accent opacity-30" />
             </div>
             <div className="bg-bg-card hover:border-border-bright flex-1 rounded-xl border px-5 py-4 transition-colors">
               <div className="mb-3.5 flex flex-wrap items-baseline gap-3">

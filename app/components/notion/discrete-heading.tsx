@@ -21,7 +21,7 @@ export function DiscreteHeading({ block, children }: { block: Block; children?: 
   );
 
   return (
-    <div className="bg-bg-elevated bg-linear-[180deg,#4f80ff09,transparent_45%)] discrete mb-8 overflow-hidden rounded-xl border last:mb-0">
+    <div className="bg-bg-elevated bg-linear-[180deg,#5ab9fc09,transparent_45%)] discrete mb-8 overflow-hidden rounded-xl border last:mb-0">
       <div className="discrete-heading flex items-center justify-start gap-1.5 border-b bg-[#ffffff05] px-4 py-3 font-medium">
         {innerHeader}
       </div>

@@ -85,7 +85,7 @@ export function Text({
 
                 return (
                   <components.PageLink
-                    className="text-accent hover:text-accent-2 notion-link transition-colors"
+                    className="text-accent hover:text-text notion-link transition-colors"
                     href={getUri(postSlug, "note")}
                   >
                     <PageTitle block={linkedBlock} hideIcon={true} />
@@ -123,7 +123,7 @@ export function Text({
 
                     return (
                       <components.PageLink
-                        className="text-accent hover:text-accent-2 notion-link transition-colors"
+                        className="text-accent hover:text-text notion-link transition-colors"
                         href={mapPageUrl(id)}
                         {...linkProps}
                         target="_blank"
@@ -182,7 +182,7 @@ export function Text({
 
                   return (
                     <components.PageLink
-                      className="text-accent hover:text-accent-2 notion-link transition-colors"
+                      className="text-accent hover:text-text notion-link transition-colors"
                       href={href}
                       {...linkProps}
                     >
@@ -199,7 +199,7 @@ export function Text({
                   if (hostName === "localhost" || hostName?.includes(blockOptions.notionDomain || "cannotBeIncluded")) {
                     return (
                       <components.PageLink
-                        className="text-accent hover:text-accent-2 notion-link transition-colors"
+                        className="text-accent hover:text-text notion-link transition-colors"
                         href={removeBaseUrl(decorator[1])}
                       >
                         {element}
@@ -209,7 +209,7 @@ export function Text({
 
                   return (
                     <components.Link
-                      className="text-accent hover:text-accent-2 notion-link transition-colors"
+                      className="text-accent hover:text-text notion-link transition-colors"
                       href={linkProtocol ? `${linkProtocol}:${decorator[1]}` : decorator[1]}
                       {...linkProps}
                     >
@@ -292,7 +292,7 @@ export function Text({
                         layout="constrained"
                       />
                     )}
-                    <span className="text-accent hover:text-accent-2 text-[1em] leading-[1.1] transition-colors">
+                    <span className="text-accent hover:text-text text-[1em] leading-[1.1] transition-colors">
                       {title}
                     </span>
                   </a>

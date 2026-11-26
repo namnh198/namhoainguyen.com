@@ -61,7 +61,7 @@ export function Tocs({ tocs, className }: { tocs: Array<TableOfContentsEntry>; c
                   {toc.text}
                 </span>
                 <span className="absolute top-1/2 -left-4 size-0">
-                  <span className="bg-border-bright group-[.is-active]:bg-accent-2 absolute -top-0.75 -left-0.75 block size-1.5 scale-100 rounded-sm transition-all ease-in-out group-[.is-active]:scale-150 group-[.is-done]:scale-0"></span>
+                  <span className="bg-border-bright group-[.is-active]:bg-accent absolute -top-0.75 -left-0.75 block size-1.5 scale-100 rounded-sm transition-all ease-in-out group-[.is-active]:scale-150 group-[.is-done]:scale-0"></span>
                   <span className="text-success absolute -top-1.25 -left-0.75 block size-2.5 scale-0 transition-transform group-[.is-done]:scale-100">
                     <svg
                       version="1.1"

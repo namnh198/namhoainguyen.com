@@ -47,22 +47,21 @@ export default function Home({ loaderData }: Route.ComponentProps) {
   return (
     <main className="min-h-dvh">
       <section className="relative overflow-hidden pt-10 pb-11 sm:pt-13 md:pt-17 md:pb-13 lg:pt-25 lg:pb-23">
-        <div className="absolute inset-0 cursor-none bg-[linear-gradient(#4f80ff08_1px,#0000_1px),linear-gradient(90deg,#4f80ff08_1px,#0000_1px)] mask-[radial-gradient(80%_60%_at_50%_0,#000_40%,#0000_100%)] bg-size-[48px_48px]" />
-        <div className="absolute -top-50 left-1/2 size-150 -translate-1/2 cursor-none rounded-full bg-[radial-gradient(circle,#4f80ff26_0%,#0000_70%)]" />
-        <div className="absolute -top-25 -right-25 size-125 cursor-none rounded-full bg-[radial-gradient(circle,#4f80ff26_0%,#0000_70%)]" />
+        <div className="absolute inset-0 cursor-none bg-[linear-gradient(#5ab9fc08_1px,#0000_1px),linear-gradient(90deg,#5ab9fc08_1px,#0000_1px)] mask-[radial-gradient(80%_60%_at_50%_0,#000_40%,#0000_100%)] bg-size-[48px_48px]" />
+        <div className="absolute -top-50 left-1/2 size-150 -translate-1/2 cursor-none rounded-full bg-[radial-gradient(circle,#5ab9fc26_0%,#0000_70%)]" />
+        <div className="absolute -top-25 -right-25 size-125 cursor-none rounded-full bg-[radial-gradient(circle,#5ab9fc26_0%,#0000_70%)]" />
         <div className="container">
           <div className="relative flex flex-col items-center justify-between gap-12 text-center lg:flex-row lg:text-left">
             <div className="flex-[0_0_100%] lg:flex-[0_560px]">
               <div className="text-text-3 relative mb-6 inline-flex items-center gap-2.5 font-mono text-xs tracking-[.12rem]">
-                <span className="h-px w-[2.35rem] bg-linear-[90deg,var(--accent),var(--accent-2)] shadow-[0_0_18px_#4f80ffa6]" />
+                <span className="h-px w-[2.35rem] bg-accent" />
                 <span>Software Engineer</span>
               </div>
               <h1 className="font-heading relative mx-auto mb-6 grid w-fit leading-none uppercase lg:mx-0">
-                <span className="absolute inset-[-.45rem_-1rem_-.25rem_-.7rem] -z-1 bg-[radial-gradient(circle_at_24%_18%,#4f80ff52,#0000_34%),radial-gradient(circle_at_74%_68%,#9b6dff47,#0000_36%),linear-gradient(120deg,#4f80ff29,#9b6dff1f,#0000_74%)] opacity-90 blur-[18px]" />
-                <span className="bg-linear-[15deg,#f4f7ff_0%,#82a5ff_28%,#9b6dff_58%,#f4f7ff_100%] bg-size-[220%_100%] bg-clip-text text-[3.25rem] font-extrabold text-transparent text-shadow-[0_0_34px_#4f80ff2e] lg:text-[5.7rem]">
+                <span className="text-text text-[3.25rem] font-extrabold lg:text-[5.7rem]">
                   Nam Hoai
                 </span>
-                <span className="bg-linear-[115deg,#8fb0ff_0%,#d5c8ff_24%,#9b6dff_52%,#4f80ff_82%,#f4f7ff_100%] bg-size-[240%_100%] bg-clip-text text-[3.05rem] font-extrabold text-transparent text-shadow-[0_0_24px_#9b6dff42,0_0_42px_#4f80ff1fv] lg:text-[5.35rem]">
+                <span className="text-text text-[3.05rem] font-extrabold lg:text-[5.35rem]">
                   Nguyen
                 </span>
               </h1>
@@ -73,7 +72,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               <div className="flex flex-wrap gap-3">
                 <Link
                   to="/notes"
-                  className="xs:w-auto inline-flex w-full items-center justify-center gap-2 rounded-lg bg-linear-(--btn-gradient) px-6.5 py-3 text-sm font-medium shadow-[0_2px_12px_#4f80ff4d] transition-all hover:-translate-y-px hover:shadow-[0_4px_20px_#4f80ff66]"
+                  className="xs:w-auto inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent text-accent-ink px-6.5 py-3 text-sm font-medium transition-all hover:-translate-y-px"
                   aria-label="Open Lab Notes"
                 >
                   Open Lab Notes
@@ -118,8 +117,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                   className="hover:border-border-bright hover:bg-bg-elevated inline-flex items-center justify-center gap-2 rounded-full border p-[.45rem_1rem] text-xs backdrop-blur-lg transition-colors"
                   aria-label="Contact me"
                 >
-                  <IconAddressBook width={16} height={16} className="stroke-accent-2" />
-                  <span className="text-accent-2">Contact Me</span>
+                  <IconAddressBook width={16} height={16} className="stroke-accent" />
+                  <span className="text-accent">Contact Me</span>
                 </a>
               </div>
             </div>

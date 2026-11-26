@@ -36,7 +36,7 @@ export default function Bookmarks({ loaderData }: Route.ComponentProps) {
         icon={<IconBookmarks stroke={2} />}
       >
         <div className="mt-6 flex flex-wrap gap-2">
-          <span className="bg-accent-flow text-accent rounded-full border border-[#4f80ff66] px-4 py-2 font-mono text-xs font-medium whitespace-nowrap">{`${totalBookmarks} Bookmarks`}</span>
+          <span className="bg-accent-glow text-accent rounded-full border border-[#5ab9fc66] px-4 py-2 font-mono text-xs font-medium whitespace-nowrap">{`${totalBookmarks} Bookmarks`}</span>
           <span className="border-border bg-bg-card text-text-2 rounded-full border px-4 py-2 font-mono text-xs font-medium whitespace-nowrap transition-colors ease-in-out">{`${totalCatBookmarks} Categories`}</span>
         </div>
       </PostHeader>

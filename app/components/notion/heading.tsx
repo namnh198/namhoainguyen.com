@@ -31,7 +31,7 @@ export function Heading({ block, children }: { block: Block; children?: React.Re
     headerBlock = (
       <h1
         id={anchor}
-        className={cn(headingCommonClassName, "text-gradient notion-heading notion-h1 text-5xl")}
+        className={cn(headingCommonClassName, "notion-heading notion-h1 text-5xl")}
         data-id={id}
       >
         {innerHeader}
@@ -41,7 +41,7 @@ export function Heading({ block, children }: { block: Block; children?: React.Re
     headerBlock = (
       <h2
         id={anchor}
-        className={cn(headingCommonClassName, "text-gradient notion-heading notion-h2 text-4xl")}
+        className={cn(headingCommonClassName, "notion-heading notion-h2 text-4xl")}
         data-id={id}
       >
         {innerHeader}
@@ -77,7 +77,7 @@ export function Heading({ block, children }: { block: Block; children?: React.Re
   return (
     <div className={wrapperClassName}>
       {headerBlock}
-      {(isH1 || isH2) && <div className="divider-gradient flex-1" />}
+      {(isH1 || isH2) && <div className="bg-border h-px flex-1" />}
     </div>
   );
 }
@@ -102,9 +102,9 @@ export function ToggleHeading({
       <div className={triggerClassName}>
         <CollapsibleTrigger
           className={cn("z-20 mt-0.5 cursor-pointer rounded-md border border-transparent p-0.5", {
-            "group-hover/toggle:bg-bg-elevated group-hover/toggle:text-text group-hover/toggle:border-[#4f80ff33]":
+            "group-hover/toggle:bg-bg-elevated group-hover/toggle:text-text group-hover/toggle:border-[#5ab9fc33]":
               !open,
-            "bg-bg-elevated text-text border-[#4f80ff33]": open,
+            "bg-bg-elevated text-text border-[#5ab9fc33]": open,
             "mt-0.75 -ml-2.5": headingType === "h3",
             "-mt-0.5": headingType === "h2" || headingType === "h1",
           })}
@@ -122,7 +122,7 @@ export function ToggleHeading({
         <div className="toggle-heading-content-container pl-8">{children}</div>
       </CollapsibleContent>
       <div
-        className={cn("absolute top-0 left-0 z-10 mt-3 ml-2.5 h-[calc(100%-8px)] w-1 border-l-2 border-[#4f80ff33]", {
+        className={cn("absolute top-0 left-0 z-10 mt-3 ml-2.5 h-[calc(100%-8px)] w-1 border-l-2 border-[#5ab9fc33]", {
           hidden: !open,
           "mt-5 ml-[16.5px] border-l-3": headingType === "h2" || headingType === "h1",
           "mt-3.75 ml-1.25 border-l-2": headingType === "h3",

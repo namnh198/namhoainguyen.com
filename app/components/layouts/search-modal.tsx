@@ -113,7 +113,7 @@ export function SearchModal({}) {
             variant="outline"
             aria-label="Open Search Popup"
             aria-expanded={modalOpen}
-            className="h-10 w-10 border-0 outline-none lg:h-9 lg:w-fit lg:border lg:bg-linear-(--btn-gradient)"
+            className="h-10 w-10 border-0 outline-none lg:h-9 lg:w-fit lg:border lg:bg-accent lg:text-accent-ink"
           >
             <IconSearch stroke={2} className="size-4" />
             <span className="hidden lg:inline-block">Search</span>
@@ -128,7 +128,7 @@ export function SearchModal({}) {
           <DialogTitle>Search notes</DialogTitle>
           <DialogDescription>Search through your notes</DialogDescription>
         </DialogHeader>
-        <div className="divide-border-muted flex h-full min-h-0 flex-1 flex-col divide-y">
+        <div className="divide-border flex h-full min-h-0 flex-1 flex-col divide-y">
           <div className="relative flex items-center justify-between">
             <span
               className={buttonVariants({

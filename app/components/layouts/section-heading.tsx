@@ -18,8 +18,8 @@ export function SectionHeading({
   return (
     <div className={cn("[&_svg]:text-accent flex items-center gap-3", [className])}>
       {icon}
-      <h2 className="font-heading text-gradient text-2xl font-extrabold">{title}</h2>
-      <div className="divider-gradient flex-1" />
+      <h2 className="font-heading text-2xl font-extrabold">{title}</h2>
+      <div className="bg-border h-px flex-1" />
       {viewAll && (
         <Link to={viewAll} className="text-accent text-sm font-medium whitespace-nowrap" aria-label="View All">
           View all →

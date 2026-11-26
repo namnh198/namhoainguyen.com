@@ -164,7 +164,7 @@ export function Block({ block, level, children }: BlockProps) {
             blockId,
           )}
         >
-          <div className="quote-divider absolute inset-0 top-0 bottom-0 left-0 w-0.75 bg-linear-[180deg,var(--accent),var(--accent-2)]" />
+          <div className="quote-divider absolute inset-0 top-0 bottom-0 left-0 w-0.75 bg-accent" />
           <div className={cn("quote-title")}>
             <Text value={block.properties.title} block={block} />
           </div>

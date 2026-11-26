@@ -343,6 +343,21 @@
     @apply bg-bg-elevated! rounded-lg border p-[1em];
   }
 
+  /* code blocks and column lists share the paragraph rhythm (my-3.5, lg:my-5); sibling margins collapse */
+  :where(.group\/code, .block-column-list) {
+    margin-block: 0.875rem;
+    @variant lg {
+      margin-block: 1.25rem;
+    }
+  }
+  /* inside a column the column list owns the outer space: no extra margin at a column's top or bottom */
+  .block-column-list > * > :first-child {
+    margin-top: 0 !important; /* beats figure's my-3! */
+  }
+  .block-column-list > * > :last-child {
+    margin-bottom: 0 !important;
+  }
+
   /* reading measure for prose; code, tables and media keep the column's width */
   :where(.notion-text, ul, ol, blockquote) {
     max-width: 72ch;

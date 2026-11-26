@@ -198,7 +198,12 @@ export function Block({ block, level, children }: BlockProps) {
       return <Equation block={block as EquationBlock} inline={false} className={cn(blockId)} />;
     case "column_list": {
       return (
-        <div className={cn("block-column-list relative flex flex-col gap-4 md:flex-row md:flex-nowrap", blockId)}>
+        <div
+          className={cn(
+            "block-column-list relative flex flex-col gap-3.5 md:flex-row md:flex-nowrap lg:gap-5",
+            blockId,
+          )}
+        >
           {children}
         </div>
       );

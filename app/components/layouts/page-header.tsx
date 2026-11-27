@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { IconChevronDown, IconMoon, IconPrompt, IconSun } from "@tabler/icons-react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 
 import { getUri } from "~/lib/helpers";
 import { MENU } from "~/data/menu";
@@ -36,7 +36,7 @@ function ThemeToggle() {
 
 function TopicsPanel() {
   return (
-    <div className="bg-bg invisible absolute inset-x-0 top-full -translate-y-1.5 border-b opacity-0 transition-[opacity,transform,visibility] duration-[120ms] ease-out group-focus-within/topics:visible group-focus-within/topics:translate-y-0 group-focus-within/topics:opacity-100 group-hover/topics:visible group-hover/topics:translate-y-0 group-hover/topics:opacity-100 group-hover/topics:delay-150 group-hover/topics:duration-200 motion-reduce:translate-y-0">
+    <div className="bg-bg invisible absolute inset-x-0 top-full -translate-y-1.5 border-b opacity-0 transition-[opacity,transform,visibility] duration-[120ms] ease-out group-data-closed/topics:invisible! group-data-closed/topics:opacity-0! group-focus-within/topics:visible group-focus-within/topics:translate-y-0 group-focus-within/topics:opacity-100 group-hover/topics:visible group-hover/topics:translate-y-0 group-hover/topics:opacity-100 group-hover/topics:delay-150 group-hover/topics:duration-200 motion-reduce:translate-y-0">
       <div className="container grid grid-cols-12 gap-6 py-10">
         <div className="col-span-3 space-y-3">
           <p className="font-heading text-2xl">Topics</p>
@@ -62,6 +62,18 @@ function TopicsPanel() {
 
 export function PageHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  // the Topics panel opens on hover/focus in CSS; after a page change it stays shut until the pointer enters again or focus returns
+  const [topicsClosed, setTopicsClosed] = useState(false);
+  const { key } = useLocation();
+  const lastKey = useRef(key);
+  useEffect(() => {
+    if (lastKey.current === key) return;
+    lastKey.current = key;
+    setMenuOpen(false);
+    setTopicsClosed(true);
+    const active = document.activeElement;
+    if (active instanceof HTMLElement && active.closest("header")) active.blur();
+  }, [key]);
 
   return (
     <header className="nav [view-transition-name:site-header] bg-bg h-nav lg:h-nav-lg fixed inset-x-0 top-0 z-50 border-b">
@@ -83,12 +95,18 @@ export function PageHeader() {
           <ul className="flex h-full items-center gap-6 xl:gap-8">
             {NAV.map(({ href, label }) =>
               href === "/tags" ? (
-                <li key={href} className="group/topics flex h-full items-center">
+                <li
+                  key={href}
+                  data-closed={topicsClosed || undefined}
+                  onMouseEnter={() => setTopicsClosed(false)}
+                  onFocus={() => setTopicsClosed(false)}
+                  className="group/topics flex h-full items-center"
+                >
                   <NavLink viewTransition to={href} className="flex h-full items-center gap-1 text-[15px] font-medium">
                     <span className="nav-word">{label}</span>
                     <IconChevronDown
                       aria-hidden="true"
-                      className="text-text-2 size-3.5 transition-transform duration-200 group-focus-within/topics:rotate-180 group-hover/topics:rotate-180"
+                      className="text-text-2 size-3.5 transition-transform duration-200 group-focus-within/topics:rotate-180 group-hover/topics:rotate-180 group-data-closed/topics:rotate-0!"
                     />
                   </NavLink>
                   <TopicsPanel />

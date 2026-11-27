@@ -1,6 +1,6 @@
 import type { Block, CodeBlock, EquationBlock, Block as NotionBlock, PageBlock, TableBlock } from "notion-types";
 
-import { IconSquare, IconSquareCheck } from "@tabler/icons-react";
+import { IconCheck } from "@tabler/icons-react";
 
 import { mapBlockColorClass } from "~/lib/helpers";
 import { getPageTocs } from "~/lib/notion/get-page-tocs";
@@ -42,9 +42,9 @@ export function Block({ block, level, children }: BlockProps) {
       if (level < 1) {
         const tocs = getPageTocs(block as PageBlock, recordMap);
         return (
-          <div className="relative flex flex-col gap-4 lg:flex-row">
-            {tocs.length > 0 && <Tocs tocs={tocs} className="w-full lg:order-1 lg:w-75" />}
-            <article className="notion-page-content w-full flex-1 shrink-0 lg:w-[calc(100%-308px)]">{children}</article>
+          <div className="relative flex flex-col gap-6 lg:grid lg:grid-cols-12">
+            {tocs.length > 0 && <Tocs tocs={tocs} className="lg:order-1 lg:col-span-3 lg:col-start-10" />}
+            <article className="notion-page-content w-full min-w-0 lg:col-span-8 lg:row-start-1">{children}</article>
           </div>
         );
       }
@@ -156,7 +156,7 @@ export function Block({ block, level, children }: BlockProps) {
       return (
         <blockquote
           className={cn(
-            "notion-quote relative my-6 px-6 py-4",
+            "notion-quote relative px-6 py-4",
             {
               [`notion-${blockColor}`]: blockColor,
               // "text-[115%]": get(block, "format.quote_size") === "large",
@@ -164,7 +164,7 @@ export function Block({ block, level, children }: BlockProps) {
             blockId,
           )}
         >
-          <div className="quote-divider absolute inset-0 top-0 bottom-0 left-0 w-0.75 bg-linear-[180deg,var(--accent),var(--accent-2)]" />
+          <div className="quote-divider bg-accent absolute inset-0 top-0 bottom-0 left-0 w-0.75" />
           <div className={cn("quote-title")}>
             <Text value={block.properties.title} block={block} />
           </div>
@@ -177,17 +177,26 @@ export function Block({ block, level, children }: BlockProps) {
 
       return (
         <div className={cn("notion-to-do relative", blockId)}>
-          <div className={cn("flex items-start gap-2")}>
-            <div className="mt-0.75 h-4 w-4">
-              {isChecked && <IconSquareCheck className="text-slate-500 dark:text-slate-300" size={16} />}
-              {!isChecked && <IconSquare className="mt-0.5" size={16} />}
-            </div>
-            <div>
+          <div className="flex items-start gap-2.5">
+            {/* the box sits in a one-line-tall slot so it centres on the first line of text */}
+            <span className="flex h-[1lh] shrink-0 items-center">
+              <span
+                role="img"
+                aria-label={isChecked ? "Done" : "To do"}
+                className={cn(
+                  "grid size-4.5 place-items-center rounded-[5px] border-[1.5px]",
+                  isChecked ? "bg-accent border-accent text-accent-ink" : "border-border-bright",
+                )}
+              >
+                {isChecked && <IconCheck size={12} stroke={3} aria-hidden="true" />}
+              </span>
+            </span>
+            <div className={isChecked ? "text-text-3 decoration-text-3 line-through" : "text-text-2"}>
               <Text value={block.properties?.title} block={block} />
             </div>
           </div>
 
-          <div className="notion-to-do-children pl-6">{children}</div>
+          <div className="notion-to-do-children pl-7">{children}</div>
         </div>
       );
     }
@@ -198,7 +207,14 @@ export function Block({ block, level, children }: BlockProps) {
       return <Equation block={block as EquationBlock} inline={false} className={cn(blockId)} />;
     case "column_list": {
       return (
-        <div className={cn("block-column-list relative md:flex md:flex-nowrap md:gap-4", blockId)}>{children}</div>
+        <div
+          className={cn(
+            "block-column-list relative flex flex-col gap-3.5 md:flex-row md:flex-nowrap lg:gap-5",
+            blockId,
+          )}
+        >
+          {children}
+        </div>
       );
     }
     case "column": {
@@ -252,7 +268,7 @@ export function Block({ block, level, children }: BlockProps) {
       );
     case "table":
       return (
-        <div className={cn("relative overflow-auto")}>
+        <div className={cn("notion-table relative overflow-auto")}>
           <table className={cn("notion-simple-table my-0 table-auto", blockId)}>
             <tbody
               className={cn({

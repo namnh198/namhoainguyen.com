@@ -41,7 +41,7 @@ export const EOI: React.FC<{
   return (
     <>
       {!inline && (
-        <div className="relative">
+        <div className="notion-eoi relative">
           <a
             className={cn(
               className,
@@ -71,7 +71,7 @@ export const EOI: React.FC<{
           rel="noopener noreferrer"
         >
           <IconBrandGithub width={18} height={18} className="text-text absolute top-0.5" />
-          <div className="text-accent group-hover/github-inline:text-accent-2 pl-5">{title}</div>
+          <div className="text-accent group-hover/github-inline:text-text pl-5">{title}</div>
         </a>
       )}
     </>

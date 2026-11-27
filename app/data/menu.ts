@@ -10,7 +10,7 @@ export const MENU: MenuItem[] = [
     href: "/",
   },
   {
-    label: "Lab Notes",
+    label: "Notes",
     href: "/notes",
     footer: true,
   },
@@ -20,12 +20,13 @@ export const MENU: MenuItem[] = [
     footer: true,
   },
   {
-    label: "About Me",
+    label: "About",
     href: "/about",
     footer: true,
   },
   {
     label: "Bookmarks",
     href: "/bookmarks",
+    footer: true,
   },
 ];

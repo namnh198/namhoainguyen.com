@@ -1,6 +1,6 @@
 import type { NotionComponents } from "~/components/notion/context";
 
-import { IconCalendarEvent, IconNotes, IconRefresh, IconUser } from "@tabler/icons-react";
+import { IconNotes } from "@tabler/icons-react";
 import { env } from "cloudflare:workers";
 import { data } from "react-router";
 
@@ -47,20 +47,13 @@ export default function NotesDetail({ loaderData }: Route.ComponentProps) {
         icon={post.icon || <IconNotes />}
         notionDomain={notionDomain}
       >
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
-          <div className="inline-flex items-center gap-1 font-medium">
-            <IconUser stroke={1.5} size={20} className="stroke-text-2" />
-            <span className="text-text-2 text-sm">Nam-Hoai Nguyen</span>
-          </div>
-          <div className="inline-flex items-center gap-1 font-medium">
-            <IconCalendarEvent stroke={1.5} size={20} className="stroke-text-2" />
-            <DateComponent date={post.createdAt} dateLabel="added" className="text-text-2 text-sm" />
-          </div>
-          <div className="inline-flex items-center gap-1 font-medium">
-            <IconRefresh stroke={1.5} size={20} className="stroke-[#4ade80]" />
-            <DateComponent date={post.updatedAt} dateLabel="updated" className="text-sm text-[#4ade80]" />
-          </div>
-        </div>
+        <p className="text-text-2 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[13px]">
+          <span>By Nam Hoai Nguyen</span>
+          <span aria-hidden="true">·</span>
+          <DateComponent date={post.createdAt} dateLabel="added" />
+          <span aria-hidden="true">·</span>
+          <DateComponent date={post.updatedAt} dateLabel="updated" />
+        </p>
       </PostHeader>
       <PostBody
         post={post}

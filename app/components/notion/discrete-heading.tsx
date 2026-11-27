@@ -21,8 +21,8 @@ export function DiscreteHeading({ block, children }: { block: Block; children?: 
   );
 
   return (
-    <div className="bg-bg-elevated bg-linear-[180deg,#4f80ff09,transparent_45%)] discrete mb-8 overflow-hidden rounded-xl border last:mb-0">
-      <div className="discrete-heading flex items-center justify-start gap-1.5 border-b bg-[#ffffff05] px-4 py-3 font-medium">
+    <div className="bg-bg-elevated discrete mb-8 overflow-hidden rounded-xl border bg-linear-[180deg,color-mix(in_oklab,var(--accent)_4%,transparent),transparent_45%)] last:mb-0">
+      <div className="discrete-heading bg-text/[0.02] flex items-center justify-start gap-1.5 border-b px-4 py-3 font-medium">
         {innerHeader}
       </div>
       <div className="discrete-content relative p-4">{children}</div>

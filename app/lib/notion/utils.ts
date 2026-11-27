@@ -4,7 +4,7 @@ import type { NotionDateTime } from "./types";
 
 export const formatDate = (input: string | number, { month = "short" }: { month?: "long" | "short" } = {}) => {
   const date = new Date(input);
-  const monthLocale = date.toLocaleString("en-US", { month });
+  const monthLocale = date.toLocaleString("en-US", { month, timeZone: "UTC" }); // UTC like the day and year below
   return `${monthLocale} ${date.getUTCDate()}, ${date.getUTCFullYear()}`;
 };
 

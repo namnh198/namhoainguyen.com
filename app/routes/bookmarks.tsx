@@ -1,4 +1,4 @@
-import { IconBookmarks, IconExternalLink, IconLayoutGrid } from "@tabler/icons-react";
+import { IconBookmarks } from "@tabler/icons-react";
 
 import type { Route } from "./+types/bookmarks";
 
@@ -36,23 +36,19 @@ export default function Bookmarks({ loaderData }: Route.ComponentProps) {
         icon={<IconBookmarks stroke={2} />}
       >
         <div className="mt-6 flex flex-wrap gap-2">
-          <span className="bg-accent-flow text-accent rounded-full border border-[#4f80ff66] px-4 py-2 font-mono text-xs font-medium whitespace-nowrap">{`${totalBookmarks} Bookmarks`}</span>
-          <span className="border-border bg-bg-card text-text-2 rounded-full border px-4 py-2 font-mono text-xs font-medium whitespace-nowrap transition-colors ease-in-out">{`${totalCatBookmarks} Categories`}</span>
+          <span className="text-text-2 font-mono text-[13px]">{`${totalBookmarks} bookmarks in ${totalCatBookmarks} categories`}</span>
         </div>
       </PostHeader>
-      <div className="relative container pb-12">
-        <div className="flex flex-col gap-12">
+      <div className="container pb-24">
+        <div className="flex flex-col gap-16">
           {bookmarks.map((bookmark) => (
             <div key={bookmark.title}>
-              <div className="mb-4 flex items-center gap-3 border-b pb-3">
-                <span className="bg-accent-glow text-accent flex size-7 shrink-0 items-center justify-center rounded-md">
-                  <IconLayoutGrid stroke={2} width={14} height={14} />
-                </span>
-                <span className="text-text-3 text-xs font-bold uppercase">{bookmark.title}</span>
-                <span className="bg-bg-elevated text-text-3 ml-auto rounded-full border px-2 py-0.5 text-xs">
+              <h2 className="font-heading mb-6 flex items-baseline gap-3 text-2xl leading-tight font-medium tracking-[-0.02em] lg:text-[28px]">
+                {bookmark.title}
+                <span className="text-text-2 font-mono text-[13px] font-normal tracking-normal">
                   {bookmark.list.length}
                 </span>
-              </div>
+              </h2>
               <BookmarkList bookmarks={bookmark.list} />
             </div>
           ))}

@@ -37,7 +37,8 @@ export function Code(props: BlockCodeProps) {
       setHighlightCode(
         await codeToHtml(content, {
           lang: formatCodeLang(language),
-          theme: "tokyo-night",
+          themes: { dark: "catppuccin-mocha", light: "catppuccin-latte" },
+          defaultColor: false,
         }),
       );
     });
@@ -50,7 +51,7 @@ export function Code(props: BlockCodeProps) {
   };
 
   const copyBtn = (
-    <button>
+    <button type="button" aria-label={copied ? "Copied" : "Copy code"} className="grid size-11 place-items-center">
       {!copied && <IconCopy className="text-text-2 hover:text-text" size={18} />}
       {copied && <IconCopyCheck className="text-success" size={18} />}
     </button>
@@ -70,7 +71,7 @@ export function Code(props: BlockCodeProps) {
     <div className={cn(className, blurBlockClassName, "group/code relative flex flex-col gap-2")}>
       <div
         id={`copy-${block.id}`}
-        className="absolute! top-4 right-4 z-10! opacity-0 transition-opacity duration-100 group-hover/code:opacity-100 hover:cursor-pointer"
+        className="absolute! top-1 right-1 z-10! opacity-0 transition-opacity duration-100 group-focus-within/code:opacity-100 group-hover/code:opacity-100 hover:cursor-pointer"
       >
         {copyBtnWrapper}
       </div>

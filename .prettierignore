@@ -5,7 +5,11 @@ build/
 .idea
 
 package-lock.json
-phpm-lock.yaml
+pnpm-lock.yaml
 yarn.lock
 bun.lock
 wrangler.jsonc
+
+# generated checker output and the vendored motion kit
+.taste-skill/
+public/assets/moments/

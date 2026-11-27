@@ -43,7 +43,7 @@ export default function TagsList({ loaderData }: Route.ComponentProps) {
           </span>
         }
       />
-      <div className="relative container mb-12">
+      <div className="container mb-24">
         <TagsGrid notionDomain={notionDomain} tags={tags} posts={posts} />
       </div>
     </main>

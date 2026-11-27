@@ -47,11 +47,11 @@ function parseSearchResults(data: any): SearchResult[] {
     const slug = properties?.[env.NOTION_SCHEMA_SLUG]?.[0]?.[0] || makeSlugText(title);
     const titleHighlighted =
       result?.highlight?.title
-        ?.replaceAll(`<${env.NOTION_BOLD_SEARCH_KEY}>`, `<span style="color:#4f80ff;">`)
+        ?.replaceAll(`<${env.NOTION_BOLD_SEARCH_KEY}>`, `<span style="color:var(--accent);">`)
         ?.replaceAll(`</${env.NOTION_BOLD_SEARCH_KEY}>`, `</span>`) || title;
     const textHighlighted =
       result.highlight?.text
-        ?.replaceAll(`<${env.NOTION_BOLD_SEARCH_KEY}>`, `<span style="color:#4f80ff;">`)
+        ?.replaceAll(`<${env.NOTION_BOLD_SEARCH_KEY}>`, `<span style="color:var(--accent);">`)
         ?.replaceAll(`</${env.NOTION_BOLD_SEARCH_KEY}>`, `</span>`) || null;
 
     results.push({

@@ -6,6 +6,8 @@ import {
   Scripts,
   ScrollRestoration,
   useLocation,
+  useMatches,
+  useNavigation,
   useRouteLoaderData,
 } from "react-router";
 
@@ -13,22 +15,36 @@ import type { Route } from "./+types/root";
 
 import "./app.css";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { env } from "cloudflare:workers";
 
+import { getPosts } from "./lib/fetcher";
+import { getUsedTags } from "./lib/helpers";
 import { useGoogleAnalytics } from "./hooks/use-google-analytics";
 
 import { TooltipProvider } from "./components/ui/tooltip";
 import { PageFooter } from "./components/layouts/page-footer";
 import { PageHeader } from "./components/layouts/page-header";
+import { PageSkeleton } from "./components/layouts/page-skeleton";
 
-export const loader = ({ url }: Route.LoaderArgs) => {
+export const loader = async ({ url }: Route.LoaderArgs) => {
+  // the header's Topics panel lists only tags that have a page; a Notion failure empties the panel, not the whole site
+  const topics = await getPosts(env)
+    .then(getUsedTags)
+    .catch((error) => {
+      console.error("root loader: topics unavailable", error);
+      return [];
+    });
   return {
     gaMeasurementId: env.GA_MEASUREMENT_ID,
-    canonical: `${url.href}`,
+    origin: url.origin,
+    topics,
   };
 };
+
+// nothing here depends on the page: load it once per document, not on every page change (each rerun hit Notion again)
+export const shouldRevalidate = () => false;
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -39,13 +55,29 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital@0;1&family=Oxanium:wght@800&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&family=Funnel+Sans:wght@400..600&family=DM+Mono:wght@400;500&display=swap",
   },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { gaMeasurementId, canonical } = useRouteLoaderData<typeof loader>("root") || {};
+  const { gaMeasurementId, origin } = useRouteLoaderData<typeof loader>("root") || {};
   const location = useLocation();
+  const canonical = origin && `${origin}${location.pathname}${location.search}`;
+  // a route whose page is built in whole screens (home) starts under the fixed header and ends on the closing footer
+  const matchesScreens = useMatches().some((match) => (match.handle as { screens?: boolean } | undefined)?.screens);
+  // a page change whose loader takes over 150ms shows the next page's skeleton; faster ones never flash it
+  const navigation = useNavigation();
+  const nextPath = navigation.state === "loading" ? navigation.location.pathname : undefined;
+  const [skeletonPath, setSkeletonPath] = useState<string>();
+  useEffect(() => {
+    if (!nextPath || nextPath === location.pathname) return setSkeletonPath(undefined);
+    const timer = setTimeout(() => {
+      setSkeletonPath(nextPath);
+      window.scrollTo(0, 0); // ScrollRestoration still restores the real position once the page commits
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [nextPath, location.pathname]);
+  const screens = matchesScreens && !skeletonPath;
   const isGaInitialized = useGoogleAnalytics(gaMeasurementId);
   useEffect(() => {
     if (isGaInitialized && gaMeasurementId) {
@@ -56,9 +88,24 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }, [isGaInitialized, location, gaMeasurementId]);
 
   return (
-    <html lang="en">
+    // the head script adds m-enter before hydration
+    <html lang="en" data-type="software" data-radius="soft" data-buttons="arrow" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
+        {/* theme before paint: saved choice, else the OS setting (followed live until the toggle saves one); Mocha when neither says light */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var m=matchMedia('(prefers-color-scheme: light)'),s=function(){var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=m.matches?'light':'dark';document.documentElement.dataset.theme=t};s();m.addEventListener('change',s)}catch(e){}",
+          }}
+        />
+        {/* the hero's entrance runs once; m-enter-done is its safety mark */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)",
+          }}
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {canonical && <link rel="canonical" href={canonical} />}
         <Meta />
@@ -67,8 +114,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <TooltipProvider>
           <PageHeader />
-          {children}
-          <PageFooter />
+          {/* the header is fixed: this pads the page below it */}
+          {screens ? (
+            children
+          ) : (
+            <div id="content" tabIndex={-1} className="pt-nav lg:pt-nav-lg outline-none">
+              {skeletonPath ? <PageSkeleton pathname={skeletonPath} /> : children}
+            </div>
+          )}
+          <PageFooter closing={screens} />
         </TooltipProvider>
         <ScrollRestoration />
         <Scripts />

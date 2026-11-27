@@ -1,4 +1,4 @@
-import { IconLayoutGrid, IconNotebook, IconPinned } from "@tabler/icons-react";
+import { IconNotebook } from "@tabler/icons-react";
 import { env } from "cloudflare:workers";
 import { data } from "react-router";
 
@@ -6,7 +6,7 @@ import type { Route } from "./+types/tags-detail";
 
 import { getPosts } from "~/lib/fetcher";
 import { getMetaData } from "~/lib/get-meta-data";
-import { TAGS } from "~/data/tags";
+import { getUsedTags } from "~/lib/helpers";
 
 import { PostHeader } from "~/components/elements/post-header";
 import { PostList } from "~/components/elements/post-list";
@@ -16,12 +16,12 @@ export async function loader({ params }: Route.LoaderArgs) {
   const posts = await getPosts(env);
   const tagPosts = posts.filter((post) => post.tags.find((tag) => tag.slug === params.tag));
   const tag = tagPosts?.[0]?.tags.find((tag) => tag.slug === params.tag);
-  const pinnedTags = TAGS.filter((tag) => tag.pinned);
+  const pinnedTags = getUsedTags(posts).filter((tag) => tag.pinned);
   if (!tag) {
     throw data("Tag Not Found", { status: 404 });
   }
 
-  return { tagPosts, pinnedTags, tag };
+  return { tagPosts, pinnedTags, tag, notionDomain: env.NOTION_SITE_DOMAIN };
 }
 
 export function meta({ loaderData }: Route.ComponentProps) {
@@ -33,7 +33,7 @@ export function meta({ loaderData }: Route.ComponentProps) {
 }
 
 export default function TagsDetail({ loaderData }: Route.ComponentProps) {
-  const { tagPosts, pinnedTags, tag } = loaderData;
+  const { tagPosts, pinnedTags, tag, notionDomain } = loaderData;
   return (
     <main className="min-h-dvh">
       <PostHeader
@@ -42,11 +42,9 @@ export default function TagsDetail({ loaderData }: Route.ComponentProps) {
         desc={`A list of posts with the tag ${tag.name}.`}
         tags={pinnedTags}
       />
-      <div className="relative container mb-12 space-y-6">
-        <div className="flex flex-col gap-2">
-          <SectionHeading title={tag.name} icon={<IconLayoutGrid stroke={2} />} />
-        </div>
-        <PostList posts={tagPosts} className="max-w-5xl" />
+      <div className="container mb-24 space-y-6">
+        <SectionHeading title={`${tagPosts.length} ${tagPosts.length === 1 ? "note" : "notes"}`} />
+        <PostList posts={tagPosts} notionDomain={notionDomain} />
       </div>
     </main>
   );

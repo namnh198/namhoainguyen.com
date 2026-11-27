@@ -15,17 +15,24 @@ export function Tocs({ tocs, className }: { tocs: Array<TableOfContentsEntry>; c
   return (
     <aside
       className={cn(
-        "tocs bg-bg-card z-10 flex h-fit w-full shrink-0 flex-col overflow-hidden rounded-xl border lg:sticky lg:top-18 lg:h-[calc(100vh-7.5rem)]",
+        "tocs bg-bg-card z-10 flex h-fit max-h-[calc(100vh-8rem)] w-full shrink-0 flex-col overflow-hidden rounded-lg border lg:sticky lg:top-24",
         className,
       )}
     >
-      <div
-        className="bg-bg-elevated flex cursor-pointer items-center justify-between gap-1.5 border-b px-5 py-3 lg:hidden"
+      <button
+        type="button"
+        aria-expanded={openToc}
+        className="bg-bg-elevated flex min-h-11 items-center justify-between gap-1.5 border-b px-5 font-medium lg:hidden"
         onClick={() => setOpenToc(!openToc)}
       >
-        <span>In this notes</span>
-        <IconChevronRight width={20} height={20} />
-      </div>
+        <span>In this note</span>
+        <IconChevronRight
+          aria-hidden="true"
+          width={20}
+          height={20}
+          className={cn("transition-transform", openToc && "rotate-90")}
+        />
+      </button>
       <div
         className={cn("overflow-y-auto px-3", {
           "py-5 lg:px-5": !isMobile,
@@ -61,7 +68,7 @@ export function Tocs({ tocs, className }: { tocs: Array<TableOfContentsEntry>; c
                   {toc.text}
                 </span>
                 <span className="absolute top-1/2 -left-4 size-0">
-                  <span className="bg-border-bright group-[.is-active]:bg-accent-2 absolute -top-0.75 -left-0.75 block size-1.5 scale-100 rounded-sm transition-all ease-in-out group-[.is-active]:scale-150 group-[.is-done]:scale-0"></span>
+                  <span className="bg-border-bright group-[.is-active]:bg-accent absolute -top-0.75 -left-0.75 block size-1.5 scale-100 rounded-sm transition-all ease-in-out group-[.is-active]:scale-150 group-[.is-done]:scale-0"></span>
                   <span className="text-success absolute -top-1.25 -left-0.75 block size-2.5 scale-0 transition-transform group-[.is-done]:scale-100">
                     <svg
                       version="1.1"

@@ -38,10 +38,13 @@ export const loader = async ({ url }: Route.LoaderArgs) => {
     });
   return {
     gaMeasurementId: env.GA_MEASUREMENT_ID,
-    canonical: `${url.href}`,
+    origin: url.origin,
     topics,
   };
 };
+
+// nothing here depends on the page: load it once per document, not on every page change (each rerun hit Notion again)
+export const shouldRevalidate = () => false;
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -57,8 +60,9 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { gaMeasurementId, canonical } = useRouteLoaderData<typeof loader>("root") || {};
+  const { gaMeasurementId, origin } = useRouteLoaderData<typeof loader>("root") || {};
   const location = useLocation();
+  const canonical = origin && `${origin}${location.pathname}${location.search}`;
   // a route whose page is built in whole screens (home) starts under the fixed header and ends on the closing footer
   const matchesScreens = useMatches().some((match) => (match.handle as { screens?: boolean } | undefined)?.screens);
   // a page change whose loader takes over 150ms shows the next page's skeleton; faster ones never flash it
@@ -88,11 +92,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en" data-type="software" data-radius="soft" data-buttons="arrow" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
-        {/* theme before paint: saved choice, else the OS setting; Mocha when neither says light */}
+        {/* theme before paint: saved choice, else the OS setting (followed live until the toggle saves one); Mocha when neither says light */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t}catch(e){}",
+              "try{var m=matchMedia('(prefers-color-scheme: light)'),s=function(){var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=m.matches?'light':'dark';document.documentElement.dataset.theme=t};s();m.addEventListener('change',s)}catch(e){}",
           }}
         />
         {/* the hero's entrance runs once; m-enter-done is its safety mark */}

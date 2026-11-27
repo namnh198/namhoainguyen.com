@@ -86,7 +86,7 @@
   --border-bright: #45475a; /* surface1 */
   --text: #cdd6f4;
   --text-2: #a6adc8; /* subtext0 */
-  --text-3: #9399b2; /* overlay2 */
+  --text-3: #979db6; /* overlay2 nudged 20% toward subtext0: overlay2 misses 4.5:1 on surface0 (code line numbers) */
   --accent: #cba6f7; /* mauve */
   --accent-ink: #11111b;
   --accent-glow: #cba6f729;
@@ -118,9 +118,9 @@
     --text: #4c4f69;
     --text-2: #5c5f77; /* subtext1 */
     --text-3: #5c5f77; /* subtext1: subtext0 misses 4.5:1 on base */
-    --accent: #8839ef; /* mauve */
+    --accent: #7c35da; /* mauve mixed 10% toward crust: plain mauve misses 4.5:1 on mantle and crust grounds */
     --accent-ink: #eff1f5;
-    --accent-glow: #8839ef1f;
+    --accent-glow: #7c35da1f;
     --ctp-red: #d20f39;
     --ctp-peach: #fe640b;
     --ctp-yellow: #df8e1d;

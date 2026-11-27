@@ -62,15 +62,15 @@ export const makeSlugText = (text?: string | null): string => {
   });
 };
 
-/**
- * map tag to tag object
- */
 /** Every tag at least one post uses, once each, by name. Only these have a /tags/:tag page. */
 export const getUsedTags = (posts: Post[]): Tag[] =>
   [...new Map(posts.flatMap((post) => post.tags).map((tag) => [tag.slug, tag])).values()].sort((a, b) =>
     a.name.localeCompare(b.name),
   );
 
+/**
+ * map tag to tag object
+ */
 export const mapTag = (tag: string): Tag => {
   const existsTag = TAGS.find((t) => t.name.toLowerCase() === tag.toLowerCase());
   if (existsTag) {

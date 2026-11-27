@@ -13,11 +13,10 @@ import type { Route } from "./+types/home";
 
 import { getPosts } from "~/lib/fetcher";
 import { getMetaData } from "~/lib/get-meta-data";
-import { getUri } from "~/lib/helpers";
+import { getUri, getUsedTags } from "~/lib/helpers";
 import { formatDate } from "~/lib/notion/utils";
 import { cn } from "~/lib/utils";
 import { BOOKMARKS } from "~/data/bookmarks";
-import { TAGS } from "~/data/tags";
 
 import { buttonVariants } from "~/components/ui/button";
 
@@ -27,7 +26,7 @@ export async function loader({}: Route.LoaderArgs) {
   const posts = await getPosts(env);
   const counts = new Map<string, number>();
   for (const tag of posts.flatMap((post) => post.tags)) counts.set(tag.slug, (counts.get(tag.slug) ?? 0) + 1);
-  const topics = TAGS.filter((tag) => counts.has(tag.slug))
+  const topics = getUsedTags(posts)
     .map((tag) => ({ ...tag, count: counts.get(tag.slug)! }))
     .sort((a, b) => b.count - a.count);
   const recent = [...posts].sort((a, b) => +new Date(b.createdAt) - +new Date(a.createdAt));

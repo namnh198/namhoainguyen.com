@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
   useLocation,
   useMatches,
+  useNavigation,
   useRouteLoaderData,
 } from "react-router";
 
@@ -14,7 +15,7 @@ import type { Route } from "./+types/root";
 
 import "./app.css";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { env } from "cloudflare:workers";
 
@@ -23,6 +24,7 @@ import { useGoogleAnalytics } from "./hooks/use-google-analytics";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { PageFooter } from "./components/layouts/page-footer";
 import { PageHeader } from "./components/layouts/page-header";
+import { PageSkeleton } from "./components/layouts/page-skeleton";
 
 export const loader = ({ url }: Route.LoaderArgs) => {
   return {
@@ -48,7 +50,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const { gaMeasurementId, canonical } = useRouteLoaderData<typeof loader>("root") || {};
   const location = useLocation();
   // a route whose page is built in whole screens (home) starts under the fixed header and ends on the closing footer
-  const screens = useMatches().some((match) => (match.handle as { screens?: boolean } | undefined)?.screens);
+  const matchesScreens = useMatches().some((match) => (match.handle as { screens?: boolean } | undefined)?.screens);
+  // a page change whose loader takes over 150ms shows the next page's skeleton; faster ones never flash it
+  const navigation = useNavigation();
+  const nextPath = navigation.state === "loading" ? navigation.location.pathname : undefined;
+  const [skeletonPath, setSkeletonPath] = useState<string>();
+  useEffect(() => {
+    if (!nextPath || nextPath === location.pathname) return setSkeletonPath(undefined);
+    const timer = setTimeout(() => {
+      setSkeletonPath(nextPath);
+      window.scrollTo(0, 0); // ScrollRestoration still restores the real position once the page commits
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [nextPath, location.pathname]);
+  const screens = matchesScreens && !skeletonPath;
   const isGaInitialized = useGoogleAnalytics(gaMeasurementId);
   useEffect(() => {
     if (isGaInitialized && gaMeasurementId) {
@@ -90,7 +105,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             children
           ) : (
             <div id="content" tabIndex={-1} className="pt-nav lg:pt-nav-lg outline-none">
-              {children}
+              {skeletonPath ? <PageSkeleton pathname={skeletonPath} /> : children}
             </div>
           )}
           <PageFooter closing={screens} />

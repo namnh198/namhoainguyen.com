@@ -20,16 +20,26 @@ import { useEffect, useState } from "react";
 import { env } from "cloudflare:workers";
 
 import { useGoogleAnalytics } from "./hooks/use-google-analytics";
+import { getPosts } from "./lib/fetcher";
+import { getUsedTags } from "./lib/helpers";
 
 import { TooltipProvider } from "./components/ui/tooltip";
 import { PageFooter } from "./components/layouts/page-footer";
 import { PageHeader } from "./components/layouts/page-header";
 import { PageSkeleton } from "./components/layouts/page-skeleton";
 
-export const loader = ({ url }: Route.LoaderArgs) => {
+export const loader = async ({ url }: Route.LoaderArgs) => {
+  // the header's Topics panel lists only tags that have a page; a Notion failure empties the panel, not the whole site
+  const topics = await getPosts(env)
+    .then(getUsedTags)
+    .catch((error) => {
+      console.error("root loader: topics unavailable", error);
+      return [];
+    });
   return {
     gaMeasurementId: env.GA_MEASUREMENT_ID,
     canonical: `${url.href}`,
+    topics,
   };
 };
 

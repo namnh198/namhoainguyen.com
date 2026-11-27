@@ -7,8 +7,7 @@ import type { Route } from "./+types/notes-list";
 
 import { getPosts } from "~/lib/fetcher";
 import { getMetaData } from "~/lib/get-meta-data";
-import { getUri } from "~/lib/helpers";
-import { TAGS } from "~/data/tags";
+import { getUri, getUsedTags } from "~/lib/helpers";
 
 import { LazyImage } from "~/components/ui/lazy-image";
 import { PostHeader } from "~/components/elements/post-header";
@@ -24,7 +23,7 @@ export function meta({}: Route.MetaArgs) {
 
 export async function loader({}: Route.LoaderArgs) {
   const posts = await getPosts(env);
-  const tags = TAGS.filter((tag) => tag.pinned);
+  const tags = getUsedTags(posts).filter((tag) => tag.pinned);
 
   return {
     posts,

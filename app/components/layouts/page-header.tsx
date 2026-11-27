@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
-import { IconChevronDown, IconMoon, IconPrompt, IconSun } from "@tabler/icons-react";
-import { Link, NavLink, useLocation } from "react-router";
+import type { Tag } from "~/lib/types";
+import type { loader as rootLoader } from "~/root";
+
+import { IconChevronDown, IconMoon, IconPrompt, IconSun, IconTag } from "@tabler/icons-react";
+import { Link, NavLink, useLocation, useRouteLoaderData } from "react-router";
 
 import { getUri } from "~/lib/helpers";
 import { MENU } from "~/data/menu";
-import { TAGS } from "~/data/tags";
 
 import { SearchModal } from "./search-modal";
 import { ToggleMenu } from "./toggle-menu";
@@ -34,7 +36,7 @@ function ThemeToggle() {
   );
 }
 
-function TopicsPanel() {
+function TopicsPanel({ topics }: { topics: Tag[] }) {
   return (
     <div className="bg-bg invisible absolute inset-x-0 top-full -translate-y-1.5 border-b opacity-0 transition-[opacity,transform,visibility] duration-[120ms] ease-out group-data-closed/topics:invisible! group-data-closed/topics:opacity-0! group-focus-within/topics:visible group-focus-within/topics:translate-y-0 group-focus-within/topics:opacity-100 group-hover/topics:visible group-hover/topics:translate-y-0 group-hover/topics:opacity-100 group-hover/topics:delay-150 group-hover/topics:duration-200 motion-reduce:translate-y-0">
       <div className="container grid grid-cols-12 gap-6 py-10">
@@ -46,10 +48,14 @@ function TopicsPanel() {
           </Link>
         </div>
         <ul className="col-span-9 grid grid-cols-4 gap-x-6">
-          {TAGS.map((tag) => (
+          {topics.map((tag) => (
             <li key={tag.slug}>
               <Link viewTransition to={getUri(tag.slug, "tag")} className="flex min-h-11 items-center gap-2.5">
-                <img src={tag.icon} alt="" width={20} height={20} loading="lazy" className="size-5 object-contain" />
+                {tag.icon ? (
+                  <img src={tag.icon} alt="" width={20} height={20} loading="lazy" className="size-5 object-contain" />
+                ) : (
+                  <IconTag aria-hidden="true" className="text-text-2 size-5" />
+                )}
                 <span className="nav-word">{tag.name}</span>
               </Link>
             </li>
@@ -62,6 +68,7 @@ function TopicsPanel() {
 
 export function PageHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const topics = useRouteLoaderData<typeof rootLoader>("root")?.topics ?? [];
   // the Topics panel opens on hover/focus in CSS; after a page change it stays shut until the pointer enters again or focus returns
   const [topicsClosed, setTopicsClosed] = useState(false);
   const { key } = useLocation();
@@ -109,7 +116,7 @@ export function PageHeader() {
                       className="text-text-2 size-3.5 transition-transform duration-200 group-focus-within/topics:rotate-180 group-hover/topics:rotate-180 group-data-closed/topics:rotate-0!"
                     />
                   </NavLink>
-                  <TopicsPanel />
+                  <TopicsPanel topics={topics} />
                 </li>
               ) : (
                 <li key={href} className="flex h-full items-center">

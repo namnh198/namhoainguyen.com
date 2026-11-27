@@ -6,7 +6,7 @@ import type { Route } from "./+types/tags-detail";
 
 import { getPosts } from "~/lib/fetcher";
 import { getMetaData } from "~/lib/get-meta-data";
-import { TAGS } from "~/data/tags";
+import { getUsedTags } from "~/lib/helpers";
 
 import { PostHeader } from "~/components/elements/post-header";
 import { PostList } from "~/components/elements/post-list";
@@ -16,7 +16,7 @@ export async function loader({ params }: Route.LoaderArgs) {
   const posts = await getPosts(env);
   const tagPosts = posts.filter((post) => post.tags.find((tag) => tag.slug === params.tag));
   const tag = tagPosts?.[0]?.tags.find((tag) => tag.slug === params.tag);
-  const pinnedTags = TAGS.filter((tag) => tag.pinned);
+  const pinnedTags = getUsedTags(posts).filter((tag) => tag.pinned);
   if (!tag) {
     throw data("Tag Not Found", { status: 404 });
   }

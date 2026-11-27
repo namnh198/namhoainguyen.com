@@ -239,6 +239,11 @@
     color: var(--text);
     background: color-mix(in oklab, var(--accent) 30%, transparent);
   }
+  /* inverse windows are painted in the other flavour: selected text keeps their ink, not the page's */
+  .bg-inv-bg::selection,
+  .bg-inv-bg ::selection {
+    color: var(--inv-ink);
+  }
 
   ::-webkit-scrollbar {
     width: 6px;

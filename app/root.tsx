@@ -19,9 +19,9 @@ import { useEffect, useState } from "react";
 
 import { env } from "cloudflare:workers";
 
-import { useGoogleAnalytics } from "./hooks/use-google-analytics";
 import { getPosts } from "./lib/fetcher";
 import { getUsedTags } from "./lib/helpers";
+import { useGoogleAnalytics } from "./hooks/use-google-analytics";
 
 import { TooltipProvider } from "./components/ui/tooltip";
 import { PageFooter } from "./components/layouts/page-footer";

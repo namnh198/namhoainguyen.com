@@ -483,22 +483,22 @@
   /* every block shares the paragraph rhythm, block-gap (14px, 20px from lg); sibling margins collapse.
      Last in the utility so it wins the zero-specificity ties above (ul/ol/table my-0). Headings and hr keep their own space. */
   :where(
-      .notion-text,
-      .group\/code,
-      .block-column-list,
-      .notion-asset-wrapper,
-      .notion-quote,
-      .notion-bookmark,
-      .notion-equation:not(.notion-equation-inline),
-      .notion-to-do,
-      .toggle-container,
-      .block-callout,
-      .notion-table,
-      .notion-mermaid,
-      .notion-eoi,
-      .notion-video,
-      .notion-list
-    ) {
+    .notion-text,
+    .group\/code,
+    .block-column-list,
+    .notion-asset-wrapper,
+    .notion-quote,
+    .notion-bookmark,
+    .notion-equation:not(.notion-equation-inline),
+    .notion-to-do,
+    .toggle-container,
+    .block-callout,
+    .notion-table,
+    .notion-mermaid,
+    .notion-eoi,
+    .notion-video,
+    .notion-list
+  ) {
     margin-block: 0.875rem;
     @variant lg {
       margin-block: 1.25rem;

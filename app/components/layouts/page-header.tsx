@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-
 import type { Tag } from "~/lib/types";
 import type { loader as rootLoader } from "~/root";
 
@@ -38,7 +37,7 @@ function ThemeToggle() {
 
 function TopicsPanel({ topics }: { topics: Tag[] }) {
   return (
-    <div className="bg-bg invisible absolute inset-x-0 top-full -translate-y-1.5 border-b opacity-0 transition-[opacity,transform,visibility] duration-[120ms] ease-out group-data-closed/topics:invisible! group-data-closed/topics:opacity-0! group-focus-within/topics:visible group-focus-within/topics:translate-y-0 group-focus-within/topics:opacity-100 group-hover/topics:visible group-hover/topics:translate-y-0 group-hover/topics:opacity-100 group-hover/topics:delay-150 group-hover/topics:duration-200 motion-reduce:translate-y-0">
+    <div className="bg-bg invisible absolute inset-x-0 top-full -translate-y-1.5 border-b opacity-0 transition-[opacity,transform,visibility] duration-[120ms] ease-out group-focus-within/topics:visible group-focus-within/topics:translate-y-0 group-focus-within/topics:opacity-100 group-hover/topics:visible group-hover/topics:translate-y-0 group-hover/topics:opacity-100 group-hover/topics:delay-150 group-hover/topics:duration-200 group-data-closed/topics:invisible! group-data-closed/topics:opacity-0! motion-reduce:translate-y-0">
       <div className="container grid grid-cols-12 gap-6 py-10">
         <div className="col-span-3 space-y-3">
           <p className="font-heading text-2xl">Topics</p>
@@ -83,7 +82,7 @@ export function PageHeader() {
   }, [key]);
 
   return (
-    <header className="nav [view-transition-name:site-header] bg-bg h-nav lg:h-nav-lg fixed inset-x-0 top-0 z-50 border-b">
+    <header className="nav bg-bg h-nav lg:h-nav-lg fixed inset-x-0 top-0 z-50 border-b [view-transition-name:site-header]">
       <a
         href="#content"
         className="bg-accent text-accent-ink rounded-btn sr-only z-60 px-4 py-3 font-medium focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
@@ -91,7 +90,12 @@ export function PageHeader() {
         Skip to content
       </a>
       <div className="wrap container flex h-full items-center justify-between gap-6">
-        <NavLink viewTransition to="/" className="nav__logo flex shrink-0 items-center gap-2.5" aria-label="Nam Hoai Nguyen, home">
+        <NavLink
+          viewTransition
+          to="/"
+          className="nav__logo flex shrink-0 items-center gap-2.5"
+          aria-label="Nam Hoai Nguyen, home"
+        >
           <span className="bg-accent text-accent-ink inline-flex size-9 items-center justify-center rounded-md">
             <IconPrompt stroke={3} width={20} height={20} />
           </span>

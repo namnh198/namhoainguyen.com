@@ -99,7 +99,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <div className="hero-text flex h-full flex-col">
             <div className="mx-auto grid max-w-[880px] justify-items-center gap-4 text-center">
               {latest && (
-                <Link viewTransition
+                <Link
+                  viewTransition
                   to={getUri(latest.slug, "note")}
                   data-enter-step
                   className="inline-flex min-h-8 max-w-full items-center gap-2 text-sm"
@@ -163,7 +164,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     </span>
                   </div>
                   {/* the first pinned note keeps the featured layout; the rest follow as rows */}
-                  <Link viewTransition
+                  <Link
+                    viewTransition
                     to={getUri(pinned[0].slug, "note")}
                     className="hover:bg-inv-surface/60 block space-y-3 p-5 transition-colors duration-150 lg:p-8"
                   >
@@ -188,7 +190,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     <ul className="border-inv-ink/10 border-t p-1.5 lg:p-2">
                       {pinned.slice(1).map((post) => (
                         <li key={post.id}>
-                          <Link viewTransition
+                          <Link
+                            viewTransition
                             to={getUri(post.slug, "note")}
                             className="hover:bg-inv-surface rounded-btn flex min-h-14 items-center gap-3 px-3 py-2.5 transition-colors duration-150 lg:px-4"
                           >
@@ -294,7 +297,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <ul className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-6">
             {topics.slice(0, 8).map((tag, i) => (
               <li key={tag.slug} className={cn(i > 3 && "max-sm:hidden")}>
-                <Link viewTransition
+                <Link
+                  viewTransition
                   to={getUri(tag.slug, "tag")}
                   className="card bg-bg border-border hover:border-border-bright flex h-full flex-col items-start gap-4 rounded-lg border p-4 transition-[transform,border-color] duration-150 sm:gap-6 sm:p-6 pointer-fine:hover:-translate-y-0.5"
                 >

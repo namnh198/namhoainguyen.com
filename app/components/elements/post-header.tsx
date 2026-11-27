@@ -39,14 +39,16 @@ export function PostHeader({
         {children}
         {tags.length > 0 && (
           <div className="flex flex-wrap gap-2 pt-3">
-            <Link viewTransition
+            <Link
+              viewTransition
               to={`/tags`}
               className="rounded-btn border-border-bright text-text inline-flex min-h-11 items-center border px-4 text-sm font-medium whitespace-nowrap"
             >
               All topics
             </Link>
             {tags.map((tag) => (
-              <Link viewTransition
+              <Link
+                viewTransition
                 key={tag.slug}
                 to={getUri(tag.slug, "tag")}
                 className="rounded-btn border-border text-text-2 hover:border-border-bright hover:text-text inline-flex min-h-11 items-center border px-4 text-sm font-medium whitespace-nowrap transition-colors"

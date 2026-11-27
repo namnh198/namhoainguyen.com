@@ -22,7 +22,11 @@ export function SectionHeading({
         {title}
       </h2>
       {viewAll && (
-        <Link viewTransition to={viewAll} className="inline-flex min-h-11 items-center text-sm font-medium whitespace-nowrap">
+        <Link
+          viewTransition
+          to={viewAll}
+          className="inline-flex min-h-11 items-center text-sm font-medium whitespace-nowrap"
+        >
           <span className="nav-word">All {title} notes →</span>
         </Link>
       )}

@@ -54,7 +54,10 @@ const GridSkeleton = () => (
 const NoteSkeleton = () => (
   <div className="container mb-12">
     <div className="max-w-[72ch] space-y-3.5 lg:space-y-5">
-      {[["w-full", "w-full", "w-5/6"], ["w-full", "w-2/3"]].map((lines, i) => (
+      {[
+        ["w-full", "w-full", "w-5/6"],
+        ["w-full", "w-2/3"],
+      ].map((lines, i) => (
         <div key={i} className="space-y-2">
           {lines.map((w, j) => (
             <Bar key={j} className={cn("h-4", w)} />

@@ -14,7 +14,11 @@ function Directory() {
   return (
     <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-12">
       <div className="col-span-2 space-y-4 lg:col-span-6">
-        <Link viewTransition to="/" className="font-heading block w-fit text-4xl leading-none tracking-[-0.03em] lg:text-6xl">
+        <Link
+          viewTransition
+          to="/"
+          className="font-heading block w-fit text-4xl leading-none tracking-[-0.03em] lg:text-6xl"
+        >
           Nam Hoai Nguyen
         </Link>
         <p className="text-text-2 max-w-md">Notes on web development and cloud services, written down as I learn.</p>
@@ -60,7 +64,8 @@ export function PageFooter({ closing = false }: { closing?: boolean }) {
               Every note, newest first
             </h2>
             <p className="text-text-2">Search them from any page with ⌘K.</p>
-            <Link viewTransition
+            <Link
+              viewTransition
               to="/notes"
               className={cn(
                 buttonVariants(),

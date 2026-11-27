@@ -14,7 +14,7 @@ function Directory() {
   return (
     <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-12">
       <div className="col-span-2 space-y-4 lg:col-span-6">
-        <Link to="/" className="font-heading block w-fit text-4xl leading-none tracking-[-0.03em] lg:text-6xl">
+        <Link viewTransition to="/" className="font-heading block w-fit text-4xl leading-none tracking-[-0.03em] lg:text-6xl">
           Nam Hoai Nguyen
         </Link>
         <p className="text-text-2 max-w-md">Notes on web development and cloud services, written down as I learn.</p>
@@ -24,7 +24,7 @@ function Directory() {
         <ul>
           {MENU.filter((menu) => menu.footer).map(({ href, label }) => (
             <li key={href}>
-              <Link to={href} className="flex min-h-11 w-fit items-center">
+              <Link viewTransition to={href} className="flex min-h-11 w-fit items-center">
                 <span className="nav-word">{label}</span>
               </Link>
             </li>
@@ -60,7 +60,7 @@ export function PageFooter({ closing = false }: { closing?: boolean }) {
               Every note, newest first
             </h2>
             <p className="text-text-2">Search them from any page with ⌘K.</p>
-            <Link
+            <Link viewTransition
               to="/notes"
               className={cn(
                 buttonVariants(),

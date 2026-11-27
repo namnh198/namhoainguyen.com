@@ -12,7 +12,7 @@ export function TagsGrid({ notionDomain, tags, posts }: { notionDomain: string; 
   return (
     <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
       {tags.map((tag) => (
-        <Link
+        <Link viewTransition
           key={tag.slug}
           to={getUri(tag.slug, "tag")}
           className="bg-bg-card hover:border-border-bright flex flex-col items-start gap-4 rounded-lg border p-4 transition-[transform,border-color] duration-150 sm:gap-6 sm:p-6 pointer-fine:hover:-translate-y-0.5"

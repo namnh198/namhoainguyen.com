@@ -50,7 +50,7 @@ export function SearchModal({}) {
 
   const openResult = (result?: SearchResult) => {
     if (!result) return;
-    navigate(getUri(result.slug));
+    navigate(getUri(result.slug), { viewTransition: true });
     handleModalOpenChange(false);
   };
 

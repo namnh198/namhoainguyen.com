@@ -33,7 +33,7 @@ export function PostList({
 export function PostListItem({ post, notionDomain }: { post: Post; notionDomain: string }) {
   return (
     <li className="border-b">
-      <Link to={getUri(post.slug, "note")} className="flex min-h-16 items-center gap-4 py-3">
+      <Link viewTransition to={getUri(post.slug, "note")} className="flex min-h-16 items-center gap-4 py-3">
         <span className="text-text-2 grid size-6 shrink-0 place-items-center" aria-hidden="true">
           <PageIcon
             inputIcon={post.icon}

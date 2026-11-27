@@ -99,7 +99,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <div className="hero-text flex h-full flex-col">
             <div className="mx-auto grid max-w-[880px] justify-items-center gap-4 text-center">
               {latest && (
-                <Link
+                <Link viewTransition
                   to={getUri(latest.slug, "note")}
                   data-enter-step
                   className="inline-flex min-h-8 max-w-full items-center gap-2 text-sm"
@@ -129,11 +129,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 style={{ "--i": 3 } as React.CSSProperties}
                 className="mt-3 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row"
               >
-                <Link to="/notes" className={cn(buttonVariants(), "w-full sm:w-auto")}>
+                <Link viewTransition to="/notes" className={cn(buttonVariants(), "w-full sm:w-auto")}>
                   Read the notes
                   <Arrow />
                 </Link>
-                <Link to="/tags" className={buttonVariants({ variant: "link" })}>
+                <Link viewTransition to="/tags" className={buttonVariants({ variant: "link" })}>
                   See all topics
                 </Link>
               </div>
@@ -163,7 +163,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     </span>
                   </div>
                   {/* the first pinned note keeps the featured layout; the rest follow as rows */}
-                  <Link
+                  <Link viewTransition
                     to={getUri(pinned[0].slug, "note")}
                     className="hover:bg-inv-surface/60 block space-y-3 p-5 transition-colors duration-150 lg:p-8"
                   >
@@ -188,7 +188,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     <ul className="border-inv-ink/10 border-t p-1.5 lg:p-2">
                       {pinned.slice(1).map((post) => (
                         <li key={post.id}>
-                          <Link
+                          <Link viewTransition
                             to={getUri(post.slug, "note")}
                             className="hover:bg-inv-surface rounded-btn flex min-h-14 items-center gap-3 px-3 py-2.5 transition-colors duration-150 lg:px-4"
                           >
@@ -231,7 +231,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             <ul className="lg:col-span-6">
               {older.slice(0, 6).map((post, i) => (
                 <li key={post.id} className={cn("border-b", i > 3 && "max-sm:hidden")}>
-                  <Link to={getUri(post.slug, "note")} className="flex min-h-16 items-center gap-4 py-3">
+                  <Link viewTransition to={getUri(post.slug, "note")} className="flex min-h-16 items-center gap-4 py-3">
                     <span className="flex flex-1 items-center gap-2 text-base font-medium lg:text-lg">
                       <span className="nav-word">{post.title}</span>
                       {post.pinned && <IconPin aria-label="Pinned" className="text-text-2 size-4 shrink-0" />}
@@ -294,7 +294,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <ul className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-6">
             {topics.slice(0, 8).map((tag, i) => (
               <li key={tag.slug} className={cn(i > 3 && "max-sm:hidden")}>
-                <Link
+                <Link viewTransition
                   to={getUri(tag.slug, "tag")}
                   className="card bg-bg border-border hover:border-border-bright flex h-full flex-col items-start gap-4 rounded-lg border p-4 transition-[transform,border-color] duration-150 sm:gap-6 sm:p-6 pointer-fine:hover:-translate-y-0.5"
                 >
@@ -350,7 +350,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               I&rsquo;m a senior full-stack engineer with a focus on web design and cloud services. These are the notes
               I made each time I worked something out.
             </p>
-            <Link to="/about" className={cn(buttonVariants({ variant: "link" }), "px-0")}>
+            <Link viewTransition to="/about" className={cn(buttonVariants({ variant: "link" }), "px-0")}>
               Read about me
             </Link>
           </div>

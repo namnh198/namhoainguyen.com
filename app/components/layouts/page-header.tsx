@@ -41,14 +41,14 @@ function TopicsPanel() {
         <div className="col-span-3 space-y-3">
           <p className="font-heading text-2xl">Topics</p>
           <p className="text-text-2">Every note is filed under one or more of these.</p>
-          <Link to="/tags" className="text-text inline-flex min-h-11 items-center">
+          <Link viewTransition to="/tags" className="text-text inline-flex min-h-11 items-center">
             <span className="nav-word">All topics →</span>
           </Link>
         </div>
         <ul className="col-span-9 grid grid-cols-4 gap-x-6">
           {TAGS.map((tag) => (
             <li key={tag.slug}>
-              <Link to={getUri(tag.slug, "tag")} className="flex min-h-11 items-center gap-2.5">
+              <Link viewTransition to={getUri(tag.slug, "tag")} className="flex min-h-11 items-center gap-2.5">
                 <img src={tag.icon} alt="" width={20} height={20} loading="lazy" className="size-5 object-contain" />
                 <span className="nav-word">{tag.name}</span>
               </Link>
@@ -64,7 +64,7 @@ export function PageHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="nav bg-bg h-nav lg:h-nav-lg fixed inset-x-0 top-0 z-50 border-b">
+    <header className="nav [view-transition-name:site-header] bg-bg h-nav lg:h-nav-lg fixed inset-x-0 top-0 z-50 border-b">
       <a
         href="#content"
         className="bg-accent text-accent-ink rounded-btn sr-only z-60 px-4 py-3 font-medium focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
@@ -72,7 +72,7 @@ export function PageHeader() {
         Skip to content
       </a>
       <div className="wrap container flex h-full items-center justify-between gap-6">
-        <NavLink to="/" className="nav__logo flex shrink-0 items-center gap-2.5" aria-label="Nam Hoai Nguyen, home">
+        <NavLink viewTransition to="/" className="nav__logo flex shrink-0 items-center gap-2.5" aria-label="Nam Hoai Nguyen, home">
           <span className="bg-accent text-accent-ink inline-flex size-9 items-center justify-center rounded-md">
             <IconPrompt stroke={3} width={20} height={20} />
           </span>
@@ -84,7 +84,7 @@ export function PageHeader() {
             {NAV.map(({ href, label }) =>
               href === "/tags" ? (
                 <li key={href} className="group/topics flex h-full items-center">
-                  <NavLink to={href} className="flex h-full items-center gap-1 text-[15px] font-medium">
+                  <NavLink viewTransition to={href} className="flex h-full items-center gap-1 text-[15px] font-medium">
                     <span className="nav-word">{label}</span>
                     <IconChevronDown
                       aria-hidden="true"
@@ -95,7 +95,7 @@ export function PageHeader() {
                 </li>
               ) : (
                 <li key={href} className="flex h-full items-center">
-                  <NavLink to={href} className="flex h-full items-center text-[15px] font-medium">
+                  <NavLink viewTransition to={href} className="flex h-full items-center text-[15px] font-medium">
                     <span className="nav-word">{label}</span>
                   </NavLink>
                 </li>
@@ -124,7 +124,7 @@ export function PageHeader() {
             <ul>
               {NAV.map(({ href, label }) => (
                 <li key={href} className="border-b">
-                  <NavLink to={href} className="flex h-14 items-center text-lg font-medium">
+                  <NavLink viewTransition to={href} className="flex h-14 items-center text-lg font-medium">
                     <span className="nav-word">{label}</span>
                   </NavLink>
                 </li>

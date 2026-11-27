@@ -37,8 +37,9 @@ function OgCard({ title, desc }: { title: string; desc: string }) {
         width: "100%",
         height: "100%",
         padding: "80px",
-        background: "#070a14",
-        color: "#dde3f0",
+        // Catppuccin Mocha, the site's default theme; satori can't read the CSS tokens, so the hexes are inlined
+        background: "#1e1e2e", // base (bg)
+        color: "#cdd6f4", // text
         fontFamily: "Inter Variable",
       }}
     >
@@ -49,17 +50,17 @@ function OgCard({ title, desc }: { title: string; desc: string }) {
           flexDirection: "column",
         }}
       >
-        <span style={{ fontSize: "32px", color: "#fbbf24" }}>namhoainguyen.com</span>
+        <span style={{ fontSize: "32px", color: "#cba6f7" /* mauve (accent) */ }}>namhoainguyen.com</span>
         <h1
           style={{
             fontSize: "72px",
             fontWeight: "bold",
-            color: "#5ab9fc",
+            color: "#cdd6f4", // text
           }}
         >
           {title}
         </h1>
-        <p style={{ fontSize: "42px", color: "#8891a1" }}>{desc}</p>
+        <p style={{ fontSize: "42px", color: "#a6adc8" /* subtext0 (text-2) */ }}>{desc}</p>
       </div>
     </div>
   );

@@ -41,7 +41,7 @@ export const EOI: React.FC<{
   return (
     <>
       {!inline && (
-        <div className="relative">
+        <div className="notion-eoi relative">
           <a
             className={cn(
               className,

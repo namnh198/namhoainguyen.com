@@ -18,7 +18,7 @@ export function Video({ videoUrl, caption, className }: BlockVideoProps) {
   const videoId = getYoutubeId(videoUrl);
   if (!videoId) return null;
   return (
-    <div className={cn(className, "flex flex-col items-center justify-center gap-2")}>
+    <div className={cn(className, "notion-video flex flex-col items-center justify-center gap-2")}>
       <YoutubeEmbed id={videoId} title={"Youtube video"} className="bg-bg rounded-xl border" />
       {caption && <div className="text-text-2 mt-2 text-sm italic">{caption}</div>}
     </div>

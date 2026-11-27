@@ -113,7 +113,7 @@ export function Mermaid({
   const { svg, error, status, renderRef } = useMermaid(chart, debounceTime);
   // console.log(svg, error, status, renderRef);
   return (
-    <div className={cn("bg-bg-elevated relative min-h-25 w-full rounded-xl border p-[1em]", className)}>
+    <div className={cn("notion-mermaid bg-bg-elevated relative min-h-25 w-full rounded-xl border p-[1em]", className)}>
       {status === "success" && svg && (
         <div
           className="animate-in fade-in flex h-full w-full items-center justify-center overflow-auto duration-300 [&_svg]:h-auto [&_svg]:max-w-full"

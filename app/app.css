@@ -374,13 +374,6 @@
     @apply bg-bg-elevated! rounded-lg border p-[1em];
   }
 
-  /* code blocks and column lists share the paragraph rhythm (my-3.5, lg:my-5); sibling margins collapse */
-  :where(.group\/code, .block-column-list) {
-    margin-block: 0.875rem;
-    @variant lg {
-      margin-block: 1.25rem;
-    }
-  }
   /* inside a column the column list owns the outer space: no extra margin at a column's top or bottom */
   .block-column-list > * > :first-child {
     margin-top: 0 !important; /* beats figure's my-3! */
@@ -480,6 +473,49 @@
         @apply text-text-3 mr-6 inline-block w-4 border-transparent text-right content-[counter(step)];
       }
     }
+  }
+
+  /* every block shares the paragraph rhythm, block-gap (14px, 20px from lg); sibling margins collapse.
+     Last in the utility so it wins the zero-specificity ties above (ul/ol/table my-0). Headings and hr keep their own space. */
+  :where(
+      .notion-text,
+      .group\/code,
+      .block-column-list,
+      .notion-asset-wrapper,
+      .notion-quote,
+      .notion-bookmark,
+      .notion-equation:not(.notion-equation-inline),
+      .notion-to-do,
+      .toggle-container,
+      .block-callout,
+      .notion-table,
+      .notion-mermaid,
+      .notion-eoi,
+      .notion-video,
+      .notion-list
+    ) {
+    margin-block: 0.875rem;
+    @variant lg {
+      margin-block: 1.25rem;
+    }
+  }
+  /* a nested list sits in its parent's item rhythm, not the block rhythm */
+  :where(.notion-list .notion-list) {
+    margin-block: 0;
+  }
+  /* Notion stores each top-level list item as its own list: consecutive ones read as one list (li spacing, 8px) */
+  :where(.notion-list:has(+ .notion-list)) {
+    margin-bottom: 0;
+  }
+  :where(.notion-list + .notion-list) {
+    margin-top: 0;
+  }
+  /* consecutive to-dos read as one checklist */
+  :where(.notion-to-do:has(+ .notion-to-do)) {
+    margin-bottom: 0;
+  }
+  :where(.notion-to-do + .notion-to-do) {
+    margin-top: 0.5rem;
   }
 }
 
